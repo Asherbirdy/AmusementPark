@@ -13,7 +13,7 @@ meta: {
 <route>
   {
       meta: {
-          layout: 'cms_layout'
+          layout: 'backStage'
       }
   }
   </route>
