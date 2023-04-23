@@ -13,7 +13,7 @@ meta: {
 <route>
   {
       meta: {
-          layout: 'backStage'
+          layout: false,
       }
   }
   </route>
@@ -77,7 +77,7 @@ meta: {
 }
 
 .image {
-  background-image: url("../assets/img/img_kidsplayground.jpg");
+  background-image: url("@/assets/img/img_kidsplayground.jpg");
   width: 300px;
   height: 300px;
   background-size: cover;
