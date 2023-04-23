@@ -30,7 +30,10 @@ export default defineConfig({
       iconDirs: [path.resolve(process.cwd(), "src/assets/svg")],
       symbolId: "[dir]/[name]",
     }),
-    Pages(),
+    Pages(
+      { pagesDir: [{ dir: "src/pages", baseRoute: "" }] },
+      { dir: "src/admin/pages", baseRoute: "admin" }
+    ),
     Layouts(),
   ],
   resolve: {
