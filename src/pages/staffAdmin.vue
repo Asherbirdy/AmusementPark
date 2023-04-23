@@ -6,8 +6,21 @@ const formInput = reactive({
 });
 
 const input = ref("");
+meta: {
+  layout: false; // 指定該頁面不使用任何佈局
+}
 </script>
+<route>
+  {
+      meta: {
+          layout: 'cms_layout'
+      }
+  }
+  </route>
 <template>
+  <layout name="cms_layout">
+    <!-- 这里是内容部分 -->
+  </layout>
   <div class="container">
     <div class="image"></div>
     <div class="box" style="padding: 30px">
