@@ -1,3 +1,21 @@
+<script setup>
+// 開關
+const handleOpen = (key, keyPath) => {
+  console.log(key, keyPath);
+};
+const handleClose = (key, keyPath) => {
+  console.log(key, keyPath);
+};
+
+// 檢視權限等級：
+const userData = JSON.parse(sessionStorage.getItem('UserData'));
+
+// 抓取權限等級：
+const permissions = userData.permissions;
+console.log(permissions);
+
+// 根據不同權限來顯示頁面 導覽列：
+</script>
 <template>
   <el-row class="tac">
     <el-col :span="100">
@@ -50,16 +68,7 @@
   </el-row>
 </template>
 
-<script lang="ts" setup>
-const handleOpen = (key: string, keyPath: string[]) => {
-  console.log(key, keyPath);
-};
-const handleClose = (key: string, keyPath: string[]) => {
-  console.log(key, keyPath);
-};
-</script>
-
-<style>
+<style scoped>
 .el-menu-item {
   width: 100%;
 }
