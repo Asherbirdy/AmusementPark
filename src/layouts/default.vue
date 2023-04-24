@@ -2,6 +2,8 @@
 
 <template>
   <RouterView />
+
+  <h1>測試頁面:default.vue</h1>
 </template>
 
-<style scoped></style>
+<style></style>
