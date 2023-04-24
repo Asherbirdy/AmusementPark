@@ -11,7 +11,7 @@
         <el-sub-menu index="1">
           <template #title>
             <el-icon><location /></el-icon>
-            <span>Navigator One</span>
+            <span>園區動態管理</span>
           </template>
           <el-menu-item-group title="Group One">
             <el-menu-item index="1-1">item one</el-menu-item>
@@ -27,15 +27,23 @@
         </el-sub-menu>
         <el-menu-item index="2">
           <el-icon><icon-menu /></el-icon>
-          <span>Navigator Two</span>
+          <span>活動管理</span>
         </el-menu-item>
         <el-menu-item index="3" disabled>
           <el-icon><document /></el-icon>
-          <span>Navigator Three</span>
+          <span>商品管理</span>
         </el-menu-item>
         <el-menu-item index="4">
           <el-icon><setting /></el-icon>
-          <span>Navigator Four</span>
+          <span>會員管理</span>
+        </el-menu-item>
+        <el-menu-item index="5">
+          <el-icon><setting /></el-icon>
+          <span>Q&A</span>
+        </el-menu-item>
+        <el-menu-item index="6">
+          <el-icon><setting /></el-icon>
+          <span>員工帳號管理</span>
         </el-menu-item>
       </el-menu>
     </el-col>

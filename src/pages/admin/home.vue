@@ -7,7 +7,7 @@
 <route>
     {
         meta: {
-          layout: 'staff',
+          layout: 'admin',
         }
     }
 </route>
