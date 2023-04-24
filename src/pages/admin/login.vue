@@ -1,22 +1,38 @@
 <script setup>
-// 定義一筆資料並綁定JS
+// input 資料：
 const formInput = reactive({
-  username: "",
-  password: "",
+  username: '',
+  password: '',
 });
 
-const input = ref("");
-meta: {
-  layout: false; // 指定該頁面不使用任何佈局
-}
-</script>
-<route>
-  {
-      meta: {
-          layout: false,
-      }
+// v-if 資料
+let isUsernameEmpty = ref(false);
+let isPasswordEmpty = ref(false);
+
+// 送出表單
+const handleSubmit = () => {
+  if (formInput.username !== '' && formInput.password !== '') {
+    console.log('送出表單' + formInput.username + formInput.password);
+  } else {
+    formInput.username === ''
+      ? (isUsernameEmpty.value = true)
+      : (isUsernameEmpty.value = false);
+    formInput.password === ''
+      ? (isPasswordEmpty.value = true)
+      : (isPasswordEmpty.value = false);
   }
-  </route>
+};
+
+// 重置表單
+const handleReset = () => {
+  formInput.username = '';
+  formInput.password = '';
+  isUsernameEmpty.value = false;
+  isPasswordEmpty.value = false;
+};
+
+// 其他：
+</script>
 <template>
   <layout name="cms_layout">
     <!-- 这里是内容部分 -->
@@ -27,20 +43,15 @@ meta: {
       <!-- 標題 -->
       <el-text class="title" size="large">園區後台</el-text>
       <!-- 表單 -->
-      <el-form
-        ref="ruleFormRef"
-        :model="formInput"
-        :rules="rules"
-        class="demo-ruleForm"
-        label-position="center"
-      >
+      <el-form :model="formInput" class="demo-ruleForm" label-position="center">
         <!-- 表單：帳號 -->
-        <el-form-item label="" prop="username">
+        <el-form-item label="">
           <p>帳號</p>
           <el-input v-model="formInput.username" placeholder="" />
+          <p v-if="isUsernameEmpty">帳號不能為空</p>
         </el-form-item>
         <!-- 表單：密碼 -->
-        <el-form-item label="" prop="password ">
+        <el-form-item label="">
           <p>密碼</p>
           <el-input
             v-model="formInput.password"
@@ -48,12 +59,14 @@ meta: {
             placeholder=""
             show-password
           />
+          <p v-if="isPasswordEmpty">密碼不能為空</p>
         </el-form-item>
         <!-- 表單：按鈕 -->
         <el-form-item>
-          <div></div>
-          <el-button type="primary" style="width: 46%">送出</el-button>
-          <el-button style="width: 46%">重置</el-button>
+          <el-button type="primary" style="width: 46%" @click="handleSubmit"
+            >送出</el-button
+          >
+          <el-button style="width: 46%" @click="handleReset">重置</el-button>
         </el-form-item>
       </el-form>
     </div>
@@ -77,7 +90,7 @@ meta: {
 }
 
 .image {
-  background-image: url("@/assets/img/img_kidsplayground.jpg");
+  background-image: url('@/assets/img/img_kidsplayground.jpg');
   width: 300px;
   height: 300px;
   background-size: cover;
@@ -85,3 +98,10 @@ meta: {
   background-position: center;
 }
 </style>
+<route>
+  {
+      meta: {
+          layout: false,
+      }
+  }
+  </route>
