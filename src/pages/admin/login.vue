@@ -18,18 +18,22 @@ const handleSubmit = () => {
     console.log('送出表單' + formInput.username + formInput.password);
     isUsernameEmpty.value = false;
     isPasswordEmpty.value = false;
-    //axios 傳給 有宣電腦的 php
+
+    // username 和 password
     axios
       .get('/json/directorData.json') // json測試資料
       // .post('http://另一台電腦的IP地址/your-php-file.php', formInput)
       .then(res => {
         console.log(res.data);
-        // 存在 seesion storage
-        sessionStorage?.removeItem('UserData');
-        const dataToJSON = JSON.stringify(res.data);
-        sessionStorage.setItem('UserData', dataToJSON);
-        // 換頁面：
-        // router.push('/admin/home');
+
+        // 測試資料要打開這個
+        (function () {
+          sessionStorage?.removeItem('UserData');
+          const dataToJSON = JSON.stringify(res.data);
+          sessionStorage.setItem('UserData', dataToJSON);
+        })();
+
+        router.push('/admin/home');
       })
       .catch(err => {
         console.log(err);
@@ -126,4 +130,4 @@ const handleReset = () => {
           layout: false,
       }
   }
-  </route>
+</route>
