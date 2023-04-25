@@ -2,8 +2,8 @@
 import axios from 'axios';
 // input 資料：
 const formInput = reactive({
-  username: '',
-  password: '',
+  account: 'asher',
+  pwd: 'asher',
 });
 
 const router = useRouter();
@@ -14,36 +14,34 @@ let isPasswordEmpty = ref(false);
 
 // 送出表單
 const handleSubmit = () => {
-  if (formInput.username !== '' && formInput.password !== '') {
-    console.log('送出表單' + formInput.username + formInput.password);
+  if (formInput.account !== '' && formInput.pwd !== '') {
+    console.log('送出表單' + formInput.account + formInput.pwd);
     isUsernameEmpty.value = false;
     isPasswordEmpty.value = false;
+    console.log(formInput);
+
+const personJSON = JSON.stringify(formInput);
 
     // username 和 password
     axios
-      .get('/json/directorData.json') // json測試資料
-      // .post('http://另一台電腦的IP地址/your-php-file.php', formInput)
+
+      .post('/api/PDO/login.php', personJSON)
       .then(res => {
         console.log(res.data);
 
-        // 測試資料要打開這個
-        (function () {
-          sessionStorage?.removeItem('UserData');
-          const dataToJSON = JSON.stringify(res.data);
-          sessionStorage.setItem('UserData', dataToJSON);
-        })();
 
-        router.push('/admin/home');
+
+        // router.push('/admin/home');
       })
       .catch(err => {
         console.log(err);
-        alert('錯誤帳號或密碼');
+        alert('伺服器問題');
       });
   } else {
-    formInput.username === ''
+    formInput.Account === ''
       ? (isUsernameEmpty.value = true)
       : (isUsernameEmpty.value = false);
-    formInput.password === ''
+    formInput.PWD === ''
       ? (isPasswordEmpty.value = true)
       : (isPasswordEmpty.value = false);
   }
@@ -51,8 +49,8 @@ const handleSubmit = () => {
 
 // 重置表單
 const handleReset = () => {
-  formInput.username = '';
-  formInput.password = '';
+  formInput.account = '';
+  formInput.pwd = '';
   isUsernameEmpty.value = false;
   isPasswordEmpty.value = false;
 };
@@ -73,14 +71,14 @@ const handleReset = () => {
         <!-- 表單：帳號 -->
         <el-form-item label="">
           <p>帳號</p>
-          <el-input v-model="formInput.username" placeholder="" />
+          <el-input v-model="formInput.account" placeholder="" />
           <p v-if="isUsernameEmpty">帳號不能為空</p>
         </el-form-item>
         <!-- 表單：密碼 -->
         <el-form-item label="">
           <p>密碼</p>
           <el-input
-            v-model="formInput.password"
+            v-model="formInput.pwd"
             type="password"
             placeholder=""
             show-password
