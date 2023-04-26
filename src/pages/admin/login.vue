@@ -18,19 +18,32 @@ const handleSubmit = () => {
     console.log('送出表單' + formInput.account + formInput.pwd);
     isUsernameEmpty.value = false;
     isPasswordEmpty.value = false;
-    console.log(formInput);
+    // console.log(formInput);
 
+    // INPUT轉JSON
 const personJSON = JSON.stringify(formInput);
+
+// INPUT轉陣列
+const personArr = Object.values(formInput);
+console.log(personArr);
+
+const a = [formInput.account,formInput.pwd];
+console.log(a);
+
+const faccount = formInput.account;
+const fpwd = formInput.pwd;
+
 
     // username 和 password
     axios
 
-      .post('/api/PDO/login.php', personJSON)
+      .post('/api/PDO/login.php', {
+        account:formInput.account,
+        pwd:formInput.pwd
+      })
       .then(res => {
         console.log(res.data);
-
-
-
+        alert('伺服器沒問題');
         // router.push('/admin/home');
       })
       .catch(err => {
@@ -87,7 +100,7 @@ const handleReset = () => {
         </el-form-item>
         <!-- 表單：按鈕 -->
         <el-form-item>
-          <el-button type="primary" style="width: 46%" @click="handleSubmit"
+          <el-button name ="submit" type="primary" style="width: 46%" @click="handleSubmit"
             >送出</el-button
           >
           <el-button style="width: 46%" @click="handleReset">重置</el-button>
