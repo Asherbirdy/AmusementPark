@@ -2,8 +2,8 @@
 import axios from 'axios';
 // input 資料：
 const formInput = reactive({
-  account: 'asher',
-  pwd: 'asher',
+  account: '',
+  pwd: '',
 });
 
 const router = useRouter();
@@ -27,9 +27,19 @@ const handleSubmit = () => {
         pwd:formInput.pwd
       })
       .then(res => {
-        console.log(res.data);
-        alert('伺服器沒問題');
-        // router.push('/admin/home');
+        console.log( res.data);
+        const dataToJSON = JSON.stringify(res.data);
+
+        // 如果登入成功:
+        if(res.data.status === 'true'){
+          alert('登入成功');
+      
+          sessionStorage.setItem('UserData',dataToJSON);
+          router.push('/admin/home');
+        }else{
+          alert('錯誤帳號密碼');
+        }
+
       })
       .catch(err => {
         console.log(err);
