@@ -41,4 +41,14 @@ export default defineConfig({
       "@": fileURLToPath(new URL("./src", import.meta.url)),
     },
   },
+  server: {
+    port: '5713',
+    proxy: {
+      '/api': {
+        target: 'http://localhost:80/',
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/api/, '') // 不可以省略rewrite
+      }
+    }
+  },
 });

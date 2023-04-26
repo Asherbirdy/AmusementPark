@@ -8,6 +8,7 @@ import '@/assets/css/reset.css';
 
 const app = createApp(App);
 
+
 app.use(router);
 
 app.mount('#app');
