@@ -1,3 +1,55 @@
+<script setup>
+// 開關
+const handleOpen = (key, keyPath) => {
+  console.log(key, keyPath);
+};
+const handleClose = (key, keyPath) => {
+  console.log(key, keyPath);
+};
+// 檢視權限等級：
+const userData = JSON.parse(sessionStorage.getItem('UserData'));
+// 抓取權限等級：
+const permissions = userData.permissions;
+
+// 先鎖定所有導覽列 <el-sub-menu /> 上的 disabled
+let disabledOne = true;
+let disabledTwo = true;
+let disabledThree = true;
+let disabledFour = true;
+let disabledFive = true;
+let disabledSix = true;
+
+// 依照權限進行開關：
+switch (permissions) {
+  case 0:
+    alert('權限：員工');
+    disabledOne = false;
+    disabledTwo = false;
+    disabledFour = false;
+    disabledFive = false;
+
+    break;
+  case 1:
+    alert('權限：主管');
+
+    disabledTwo = false;
+    disabledThree = false;
+    disabledFour = false;
+    disabledFive = false;
+    disabledSix = false;
+    break;
+  case 9:
+    alert('權限：園長');
+    disabledOne = false;
+    disabledTwo = false;
+    disabledThree = false;
+    disabledFour = false;
+    disabledFive = false;
+    disabledSix = false;
+    break;
+}
+// 根據不同權限來顯示頁面 導覽列：
+</script>
 <template>
   <el-row class="tac">
     <el-col :span="100">
@@ -8,7 +60,7 @@
         @open="handleOpen"
         @close="handleClose"
       >
-        <el-sub-menu index="1">
+        <el-sub-menu index="1" :disabled="disabledOne">
           <template #title>
             <el-icon><location /></el-icon>
             <span>園區動態管理</span>
@@ -25,23 +77,23 @@
             <el-menu-item index="1-4-1">item one</el-menu-item>
           </el-sub-menu>
         </el-sub-menu>
-        <el-menu-item index="2">
+        <el-menu-item index="2" :disabled="disabledTwo">
           <el-icon><icon-menu /></el-icon>
           <span>活動管理</span>
         </el-menu-item>
-        <el-menu-item index="3" disabled>
+        <el-menu-item index="3" :disabled="disabledThree">
           <el-icon><document /></el-icon>
           <span>商品管理</span>
         </el-menu-item>
-        <el-menu-item index="4">
+        <el-menu-item index="4" :disabled="disabledFour">
           <el-icon><setting /></el-icon>
           <span>會員管理</span>
         </el-menu-item>
-        <el-menu-item index="5">
+        <el-menu-item index="5" :disabled="disabledFive">
           <el-icon><setting /></el-icon>
           <span>Q&A</span>
         </el-menu-item>
-        <el-menu-item index="6">
+        <el-menu-item index="6" :disabled="disabledSix">
           <el-icon><setting /></el-icon>
           <span>員工帳號管理</span>
         </el-menu-item>
@@ -50,16 +102,7 @@
   </el-row>
 </template>
 
-<script lang="ts" setup>
-const handleOpen = (key: string, keyPath: string[]) => {
-  console.log(key, keyPath);
-};
-const handleClose = (key: string, keyPath: string[]) => {
-  console.log(key, keyPath);
-};
-</script>
-
-<style>
+<style scoped>
 .el-menu-item {
   width: 100%;
 }
