@@ -18,21 +18,6 @@ const handleSubmit = () => {
     console.log('送出表單' + formInput.account + formInput.pwd);
     isUsernameEmpty.value = false;
     isPasswordEmpty.value = false;
-    // console.log(formInput);
-
-    // INPUT轉JSON
-const personJSON = JSON.stringify(formInput);
-
-// INPUT轉陣列
-const personArr = Object.values(formInput);
-console.log(personArr);
-
-const a = [formInput.account,formInput.pwd];
-console.log(a);
-
-const faccount = formInput.account;
-const fpwd = formInput.pwd;
-
 
     // username 和 password
     axios
