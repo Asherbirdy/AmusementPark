@@ -9,8 +9,8 @@ export {}
 
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
-    AdminNav: typeof import('./components/AdminNav.vue')['default']
-    Axiostest: typeof import('./components/axiostest.vue')['default']
+    AdminNav: typeof import('./components/-Global/AdminNav.vue')['default']
+    Axiostest: typeof import('./components/-Global/axiostest.vue')['default']
     ElAside: typeof import('element-plus/es')['ElAside']
     ElButton: typeof import('element-plus/es')['ElButton']
     ElCol: typeof import('element-plus/es')['ElCol']
@@ -29,11 +29,11 @@ declare module '@vue/runtime-core' {
     ElSubMenu: typeof import('element-plus/es')['ElSubMenu']
     ElText: typeof import('element-plus/es')['ElText']
     HelloWorld: typeof import('./components/HelloWorld.vue')['default']
-    IconCommunity: typeof import('./components/icons/IconCommunity.vue')['default']
-    IconDocumentation: typeof import('./components/icons/IconDocumentation.vue')['default']
-    IconEcosystem: typeof import('./components/icons/IconEcosystem.vue')['default']
-    IconSupport: typeof import('./components/icons/IconSupport.vue')['default']
-    IconTooling: typeof import('./components/icons/IconTooling.vue')['default']
+    IconCommunity: typeof import('./components/-UI Element/icons/IconCommunity.vue')['default']
+    IconDocumentation: typeof import('./components/-UI Element/icons/IconDocumentation.vue')['default']
+    IconEcosystem: typeof import('./components/-UI Element/icons/IconEcosystem.vue')['default']
+    IconSupport: typeof import('./components/-UI Element/icons/IconSupport.vue')['default']
+    IconTooling: typeof import('./components/-UI Element/icons/IconTooling.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
     SvgIcon: typeof import('./components/SvgIcon.vue')['default']
