@@ -10,7 +10,7 @@ export {}
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
     AdminNav: typeof import('./components/-Global/AdminNav.vue')['default']
-    Axiostest: typeof import('./components/-Global/axiostest.vue')['default']
+    Axiostest: typeof import('./components/-Global/Axiostest.vue')['default']
     ElAside: typeof import('element-plus/es')['ElAside']
     ElButton: typeof import('element-plus/es')['ElButton']
     ElCol: typeof import('element-plus/es')['ElCol']
