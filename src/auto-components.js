@@ -10,7 +10,7 @@ export {}
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
     AdminNav: typeof import('./components/-Global/AdminNav.vue')['default']
-    Axiostest: typeof import('./components/-Global/axiostest.vue')['default']
+    Axiostest: typeof import('./components/-Global/Axiostest.vue')['default']
     ElAside: typeof import('element-plus/es')['ElAside']
     ElButton: typeof import('element-plus/es')['ElButton']
     ElCol: typeof import('element-plus/es')['ElCol']
@@ -28,7 +28,6 @@ declare module '@vue/runtime-core' {
     ElRow: typeof import('element-plus/es')['ElRow']
     ElSubMenu: typeof import('element-plus/es')['ElSubMenu']
     ElText: typeof import('element-plus/es')['ElText']
-    HelloWorld: typeof import('./components/HelloWorld.vue')['default']
     IconCommunity: typeof import('./components/-UI Element/icons/IconCommunity.vue')['default']
     IconDocumentation: typeof import('./components/-UI Element/icons/IconDocumentation.vue')['default']
     IconEcosystem: typeof import('./components/-UI Element/icons/IconEcosystem.vue')['default']
@@ -37,7 +36,5 @@ declare module '@vue/runtime-core' {
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
     SvgIcon: typeof import('./components/SvgIcon.vue')['default']
-    TheWelcome: typeof import('./components/TheWelcome.vue')['default']
-    WelcomeItem: typeof import('./components/WelcomeItem.vue')['default']
   }
 }
