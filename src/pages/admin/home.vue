@@ -1,7 +1,5 @@
 <script setup></script>
-<template>
-  <div>asdsad</div>
-</template>
+<template></template>
 
 <style></style>
 <route>

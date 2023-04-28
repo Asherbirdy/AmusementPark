@@ -13,7 +13,10 @@
           <AdminNav />
         </el-aside>
         <el-container>
-          <el-main class="main">Main</el-main>
+          <el-main class="main"
+            >Main
+            <RouterView />
+          </el-main>
           <el-footer class="footer">Footer</el-footer>
         </el-container>
       </el-container>
