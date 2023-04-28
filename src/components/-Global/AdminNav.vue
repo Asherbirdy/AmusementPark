@@ -73,9 +73,9 @@ switch (permissions) {
           </el-menu-item>
         </router-link>
         <!-- Nav3 -->
-        <router-link class="nav" to="/admin/activity">
+        <router-link class="nav" to="/admin/productstatus">
           <el-menu-item index="3" :disabled="disabledThree">
-            <span>商品管理</span>
+            <span>訂單狀態</span>
           </el-menu-item>
         </router-link>
         <!-- Nav4 -->
