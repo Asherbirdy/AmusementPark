@@ -5,7 +5,7 @@
         <h1>怪獸樂園後台管理系統</h1>
         <div class="userbox">
           <IconUserProfile class="icon-user" />
-          <a>登出</a>
+          <router-link to="/admin/login"><a>登出</a></router-link>
         </div>
       </el-header>
       <el-container>
@@ -13,8 +13,7 @@
           <AdminNav />
         </el-aside>
         <el-container>
-          <el-main class="main"
-            >Main
+          <el-main class="main">
             <RouterView />
           </el-main>
           <el-footer class="footer">Footer</el-footer>

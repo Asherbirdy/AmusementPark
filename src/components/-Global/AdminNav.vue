@@ -61,29 +61,41 @@ switch (permissions) {
         @close="handleClose"
       >
         <!-- Nav1 -->
-        <el-menu-item index="1" :disabled="disabledOne">
-          <span>園區動態管理</span>
-        </el-menu-item>
+        <router-link class="nav" to="/admin/parkstatus">
+          <el-menu-item index="1" :disabled="disabledOne">
+            <span>園區動態管理</span>
+          </el-menu-item>
+        </router-link>
         <!-- Nav2 -->
-        <el-menu-item index="2" :disabled="disabledTwo">
-          <span>活動管理</span>
-        </el-menu-item>
+        <router-link class="nav" to="/admin/activity">
+          <el-menu-item index="2" :disabled="disabledTwo">
+            <span>活動管理</span>
+          </el-menu-item>
+        </router-link>
         <!-- Nav3 -->
-        <el-menu-item index="3" :disabled="disabledThree">
-          <span>商品管理</span>
-        </el-menu-item>
+        <router-link class="nav" to="/admin/activity">
+          <el-menu-item index="3" :disabled="disabledThree">
+            <span>商品管理</span>
+          </el-menu-item>
+        </router-link>
         <!-- Nav4 -->
-        <el-menu-item index="4" :disabled="disabledFour">
-          <span>會員管理</span>
-        </el-menu-item>
+        <router-link class="nav" to="/admin/membership">
+          <el-menu-item index="4" :disabled="disabledFour">
+            <span>會員管理</span>
+          </el-menu-item>
+        </router-link>
         <!-- Nav5 -->
-        <el-menu-item index="5" :disabled="disabledFive">
-          <span>Q&A</span>
-        </el-menu-item>
+        <router-link class="nav" to="/admin/question">
+          <el-menu-item index="5" :disabled="disabledFive">
+            <span>Q&A</span>
+          </el-menu-item>
+        </router-link>
         <!-- Nav6 -->
-        <el-menu-item index="6" :disabled="disabledSix">
-          <span>員工帳號管理</span>
-        </el-menu-item>
+        <router-link class="nav" to="/admin/staffaccount">
+          <el-menu-item index="6" :disabled="disabledSix">
+            <span>員工帳號管理</span>
+          </el-menu-item>
+        </router-link>
       </el-menu>
     </el-col>
   </el-row>
@@ -96,5 +108,9 @@ switch (permissions) {
 
 .tac {
   background-color: white;
+}
+
+.nav {
+  text-decoration: none;
 }
 </style>

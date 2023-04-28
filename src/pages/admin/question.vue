@@ -1,6 +1,6 @@
 <script></script>
 <template>
-  <div></div>
+  <div>Q&A管裏</div>
 </template>
 
 <style scoped lang="scss"></style>
