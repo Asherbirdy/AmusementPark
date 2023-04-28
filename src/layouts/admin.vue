@@ -5,7 +5,9 @@
         <h1>怪獸樂園後台管理系統</h1>
         <div class="userbox">
           <IconUserProfile class="icon-user" />
-          <router-link to="/admin/login"><a>登出</a></router-link>
+          <router-link class="logout" to="/admin/login"
+            ><a>登出</a></router-link
+          >
         </div>
       </el-header>
       <el-container>
@@ -34,6 +36,9 @@ $headerHeight: 100px;
     h1 {
       font-size: 20px;
     }
+    .logout {
+      text-decoration: none;
+    }
     .userbox {
       display: flex;
       gap: 10px;
@@ -48,7 +53,7 @@ $headerHeight: 100px;
   }
 
   .main {
-    background-color: rgb(229, 229, 229);
+    /*  background-color: rgb(229, 229, 229);*/
     height: 500px;
   }
   .footer {

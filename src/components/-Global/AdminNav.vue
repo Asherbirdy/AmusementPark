@@ -108,6 +108,7 @@ switch (permissions) {
 
 .tac {
   background-color: white;
+  padding: 10px 0;
 }
 
 .nav {
