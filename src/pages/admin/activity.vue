@@ -1,6 +1,6 @@
 <script></script>
 <template>
-  <div>活動管理</div>
+  <ActivityList />
 </template>
 
 <style scoped lang="scss"></style>

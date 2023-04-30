@@ -78,21 +78,16 @@ switch (permissions) {
             <span>訂單狀態</span>
           </el-menu-item>
         </router-link>
-        <!-- Nav4 -->
-        <router-link class="nav" to="/admin/membership">
-          <el-menu-item index="4" :disabled="disabledFour">
-            <span>會員管理</span>
-          </el-menu-item>
-        </router-link>
+
         <!-- Nav5 -->
-        <router-link class="nav" to="/admin/question">
-          <el-menu-item index="5" :disabled="disabledFive">
-            <span>Q&A</span>
+        <router-link class="nav" to="/admin/productmanage">
+          <el-menu-item index="4" :disabled="disabledFive">
+            <span>商品管理</span>
           </el-menu-item>
         </router-link>
         <!-- Nav6 -->
         <router-link class="nav" to="/admin/staffaccount">
-          <el-menu-item index="6" :disabled="disabledSix">
+          <el-menu-item index="5" :disabled="disabledSix">
             <span>員工帳號管理</span>
           </el-menu-item>
         </router-link>

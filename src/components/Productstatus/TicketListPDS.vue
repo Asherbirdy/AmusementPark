@@ -1,23 +1,4 @@
 <script setup>
-const load = (row, treeNode, resolve) => {
-  setTimeout(() => {
-    resolve([
-      {
-        id: 31,
-        date: '2016-05-01',
-        name: 'wangxiaohu',
-        address: 'No. 189, Grove St, Los Angeles',
-      },
-      {
-        id: 32,
-        date: '2016-05-01',
-        name: 'wangxiaohu',
-        address: 'No. 189, Grove St, Los Angeles',
-      },
-    ]);
-  }, 1000);
-};
-
 const tableData = [
   {
     id: 1,
