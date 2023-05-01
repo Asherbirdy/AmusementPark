@@ -1,0 +1,60 @@
+{
+  "facilityStatus": [
+    {
+      "name": "設施一",
+      "status": "正常",
+      "startDate": null,
+      "endDate": null,
+      "reason": null,
+      "toggle": true
+    },
+    {
+      "name": "設施二",
+      "status": "維修中",
+      "startDate": "2023-12-07",
+      "endDate": "2023-12-08",
+      "reason": "定期維修",
+      "toggle": false
+    },
+    {
+      "name": "設施三",
+      "status": "正常",
+      "startDate": null,
+      "endDate": null,
+      "reason": null,
+      "toggle": true
+    },
+    {
+      "name": "設施四",
+      "status": "正常",
+      "startDate": null,
+      "endDate": null,
+      "reason": null,
+      "toggle": true
+    },
+    {
+      "name": "設施五",
+      "status": "正常",
+      "startDate": null,
+      "endDate": null,
+      "reason": null,
+      "toggle": true
+    },
+    {
+      "name": "設施六",
+      "status": "正常",
+      "startDate": null,
+      "endDate": null,
+      "reason": null,
+      "toggle": true
+    },
+    {
+      "name": "設施七",
+      "status": "正常",
+      "startDate": null,
+      "endDate": null,
+      "reason": null,
+      "toggle": true
+    }
+  ]
+}
