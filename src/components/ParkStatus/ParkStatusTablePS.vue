@@ -12,7 +12,9 @@
     <!-- 狀態 -->
     <el-table-column label="狀態" width="80">
       <template #default="scope">
-        <el-tag>{{ scope.row.status }}</el-tag>
+        <el-tag :type="getStatusType(scope.row.status)">{{
+          scope.row.status
+        }}</el-tag>
       </template>
     </el-table-column>
     <!-- 時間 -->
@@ -54,10 +56,21 @@ import { Timer } from '@element-plus/icons-vue';
 //   console.log(index, row);
 // };
 
+const getStatusType = status => {
+  switch (status) {
+    case '正常':
+      return 'success';
+    case '維修中':
+      return 'warning';
+    case '停運':
+      return 'danger';
+  }
+};
+
 let tableData = ref([]);
 
 onMounted(() => {
-  axios.get('../public/json/facility_status.json', {}).then(res => {
+  axios.get('../public/json/facility_status.json').then(res => {
     // API 抓取到的資料：
     const data = res.data.facilityStatus;
     // 將資料轉成 element 可以讀的參數，參考 public/json/facility_status.json
