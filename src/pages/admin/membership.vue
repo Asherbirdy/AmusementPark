@@ -1,9 +1,9 @@
-<script setup></script>
+<script></script>
 <template>
-  <div>asdsad</div>
+  <div>會員管理</div>
 </template>
 
-<style></style>
+<style scoped lang="scss"></style>
 <route>
     {
         meta: {
