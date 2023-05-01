@@ -1,11 +1,10 @@
 <template>
   <el-table :data="filterTableData" style="width: 100%">
-    <el-table-column label="Date" prop="date" />
-    <el-table-column label="Name" prop="name" />
+    <el-table-column label="員工編號" prop="id" />
+    <el-table-column label="員工權限" prop="permissions" />
     <el-table-column align="right">
-      <template #header>
-        <el-input v-model="search" size="small" placeholder="Type to search" />
-      </template>
+      <!-- <el-input v-model="search" size="small" placeholder="Type to search" /> -->
+
       <template #default="scope">
         <el-button size="small" @click="handleEdit(scope.$index, scope.row)"
           >Edit</el-button
@@ -21,15 +20,41 @@
   </el-table>
 </template>
 
-<script lang="ts" setup>
+<script setup>
 import { computed, ref } from 'vue';
+import axios from 'axios';
 
-interface User {
-  date: string;
-  name: string;
-  address: string;
-}
+let tableData = reactive([]);
 
+// axios
+//   .post('/api/PDO/Select.php', {})
+//   .then(res => {
+//     // console.log( res.data);
+//     const dataToJSON = JSON.stringify(res.data);
+//     tableData = res.data;
+//     // console.log(dataToJSON);
+//     console.log(tableData);
+//   })
+//   .catch(err => {
+//     console.log(err);
+//     alert('伺服器問題');
+//   });
+
+  axios
+  .post('/api/PDO/Select.php', {})
+  .then(res => {
+    const data = res.data.reduce((obj, item) => {
+      obj[item.id] = item;
+      return obj;
+    }, {});
+    Object.assign(tableData, data);
+  })
+  .catch(err => {
+    console.log(err);
+    alert('伺服器問題');
+  });
+
+  
 const search = ref('');
 const filterTableData = computed(() =>
   tableData.filter(
@@ -38,33 +63,6 @@ const filterTableData = computed(() =>
       data.name.toLowerCase().includes(search.value.toLowerCase())
   )
 );
-const handleEdit = (index: number, row: User) => {
-  console.log(index, row);
-};
-const handleDelete = (index: number, row: User) => {
-  console.log(index, row);
-};
 
-const tableData: User[] = [
-  {
-    date: '2016-05-03',
-    name: 'Tom',
-    address: 'No. 189, Grove St, Los Angeles',
-  },
-  {
-    date: '2016-05-02',
-    name: 'John',
-    address: 'No. 189, Grove St, Los Angeles',
-  },
-  {
-    date: '2016-05-04',
-    name: 'Morgan',
-    address: 'No. 189, Grove St, Los Angeles',
-  },
-  {
-    date: '2016-05-01',
-    name: 'Jessy',
-    address: 'No. 189, Grove St, Los Angeles',
-  },
-];
+console.log(filterTableData);
 </script>
