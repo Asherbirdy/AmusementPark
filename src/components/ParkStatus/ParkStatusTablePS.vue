@@ -44,6 +44,7 @@
 </template>
 
 <script setup>
+import axios from 'axios';
 import { Timer } from '@element-plus/icons-vue';
 
 const handleEdit = (index, row) => {
@@ -53,55 +54,12 @@ const handleDelete = (index, row) => {
   console.log(index, row);
 };
 
-const tableData = [
-  {
-    name: '遊樂設施一',
-    date: '',
-    status: '正常',
-    reason: '無',
-    toggle: true,
-  },
-  {
-    name: '遊樂設施二',
-    date: '2023-12-07 至 2023-12-08',
-    status: '維修',
-    reason: '施工',
-    toggle: true,
-  },
-  {
-    name: '遊樂設施三',
-    date: '',
-    status: '正常',
-    reason: '無',
-    toggle: true,
-  },
-  {
-    name: '遊樂設施四',
-    date: '',
-    status: '正常',
-    reason: '無',
-    toggle: true,
-  },
-  {
-    name: '遊樂設施五',
-    date: '',
-    status: '正常',
-    reason: '無',
-    toggle: true,
-  },
-  {
-    name: '遊樂設施六',
-    date: '',
-    status: '正常',
-    reason: '無',
-    toggle: true,
-  },
-  {
-    name: '遊樂設施七',
-    date: '',
-    status: '正常',
-    reason: '無',
-    toggle: true,
-  },
-];
+let tableData = ref([]);
+
+onMounted(() => {
+  axios.get('../public/json/facility_status.json', {}).then(res => {
+    console.log(res.data.facilityStatus);
+    tableData.value = res.data.facilityStatus;
+  });
+});
 </script>
