@@ -117,7 +117,7 @@ const handleReset = () => {
 
 .title {
   margin-bottom: 20px;
-  font-size: 20px;
+  font-size: 60px;
 }
 
 .image {
