@@ -1,7 +1,7 @@
 <template>
   <el-table :data="tableData" style="width: 100%">
     <!-- 遊樂設施： -->
-    <el-table-column label="設施名稱" width="180">
+    <el-table-column label="設施名稱" width="100">
       <template #default="scope">
         <div style="display: flex; align-items: center">
           <el-icon><timer /></el-icon>
@@ -47,19 +47,32 @@
 import axios from 'axios';
 import { Timer } from '@element-plus/icons-vue';
 
-const handleEdit = (index, row) => {
-  console.log(index, row);
-};
-const handleDelete = (index, row) => {
-  console.log(index, row);
-};
+// const handleEdit = (index, row) => {
+//   console.log(index, row);
+// };
+// const handleDelete = (index, row) => {
+//   console.log(index, row);
+// };
 
 let tableData = ref([]);
 
 onMounted(() => {
   axios.get('../public/json/facility_status.json', {}).then(res => {
-    console.log(res.data.facilityStatus);
-    tableData.value = res.data.facilityStatus;
+    // API 抓取到的資料：
+    const data = res.data.facilityStatus;
+    // 將資料轉成 element 可以讀的參數，參考 public/json/facility_status.json
+    const fitData = data.map(facility => ({
+      name: facility.name,
+      date:
+        facility.startDate && facility.endDate
+          ? `${facility.startDate} 至 ${facility.endDate}`
+          : '',
+      status: facility.status,
+      reason: facility.reason ?? '無',
+      toggle: facility.toggle,
+    }));
+    //
+    tableData.value = fitData;
   });
 });
 </script>
