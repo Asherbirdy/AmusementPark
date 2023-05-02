@@ -1,6 +1,8 @@
 <template>
   <el-table :data="filterTableData" style="width: 100%">
     <el-table-column label="員工編號" prop="id" />
+    <el-table-column label="員工帳號" prop="Account" />
+    <el-table-column label="員工密碼" prop="PWD" />
     <el-table-column label="員工權限" prop="permissions" />
     <el-table-column align="right">
       <!-- <el-input v-model="search" size="small" placeholder="Type to search" /> -->
@@ -26,21 +28,7 @@ import axios from 'axios';
 
 let tableData = reactive([]);
 
-// axios
-//   .post('/api/PDO/Select.php', {})
-//   .then(res => {
-//     // console.log( res.data);
-//     const dataToJSON = JSON.stringify(res.data);
-//     tableData = res.data;
-//     // console.log(dataToJSON);
-//     console.log(tableData);
-//   })
-//   .catch(err => {
-//     console.log(err);
-//     alert('伺服器問題');
-//   });
-
-  axios
+axios
   .post('/api/PDO/Select.php', {})
   .then(res => {
     const data = res.data.reduce((obj, item) => {
@@ -54,7 +42,6 @@ let tableData = reactive([]);
     alert('伺服器問題');
   });
 
-  
 const search = ref('');
 const filterTableData = computed(() =>
   tableData.filter(
