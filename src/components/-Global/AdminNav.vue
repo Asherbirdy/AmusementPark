@@ -12,7 +12,7 @@ const userData = JSON.parse(sessionStorage.getItem('UserData'));
 // const permissions = userData.permissions;
 
 // 測試資料用：
-const permissions = 1;
+const permissions = 9;
 (function () {
   sessionStorage.setItem('permissions', permissions);
 })();

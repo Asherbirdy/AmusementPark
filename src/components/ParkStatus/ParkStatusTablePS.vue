@@ -26,8 +26,8 @@
       <template #default="scope">
         <!-- 按鈕範例，隱藏的按鈕不要刪掉，要參考他的寫法 -->
         <el-switch
+          @change="handleSwitchChange(scope.row)"
           :disabled="isDisabled"
-          @click="handleToggle"
           v-model="scope.row.toggle"
           class="ml-2"
           :style="`--el-switch-on-color: ${
@@ -39,6 +39,8 @@
       </template>
     </el-table-column>
   </el-table>
+  <!-- 彈跳視窗 -->
+  <ModalToOpenPS />
 </template>
 
 <script setup>
@@ -81,14 +83,35 @@ onMounted(() => {
   });
 });
 
-// 如果權限不是高階主管，他不能點擊：
+// 如果權限不是高階主管，他不能點擊開關，且會鎖定：
 const isDisabled = computed(() => {
   const permissions = JSON.parse(sessionStorage.getItem('permissions'));
   return permissions !== 9;
 });
 
-const permissions = JSON.parse(sessionStorage.getItem('permissions'));
-console.log(permissions);
+const handleSwitchChange = row => {
+  console.log(!row.toggle);
+  // 判斷 toggle 是 開 還是 關 來判斷要出現哪一個組件的彈窗
+  if (!row.toggle) {
+    const confirmed = window.confirm('確定要切換開關嗎？(True到False)');
+    if (!confirmed) {
+      row.toggle = !row.toggle;
+    } else {
+      // 如果使用者按下取消按鈕，將開關切回原本的值
+      row.toggle = row.toggle;
+    }
+    // 觸發 v-model 綁定的更新
+    // scope.row.toggle = row.toggle;
+  } else {
+    const confirmed = window.confirm('確定要切換開關嗎？(False到True)');
+    if (!confirmed) {
+      row.toggle = !row.toggle;
+    } else {
+      // 如果使用者按下取消按鈕，將開關切回原本的值
+      row.toggle = row.toggle;
+    }
+  }
+};
 
-const handleToggle = e => [console.log(e)];
+console.log(tableData);
 </script>
