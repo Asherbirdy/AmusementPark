@@ -40,7 +40,8 @@
     </el-table-column>
   </el-table>
   <!-- 彈跳視窗 -->
-  <ModalToOpenPS />
+  <ModalClosePS />
+  <ModalOpenPS />
 </template>
 
 <script setup>

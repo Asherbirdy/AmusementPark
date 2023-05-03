@@ -5,9 +5,9 @@
       <el-date-picker
         v-model="value1"
         type="daterange"
-        range-separator="To"
-        start-placeholder="Start date"
-        end-placeholder="End date"
+        range-separator="至"
+        start-placeholder="關閉日期"
+        end-placeholder="開啟日期"
         :size="size"
       />
     </div>

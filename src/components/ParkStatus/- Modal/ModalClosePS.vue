@@ -9,7 +9,7 @@
     <!-- Radio -->
     <RadioStatusPS />
     <!-- 選擇時間 -->
-    <TimePicker />
+    <ParkStatusTimePicker />
     <!-- 輸入框 -->
     <InputLimitTenPS />
     <template #footer>
@@ -23,7 +23,7 @@
   </el-dialog>
 </template>
 <script setup>
-const centerDialogVisible = ref(true);
+const centerDialogVisible = ref(false);
 </script>
 <style lang="scss" scoped>
 .dialog-footer button:first-child {
