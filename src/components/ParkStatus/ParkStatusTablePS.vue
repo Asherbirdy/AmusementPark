@@ -25,20 +25,16 @@
     <el-table-column prop="toggle" label="開關">
       <template #default="scope">
         <!-- 按鈕範例，隱藏的按鈕不要刪掉，要參考他的寫法 -->
-        <!-- <el-button size="small" @click="handleEdit(scope.$index, scope.row)"
-              >Edit</el-button
-            >
-            <el-button
-              size="small"
-              type="danger"
-              @click="handleDelete(scope.$index, scope.row)"
-              >Delete</el-button
-            > -->
         <el-switch
-          v-model="value3"
-          inline-prompt
-          active-text="是"
-          inactive-text="否"
+          :disabled="isDisabled"
+          @click="handleToggle"
+          v-model="scope.row.toggle"
+          class="ml-2"
+          :style="`--el-switch-on-color: ${
+            scope.row.toggle ? '#13ce66' : '#cccccc'
+          }; --el-switch-off-color: ${
+            scope.row.toggle ? '#cccccc' : '#ff4949'
+          };`"
         />
       </template>
     </el-table-column>
@@ -49,13 +45,7 @@
 import axios from 'axios';
 import { Timer } from '@element-plus/icons-vue';
 
-// const handleEdit = (index, row) => {
-//   console.log(index, row);
-// };
-// const handleDelete = (index, row) => {
-//   console.log(index, row);
-// };
-
+// 園區狀態字串邏輯
 const getStatusType = status => {
   switch (status) {
     case '正常':
@@ -67,8 +57,10 @@ const getStatusType = status => {
   }
 };
 
+// 資料存放的地方
 let tableData = ref([]);
 
+// 將資料傳到畫面
 onMounted(() => {
   axios.get('../public/json/facility_status.json').then(res => {
     // API 抓取到的資料：
@@ -88,4 +80,15 @@ onMounted(() => {
     tableData.value = fitData;
   });
 });
+
+// 如果權限不是高階主管，他不能點擊：
+const isDisabled = computed(() => {
+  const permissions = JSON.parse(sessionStorage.getItem('permissions'));
+  return permissions !== 9;
+});
+
+const permissions = JSON.parse(sessionStorage.getItem('permissions'));
+console.log(permissions);
+
+const handleToggle = e => [console.log(e)];
 </script>
