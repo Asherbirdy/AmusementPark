@@ -48,6 +48,7 @@ declare module '@vue/runtime-core' {
     IconSupport: typeof import('./components/-UI Element/icons/IconSupport.vue')['default']
     IconTooling: typeof import('./components/-UI Element/icons/IconTooling.vue')['default']
     IconUserProfile: typeof import('./components/-UI Element/icons/IconUserProfile.vue')['default']
+    InformationIDX: typeof import('./components/Index/InformationIDX.vue')['default']
     InputLimit10: typeof import('./components/ParkStatus/Element/InputLimit10.vue')['default']
     InputLimitTen: typeof import('./components/ParkStatus/Element/InputLimitTen.vue')['default']
     InputLimitTenPS: typeof import('./components/ParkStatus/Element/InputLimitTenPS.vue')['default']
@@ -71,8 +72,10 @@ declare module '@vue/runtime-core' {
     StaffAccountSFA: typeof import('./components/Staffaccount/StaffAccountSFA.vue')['default']
     SvgIcon: typeof import('./components/SvgIcon.vue')['default']
     TagsTable: typeof import('./components/ProductManage/TagsTable.vue')['default']
+    TeaserIDX: typeof import('./components/Index/TeaserIDX.vue')['default']
     TicketListPDS: typeof import('./components/Productstatus/TicketListPDS.vue')['default']
     TimePicker: typeof import('./components/-UI Element/timepicker/TimePicker.vue')['default']
     TimePickerPS: typeof import('./components/-UI Element/timepicker/TimePickerPS.vue')['default']
+    VideoBannerIDX: typeof import('./components/Index/VideoBannerIDX.vue')['default']
   }
 }

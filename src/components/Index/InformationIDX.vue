@@ -1,3 +1,3 @@
 <script setup></script>
-<template></template>
+<template><h1>InformationIDX</h1></template>
 <style lang="scss"></style>

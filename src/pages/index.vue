@@ -1,9 +1,10 @@
 <script setup></script>
 
 <template>
-  <main>
-    <p>aaaa</p>
-  </main>
+  <VideoBannerIDX />
+  <h1>Title</h1>
+  <TeaserIDX />
+  <InformationIDX />
 </template>
 <style scoped lang="scss">
 //scss測試：
