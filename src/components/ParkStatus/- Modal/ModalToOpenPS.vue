@@ -10,10 +10,8 @@
     <RadioStatusPS />
     <!-- 選擇時間 -->
     <TimePicker />
-    <span>
-      It should be noted that the content will not be aligned in center by
-      default
-    </span>
+    <!-- 輸入框 -->
+    <InputLimitTenPS />
     <template #footer>
       <span class="dialog-footer">
         <el-button @click="centerDialogVisible = false">取消</el-button>
