@@ -2,23 +2,23 @@
 
 <template>
 
-  <main>
-    <p>aaaa<br>fyhvyhlnjh</p>
-    <p>JJJJJJJJJJJ</p>
+  <main><div><h1>bbbbbbbbbbbbbb</h1></div>
+    
   </main>
-  <div></div>
+
 </template>
 <style scoped lang="scss">
 //scss測試：
-p {
-}
 
+h1{
+  color: #FFF;
+}
 
 div{
   margin: 0 auto;
   width: $workspace;
-  background-color: aqua;
-  border: 1px solid black;
-  height: 10px;
+  background-color: rgb(0, 0, 0);
+  // border: 1px solid black;
+  height: 100px;
 }
 </style>
