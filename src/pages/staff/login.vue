@@ -34,7 +34,7 @@ const handleSubmit = () => {
           alert('登入成功');
 
           sessionStorage.setItem('UserData', dataToJSON);
-          router.push('/staff/home');
+          router.push('/staff/parkstatus');
         } else {
           alert('錯誤帳號密碼');
         }
