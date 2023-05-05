@@ -12,6 +12,7 @@ declare module '@vue/runtime-core' {
     ActivityList: typeof import('./components/Activity/ActivityList.vue')['default']
     AdminNav: typeof import('./components/-Global/AdminNav.vue')['default']
     Axiostest: typeof import('./components/-Global/Axiostest.vue')['default']
+    Btn: typeof import('./components/-UI Element/btn/Btn.vue')['default']
     ElAside: typeof import('element-plus/es')['ElAside']
     ElAutocomplete: typeof import('element-plus/es')['ElAutocomplete']
     ElButton: typeof import('element-plus/es')['ElButton']
@@ -42,12 +43,15 @@ declare module '@vue/runtime-core' {
     ElTabs: typeof import('element-plus/es')['ElTabs']
     ElTag: typeof import('element-plus/es')['ElTag']
     ElText: typeof import('element-plus/es')['ElText']
+    H: typeof import('./components/-Global/H.vue')['default']
+    Header: typeof import('./components/-Global/Header.vue')['default']
     IconCommunity: typeof import('./components/-UI Element/icons/IconCommunity.vue')['default']
     IconDocumentation: typeof import('./components/-UI Element/icons/IconDocumentation.vue')['default']
     IconEcosystem: typeof import('./components/-UI Element/icons/IconEcosystem.vue')['default']
     IconSupport: typeof import('./components/-UI Element/icons/IconSupport.vue')['default']
     IconTooling: typeof import('./components/-UI Element/icons/IconTooling.vue')['default']
     IconUserProfile: typeof import('./components/-UI Element/icons/IconUserProfile.vue')['default']
+<<<<<<< HEAD
     InputLimit10: typeof import('./components/ParkStatus/Element/InputLimit10.vue')['default']
     InputLimitTen: typeof import('./components/ParkStatus/Element/InputLimitTen.vue')['default']
     InputLimitTenPS: typeof import('./components/ParkStatus/Element/InputLimitTenPS.vue')['default']
@@ -59,6 +63,11 @@ declare module '@vue/runtime-core' {
     ModalToOpenPS: typeof import('./components/ParkStatus/- Modal/ModalToOpenPS.vue')['default']
     ParkStatusTablePS: typeof import('./components/ParkStatus/ParkStatusTablePS.vue')['default']
     ParkStatusTimePicker: typeof import('./components/-UI Element/timepicker/ParkStatusTimePicker.vue')['default']
+=======
+    Input: typeof import('./components/-UI Element/form/Input.vue')['default']
+    ModalS: typeof import('./components/-UI Element/modalframe/ModalS.vue')['default']
+    ParkStatusTablePS: typeof import('./components/ParkStatus/ParkStatusTablePS.vue')['default']
+>>>>>>> ea90a05eb374ecff1b959ee64d7d1da79c7a2277
     ProductListPDS: typeof import('./components/Productstatus/ProductListPDS.vue')['default']
     ProductSelectPDM: typeof import('./components/ProductManage/ProductSelectPDM.vue')['default']
     ProductTablePDM: typeof import('./components/ProductManage/ProductTablePDM.vue')['default']
@@ -72,7 +81,11 @@ declare module '@vue/runtime-core' {
     SvgIcon: typeof import('./components/SvgIcon.vue')['default']
     TagsTable: typeof import('./components/ProductManage/TagsTable.vue')['default']
     TicketListPDS: typeof import('./components/Productstatus/TicketListPDS.vue')['default']
+<<<<<<< HEAD
     TimePicker: typeof import('./components/-UI Element/timepicker/TimePicker.vue')['default']
     TimePickerPS: typeof import('./components/-UI Element/timepicker/TimePickerPS.vue')['default']
+=======
+    TitleBig: typeof import('./components/-UI Element/title/TitleBig.vue')['default']
+>>>>>>> ea90a05eb374ecff1b959ee64d7d1da79c7a2277
   }
 }
