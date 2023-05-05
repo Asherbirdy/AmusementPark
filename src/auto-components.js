@@ -12,6 +12,16 @@ declare module '@vue/runtime-core' {
     ActivityList: typeof import('./components/Activity/ActivityList.vue')['default']
     AdminNav: typeof import('./components/-Global/AdminNav.vue')['default']
     Axiostest: typeof import('./components/-Global/Axiostest.vue')['default']
+<<<<<<< HEAD
+=======
+    ElButton: typeof import('element-plus/es')['ElButton']
+    ElForm: typeof import('element-plus/es')['ElForm']
+    ElFormItem: typeof import('element-plus/es')['ElFormItem']
+    ElInput: typeof import('element-plus/es')['ElInput']
+    ElText: typeof import('element-plus/es')['ElText']
+    H: typeof import('./components/-Global/H.vue')['default']
+    Header: typeof import('./components/-Global/Header.vue')['default']
+>>>>>>> origin/master
     IconCommunity: typeof import('./components/-UI Element/icons/IconCommunity.vue')['default']
     IconDocumentation: typeof import('./components/-UI Element/icons/IconDocumentation.vue')['default']
     IconEcosystem: typeof import('./components/-UI Element/icons/IconEcosystem.vue')['default']
