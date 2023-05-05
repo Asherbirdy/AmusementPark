@@ -28,20 +28,17 @@ import { computed, ref } from 'vue';
 
 let tableData = ref([]);
 
-
-
 onMounted(() => {
   axios.get('/api/PDO/staffAccount/staffAccountSelect.php').then(res => {
     // API 抓取到的資料：
     const data = res.data;
     console.log(data);
 
-
     // 將資料轉成 element 可以讀的參數，參考 public/json/facility_status.json
     const staffData = data.map(staff => ({
-      id: staff.id,
-      account: staff.Account,
-      permissions: staff.permissions,
+      id: staff.BACKSTAGE_MEMBER_ID,
+      account: staff.ACCOUNT,
+      permissions: staff.PURVIEW_LEVEL_ID,
       // date:
       //   facility.startDate && facility.endDate
       //     ? `${facility.startDate} 至 ${facility.endDate}`
@@ -51,8 +48,6 @@ onMounted(() => {
 
     tableData.value = staffData;
     console.log(tableData);
-
-
   });
 });
 

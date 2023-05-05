@@ -21,7 +21,7 @@ const handleSubmit = () => {
 
     // username 和 password
     axios
-      .post('/api/PDO/login.php', {
+      .post('/api/PDO/staffLogin/staffLogin.php', {
         account:formInput.account,
         pwd:formInput.pwd
       })
