@@ -51,7 +51,7 @@ declare module '@vue/runtime-core' {
     IconSupport: typeof import('./components/-UI Element/icons/IconSupport.vue')['default']
     IconTooling: typeof import('./components/-UI Element/icons/IconTooling.vue')['default']
     IconUserProfile: typeof import('./components/-UI Element/icons/IconUserProfile.vue')['default']
-<<<<<<< HEAD
+    Input: typeof import('./components/-UI Element/form/Input.vue')['default']
     InputLimit10: typeof import('./components/ParkStatus/Element/InputLimit10.vue')['default']
     InputLimitTen: typeof import('./components/ParkStatus/Element/InputLimitTen.vue')['default']
     InputLimitTenPS: typeof import('./components/ParkStatus/Element/InputLimitTenPS.vue')['default']
@@ -59,15 +59,11 @@ declare module '@vue/runtime-core' {
     ModalClosePS: typeof import('./components/ParkStatus/- Modal/ModalClosePS.vue')['default']
     ModalOpenPS: typeof import('./components/ParkStatus/- Modal/ModalOpenPS.vue')['default']
     ModalPS: typeof import('./components/ParkStatus/ModalPS.vue')['default']
+    ModalS: typeof import('./components/-UI Element/modalframe/ModalS.vue')['default']
     ModalToClosePS: typeof import('./components/ParkStatus/- Modal/ModalToClosePS.vue')['default']
     ModalToOpenPS: typeof import('./components/ParkStatus/- Modal/ModalToOpenPS.vue')['default']
     ParkStatusTablePS: typeof import('./components/ParkStatus/ParkStatusTablePS.vue')['default']
     ParkStatusTimePicker: typeof import('./components/-UI Element/timepicker/ParkStatusTimePicker.vue')['default']
-=======
-    Input: typeof import('./components/-UI Element/form/Input.vue')['default']
-    ModalS: typeof import('./components/-UI Element/modalframe/ModalS.vue')['default']
-    ParkStatusTablePS: typeof import('./components/ParkStatus/ParkStatusTablePS.vue')['default']
->>>>>>> ea90a05eb374ecff1b959ee64d7d1da79c7a2277
     ProductListPDS: typeof import('./components/Productstatus/ProductListPDS.vue')['default']
     ProductSelectPDM: typeof import('./components/ProductManage/ProductSelectPDM.vue')['default']
     ProductTablePDM: typeof import('./components/ProductManage/ProductTablePDM.vue')['default']
@@ -81,11 +77,8 @@ declare module '@vue/runtime-core' {
     SvgIcon: typeof import('./components/SvgIcon.vue')['default']
     TagsTable: typeof import('./components/ProductManage/TagsTable.vue')['default']
     TicketListPDS: typeof import('./components/Productstatus/TicketListPDS.vue')['default']
-<<<<<<< HEAD
     TimePicker: typeof import('./components/-UI Element/timepicker/TimePicker.vue')['default']
     TimePickerPS: typeof import('./components/-UI Element/timepicker/TimePickerPS.vue')['default']
-=======
     TitleBig: typeof import('./components/-UI Element/title/TitleBig.vue')['default']
->>>>>>> ea90a05eb374ecff1b959ee64d7d1da79c7a2277
   }
 }
