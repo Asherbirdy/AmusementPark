@@ -3,7 +3,6 @@
 <template>
 
   <main>
-    <TitleBig></TitleBig>
     <div><p>aaaa<br>fyhvyhlnjh</p>
     <p>JJJJJJJJJJJ</p>
     <button>OOO</button>
