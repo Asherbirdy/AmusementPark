@@ -12,6 +12,7 @@ declare module '@vue/runtime-core' {
     ActivityList: typeof import('./components/Activity/ActivityList.vue')['default']
     AdminNav: typeof import('./components/-Global/AdminNav.vue')['default']
     Axiostest: typeof import('./components/-Global/Axiostest.vue')['default']
+    Btn: typeof import('./components/-UI Element/icons/btn/Btn.vue')['default']
     ElButton: typeof import('element-plus/es')['ElButton']
     ElForm: typeof import('element-plus/es')['ElForm']
     ElFormItem: typeof import('element-plus/es')['ElFormItem']
@@ -25,6 +26,8 @@ declare module '@vue/runtime-core' {
     IconSupport: typeof import('./components/-UI Element/icons/IconSupport.vue')['default']
     IconTooling: typeof import('./components/-UI Element/icons/IconTooling.vue')['default']
     IconUserProfile: typeof import('./components/-UI Element/icons/IconUserProfile.vue')['default']
+    Input: typeof import('./components/-UI Element/icons/form/Input.vue')['default']
+    ModalS: typeof import('./components/-UI Element/icons/modalframe/ModalS.vue')['default']
     ParkStatusTablePS: typeof import('./components/ParkStatus/ParkStatusTablePS.vue')['default']
     ProductListPDS: typeof import('./components/Productstatus/ProductListPDS.vue')['default']
     ProductSelectPDM: typeof import('./components/ProductManage/ProductSelectPDM.vue')['default']
@@ -36,5 +39,6 @@ declare module '@vue/runtime-core' {
     SvgIcon: typeof import('./components/SvgIcon.vue')['default']
     TagsTable: typeof import('./components/ProductManage/TagsTable.vue')['default']
     TicketListPDS: typeof import('./components/Productstatus/TicketListPDS.vue')['default']
+    TitleBig: typeof import('./components/-UI Element/icons/title/TitleBig.vue')['default']
   }
 }
