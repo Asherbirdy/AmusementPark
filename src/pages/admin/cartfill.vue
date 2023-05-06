@@ -58,7 +58,7 @@
     </div>
 
     <div class="pay">
-      <h2>付款資料：</h2>
+      <h2>付款方式：</h2>
       <form>
         <label for="pay-method">付款方式：</label>
         <br />
@@ -68,7 +68,8 @@
           <option value="apple-pay">Apple Pay</option>
         </select>
         <br />
-
+        
+        <label for="address" class="pay-label">付款資料：</label>
         <input
           type="text"
           id="card-number"
@@ -86,8 +87,8 @@
 
         <input type="password" id="code" v-model="Code" placeholder="安全碼" />
         
+        <button type="submit" id="Submit">提交訂單</button>
       </form>
-      <button type="submit" id="Submit">提交</button>
 
     </div>
   </main>
@@ -120,13 +121,16 @@ main {
   width: 550px;
   height: 650px;
   background-color: #f9f3e4;
+  margin:15px;
   margin-top: 100px;
 }
 
 .user {
   width: 550px;
+  height: 650px;
   background-color: #f9f3e4;
-  margin-top: 100px;
+  margin:15px;
+  margin-top: 100px ;
 }
 
 h2 {
@@ -140,6 +144,7 @@ h2 {
 label {
   font-size: 16px;
   font-weight: bold;
+  color: #90420A;
 }
 
 form {
@@ -167,5 +172,23 @@ textarea {
   padding: 10px;
   border: 2px solid #000000;
   border-radius: 10px;
+}
+
+#Submit{
+  width: 170px;
+  height: 55px;
+  color: #F9F3E4;
+  background-color: #D1825B;
+  border: none;
+  border-radius: 10px;
+
+  margin: 30px auto;
+}
+.pay-label{
+margin: 30px 0 5px 0;
+}
+
+.pay input{
+  margin-bottom: 23px;
 }
 </style>
