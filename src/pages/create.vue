@@ -26,6 +26,6 @@ div{
   width: 500px;
   background-color: rgb(0, 0, 0);
   // border: 1px solid black;
-  height: 100px;
+  // height: 100px;
 }
 </style>
