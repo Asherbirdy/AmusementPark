@@ -32,6 +32,7 @@ declare module '@vue/runtime-core' {
     SearchBarEmailPDS: typeof import('./components/Productstatus/SearchBarEmailPDS.vue')['default']
     StaffAccountSFA: typeof import('./components/Staffaccount/StaffAccountSFA.vue')['default']
     SvgIcon: typeof import('./components/SvgIcon.vue')['default']
+    SvgMonsterFrame: typeof import('./components/-UI Element/svg/SvgMonsterFrame.vue')['default']
     TagsTable: typeof import('./components/ProductManage/TagsTable.vue')['default']
     TicketListPDS: typeof import('./components/Productstatus/TicketListPDS.vue')['default']
     TitleBig: typeof import('./components/-UI Element/title/TitleBig.vue')['default']

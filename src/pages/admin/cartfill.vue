@@ -1,4 +1,14 @@
 <template lang="">
+
+  <article>
+    <div class="CartStep">
+      <SvgMonsterFrame />
+      <div class="test"></div>
+      <SvgMonsterFrame />
+      <div class="test"></div>
+      <SvgMonsterFrame />
+    </div>
+  </article>
   <main>
     <div class="user">
       <h2>訂購人資料</h2>
@@ -112,6 +122,22 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
+
+article{
+  display: flex;
+  justify-content: space-evenly;
+  margin-top: 200px;
+}
+.CartStep{
+  display: flex;
+  align-items: center;
+}
+
+.test{
+  border-bottom:2px dashed #D1825B;
+  width: 100px;
+}
+
 main {
   display: flex;
   justify-content: center;
@@ -123,6 +149,7 @@ main {
   background-color: #f9f3e4;
   margin: 15px;
   margin-top: 100px;
+  background-image: url(../../../src/components/-UI\ Element/svg/Vector.svg);
 }
 
 .user {
@@ -191,4 +218,5 @@ textarea {
 .pay input {
   margin-bottom: 23px;
 }
+
 </style>
