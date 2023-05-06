@@ -7,6 +7,11 @@
         <el-input v-model="search" size="small" placeholder="Type to search" />
       </template>
       <template #default="scope">
+        <el-icon><User /></el-icon>
+        <el-icon><User /></el-icon>
+        <el-icon><User /></el-icon>
+        <el-icon><User /></el-icon>
+        <el-icon><User /></el-icon>
         <el-button size="small" @click="handleEdit(scope.$index, scope.row)"
           >Edit</el-button
         >
