@@ -1,10 +1,10 @@
 <template>
   <button
     :style="{ color: internalTextColor, backgroundColor: internalButtonColor }"
-    @mouseover="internalButtonColor = internalButtonHoverColor"
+    @mouseover="internalButtonColor = internalHoverColor"
     @mouseleave="internalButtonColor = this.buttonColor"
   >
-    <slot>預設a</slot>
+    <slot>預sdasdaas設</slot>
   </button>
 </template>
 <script>
@@ -12,22 +12,22 @@ export default {
   props: {
     buttonTextColor: {
       type: String,
-      defult: 'white',
+      default: 'white',
     },
     buttonColor: {
       type: String,
-      defult: '#d1825b',
+      default: '#d1825b',
     },
     buttonHoverColor: {
       type: String,
-      defult: '#ffa07a',
+      default: '#ffa07e',
     },
   },
   data() {
     return {
       internalTextColor: this.buttonTextColor,
       internalButtonColor: this.buttonColor,
-      internalButtonHoverColor: this.buttonHoverColor,
+      internalHoverColor: this.buttonHoverColor,
     };
   },
 };
@@ -35,9 +35,9 @@ export default {
 <style lang="scss">
 button {
   display: inline-block;
-  background-color: #c0590e;
+  background-color: null;
   padding: 10px 20px;
-  color: white;
+  color: null;
   border: none;
   padding: 10px 20px;
   border-radius: 5px;

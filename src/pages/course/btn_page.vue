@@ -1,8 +1,9 @@
 <template>
   <div></div>
-  <btn-main button-text-color="blue" button-color="green" button-hover-color="tomato">你好</btn-main>
+  <btn-main button-text-color="blue" button-color="black" button-hover-color="green">你好</btn-main>
 </template>
 <script>
+
 export default {};
 
 </script>

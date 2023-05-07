@@ -2,10 +2,8 @@
   <main>
     <h2 :style="{ color: internalTitleColor }"><slot>關於我們</slot></h2>
     <SvgTitleBG :style="{ color: internalSvgColor }" class="svg" />
-    <monster_frame/>
   </main>
 </template>
-
 <script>
 export default {
   props: {
@@ -26,7 +24,6 @@ export default {
   },
 };
 </script>
-
 <style lang="scss" scoped>
 main {
   width: $workspace;
@@ -38,9 +35,10 @@ main {
   h2 {
     position: absolute;
     font-size: 50px;
+    color: null;
   }
   .svg {
-    color: red;
+    color: null;
   }
 }
 </style>
