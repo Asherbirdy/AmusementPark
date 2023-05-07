@@ -12,4 +12,3 @@
     />
   </svg>
 </template>
-src/components/-UI Element/svg/SvgTitleBG.vue
