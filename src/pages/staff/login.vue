@@ -22,23 +22,22 @@ const handleSubmit = () => {
     // username 和 password
     axios
       .post('/api/PDO/login.php', {
-        account:formInput.account,
-        pwd:formInput.pwd
+        account: formInput.account,
+        pwd: formInput.pwd,
       })
       .then(res => {
-        console.log( res.data);
+        console.log(res.data);
         const dataToJSON = JSON.stringify(res.data);
 
         // 如果登入成功:
-        if(res.data.status === 'true'){
+        if (res.data.status === 'true') {
           alert('登入成功');
-      
-          sessionStorage.setItem('UserData',dataToJSON);
-          router.push('/admin/home');
-        }else{
+
+          sessionStorage.setItem('UserData', dataToJSON);
+          router.push('/staff/parkstatus');
+        } else {
           alert('錯誤帳號密碼');
         }
-
       })
       .catch(err => {
         console.log(err);
@@ -94,7 +93,11 @@ const handleReset = () => {
         </el-form-item>
         <!-- 表單：按鈕 -->
         <el-form-item>
-          <el-button name ="submit" type="primary" style="width: 46%" @click="handleSubmit"
+          <el-button
+            name="submit"
+            type="primary"
+            style="width: 46%"
+            @click="handleSubmit"
             >送出</el-button
           >
           <el-button style="width: 46%" @click="handleReset">重置</el-button>

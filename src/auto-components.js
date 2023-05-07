@@ -12,22 +12,70 @@ declare module '@vue/runtime-core' {
     ActivityList: typeof import('./components/Activity/ActivityList.vue')['default']
     AdminNav: typeof import('./components/-Global/AdminNav.vue')['default']
     Axiostest: typeof import('./components/-Global/Axiostest.vue')['default']
+<<<<<<< HEAD
+=======
+    Btn: typeof import('./components/-UI Element/btn/Btn.vue')['default']
+    ElAside: typeof import('element-plus/es')['ElAside']
+    ElCol: typeof import('element-plus/es')['ElCol']
+    ElContainer: typeof import('element-plus/es')['ElContainer']
+    ElDatePicker: typeof import('element-plus/es')['ElDatePicker']
+    ElDialog: typeof import('element-plus/es')['ElDialog']
+    ElFooter: typeof import('element-plus/es')['ElFooter']
+    ElHeader: typeof import('element-plus/es')['ElHeader']
+    ElMain: typeof import('element-plus/es')['ElMain']
+    ElMenu: typeof import('element-plus/es')['ElMenu']
+    ElMenuItem: typeof import('element-plus/es')['ElMenuItem']
+<<<<<<< HEAD
+    ElOption: typeof import('element-plus/es')['ElOption']
+    ElRadio: typeof import('element-plus/es')['ElRadio']
+    ElRadioGroup: typeof import('element-plus/es')['ElRadioGroup']
+=======
+>>>>>>> ef2e5af7ca6136ce9e05f0ffbcff235660075f6c
+    ElRow: typeof import('element-plus/es')['ElRow']
+    H: typeof import('./components/-Global/H.vue')['default']
+    Header: typeof import('./components/-Global/Header.vue')['default']
+>>>>>>> 2891563c9d46146e79436b184920508fbd7b18a3
     IconCommunity: typeof import('./components/-UI Element/icons/IconCommunity.vue')['default']
     IconDocumentation: typeof import('./components/-UI Element/icons/IconDocumentation.vue')['default']
     IconEcosystem: typeof import('./components/-UI Element/icons/IconEcosystem.vue')['default']
     IconSupport: typeof import('./components/-UI Element/icons/IconSupport.vue')['default']
     IconTooling: typeof import('./components/-UI Element/icons/IconTooling.vue')['default']
     IconUserProfile: typeof import('./components/-UI Element/icons/IconUserProfile.vue')['default']
+    Input: typeof import('./components/-UI Element/form/Input.vue')['default']
+    InputLimit10: typeof import('./components/ParkStatus/Element/InputLimit10.vue')['default']
+    InputLimitTen: typeof import('./components/ParkStatus/Element/InputLimitTen.vue')['default']
+    InputLimitTenPS: typeof import('./components/ParkStatus/Element/InputLimitTenPS.vue')['default']
+    Modal: typeof import('./components/ParkStatus/Modal.vue')['default']
+    ModalClosePS: typeof import('./components/ParkStatus/- Modal/ModalClosePS.vue')['default']
+    ModalOpenPS: typeof import('./components/ParkStatus/- Modal/ModalOpenPS.vue')['default']
+    ModalPS: typeof import('./components/ParkStatus/ModalPS.vue')['default']
+    ModalS: typeof import('./components/-UI Element/modalframe/ModalS.vue')['default']
+    ModalToClosePS: typeof import('./components/ParkStatus/- Modal/ModalToClosePS.vue')['default']
+    ModalToOpenPS: typeof import('./components/ParkStatus/- Modal/ModalToOpenPS.vue')['default']
     ParkStatusTablePS: typeof import('./components/ParkStatus/ParkStatusTablePS.vue')['default']
+<<<<<<< HEAD
+=======
+    ParkStatusTimePicker: typeof import('./components/-UI Element/timepicker/ParkStatusTimePicker.vue')['default']
+>>>>>>> 2891563c9d46146e79436b184920508fbd7b18a3
     ProductListPDS: typeof import('./components/Productstatus/ProductListPDS.vue')['default']
     ProductSelectPDM: typeof import('./components/ProductManage/ProductSelectPDM.vue')['default']
     ProductTablePDM: typeof import('./components/ProductManage/ProductTablePDM.vue')['default']
+    RadioStatusPS: typeof import('./components/ParkStatus/Element/RadioStatusPS.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
     SearchBarEmailPDS: typeof import('./components/Productstatus/SearchBarEmailPDS.vue')['default']
+    SelectPS: typeof import('./components/ParkStatus/SelectPS.vue')['default']
+    SelectStatusPS: typeof import('./components/ParkStatus/SelectStatusPS.vue')['default']
     StaffAccountSFA: typeof import('./components/Staffaccount/StaffAccountSFA.vue')['default']
     SvgIcon: typeof import('./components/SvgIcon.vue')['default']
     TagsTable: typeof import('./components/ProductManage/TagsTable.vue')['default']
     TicketListPDS: typeof import('./components/Productstatus/TicketListPDS.vue')['default']
+<<<<<<< HEAD
+    TimePicker: typeof import('./components/-UI Element/timepicker/TimePicker.vue')['default']
+    TimePickerPS: typeof import('./components/-UI Element/timepicker/TimePickerPS.vue')['default']
+    TitleBig: typeof import('./components/-UI Element/title/TitleBig.vue')['default']
+=======
+    TitleBig: typeof import('./components/-UI Element/icons/title/TitleBig.vue')['default']
+>>>>>>> ef2e5af7ca6136ce9e05f0ffbcff235660075f6c
   }
 }

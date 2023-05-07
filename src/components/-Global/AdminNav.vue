@@ -1,17 +1,22 @@
 <script setup>
 // 開關
 const handleOpen = (key, keyPath) => {
-  console.log(key, keyPath);
+  // console.log(key, keyPath);
 };
 const handleClose = (key, keyPath) => {
-  console.log(key, keyPath);
+  // console.log(key, keyPath);
 };
 // 檢視權限等級：
 const userData = JSON.parse(sessionStorage.getItem('UserData'));
 // 抓取權限等級：
-// const permissions = userData.permissions;
+const permissions = userData.permissions;
+
 // 測試資料用：
-const permissions = 9;
+// const permissions = 9;
+// (function () {
+//   sessionStorage.setItem('permissions', permissions);
+// })();
+
 // 先鎖定所有導覽列 <el-sub-menu /> 上的 disabled
 let disabledOne = true;
 let disabledTwo = true;
@@ -61,32 +66,32 @@ switch (permissions) {
         @close="handleClose"
       >
         <!-- Nav1 -->
-        <router-link class="nav" to="/admin/parkstatus">
+        <router-link class="nav" to="/staff/parkstatus">
           <el-menu-item index="1" :disabled="disabledOne">
             <span>園區動態管理</span>
           </el-menu-item>
         </router-link>
         <!-- Nav2 -->
-        <router-link class="nav" to="/admin/activity">
+        <router-link class="nav" to="/staff/activity">
           <el-menu-item index="2" :disabled="disabledTwo">
             <span>活動管理</span>
           </el-menu-item>
         </router-link>
         <!-- Nav3 -->
-        <router-link class="nav" to="/admin/productstatus">
+        <router-link class="nav" to="/staff/productstatus">
           <el-menu-item index="3" :disabled="disabledThree">
             <span>訂單狀態</span>
           </el-menu-item>
         </router-link>
 
         <!-- Nav5 -->
-        <router-link class="nav" to="/admin/productmanage">
+        <router-link class="nav" to="/staff/productmanage">
           <el-menu-item index="4" :disabled="disabledFive">
             <span>商品管理</span>
           </el-menu-item>
         </router-link>
         <!-- Nav6 -->
-        <router-link class="nav" to="/admin/staffaccount">
+        <router-link class="nav" to="/staff/staffaccount">
           <el-menu-item index="5" :disabled="disabledSix">
             <span>員工帳號管理</span>
           </el-menu-item>
