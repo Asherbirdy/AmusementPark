@@ -9,6 +9,14 @@
 <style scoped lang="scss">
 //scss測試：
 p {
-  font-size: $BigsizeTest;
+}
+
+
+div{
+  margin: 0 auto;
+  width: 40px;
+  background-color: aqua;
+  border: 1px solid black;
+  height: 10px;
 }
 </style>
