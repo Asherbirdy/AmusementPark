@@ -2,7 +2,7 @@
   <main>
     <h2 :style="{ color: internalTitleColor }"><slot>關於我們</slot></h2>
     <SvgTitleBG :style="{ color: internalSvgColor }" class="svg" />
-    <brush class="svg"/>
+    <monster_frame/>
   </main>
 </template>
 
