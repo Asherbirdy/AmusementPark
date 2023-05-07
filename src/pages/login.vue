@@ -2,14 +2,15 @@
 
 <template>
   <div class="container">
+    <button>X</button>
     <h1>會員登入</h1>
     <form action="">
       <div class="form-group">
-        <label for="username">帳號</label>
+        <label for="username">帳號：</label>
         <input type="text" id="username" name="username" required />
       </div>
       <div class="form-group">
-        <label for="password">密碼</label>
+        <label for="password">密碼：</label>
         <input type="password" id="password" name="password" required />
       </div>
       <div class="form-group">
@@ -25,18 +26,26 @@
 
 <style scoped lang="scss">
 .container {
-  max-width: 500px;
+  max-width: 450px;
   margin: 0 auto;
-  padding: 20px;
-  background-color: #fff;
-  border-radius: 5px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-}
+  padding: 20px 100px;
+  box-sizing: border-box;
+  border: 1px solid black;
 
-h1 {
+  button {
+    float: right;
+  }
+
+  h1 {
   text-align: center;
   margin-top: 0;
+  color: red;
+  }
+
+
 }
+
+
 
 form {
   margin-top: 20px;
