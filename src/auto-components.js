@@ -43,6 +43,6 @@ declare module '@vue/runtime-core' {
     SvgIcon: typeof import('./components/SvgIcon.vue')['default']
     TagsTable: typeof import('./components/ProductManage/TagsTable.vue')['default']
     TicketListPDS: typeof import('./components/Productstatus/TicketListPDS.vue')['default']
-    TitleBig: typeof import('./components/-UI Element/icons/title/TitleBig.vue')['default']
+    TitleBig: typeof import('./components/-UI Element/title/TitleBig.vue')['default']
   }
 }
