@@ -12,46 +12,71 @@
     <h1>主題特色</h1>
     <ul>
       <li>
-        <img src="" alt="" />
+        <div>
+          <h3>旋轉飛椅</h3>
+        </div>
       </li>
-      <li></li>
-      <li></li>
-      <li></li>
-      <li></li>
-      <li></li>
-      <li></li>
-      <li></li>
-      <li></li>
+      <li>
+        <div>
+          <h3>旋轉飛椅</h3>
+        </div>
+      </li>
+      <li>
+        <div>
+          <h3>旋轉飛椅</h3>
+        </div>
+      </li>
+      <li>
+        <div>
+          <h3>旋轉飛椅</h3>
+        </div>
+      </li>
+      <li>
+        <div>
+          <h3>旋轉飛椅</h3>
+        </div>
+      </li>
+      <li>
+        <div>
+          <h3>旋轉飛椅</h3>
+        </div>
+      </li>
     </ul>
   </div>
   <div class="exbi">
     <h1>展場資訊</h1>
     <ul>
       <li>
-        <img src="" alt="" />
+        <div>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum error voluptatum culpa? Est facilis quos nostrum voluptate repellat? Et ullam nemo perspiciatis? Cum beatae recusandae voluptatem expedita vitae! Animi, et.</div>
+        <h3>火焰跳躍者</h3>
       </li>
-      <li></li>
-      <li></li>
-    </ul>
-  </div>
-  <div class="exbi">
-    <h1>展場資訊</h1>
-    <ul>
       <li>
-        <img src="" alt="" />
+        <div>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum error voluptatum culpa? Est facilis quos nostrum voluptate repellat? Et ullam nemo perspiciatis? Cum beatae recusandae voluptatem expedita vitae! Animi, et.</div>
+        <h3>夢幻演繹</h3>
       </li>
-      <li></li>
-      <li></li>
+      <li>
+        <div>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum error voluptatum culpa? Est facilis quos nostrum voluptate repellat? Et ullam nemo perspiciatis? Cum beatae recusandae voluptatem expedita vitae! Animi, et.</div>
+        <h3>魔幻舞台</h3>
+      </li>
     </ul>
+
   </div>
   <div class="trans">
     <h1>交通資訊</h1>
+    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3613.136653697438!2d121.5101873967896!3d25.0972351!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3442aebf5a86da1b%3A0x5f56dfe454975847!2z6Ie65YyX5biC56uL5YWS56ul5paw5qiC5ZyS!5e0!3m2!1szh-TW!2stw!4v1683384751986!5m2!1szh-TW!2stw" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
     <ul>
       <li>
-        <img src="" alt="" />
+        <h3>國道一號</h3>
+        <p>臺北(重慶北路)交流道→百齡橋→承德路→基河路→兒童新樂園</p>
       </li>
-      <li></li>
-      <li></li>
+      <li>
+        <h3>捷運士林站</h3>
+        <p>搭乘至臺北車站轉捷運淡水信義線至劍潭站、士林站或芝山站轉乘公車</p>
+      </li>
+      <li>
+        <h3>捷運士林站</h3>
+        <p>出口1→公車轉乘站255區、紅30、620、兒樂１號線(平日停駛)→兒童新樂園</p>
+      </li>
     </ul>
   </div>
   <div class="open">
@@ -89,14 +114,87 @@ p {
   width: 1080px;
   margin: 0 auto;
 }
-
+.rides ul{
+  margin: 0 50px;
+  display: flex;
+  width: 200px;
+}
+.rides div{
+  padding: 0 240px;
+  flex-wrap: wrap;
+  background-color: #985d5d;
+}
 .exbi {
   width: 1080px;
   margin: 0 auto;
+  position: relative;
+}
+.exbi ul{
+  margin: 0 79px;
+  display: flex;
+}
+.exbi div{
+  padding: 0 59px;
+  width: 200px;
+  height: 1000px;
+  background-color: #a21a1a;
+}
+.exbi li:nth-child(1) h3{
+  position: absolute;
+  top: 900px;
+  left: 175px;
+  rotate: 330deg;
+}
+.exbi li:nth-child(2) h3{
+  position: absolute;
+  top: 860px;
+  left: 500px;
+}
+.exbi li:nth-child(3) h3{
+  position: absolute;
+  top: 900px;
+  left: 830px;
+  rotate: 35deg;
 }
 .trans {
   width: 1080px;
   margin: 0 auto;
+}
+.trans h1{
+  margin: 50px 500px 25px;
+}
+.trans iframe{
+  margin: 20px 250px 25px;
+}
+.trans h3{
+  text-align: center;
+  color: #163767;
+  padding: 30px;
+}
+.trans p{
+  width: 200px;
+  text-align: center;
+  color: #5590D6;
+  position: relative;
+}
+.trans p::before{
+  content: "";
+    position: absolute;
+    top: 80px;
+    right: -50px;
+    width: 300px;
+    height: 3px;
+    background-color: #D1825B;
+}
+.trans p::after{
+  content: "";
+    position: absolute;
+    top: 72px;
+    right: -54px;
+    width: 24px;
+    height: 3px;
+    rotate: 39deg;
+    background-color: #D1825B;
 }
 .open {
   width: 1080px;
