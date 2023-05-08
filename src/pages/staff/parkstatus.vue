@@ -1,7 +1,4 @@
-<script setup>
-const value1 = ref(true);
-const value2 = ref(true);
-</script>
+<script setup></script>
 <template>
   <div class="container">
     <ParkStatusTablePS />
@@ -23,7 +20,6 @@ const value2 = ref(true);
   }
 }
 </style>
-
 <route>
     {
         meta: {
