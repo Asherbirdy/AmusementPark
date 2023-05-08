@@ -1,8 +1,23 @@
 // 實際工作空間
 $workspace: 1200px;
 
+//背景色
+$maincolor1: #F9F3E4;
+$maincolor2: #E6EFF6;
+//文字色
+$textcolor1: #FF7B51;
+$textcolor2: #B1647D;
+
+
 //字型
 $font-family: '微軟正黑體';
+
+main{
+    padding-top: 100px;
+    margin: 0 auto;
+    width: $workspace;
+    font-family: '微軟正黑體';
+}
 
 h1{
     font-weight: bold;
@@ -23,3 +38,18 @@ p{
     font-size: 16px;
     line-height: 1.5
 }
+
+// button{
+//     cursor: pointer;
+//     height: 40px;
+//     width: 100px;
+//     background-color: $textcolor1;
+//     font-size: 20;
+//     color: #FFF;
+//     border: none;
+//     border-radius: .2rem;
+// }
+
+// button:active{
+//     background-color: $textcolor2; 
+// }

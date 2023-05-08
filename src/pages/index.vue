@@ -3,20 +3,24 @@
 <template>
 
   <main>
-    <p>aaaa<br>fyhvyhlnjh</p>
+
+    <div>
+      <p>aaaa<br>fyhvyhlnjh</p>
     <p>JJJJJJJJJJJ</p>
+    <btn>OOO</btn><btn></btn>
+  </div>
+      <title-big></title-big>
   </main>
-  <div></div>
+  
 </template>
 <style scoped lang="scss">
 //scss測試：
-p {
-}
+
 
 
 div{
   margin: 0 auto;
-  width: $workspace;
+  width: 40px;
   background-color: aqua;
   border: 1px solid black;
   height: 10px;
