@@ -3,6 +3,8 @@
 <template>
   <div class="about_us">
     <h1>關於我們</h1>
+    <IconCommunity />
+    <IconSupport />
     <p>
       怪奇遊樂園是一個充滿奇幻和冒險的地方，有令人驚喜和挑戰的遊戲和活動，如過山車、飛行器、高空彈跳、神秘迷宮等等，我們也提供許多奇幻表演，與家庭成員一同創造難忘的回憶，感受不一樣的刺激和樂趣。此外，你還可以與可愛的怪獸一起冒險，他們非常聰明和有趣，能夠幫助你解決許多問題和挑戰。
       在怪奇遊樂園，我們重視遊客的安全和樂趣，專業的服務讓您的旅程更加順暢和愉快。快進入怪奇冒險遊樂園，與朋友一起度過一個充滿歡樂和刺激的冒險之旅吧！
@@ -111,16 +113,19 @@ p {
 }
 
 .rides {
-  width: 1080px;
   margin: 0 auto;
 }
+.rides h1{
+  margin: 50px 660px;
+}
 .rides ul{
-  margin: 0 50px;
+  width: 500px;
+  margin: 0 485px;
   display: flex;
-  width: 200px;
+  flex-wrap: wrap;
 }
 .rides div{
-  padding: 0 240px;
+  padding: 0px 35px;
   flex-wrap: wrap;
   background-color: #985d5d;
 }
