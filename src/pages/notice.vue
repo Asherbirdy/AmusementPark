@@ -1,10 +1,9 @@
-<script setup></script>
+<script setup>
+</script>
 
 <template>
   <div class="about_us">
     <h1>關於我們</h1>
-    <IconCommunity />
-    <IconSupport />
     <p>
       怪奇遊樂園是一個充滿奇幻和冒險的地方，有令人驚喜和挑戰的遊戲和活動，如過山車、飛行器、高空彈跳、神秘迷宮等等，我們也提供許多奇幻表演，與家庭成員一同創造難忘的回憶，感受不一樣的刺激和樂趣。此外，你還可以與可愛的怪獸一起冒險，他們非常聰明和有趣，能夠幫助你解決許多問題和挑戰。
       在怪奇遊樂園，我們重視遊客的安全和樂趣，專業的服務讓您的旅程更加順暢和愉快。快進入怪奇冒險遊樂園，與朋友一起度過一個充滿歡樂和刺激的冒險之旅吧！
@@ -15,31 +14,37 @@
     <ul>
       <li>
         <div>
+          <img src="../assets/img/facility1.png" alt="">
           <h3>旋轉飛椅</h3>
         </div>
       </li>
       <li>
         <div>
+          <img src="../assets/img/facility2.png" alt="">
           <h3>旋轉飛椅</h3>
         </div>
       </li>
       <li>
         <div>
+          <img src="../assets/img/facility3.png" alt="">
           <h3>旋轉飛椅</h3>
         </div>
       </li>
       <li>
         <div>
+          <img src="../assets/img/facility4.png" alt="">
           <h3>旋轉飛椅</h3>
         </div>
       </li>
       <li>
         <div>
+          <img src="../assets/img/facility5.png" alt="">
           <h3>旋轉飛椅</h3>
         </div>
       </li>
       <li>
         <div>
+          <img src="../assets/img/facility6.png" alt="">
           <h3>旋轉飛椅</h3>
         </div>
       </li>
@@ -47,20 +52,23 @@
   </div>
   <div class="exbi">
     <h1>展場資訊</h1>
-    <ul>
-      <li>
-        <div>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum error voluptatum culpa? Est facilis quos nostrum voluptate repellat? Et ullam nemo perspiciatis? Cum beatae recusandae voluptatem expedita vitae! Animi, et.</div>
-        <h3>火焰跳躍者</h3>
-      </li>
-      <li>
-        <div>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum error voluptatum culpa? Est facilis quos nostrum voluptate repellat? Et ullam nemo perspiciatis? Cum beatae recusandae voluptatem expedita vitae! Animi, et.</div>
+    <swiper-container class="mySwiper" pagination="true" effect="coverflow" grab-cursor="true" centered-slides="true"
+    slides-per-view="auto" coverflow-effect-rotate="50" coverflow-effect-stretch="0" coverflow-effect-depth="100"
+    coverflow-effect-modifier="1" coverflow-effect-slide-shadows="true">
+    <swiper-slide>
+      <img src="../assets/img/performance1.png" />
+    </swiper-slide>
+    <h3>火焰跳躍者</h3>
+    <swiper-slide>
+      <img src="../assets/img/performance2.png" />
+    </swiper-slide>
         <h3>夢幻演繹</h3>
-      </li>
-      <li>
-        <div>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum error voluptatum culpa? Est facilis quos nostrum voluptate repellat? Et ullam nemo perspiciatis? Cum beatae recusandae voluptatem expedita vitae! Animi, et.</div>
+        <swiper-slide>
+      <img src="../assets/img/performance3.png" />
+    </swiper-slide>
         <h3>魔幻舞台</h3>
-      </li>
-    </ul>
+  </swiper-container>
+        
 
   </div>
   <div class="trans">
@@ -83,17 +91,23 @@
   </div>
   <div class="open">
     <h1>營運時間</h1>
-    <div class="table">
-      <ul class="row1">
-        <li>週日~週五</li>
-        <li>09:00-18:00</li>
+    <ul class="table">
+        <ul class="row1">
+          <li>週日~週五</li>
+          <li>09:00-18:00</li>
+        </ul>
+        <ul class="row2">
+          <li>週六</li>
+          <li>09:00-20:00</li>
       </ul>
-      <ul class="row2">
-        <li>週六</li>
-        <li>09:00-20:00</li>
-      </ul>
-    </div>
-    <h3>最終入場時間為閉館前1小時，實際營業狀況請依官方公告為主。</h3>
+        <li>   
+          <h3>最終入場時間為閉館前1小時，實際營業狀況請依官方公告為主。</h3>
+        </li>
+        <li> 
+          <img src="../assets/img/castle.png" alt="">
+        </li>
+    </ul>
+
   </div>
 </template>
 
@@ -103,8 +117,8 @@
   margin: 0 auto;
 }
 h1 {
-  font-size: 20px;
-  margin: 50px 500px;
+  font-size: 30px;
+  margin:170px 480px 35px;
 }
 p {
   font-size: 16px;
@@ -113,60 +127,51 @@ p {
 }
 
 .rides {
-  margin: 0 auto;
+  width: 1080px;
+    margin: 0 auto;
 }
-.rides h1{
-  margin: 50px 660px;
+.rides img{
+  height: 250px;
+}
+.rides h3{
+  font-size: 10px;
+  color: #204C74;
+  text-align: left;
+  margin: 10px auto;
 }
 .rides ul{
-  width: 500px;
-  margin: 0 485px;
+  margin: 0 120px;
   display: flex;
   flex-wrap: wrap;
 }
 .rides div{
   padding: 0px 35px;
   flex-wrap: wrap;
-  background-color: #985d5d;
 }
+
 .exbi {
   width: 1080px;
   margin: 0 auto;
-  position: relative;
 }
-.exbi ul{
-  margin: 0 79px;
-  display: flex;
-}
-.exbi div{
-  padding: 0 59px;
-  width: 200px;
-  height: 1000px;
-  background-color: #a21a1a;
-}
-.exbi li:nth-child(1) h3{
-  position: absolute;
-  top: 900px;
-  left: 175px;
-  rotate: 330deg;
-}
-.exbi li:nth-child(2) h3{
-  position: absolute;
-  top: 860px;
-  left: 500px;
-}
-.exbi li:nth-child(3) h3{
-  position: absolute;
-  top: 900px;
-  left: 830px;
-  rotate: 35deg;
-}
+swiper-container {
+      width: 100%;
+      padding-top: 50px;
+      padding-bottom: 50px;
+    }
+
+    swiper-slide {
+      background-position: center;
+      background-size: cover;
+      width: 300px;
+      height: 300px;
+    }
+
+    swiper-slide img {
+      display: block;
+    }
 .trans {
   width: 1080px;
   margin: 0 auto;
-}
-.trans h1{
-  margin: 50px 500px 25px;
 }
 .trans iframe{
   margin: 20px 250px 25px;
@@ -204,9 +209,11 @@ p {
 .open {
   width: 1080px;
   margin: 0 auto;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
 }
 .table {
-  margin-left: 110px;
   text-align: center;
   width: 353px;
   display: flex;
@@ -245,5 +252,8 @@ p {
 .open h3 {
   font-size: 16px;
   padding: 80px 60px;
+}
+.open img {
+  width: 100px;
 }
 </style>
