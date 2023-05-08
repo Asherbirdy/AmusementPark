@@ -1,11 +1,20 @@
 <template lang="">
   <article>
     <div class="CartStep">
-      <SvgMonsterFrame />
-      <div class="test"></div>
-      <SvgMonsterFrame />
-      <div class="test"></div>
-      <SvgMonsterFrame />
+      <div class="monster">
+        <monster-cartfill>3</monster-cartfill>
+        <h3>購物車</h3>
+      </div>
+      <hr width="100" style="border: 2px dashed #d1825b" />
+      <div class="monster">
+        <monsterBlue />
+        <h3>填寫資料</h3>
+      </div>
+      <hr width="100" style="border: 2px dashed #d1825b" />
+      <div class="monster">
+        <monsterWhite />
+        <h3>訂購完成</h3>
+      </div>
     </div>
   </article>
   <main>
@@ -117,13 +126,13 @@ let cardName = '';
 let date = '';
 let code = '';
 
-const payOption = [
-  
-  { label: '信用卡(支援國內外Visa,Master)', value: 'credit-card'  },
+const payOption = ref([
+  { label: '信用卡(支援國內外Visa,Master)', value: 'credit-card' },
   { label: 'Line Pay', value: 'line-pay' },
   { label: 'Apple Pay', value: 'apple-pay' },
-];
-const payInput = [
+]);
+
+const payInput = ref([
   {
     label: '卡號',
     type: 'text',
@@ -152,7 +161,7 @@ const payInput = [
     value: code,
     placeholder: '安全碼',
   },
-];
+]);
 </script>
 
 <style lang="scss" scoped>
@@ -166,16 +175,22 @@ h2 {
 article {
   display: flex;
   justify-content: space-evenly;
-  margin-top: 200px;
+  margin-top: 150px;
   .CartStep {
     display: flex;
     align-items: center;
+    .monster {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      svg{
+        margin-bottom: 20px;
+      }
+      h3{
+        color: #163767;
+      }
+    }
   }
-}
-
-.test {
-  border-bottom: 2px dashed #d1825b;
-  width: 100px;
 }
 
 main {
