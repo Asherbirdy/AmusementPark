@@ -4,7 +4,7 @@
     <article>
       <div class="showImg">
         <img src="../../assets/img/performance2.png" alt="" />
-        <h1>爵士表演123</h1>
+        <h1>爵士表演</h1>
       </div>
       <div class="showContent">
         <section
