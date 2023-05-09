@@ -1,6 +1,7 @@
-<script setup></script>
+<script></script>
 <template>
-    <TicketfromTBS />
+  <NavUser />
+  <TicketfromTBS />
 </template>
 
 <style scoped lang="scss"></style>

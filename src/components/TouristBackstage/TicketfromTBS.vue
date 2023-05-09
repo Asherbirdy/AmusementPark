@@ -27,6 +27,9 @@
         <td>限持有身心障礙證明者與1位陪同者、孕婦、滿65歲以上長者適用</td>
       </tr>
     </table>
+    <div class="title">
+      <tour-title svg-width = "145" >購票</tour-title>
+    </div>
   </div>
 </template>
 <script>
@@ -56,5 +59,8 @@ tr {
     }
 }
 
+.title {
+
+}
 
 </style>
