@@ -2,17 +2,17 @@
   <article>
     <div class="CartStep">
       <div class="monster">
-        <monster-cartfill>3</monster-cartfill>
+        <monster-cart-Fill-White>1</monster-cart-Fill-White>
         <h3>購物車</h3>
       </div>
-      <hr width="100" style="border: 2px dashed #d1825b" />
+      <hr width="100" style="border: 3px dashed #d1825b" />
       <div class="monster">
-        <monsterBlue />
+        <monsterCartFillBlue>2</monsterCartFillBlue>
         <h3>填寫資料</h3>
       </div>
-      <hr width="100" style="border: 2px dashed #d1825b" />
+      <hr width="100" style="border: 3px dashed #ffffff" />
       <div class="monster">
-        <monsterWhite />
+        <monster-cart-Fill-White>3</monster-cart-Fill-White>
         <h3>訂購完成</h3>
       </div>
     </div>
@@ -34,13 +34,24 @@
             :placeholder="item.placeholder"
           />
         </div>
+        <label class="checkbox">
+          <input type="checkbox" name="same_as_member" id="same_as_member" />
+          <span> 同會員資料 </span>
+        </label>
+        <label for="address">寄送地址：</label>
+        <input
+          type="text"
+          id="address"
+          v-model="address"
+          placeholder="請輸入您的地址*"
+        />
         <label for="comment">訂單備註：</label>
         <textarea
           id="comment"
           v-model="comment"
           cols="20"
-          rows="7"
-          placeholder="請填寫您的訂單備註*"
+          rows="5"
+          placeholder="請填寫您的訂單備註"
           resize="none"
         ></textarea>
       </form>
@@ -56,6 +67,7 @@
             v-for="(option, index) in payOption"
             :value="option.value"
             :key="index"
+            placeholder="請選擇付款方式"
           >
             {{ option.label }}
           </option>
@@ -85,7 +97,6 @@
 const name = '';
 const phoneNumber = '';
 const email = '';
-const address = '';
 
 const orderInfo = ref([
   {
@@ -93,28 +104,21 @@ const orderInfo = ref([
     type: 'text',
     id: 'name',
     value: name,
-    placeholder: '請輸入您的姓名',
+    placeholder: '請輸入您的姓名*',
   },
   {
     title: '手機號碼：',
     type: 'tel',
     id: 'phone-number',
     value: phoneNumber,
-    placeholder: '請輸入您的手機號碼',
+    placeholder: '請輸入您的手機號碼*',
   },
   {
     title: '電子郵件：',
     type: 'text',
     id: 'email',
     value: email,
-    placeholder: '請輸入您的電子郵件',
-  },
-  {
-    title: '寄送地址：',
-    type: 'text',
-    id: 'address',
-    value: address,
-    placeholder: '請輸入您的地址',
+    placeholder: '請輸入您的電子郵件*',
   },
 ]);
 
@@ -131,6 +135,8 @@ const payOption = ref([
   { label: 'Line Pay', value: 'line-pay' },
   { label: 'Apple Pay', value: 'apple-pay' },
 ]);
+
+const payMethod = ref('credit-card'); // 設定預設值
 
 const payInput = ref([
   {
@@ -165,6 +171,12 @@ const payInput = ref([
 </script>
 
 <style lang="scss" scoped>
+//共同樣式
+main {
+  display: flex;
+  justify-content: center;
+}
+
 h2 {
   color: #f9f3e4;
   background-color: #d1825b;
@@ -172,6 +184,22 @@ h2 {
   line-height: 70px;
   height: 70px;
 }
+
+label {
+  font-size: 16px;
+  font-weight: bold;
+  color: #90420a;
+  margin-bottom: 10px;
+}
+
+input {
+  padding: 10px;
+  border: 2px solid #000000;
+  border-radius: 10px;
+}
+
+
+//購物車步驟
 article {
   display: flex;
   justify-content: space-evenly;
@@ -183,21 +211,17 @@ article {
       display: flex;
       flex-direction: column;
       align-items: center;
-      svg{
-        margin-bottom: 20px;
-      }
-      h3{
+      h3 {
+        margin-top: 20px;
         color: #163767;
       }
     }
+    .hrNone {
+      color: white;
+    }
   }
 }
-
-main {
-  display: flex;
-  justify-content: center;
-}
-
+//付款方式
 .pay {
   width: 550px;
   height: 650px;
@@ -209,6 +233,9 @@ main {
     flex-direction: column;
     align-items: stretch;
     padding: 40px 50px;
+    .pay-label {
+      margin: 30px 0 5px 0;
+    }
     #pay-method {
       margin-bottom: 30px;
     }
@@ -218,12 +245,29 @@ main {
       // margin-bottom: 20px;
       color: #90420a;
     }
+    select {
+      padding: 10px;
+      border: 2px solid #000000;
+      border-radius: 10px;
+    }
+
     input {
       margin-bottom: 23px;
     }
   }
+  #Submit {
+    width: 170px;
+    height: 55px;
+    color: #f9f3e4;
+    background-color: #d1825b;
+    border: none;
+    border-radius: 10px;
+
+    margin: 30px auto;
+  }
 }
 
+//訂購人資料
 .user {
   width: 550px;
   height: 650px;
@@ -250,6 +294,27 @@ main {
       //   width: -webkit-fill-available;
       // }
     }
+    .checkbox {
+      padding-left: 10px;
+      margin-bottom: 20px;
+      cursor: pointer;
+    }
+    input[type='checkbox'] {
+      display: none;
+    }
+    input[type='checkbox'] + span {
+      display: inline-block;
+      padding-left: 26px;
+      line-height: 20px;
+      background: url(https://i.imgur.com/bZM5Itd.png) no-repeat left top;
+      user-select: none;
+    }
+    input[type='checkbox']:checked + span {
+      background: url(https://i.imgur.com/JWm4WKA.png) no-repeat left top;
+    }
+    #address {
+      margin-bottom: 20px;
+    }
     #comment {
       resize: none;
       padding: 10px;
@@ -257,38 +322,5 @@ main {
       border-radius: 10px;
     }
   }
-}
-
-label {
-  font-size: 16px;
-  font-weight: bold;
-  color: #90420a;
-  margin-bottom: 10px;
-}
-
-input {
-  padding: 10px;
-  border: 2px solid #000000;
-  border-radius: 10px;
-}
-
-select {
-  padding: 10px;
-  border: 2px solid #000000;
-  border-radius: 10px;
-}
-
-#Submit {
-  width: 170px;
-  height: 55px;
-  color: #f9f3e4;
-  background-color: #d1825b;
-  border: none;
-  border-radius: 10px;
-
-  margin: 30px auto;
-}
-.pay-label {
-  margin: 30px 0 5px 0;
 }
 </style>

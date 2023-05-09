@@ -1,17 +1,13 @@
 <template>
-  <div class="CartStep">
-    <main>
-      <h2 :style="{ color: internalTitleColor }"><slot>2</slot></h2>
-      <monsterWhite :style="{ color: internalSvgColor }" class="svg" />
-    </main>
-  </div>
+  <h2 :style="{ color: internalTitleColor }"><slot>2</slot></h2>
+  <monsterBlue :style="{ color: internalSvgColor }" class="svg" />
 </template>
 <script>
 export default {
   props: {
     titleColor: {
       type: String,
-      default: '#CE5B5B',
+      default: '#163767',
     },
     svgColor: {
       type: String,
@@ -27,7 +23,7 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
-main {
+.CartStep {
   width: $workspace;
   margin: 0 auto;
   display: flex;
@@ -36,6 +32,7 @@ main {
   position: relative;
   h2 {
     position: absolute;
+    line-height: 155px;
     font-size: 50px;
     color: null;
   }
