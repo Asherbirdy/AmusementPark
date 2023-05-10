@@ -9,8 +9,11 @@ export {}
 
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
+<<<<<<< HEAD
     AboutUsNot: typeof import('./components/Notice/AboutUsNot.vue')['default']
     AboutUsNotice: typeof import('./components/Notice/AboutUsNotice.vue')['default']
+=======
+>>>>>>> f3671c179c78b0c3cf3b0cf41a7c63687bac4d2e
     ActivityList: typeof import('./components/Activity/ActivityList.vue')['default']
     AdminNav: typeof import('./components/-Global/AdminNav.vue')['default']
     Axiostest: typeof import('./components/-Global/Axiostest.vue')['default']
@@ -37,6 +40,7 @@ declare module '@vue/runtime-core' {
     MemberEdit: typeof import('./components/TouristBackstage/MemberEdit.vue')['default']
     MemberInfo: typeof import('./components/TouristBackstage/Element/svg/memberInfo.vue')['default']
     ModalClosePS: typeof import('./components/ParkStatus/- Modal/ModalClosePS.vue')['default']
+    ModalL: typeof import('./components/-UI Element/modalframe/ModalL.vue')['default']
     ModalOpenPS: typeof import('./components/ParkStatus/- Modal/ModalOpenPS.vue')['default']
     ModalS: typeof import('./components/-UI Element/modalframe/ModalS.vue')['default']
     MonsterBlue: typeof import('./components/-UI Element/svg/monsterBlue.vue')['default']
@@ -45,7 +49,10 @@ declare module '@vue/runtime-core' {
     MonsterWhite: typeof import('./components/-UI Element/svg/monsterWhite.vue')['default']
     MyOrder: typeof import('./components/TouristBackstage/Element/svg/myOrder.vue')['default']
     NavUser: typeof import('./components/TouristBackstage/NavUser.vue')['default']
+<<<<<<< HEAD
     OpenNotice: typeof import('./components/Notice/OpenNotice.vue')['default']
+=======
+>>>>>>> f3671c179c78b0c3cf3b0cf41a7c63687bac4d2e
     ParkStatusTablePS: typeof import('./components/ParkStatus/ParkStatusTablePS.vue')['default']
     ParkStatusTimePicker: typeof import('./components/-UI Element/timepicker/ParkStatusTimePicker.vue')['default']
     ProductListPDS: typeof import('./components/Productstatus/ProductListPDS.vue')['default']
