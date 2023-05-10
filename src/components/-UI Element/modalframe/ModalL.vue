@@ -1,15 +1,25 @@
+<script setup></script>
+
 <template>
-  <main>
-    <slot>
+  <div class="bgc">
+    <div class="layout">
       <el-icon class="iconClose"><CircleClose /></el-icon>
-    </slot>
-  </main>
+      <slot> </slot>
+    </div>
+  </div>
 </template>
-<script>
-export default {};
-</script>
+
 <style lang="scss" scoped>
 //外框
+.bgc {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  background: rgba(217, 217, 217, 0.8);
+}
 .iconClose {
   margin-top: 10px;
   font-size: 50px;
@@ -17,15 +27,18 @@ export default {};
   color: #90420a;
 }
 
-main {
-  margin-top: 100px;
-  padding: 0;
+.layout {
   width: 1140px;
   height: 850px;
+  margin-top: 100px;
+  padding: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
   background-color: $maincolor1;
   border: 5px solid #ce5b5b;
   border-radius: 35px;
-}
-.iconClose {
 }
 </style>
