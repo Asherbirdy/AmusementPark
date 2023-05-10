@@ -24,7 +24,7 @@
   <div class="about_us">
     <main>
       <h1 :style="{ color: internalTitleColor }"><slot>關於我們</slot></h1>
-      <titleBig_pink :style="{ color: internalSvgColor }" class="svg" />
+      <titleBig_yellow :style="{ color: internalSvgColor }" class="svg" />
     </main>
     <logo class="about_logo"/>
     <p>
@@ -38,11 +38,13 @@
     <p>
       在怪奇遊樂園，我們重視遊客的安全和樂趣，專業的服務讓您的旅程更加順暢和愉快。快進入怪奇冒險遊樂園，與朋友一起度過一個充滿歡樂和刺激的冒險之旅吧！
     </p>
+    <img class="oran" src="../assets/img/OrangeMonster.png" alt="">
+    <img class="pin" src="../assets/img/PinkMonster.png" alt="">
   </div>
   <div class="rides">
     <SvgMonster class="svgmonster"/>
     <main>
-      <h1 :style="{ color: internalTitleColor }"><slot>主題特色</slot></h1>
+      <h1 :style="{ color: internalTitleColor }" class="sec"><slot>主題特色</slot></h1>
       <titleBig_pink :style="{ color: internalSvgColor }" class="svg" />
     </main>
     <ul>
@@ -105,7 +107,7 @@
   <div class="exbi">
     <main>
       <h1 :style="{ color: internalTitleColor }"><slot>展覽特色</slot></h1>
-      <titleBig_pink :style="{ color: internalSvgColor }" class="svg" />
+      <titleBig_yellow :style="{ color: internalSvgColor }" class="svg" />
     </main>
     <ul>
       <li>
@@ -124,7 +126,7 @@
   </div>
   <div class="trans">
     <main>
-      <h1 :style="{ color: internalTitleColor }"><slot>交通資訊</slot></h1>
+      <h1 :style="{ color: internalTitleColor }" class="sec"><slot>交通資訊</slot></h1>
       <titleBig_pink :style="{ color: internalSvgColor }" class="svg" />
     </main>
     <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3613.136653697438!2d121.5101873967896!3d25.0972351!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3442aebf5a86da1b%3A0x5f56dfe454975847!2z6Ie65YyX5biC56uL5YWS56ul5paw5qiC5ZyS!5e0!3m2!1szh-TW!2stw!4v1683384751986!5m2!1szh-TW!2stw" width="1000" height="600" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
@@ -150,7 +152,7 @@
   <div class="open">
     <main>
       <h1 :style="{ color: internalTitleColor }"><slot>營業時間</slot></h1>
-      <titleBig_pink :style="{ color: internalSvgColor }" class="svg" />
+      <titleBig_yellow :style="{ color: internalSvgColor }" class="svg" />
     </main>
     <div class="table">
         <ul class="row1">
@@ -184,12 +186,16 @@ main {
   h1 {
     position: absolute;
     font-size: 50px;
-    top: 240px;
-    left: 565px;
+    top: 175px;
+    left: 530px;
     color: #CE5B5B;
   }
   .svg {
     color: #FFE9DE;
+  }
+  .sec{
+    top: 135px;
+    left: 545px;
   }
 }
 .about_logo{
@@ -197,15 +203,28 @@ main {
   opacity: 0.5;
   position: absolute;
   width: 700px;
-  top: 584px;
+  top: 284px;
   left: 274px;
 }
 
 .about_us p {
-  font-size: 32px;
-  width: 1133px;
+  font-size: 30px;
+  width: 1000px;
   margin: 0px auto;
   margin-bottom: 50px;
+  position: relative;
+}
+.oran{
+  width: 100px;
+  position: absolute;
+  top: 584px;
+  left: 0;
+}
+.pin{
+  width: 134px;
+  position: absolute;
+  top: 263px;
+  right: 0;
 }
 .rides {
   width: 1200px;
@@ -214,7 +233,7 @@ main {
 }
 .svgmonster{
   position: absolute;
-  top: 545px;
+  top: 300px;
   left: 240px;
   z-index: -1;
 }
@@ -237,6 +256,12 @@ main {
 }
 .rides li{
   margin: 40px 39px;
+}
+.rides li:nth-child(3) i{
+  margin-left: 119px;
+}
+.rides li:nth-child(6) i{
+  margin-left: 119px;
 }
 i{
   width: 15px;
@@ -278,7 +303,7 @@ i{
 .logo{
   position: absolute;
   width: 300px;
-  top: 1500px;
+  top: 1260px;
   left: 920px;
 }
 .trans iframe{
@@ -339,15 +364,15 @@ i{
 }
 .open {
   width: 1200px;
-  margin: 0 auto;
+  margin: 40px auto;
   position: relative;
 }
 .table {
   width: 600px;
   text-align: center;
   position: absolute;
-  top: 685px;
-  left: 170px;
+  top: 480px;
+  left: 265px;
 }
 .row1 {
   text-align: center;
@@ -388,7 +413,7 @@ i{
 }
 .open img {
   position: absolute;
-  top: 490px;
+  top: 320px;
   left: 710px;
   width: 385px;
   display: block;
