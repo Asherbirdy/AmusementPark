@@ -4,7 +4,7 @@
   <div class="nav">
     <ul>
       <li>
-        <router-link to="/member/touristmember">
+        <router-link to="/admin/touristmember">
           <memberInfo class="icon"/>
           <h3>
             會員資料
@@ -12,7 +12,7 @@
         </router-link>
       </li>
       <li>
-        <router-link to="/member/touristtick">
+        <router-link to="/admin/touristtick">
           <tickOrder class="icon" />
           <h3>
             購票&線上預約
@@ -20,7 +20,7 @@
         </router-link>
       </li>
       <li>
-        <router-link to="/member/touristqrcode">
+        <router-link to="/admin/touristqrcode">
           <QRcode class="icon" />
           <h3>
             快速通關QR code <br />
@@ -29,7 +29,7 @@
         </router-link>
       </li>
       <li>
-        <router-link to="/member/touristorder">
+        <router-link to="/admin/touristorder">
           <myOrder class="icon" />
           <h3>
             我的訂單

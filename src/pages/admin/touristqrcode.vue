@@ -1,9 +1,11 @@
 <script></script>
 <template>
-  <TicketfromTBS />
+  <QrcodeList />
 </template>
 
-<style scoped lang="scss"></style>
+<style scoped lang="scss">
+  // test
+</style>
 <route>
   {
       meta: {

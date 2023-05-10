@@ -64,6 +64,7 @@ declare module '@vue/runtime-core' {
     ProductTablePDM: typeof import('./components/ProductManage/ProductTablePDM.vue')['default']
     QAmonster: typeof import('./components/-UI Element/svg/QAmonster.vue')['default']
     QRcode: typeof import('./components/TouristBackstage/Element/svg/QRcode.vue')['default']
+    QrcodeList: typeof import('./components/TouristBackstage/QrcodeList.vue')['default']
     RadioStatusPS: typeof import('./components/ParkStatus/Element/RadioStatusPS.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']

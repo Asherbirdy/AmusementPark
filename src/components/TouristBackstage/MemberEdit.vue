@@ -46,7 +46,7 @@
 </template>
 <style scoped lang="scss">
     .form {
-        border:1px solid black;
+        // border:1px solid black;
         width: 800px;
         display: flex;
         flex-direction: column;
@@ -56,6 +56,7 @@
         a {
             text-decoration: none;
             color: #34A1FC;
+            font-size: 20px;
         }
 
         .title {
@@ -67,9 +68,10 @@
         }
 
         .btn-wrap {
-                width: 80%;
+                margin: 0 auto;
+                width: 60%;
                 display: flex;
-                justify-content: center;
+                justify-content: space-between;
                 align-items: center;
 
                 .btn {

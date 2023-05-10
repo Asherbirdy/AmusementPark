@@ -7,7 +7,7 @@
         <aside>
             <NavUser />
         </aside>
-        <div>
+        <div class="content">
             <RouterView />
         </div>
     </section>
@@ -21,6 +21,10 @@
     display: flex;
     margin-top: 20%;
     margin-bottom: 15%;
+}
+.content {
+    width: 100%;
+    flex-grow: 1;
 }
 
 </style>
