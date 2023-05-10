@@ -9,12 +9,12 @@ export {}
 
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
-    1: typeof import('./components/-UI Element/svg/Vector 1.vue')['default']
     ActivityList: typeof import('./components/Activity/ActivityList.vue')['default']
     AdminNav: typeof import('./components/-Global/AdminNav.vue')['default']
     Axiostest: typeof import('./components/-Global/Axiostest.vue')['default']
     Btn: typeof import('./components/-UI Element/btn/Btn.vue')['default']
     copy: typeof import('./components/-UI Element/svg/header/icon-login copy.vue')['default']
+    ElIcon: typeof import('element-plus/es')['ElIcon']
     ElAside: typeof import('element-plus/es')['ElAside']
     ElButton: typeof import('element-plus/es')['ElButton']
     ElButtonGroup: typeof import('element-plus/es')['ElButtonGroup']
@@ -58,6 +58,7 @@ declare module '@vue/runtime-core' {
     MemberEdit: typeof import('./components/TouristBackstage/MemberEdit.vue')['default']
     MemberInfo: typeof import('./components/TouristBackstage/Element/svg/memberInfo.vue')['default']
     ModalClosePS: typeof import('./components/ParkStatus/- Modal/ModalClosePS.vue')['default']
+    ModalL: typeof import('./components/-UI Element/modalframe/ModalL.vue')['default']
     ModalOpenPS: typeof import('./components/ParkStatus/- Modal/ModalOpenPS.vue')['default']
     ModalS: typeof import('./components/-UI Element/modalframe/ModalS.vue')['default']
     MonsterBlue: typeof import('./components/-UI Element/svg/monsterBlue.vue')['default']
@@ -78,8 +79,6 @@ declare module '@vue/runtime-core' {
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
     SearchBarEmailPDS: typeof import('./components/Productstatus/SearchBarEmailPDS.vue')['default']
-    SelectPS: typeof import('./components/ParkStatus/SelectPS.vue')['default']
-    SelectStatusPS: typeof import('./components/ParkStatus/SelectStatusPS.vue')['default']
     StaffAccountSFA: typeof import('./components/Staffaccount/StaffAccountSFA.vue')['default']
     SvgBrush: typeof import('./components/-UI Element/svg/pic/SvgBrush.vue')['default']
     SvgCloud: typeof import('./components/-UI Element/svg/pic/SvgCloud.vue')['default']
@@ -105,6 +104,7 @@ declare module '@vue/runtime-core' {
     SVGYoutube: typeof import('./components/-UI Element/svg/SVGYoutube.vue')['default']
     TagsTable: typeof import('./components/ProductManage/TagsTable.vue')['default']
     TeaserIDX: typeof import('./components/Index/TeaserIDX.vue')['default']
+    TicketfromTBS: typeof import('./components/TouristBackstage/TicketfromTBS.vue')['default']
     TicketBookingTOR: typeof import('./components/TicketOrder/TicketBookingTOR.vue')['default']
     TicketExhibitionTOR: typeof import('./components/TicketOrder/TicketExhibitionTOR.vue')['default']
     TicketfromTBS: typeof import('./components/TicketOrder/TicketfromTBS.vue')['default']
