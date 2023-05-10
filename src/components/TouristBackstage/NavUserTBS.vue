@@ -12,7 +12,7 @@
         </router-link>
       </li>
       <li>
-        <router-link to="/admin/touristtick">
+        <router-link to="/admin/touristproductorder">
           <tickOrder class="icon" />
           <h3>
             購票&線上預約
