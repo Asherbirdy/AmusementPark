@@ -77,8 +77,8 @@ main {
         }
         h1{
             position: absolute;
-            top: 176px;
-            left: 511px;
+            top: 136px;
+            left: 531px;
             color: #CE5B5B;
             font-size: 50px;
         }
