@@ -1,8 +1,7 @@
 <template>
   <el-calendar ref="calendar">
     <template #header="{ date }">
-      <!-- <span>Custom header content</span> -->
-      <span>{{ date }}</span>
+      <span>{{ getChineseMonth(date) }}</span>
       <el-button-group>
         <el-button size="small" @click="selectDate('prev-month')">
           上個月
@@ -17,6 +16,8 @@
 </template>
 
 <script setup>
+import dayjs from 'dayjs';
+import 'dayjs/locale/zh-cn';
 const calendar = ref();
 const selectDate = val => {
   calendar.value.selectDate(val);
@@ -24,20 +25,8 @@ const selectDate = val => {
 
 // 将英文月份转换为中文月份
 const getChineseMonth = date => {
-  const months = [
-    '一月',
-    '二月',
-    '三月',
-    '四月',
-    '五月',
-    '六月',
-    '七月',
-    '八月',
-    '九月',
-    '十月',
-    '十一月',
-    '十二月',
-  ];
-  return months[date.getMonth()];
+  const chineseMonth = dayjs(date).locale('zh-cn').format('YYYY MMMM');
+  console.log(chineseMonth);
+  return chineseMonth;
 };
 </script>
