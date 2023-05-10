@@ -2,15 +2,17 @@
 
 <template>
 
-  <main>
+  <!-- <main> -->
 
     <div>
-      <p>aaaa<br>fyhvyhlnjh</p>
+    <p>aaaa<br>fyhvyhlnjh</p>
     <p>JJJJJJJJJJJ</p>
     <btn>OOO</btn><btn></btn>
   </div>
       <title-big></title-big>
-  </main>
+      <!-- <titlebigpink/> -->
+      <!-- <title-big-pink/><title-big-yellow/><titleSmall1/><titleSmall2/> -->
+  <!-- </main> -->
   
 </template>
 <style scoped lang="scss">

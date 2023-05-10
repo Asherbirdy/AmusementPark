@@ -39,7 +39,7 @@
     width: 100px;
     font-size: 20;
     border: none;
-    border-radius: .2rem;
+    border-radius: .5rem;
     
   }
   </style>

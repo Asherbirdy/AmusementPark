@@ -47,11 +47,11 @@
       <div>
         <div class="rsite">
           <router-link to="/login">
-            <icon-s-login/>
+            <icon-small-login/>
           </router-link>
 
           <router-link to="/basket">
-            <icon-s-basket/>
+            <icon-small-basket/>
           </router-link>
         </div>
       </div>
@@ -98,7 +98,7 @@ header #menu a {
 }
 
 header #menu a:hover{
-  filter: brightness(100%) drop-shadow(0 0 1px #8a1818);
+  filter: brightness(100%) drop-shadow(1px 1px 1px #000000);
   opacity: 1;
   transition-duration: .3s;
 }
@@ -119,12 +119,12 @@ header .rsite{
 
 header .rsite a {
   text-decoration: none;
-  color: #000;
   margin: auto 8px;
 }
 
 header .rsite svg{
   padding: 4px;
+  color: #5b5b5b;
 }
 
 a#moblie_menu {
