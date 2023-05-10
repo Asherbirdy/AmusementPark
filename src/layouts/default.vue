@@ -4,7 +4,7 @@
   <Header></Header>
   <RouterView />
 
-  <footer></footer>
+  <Footer></Footer>
 </template>
 
-<style></style>
+<style lang="scss" scoped></style>
