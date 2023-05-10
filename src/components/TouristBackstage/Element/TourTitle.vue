@@ -1,8 +1,8 @@
 <template>
-    <main>
+    <div class="tourtitle">
       <h2 :style="{ color: internalTitleColor }"><slot>關於我們</slot></h2>
       <SvgTourTitle :style="{ color: internalSvgColor, width:internalSvgWidth }" class="svg" />
-    </main>
+    </div>
   </template>
   <script>
   export default {
@@ -30,7 +30,7 @@
   };
   </script>
   <style lang="scss" scoped>
-  main {
+  .tourtitle {
     // width: $workspace;
     // margin: 0 auto;
     display: flex;

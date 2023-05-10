@@ -31,6 +31,8 @@
       <tour-title svg-width = "145" >購票</tour-title>
     </div>
   </div>
+
+
 </template>
 <script>
 export default {};
