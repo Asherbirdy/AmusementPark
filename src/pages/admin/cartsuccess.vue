@@ -18,6 +18,7 @@
     </div>
   </div>
   <div class="content">
+    <monstertCoplete class="complete"/>
     <p>謝謝您!您的訂單已經成立!</p>
     <ul class="order">
       <li>
@@ -61,12 +62,19 @@ main {
     }
   }
 }
+.complete{
+  margin: 0px auto 80px;
+}
 .content{
-  margin: 315px 430px;
+  text-align: center;
+  margin: 100px auto 120px;
   width: 470px;
 }
 .content p{
   font-size: 40px;
+}
+.order{
+  text-align: left;
 }
 .order li{
   font-size: 20px;
