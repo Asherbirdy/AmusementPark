@@ -1,28 +1,13 @@
 <script setup></script>
 
 <template>
+  <VideoBannerIDX />
+  <title-main>aasdas</title-main>
+  <TeaserIDX />
+  <!-- 小怪獸彈窗 -->
 
-  <main>
-
-    <div>
-      <p>aaaa<br>fyhvyhlnjh</p>
-    <p>JJJJJJJJJJJ</p>
-    <btn>OOO</btn><btn></btn>
-  </div>
-      <title-big></title-big>
-  </main>
-  
+  <InformationIDX />
 </template>
 <style scoped lang="scss">
 //scss測試：
-
-
-
-div{
-  margin: 0 auto;
-  width: 40px;
-  background-color: aqua;
-  border: 1px solid black;
-  height: 10px;
-}
 </style>
