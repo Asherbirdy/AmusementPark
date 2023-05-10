@@ -64,7 +64,6 @@ declare module '@vue/runtime-core' {
     SvgSubway: typeof import('./components/-UI Element/svg/pic/SvgSubway.vue')['default']
     SvgSun: typeof import('./components/-UI Element/svg/pic/SvgSun.vue')['default']
     TagsTable: typeof import('./components/ProductManage/TagsTable.vue')['default']
-    Test: typeof import('./components/test.vue')['default']
     TicketListPDS: typeof import('./components/Productstatus/TicketListPDS.vue')['default']
     TitleBG: typeof import('./components/-UI Element/svg/title/titleBG.vue')['default']
     TitleBig: typeof import('./components/-UI Element/title/TitleBig.vue')['default']
