@@ -2,20 +2,12 @@
 
 <template>
   <VideoBannerIDX />
-  <h1>Title</h1>
+  <title-main>aasdas</title-main>
   <TeaserIDX />
+  <!-- 小怪獸彈窗 -->
+
   <InformationIDX />
 </template>
 <style scoped lang="scss">
 //scss測試：
-
-
-
-div{
-  margin: 0 auto;
-  width: 40px;
-  background-color: aqua;
-  border: 1px solid black;
-  height: 10px;
-}
 </style>

@@ -14,6 +14,7 @@ declare module '@vue/runtime-core' {
     Axiostest: typeof import('./components/-Global/Axiostest.vue')['default']
     Btn: typeof import('./components/-UI Element/btn/Btn.vue')['default']
     copy: typeof import('./components/-UI Element/svg/header/icon-login copy.vue')['default']
+    ElIcon: typeof import('element-plus/es')['ElIcon']
     Footer: typeof import('./components/-Global/Footer.vue')['default']
     H: typeof import('./components/-Global/H.vue')['default']
     Header: typeof import('./components/-Global/Header.vue')['default']
@@ -25,6 +26,7 @@ declare module '@vue/runtime-core' {
     IconMembership: typeof import('./components/-UI Element/svg/header/icon-membership.vue')['default']
     IconSBasket: typeof import('./components/-UI Element/svg/header/iconS-basket.vue')['default']
     IconShop: typeof import('./components/-UI Element/svg/header/icon-shop.vue')['default']
+    InformationIDX: typeof import('./components/Index/InformationIDX.vue')['default']
     Input: typeof import('./components/-UI Element/form/Input.vue')['default']
     InputLimitTenPS: typeof import('./components/ParkStatus/Element/InputLimitTenPS.vue')['default']
     Logo: typeof import('./components/-UI Element/svg/header/logo.vue')['default']
@@ -72,6 +74,7 @@ declare module '@vue/runtime-core' {
     TitleSmall1: typeof import('./components/-UI Element/svg/title/titleSmall1.vue')['default']
     TitleSmall2: typeof import('./components/-UI Element/svg/title/titleSmall2.vue')['default']
     Trumpet: typeof import('./components/-UI Element/svg/pic/trumpet.vue')['default']
+    VideoBannerIDX: typeof import('./components/Index/VideoBannerIDX.vue')['default']
     Wrench: typeof import('./components/-UI Element/svg/pic/wrench.vue')['default']
   }
 }

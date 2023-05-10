@@ -15,6 +15,8 @@
 </template>
 <style lang="scss" scoped>
 $pWidth: 340px;
+
+$bookFontSize: 20px;
 main {
   div {
     background-image: url(@/assets/img/Book_Index.jpg);
@@ -26,16 +28,18 @@ main {
     gap: 80px;
     justify-content: center;
     line-height: 2.2;
-    font-size: 20px;
+
     padding-left: 10px;
 
     p:nth-child(1) {
       padding-top: 100px;
       width: $pWidth;
+      font-size: $bookFontSize;
     }
     p:nth-child(2) {
       padding-top: 100px;
       width: $pWidth;
+      font-size: $bookFontSize;
     }
   }
 }
