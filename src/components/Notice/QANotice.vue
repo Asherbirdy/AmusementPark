@@ -9,9 +9,10 @@
         width: $workspace;
         position: relative;
         .QA{
+            width: 100px;
             position: fixed;
             top: 215px;
-            right: 0;
+            right: 18px;
         }
     }
 </style>

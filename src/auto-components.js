@@ -9,18 +9,13 @@ export {}
 
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
-<<<<<<< HEAD
-    AboutUsNot: typeof import('./components/Notice/AboutUsNot.vue')['default']
     AboutUsNotice: typeof import('./components/Notice/AboutUsNotice.vue')['default']
-=======
->>>>>>> f3671c179c78b0c3cf3b0cf41a7c63687bac4d2e
     ActivityList: typeof import('./components/Activity/ActivityList.vue')['default']
     AdminNav: typeof import('./components/-Global/AdminNav.vue')['default']
     Axiostest: typeof import('./components/-Global/Axiostest.vue')['default']
     Btn: typeof import('./components/-UI Element/btn/Btn.vue')['default']
     copy: typeof import('./components/-UI Element/svg/header/icon-login copy.vue')['default']
     ElIcon: typeof import('element-plus/es')['ElIcon']
-    ExbihitionNotice: typeof import('./components/Notice/ExbihitionNotice.vue')['default']
     ExhibitionNotice: typeof import('./components/Notice/ExhibitionNotice.vue')['default']
     Footer: typeof import('./components/-Global/Footer.vue')['default']
     H: typeof import('./components/-Global/H.vue')['default']
@@ -49,10 +44,7 @@ declare module '@vue/runtime-core' {
     MonsterWhite: typeof import('./components/-UI Element/svg/monsterWhite.vue')['default']
     MyOrder: typeof import('./components/TouristBackstage/Element/svg/myOrder.vue')['default']
     NavUser: typeof import('./components/TouristBackstage/NavUser.vue')['default']
-<<<<<<< HEAD
     OpenNotice: typeof import('./components/Notice/OpenNotice.vue')['default']
-=======
->>>>>>> f3671c179c78b0c3cf3b0cf41a7c63687bac4d2e
     ParkStatusTablePS: typeof import('./components/ParkStatus/ParkStatusTablePS.vue')['default']
     ParkStatusTimePicker: typeof import('./components/-UI Element/timepicker/ParkStatusTimePicker.vue')['default']
     ProductListPDS: typeof import('./components/Productstatus/ProductListPDS.vue')['default']
