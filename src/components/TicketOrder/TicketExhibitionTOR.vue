@@ -1,8 +1,8 @@
 <template>
   <el-calendar ref="calendar">
     <template #header="{ date }">
-      <span>Custom header content</span>
-      <span>{{ getChineseMonth(date) }}</span>
+      <!-- <span>Custom header content</span> -->
+      <span>{{ date }}</span>
       <el-button-group>
         <el-button size="small" @click="selectDate('prev-month')">
           上個月
@@ -16,11 +16,9 @@
   </el-calendar>
 </template>
 
-<script lang="ts" setup>
-import { ref } from 'vue';
-
+<script setup>
 const calendar = ref();
-const selectDate = (val: string) => {
+const selectDate = val => {
   calendar.value.selectDate(val);
 };
 
