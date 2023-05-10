@@ -35,7 +35,7 @@ main {
         }
     .open {
         width: 1200px;
-        margin: 40px auto 800px;
+        margin: 40px auto 400px;
         position: relative;
         }
         .table {
