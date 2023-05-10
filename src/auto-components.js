@@ -14,7 +14,10 @@ declare module '@vue/runtime-core' {
     Axiostest: typeof import('./components/-Global/Axiostest.vue')['default']
     Btn: typeof import('./components/-UI Element/btn/Btn.vue')['default']
     copy: typeof import('./components/-UI Element/svg/header/icon-login copy.vue')['default']
+<<<<<<< HEAD
     ElIcon: typeof import('element-plus/es')['ElIcon']
+=======
+>>>>>>> 5599fc01baa7e065797f9b48a689ca7d71ceb619
     Footer: typeof import('./components/-Global/Footer.vue')['default']
     H: typeof import('./components/-Global/H.vue')['default']
     Header: typeof import('./components/-Global/Header.vue')['default']
@@ -32,10 +35,13 @@ declare module '@vue/runtime-core' {
     ModalClosePS: typeof import('./components/ParkStatus/- Modal/ModalClosePS.vue')['default']
     ModalOpenPS: typeof import('./components/ParkStatus/- Modal/ModalOpenPS.vue')['default']
     ModalS: typeof import('./components/-UI Element/modalframe/ModalS.vue')['default']
+<<<<<<< HEAD
     MonsterBlue: typeof import('./components/-UI Element/svg/monsterBlue.vue')['default']
     MonsterCartFillBlue: typeof import('./components/-UI Element/title/monsterCartFillBlue.vue')['default']
     MonsterCartFillWhite: typeof import('./components/-UI Element/title/MonsterCartFillWhite.vue')['default']
     MonsterWhite: typeof import('./components/-UI Element/svg/monsterWhite.vue')['default']
+=======
+>>>>>>> 5599fc01baa7e065797f9b48a689ca7d71ceb619
     ParkStatusTablePS: typeof import('./components/ParkStatus/ParkStatusTablePS.vue')['default']
     ParkStatusTimePicker: typeof import('./components/-UI Element/timepicker/ParkStatusTimePicker.vue')['default']
     ProductListPDS: typeof import('./components/Productstatus/ProductListPDS.vue')['default']
