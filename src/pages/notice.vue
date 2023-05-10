@@ -4,6 +4,7 @@
   <AboutUsNotice />
   <RidesNotice />
   <ExhibitionNotice />
+  <TransformNotice />
   <OpenNotice />
   <QANotice />
 </template>

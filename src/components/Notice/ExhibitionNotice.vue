@@ -2,7 +2,8 @@
 <template>
     <main>
         <div class="exhi">
-        <TitleMain class="title"><slot>展覽特色</slot></TitleMain>
+        <TitleBig_yellow class="title" />
+        <h1>展覽特色</h1>
             <ul>
                 <li>
                     <img src="@/assets/img/performance4.png" />
@@ -26,7 +27,19 @@ main {
     .exhi {
         width: 1200px;
         margin: 0 auto;
+        position: relative;
+    }
+    .title{
+            margin: 0 350px;
         }
+    h1{
+        position: absolute;
+        top: 176px;
+        left: 511px;
+        color: #CE5B5B;
+        font-size: 50px;
+    }
+    
         .exhi ul{
             margin: 75px 50px;
             display: flex;

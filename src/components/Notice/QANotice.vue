@@ -11,8 +11,8 @@
         .QA{
             width: 100px;
             position: fixed;
-            top: 215px;
-            right: 18px;
+            top: 415px;
+            right: 30px;
         }
     }
 </style>

@@ -2,7 +2,8 @@
 <template>
     <main>
         <div class="trans">
-            <TitleMain class="title"><slot>交通資訊</slot></TitleMain>
+            <TitleBig_pink class="title" />
+            <h1>交通資訊</h1>
             <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3613.136653697438!2d121.5101873967896!3d25.0972351!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3442aebf5a86da1b%3A0x5f56dfe454975847!2z6Ie65YyX5biC56uL5YWS56ul5paw5qiC5ZyS!5e0!3m2!1szh-TW!2stw!4v1683384751986!5m2!1szh-TW!2stw" width="1000" height="600" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
             <logo class="logo"/>
             <ul>
@@ -34,15 +35,20 @@ main {
         margin: 0 auto;
         position: relative;
     }
-    h1 {
-        margin: 60px 500px;
-        font-size: 50px;
-        color: #CE5B5B;
-    }
+    .title{
+            margin: 0 350px;
+        }
+        h1{
+            position: absolute;
+            top: 135px;
+            left: 521px;
+            color: #CE5B5B;
+            font-size: 50px;
+        }
     .logo{
         position: absolute;
         width: 300px;
-        top: 1260px;
+        top: 1420px;
         left: 920px;
     }
     .trans iframe{

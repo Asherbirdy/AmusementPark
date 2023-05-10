@@ -2,7 +2,8 @@
 <template>
     <main>
         <div class="about_us">
-            <TitleMain class="title">關於我們</TitleMain>
+            <titleBig_yellow class="title" />
+            <h1>關於我們</h1>
             <logo class="logo"/>
             <div class="content">
                 <p>
@@ -31,18 +32,26 @@ main {
             position: relative;
         }
         .title{
-            margin: 20px 0;
+            margin: 0 350px;
+        }
+        h1{
+            position: absolute;
+            top: 176px;
+            left: 511px;
+            color: #CE5B5B;
+            font-size: 50px;
         }
         .logo{
             position: absolute;
-            top: 235px;
+            top: 305px;
             left: 280px;
-            opacity: 0.5;
+            opacity: 0.3;
             width: 700px;
         }
         .content{
             width: 900px;
-            margin: 100px auto;
+            margin: 10px auto;
+            margin-bottom: 100px;
         }
         .about_us p {
             font-size: 30px;
@@ -53,13 +62,13 @@ main {
         .oran{
             width: 100px;
             position: absolute;
-            top: 720px;
+            top: 780px;
             left: 22px;
         }
         .pin{
             width: 134px;
             position: absolute;
-            top: 234px;
+            top: 297px;
             right: 42px;
         }
 }

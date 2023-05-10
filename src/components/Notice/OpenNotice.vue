@@ -2,7 +2,8 @@
 <template>
     <main>
         <div class="open">
-         <TitleMain class="title"><slot>營業時間</slot></TitleMain>
+        <TitleBig_yellow class="title" />
+        <h1>營業時間</h1>
         <div class="table">
             <ul class="row1">
             <li>週日~週五</li>
@@ -22,6 +23,16 @@
 main {
     width: $workspace;
     padding-top: 50px;
+    .title{
+            margin: 0 350px;
+        }
+        h1{
+            position: absolute;
+            top: 176px;
+            left: 511px;
+            color: #CE5B5B;
+            font-size: 50px;
+        }
     .open {
         width: 1200px;
         margin: 40px auto 800px;
@@ -29,7 +40,7 @@ main {
         }
         .table {
             width: 600px;
-            margin-top: 130px;
+            margin-top: 210px;
             text-align: center;
             position: absolute;
             top: 300px;
@@ -74,7 +85,7 @@ main {
         }
         .open img {
             position: absolute;
-            margin-top: 125px;
+            margin-top: 225px;
             top: 120px;
             left: 710px;
             width: 385px;

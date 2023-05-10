@@ -2,7 +2,8 @@
 <template>
     <main>
         <div class="rides">
-            <TitleMain class="title"><slot>主題特色</slot></TitleMain>
+            <TitleBig_pink class="title" />
+            <h1>主題特色</h1>
             <ul>
                 <li>
                     <div>
@@ -71,6 +72,16 @@ main {
         margin: 0 auto;
         position: relative;
     }
+    .title{
+            margin: 0 350px;
+        }
+        h1{
+            position: absolute;
+            top: 176px;
+            left: 511px;
+            color: #CE5B5B;
+            font-size: 50px;
+        }
         .rides img{
             height: 250px;
             display: block;
