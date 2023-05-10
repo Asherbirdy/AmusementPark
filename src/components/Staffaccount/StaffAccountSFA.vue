@@ -1,7 +1,8 @@
 <template>
-  <el-table :data="filterTableData" style="width: 100%">
-    <el-table-column label="Date" prop="date" />
-    <el-table-column label="Name" prop="name" />
+  <el-table :data="tableData" style="width: 100%">
+    <el-table-column label="員工編號" prop="id" />
+    <el-table-column label="員工帳號" prop="account" />
+    <el-table-column label="權限" prop="permissions" />
     <el-table-column align="right">
       <template #header>
         <el-input v-model="search" size="small" placeholder="Type to search" />
@@ -21,50 +22,47 @@
   </el-table>
 </template>
 
-<script lang="ts" setup>
+<script setup>
+import axios from 'axios';
 import { computed, ref } from 'vue';
 
-interface User {
-  date: string;
-  name: string;
-  address: string;
-}
+let tableData = ref([]);
 
-const search = ref('');
-const filterTableData = computed(() =>
-  tableData.filter(
-    data =>
-      !search.value ||
-      data.name.toLowerCase().includes(search.value.toLowerCase())
-  )
-);
-const handleEdit = (index: number, row: User) => {
-  console.log(index, row);
-};
-const handleDelete = (index: number, row: User) => {
-  console.log(index, row);
-};
+onMounted(() => {
+  axios.get('/api/PDO/staffAccount/staffAccountSelect.php').then(res => {
+    // API 抓取到的資料：
+    const data = res.data;
+    console.log(data);
 
-const tableData: User[] = [
-  {
-    date: '2016-05-03',
-    name: 'Tom',
-    address: 'No. 189, Grove St, Los Angeles',
-  },
-  {
-    date: '2016-05-02',
-    name: 'John',
-    address: 'No. 189, Grove St, Los Angeles',
-  },
-  {
-    date: '2016-05-04',
-    name: 'Morgan',
-    address: 'No. 189, Grove St, Los Angeles',
-  },
-  {
-    date: '2016-05-01',
-    name: 'Jessy',
-    address: 'No. 189, Grove St, Los Angeles',
-  },
-];
+    // 將資料轉成 element 可以讀的參數，參考 public/json/facility_status.json
+    const staffData = data.map(staff => ({
+      id: staff.BACKSTAGE_MEMBER_ID,
+      account: staff.ACCOUNT,
+      permissions: staff.PURVIEW_LEVEL_ID,
+      // date:
+      //   facility.startDate && facility.endDate
+      //     ? `${facility.startDate} 至 ${facility.endDate}`
+      //     : '',
+    }));
+    //
+
+    tableData.value = staffData;
+    console.log(tableData);
+  });
+});
+
+// const search = ref('');
+// const filterTableData = computed(() =>
+//   tableData.filter(
+//     data =>
+//       !search.value ||
+//       data.name.toLowerCase().includes(search.value.toLowerCase())
+//   )
+// );
+// const handleEdit = (index: number, row: User) => {
+//   console.log(index, row);
+// };
+// const handleDelete = (index: number, row: User) => {
+//   console.log(index, row);
+// };
 </script>
