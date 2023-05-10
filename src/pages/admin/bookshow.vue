@@ -1,10 +1,9 @@
 <template>
-  <main>
-    <el-icon class="iconClose"><CircleClose /></el-icon>
+  <modal-l>
     <article>
-      <div class="showImg">
-        <img src="../../assets/img/performance2.png" alt="" />
-        <h1>爵士表演</h1>
+      <div v-for="(item, index) in showList" :key="index" class="showImg">
+        <img :src="item.imgUrl" alt="" />
+        <h1>{{ item.h1 }}</h1>
       </div>
       <div class="showContent">
         <section
@@ -12,57 +11,75 @@
           :key="titleIndex"
           class="introduce"
         >
-          <h2>{{ title.h2 }}</h2>
+        <h2>表演介紹</h2>
           <h3>{{ title.h3 }}</h3>
+        <h2>表演時間</h2>
+          <h3 class="showTime">{{ title.showTime }}</h3>
         </section>
         <div class="order">
           <h2>預約人數</h2>
           <div class="icon">
             <el-icon class="iconRemove"><Remove /></el-icon><span>1</span
             ><el-icon class="iconPlus"><CirclePlus /></el-icon>
-          </div>
         </div>
-      </div>
-    </article>
-    <button class="orderBtn">立即預約</button>
-  </main>
+        </div>
+        </div>
+      </article>
+      <button class="orderBtn">立即預約</button>
+    </modal-l>
 </template>
 
 
 <script setup>
-const show = ref([
-  {
-    h2: '表演介紹',
-    h3: '結合了各種音樂元素，包括即興演奏、融合不同風格、節奏鮮明的樂器演奏、以及人聲演唱等等。爵士音樂的起源可以追溯到20世紀初期的美國，它是一種以黑人音樂文化為基礎的音樂形式',
-  },
-  {
-    h2: '表演時間',
-    h3: '貝影劇場／魔幻劇場人數限制200人\n平日／12:30、14:30\n假日／15:45',
-  },
-]);
-
-
-const propsType = ref('show');
+const propsType = ref('TheWizardOfOz');
 const showList = ref([]);
 const testArr = {
-  show: [
+  DreamInterpretation: [
     {
-      h2: '表演介紹',
-      h3: '結合了各種音樂元素，包括即興演奏、融合不同風格、節奏鮮明的樂器演奏、以及人聲演唱等等。爵士音樂的起源可以追溯到20世紀初期的美國，它是一種以黑人音樂文化為基礎的音樂形式',
-    },
-    {
-      h2: '表演時間',
-      h3: '貝影劇場／魔幻劇場人數限制200人\n平日／12:30、14:30\n假日／15:45',
+      h1:'夢幻演繹',
+      h3: '夢幻般的表演節目，結合音樂、舞蹈和劇場元素，呈現一個奇幻的故事。這個表演節目將會讓你進入一個夢境般的世界，帶給你全新的視覺和聽覺體驗。',
+      imgUrl: '../../../src/assets/img/performance1.png',
+      showTime: '貝影劇場／人數限制200人\n平日／12:30、14:30\n假日／15:45',
     },
   ],
-  sing: [
+  JazzPerformance: [
     {
-      h2: '唱歌介紹',
-      h3: '結合了各種音樂元素，包括即興演奏、融合不同風格、節奏鮮明的樂器演奏、以及人聲演唱等等。爵士音樂的起源可以追溯到20世紀初期的美國，它是一種以黑人音樂文化為基礎的音樂形式',
+      h1: '爵士表演',
+      h3: '充滿活力的表演節目，以爵士樂為主題，融合了舞蹈和唱歌等元素。這個表演節目將帶你回到爵士樂的黃金年代，讓你感受到那個時代的文化和風格。',
+      imgUrl: '../../../src/assets/img/performance2.png',
+      showTime: '魔幻劇場／人數限制200人\n平日／12:30、14:30\n假日／15:45',
     },
+  ],
+  TheWizardOfOz: [
     {
-      h2: '表演時間',
-      h3: '貝影劇場／魔幻劇場人數限制200人\n平日／12:30、14:30\n假日／15:45',
+      h1: '綠野仙蹤 ',
+      h3: '以經典童話故事為主題的表演節目，呈現了一個美麗而神秘的綠色世界。這個表演節目以舞蹈、音樂、劇場和視覺效果等元素為主，帶你進入一個充滿魔幻和想像的世界。',
+      imgUrl: '../../../src/assets/img/performance3.png',
+      showTime: '魔幻劇場／人數限制200人\n平日／12:30、14:30\n假日／15:45',
+    },
+  ],
+  JazzPerformance: [
+    {
+      h1: '火焰跳躍者',
+      h3: '刺激的表演節目，表演者將會在火焰中跳躍和舞蹈，呈現出一個驚人的視覺效果。這個表演節目融合了現代舞蹈和傳統藝術，帶給你一個刺激和難忘的體驗。',
+      imgUrl: '../../../src/assets/img/performance4.png',
+      showTime: '百老匯劇院／人數限制200人\n平日／12:30、14:30\n假日／15:45',
+    },
+  ],
+  JazzPerformance: [
+    {
+      h1: '魔幻舞台',
+      h3: '充滿活力的表演節目，以爵士樂為主題，融合了舞蹈和唱歌等元素。這個表演節目將帶你回到爵士樂的黃金年代，讓你感受到那個時代的文化和風格。',
+      imgUrl: '../../../src/assets/img/performance5.png',
+      showTime: '魔幻劇場／人數限制200人\n平日／12:30、14:30\n假日／15:45',
+    },
+  ],
+  JazzPerformance: [
+    {
+      h1: '瘋狂藝術家',
+      h3: '充滿活力的表演節目，以爵士樂為主題，融合了舞蹈和唱歌等元素。這個表演節目將帶你回到爵士樂的黃金年代，讓你感受到那個時代的文化和風格。',
+      imgUrl: '../../../src/assets/img/performance6.png',
+      showTime: '貝影劇場／人數限制200人\n平日／12:30、14:30\n假日／15:45',
     },
   ],
 };
@@ -72,33 +89,12 @@ showList.value = testArr[propsType.value];
 
 <style lang="scss" scoped>
 //外框
-.iconClose {
-  margin-top: 10px;
-  font-size: 50px;
-  margin-left: 1065px;
-  color: #90420a;
-}
 
 
-main {
-  margin-top: 100px;
-  padding: 0;
-  width: 1140px;
-  height: 850px;
-  background-color: $maincolor1;
-  border: 5px solid #ce5b5b;
-  border-radius: 35px;
-}
 article {
   display: flex;
   justify-content: space-between;
-  padding: 30px;
-  padding-top: 0;
-  padding-bottom: 0;
-
-
-  .iconClose {
-  }
+  padding:0 30px;
 }
 
 
@@ -139,9 +135,8 @@ h3 {
   letter-spacing: 8px;
 
 
-  margin: 25px;
+  margin: 15px;
   margin-right: 0;
-  margin-bottom: 0;
 }
 
 
@@ -157,11 +152,15 @@ h3 {
     font-size: 30px;
     width: 30px;
     height: 30px;
+    cursor: pointer;
+
   }
   .iconRemove {
     font-size: 30px;
     width: 30px;
     height: 30px;
+    cursor: pointer;
+
   }
   span {
     font-size: 40px;
@@ -170,7 +169,7 @@ h3 {
 }
 h1 {
   margin-top: 50px;
-  color: #163767;
+  color:$textcolor7;
 }
 .orderBtn {
   float: right;
