@@ -9,45 +9,16 @@ export {}
 
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
-<<<<<<< HEAD
-=======
-    1: typeof import('./components/-UI Element/svg/Vector 1.vue')['default']
->>>>>>> 4d95c5b72a24264bb22550751ee351460c1f02d7
+    AboutUsNot: typeof import('./components/Notice/AboutUsNot.vue')['default']
+    AboutUsNotice: typeof import('./components/Notice/AboutUsNotice.vue')['default']
     ActivityList: typeof import('./components/Activity/ActivityList.vue')['default']
     AdminNav: typeof import('./components/-Global/AdminNav.vue')['default']
     Axiostest: typeof import('./components/-Global/Axiostest.vue')['default']
     Btn: typeof import('./components/-UI Element/btn/Btn.vue')['default']
     copy: typeof import('./components/-UI Element/svg/header/icon-login copy.vue')['default']
-<<<<<<< HEAD
-=======
-
-    ElAside: typeof import('element-plus/es')['ElAside']
-    ElButton: typeof import('element-plus/es')['ElButton']
-    ElCheckboxButton: typeof import('element-plus/es')['ElCheckboxButton']
-    ElCheckboxGroup: typeof import('element-plus/es')['ElCheckboxGroup']
-    ElCol: typeof import('element-plus/es')['ElCol']
-    ElContainer: typeof import('element-plus/es')['ElContainer']
-    ElDatePicker: typeof import('element-plus/es')['ElDatePicker']
-    ElFooter: typeof import('element-plus/es')['ElFooter']
-    ElForm: typeof import('element-plus/es')['ElForm']
-    ElFormItem: typeof import('element-plus/es')['ElFormItem']
-    ElHeader: typeof import('element-plus/es')['ElHeader']
-    ElInput: typeof import('element-plus/es')['ElInput']
-    ElMain: typeof import('element-plus/es')['ElMain']
-    ElMenu: typeof import('element-plus/es')['ElMenu']
-    ElMenuItem: typeof import('element-plus/es')['ElMenuItem']
-    ElOption: typeof import('element-plus/es')['ElOption']
-    ElRadio: typeof import('element-plus/es')['ElRadio']
-    ElRadioButton: typeof import('element-plus/es')['ElRadioButton']
-    ElRadioGroup: typeof import('element-plus/es')['ElRadioGroup']
-    ElRow: typeof import('element-plus/es')['ElRow']
-    ElSelect: typeof import('element-plus/es')['ElSelect']
-    ElTimePicker: typeof import('element-plus/es')['ElTimePicker']
-
     ElIcon: typeof import('element-plus/es')['ElIcon']
-
-    ElIcon: typeof import('element-plus/es')['ElIcon']
->>>>>>> 4d95c5b72a24264bb22550751ee351460c1f02d7
+    ExbihitionNotice: typeof import('./components/Notice/ExbihitionNotice.vue')['default']
+    ExhibitionNotice: typeof import('./components/Notice/ExhibitionNotice.vue')['default']
     Footer: typeof import('./components/-Global/Footer.vue')['default']
     H: typeof import('./components/-Global/H.vue')['default']
     Header: typeof import('./components/-Global/Header.vue')['default']
@@ -59,10 +30,7 @@ declare module '@vue/runtime-core' {
     IconMembership: typeof import('./components/-UI Element/svg/header/icon-membership.vue')['default']
     IconSBasket: typeof import('./components/-UI Element/svg/header/iconS-basket.vue')['default']
     IconShop: typeof import('./components/-UI Element/svg/header/icon-shop.vue')['default']
-<<<<<<< HEAD
-=======
     InformationIDX: typeof import('./components/Index/InformationIDX.vue')['default']
->>>>>>> 4d95c5b72a24264bb22550751ee351460c1f02d7
     Input: typeof import('./components/-UI Element/form/Input.vue')['default']
     InputLimitTenPS: typeof import('./components/ParkStatus/Element/InputLimitTenPS.vue')['default']
     Logo: typeof import('./components/-UI Element/svg/header/logo.vue')['default']
@@ -71,62 +39,58 @@ declare module '@vue/runtime-core' {
     ModalClosePS: typeof import('./components/ParkStatus/- Modal/ModalClosePS.vue')['default']
     ModalOpenPS: typeof import('./components/ParkStatus/- Modal/ModalOpenPS.vue')['default']
     ModalS: typeof import('./components/-UI Element/modalframe/ModalS.vue')['default']
-<<<<<<< HEAD
-=======
-
-    MyOrder: typeof import('./components/TouristBackstage/Element/svg/myOrder.vue')['default']
-    NavUser: typeof import('./components/TouristBackstage/NavUser.vue')['default']
-
     MonsterBlue: typeof import('./components/-UI Element/svg/monsterBlue.vue')['default']
     MonsterCartFillBlue: typeof import('./components/-UI Element/title/monsterCartFillBlue.vue')['default']
     MonsterCartFillWhite: typeof import('./components/-UI Element/title/MonsterCartFillWhite.vue')['default']
     MonsterWhite: typeof import('./components/-UI Element/svg/monsterWhite.vue')['default']
-
->>>>>>> 4d95c5b72a24264bb22550751ee351460c1f02d7
+    MyOrder: typeof import('./components/TouristBackstage/Element/svg/myOrder.vue')['default']
+    NavUser: typeof import('./components/TouristBackstage/NavUser.vue')['default']
+    OpenNotice: typeof import('./components/Notice/OpenNotice.vue')['default']
     ParkStatusTablePS: typeof import('./components/ParkStatus/ParkStatusTablePS.vue')['default']
     ParkStatusTimePicker: typeof import('./components/-UI Element/timepicker/ParkStatusTimePicker.vue')['default']
     ProductListPDS: typeof import('./components/Productstatus/ProductListPDS.vue')['default']
     ProductSelectPDM: typeof import('./components/ProductManage/ProductSelectPDM.vue')['default']
     ProductTablePDM: typeof import('./components/ProductManage/ProductTablePDM.vue')['default']
     QAmonster: typeof import('./components/-UI Element/svg/QAmonster.vue')['default']
+    QANotice: typeof import('./components/Notice/QANotice.vue')['default']
     QRcode: typeof import('./components/TouristBackstage/Element/svg/QRcode.vue')['default']
     QrcodeList: typeof import('./components/TouristBackstage/QrcodeList.vue')['default']
     RadioStatusPS: typeof import('./components/ParkStatus/Element/RadioStatusPS.vue')['default']
+    RidesNotice: typeof import('./components/Notice/RidesNotice.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
     SearchBarEmailPDS: typeof import('./components/Productstatus/SearchBarEmailPDS.vue')['default']
-    SelectPS: typeof import('./components/ParkStatus/SelectPS.vue')['default']
-    SelectStatusPS: typeof import('./components/ParkStatus/SelectStatusPS.vue')['default']
     StaffAccountSFA: typeof import('./components/Staffaccount/StaffAccountSFA.vue')['default']
     SvgBrush: typeof import('./components/-UI Element/svg/pic/SvgBrush.vue')['default']
+    SvgBus: typeof import('./components/-UI Element/svg/pic/SvgBus.vue')['default']
+    SvgCar: typeof import('./components/-UI Element/svg/pic/SvgCar.vue')['default']
     SvgCloud: typeof import('./components/-UI Element/svg/pic/SvgCloud.vue')['default']
     SvgDirector: typeof import('./components/-UI Element/svg/pic/SvgDirector.vue')['default']
     SvgEgg: typeof import('./components/-UI Element/svg/pic/SvgEgg.vue')['default']
+    SVGFacebook: typeof import('./components/-UI Element/svg/SVGFacebook.vue')['default']
+    SVGFooter: typeof import('./components/-UI Element/svg/SVGFooter.vue')['default']
     SvgFrameBlue: typeof import('./components/-UI Element/svg/frame/SvgFrameBlue.vue')['default']
     SvgFrameGreen: typeof import('./components/-UI Element/svg/frame/SvgFrameGreen.vue')['default']
     SvgFrameMonster: typeof import('./components/-UI Element/svg/frame/SvgFrameMonster.vue')['default']
     SvgFramePink: typeof import('./components/-UI Element/svg/frame/SvgFramePink.vue')['default']
     SvgFrameYellow: typeof import('./components/-UI Element/svg/frame/SvgFrameYellow.vue')['default']
     SvgIcon: typeof import('./components/SvgIcon.vue')['default']
+    SVGInstagram: typeof import('./components/-UI Element/svg/SVGInstagram.vue')['default']
     SvgMonster: typeof import('./components/-UI Element/svg/pic/SvgMonster.vue')['default']
     SvgNews: typeof import('./components/-UI Element/svg/pic/SvgNews.vue')['default']
     SvgNote: typeof import('./components/-UI Element/svg/pic/SvgNote.vue')['default']
     SvgPalette: typeof import('./components/-UI Element/svg/pic/SvgPalette.vue')['default']
     SvgParking: typeof import('./components/-UI Element/svg/pic/SvgParking.vue')['default']
     SvgScrewdriver: typeof import('./components/-UI Element/svg/pic/SvgScrewdriver.vue')['default']
+    SvgSubway: typeof import('./components/-UI Element/svg/pic/SvgSubway.vue')['default']
     SvgSun: typeof import('./components/-UI Element/svg/pic/SvgSun.vue')['default']
-<<<<<<< HEAD
-=======
     SvgTourTitle: typeof import('./components/TouristBackstage/Element/svg/SvgTourTitle.vue')['default']
->>>>>>> 4d95c5b72a24264bb22550751ee351460c1f02d7
+    SVGYoutube: typeof import('./components/-UI Element/svg/SVGYoutube.vue')['default']
     TagsTable: typeof import('./components/ProductManage/TagsTable.vue')['default']
-    TicketfromTBS: typeof import('./components/TouristBackstage/TicketfromTBS.vue')['default']
     TeaserIDX: typeof import('./components/Index/TeaserIDX.vue')['default']
+    TicketfromTBS: typeof import('./components/TouristBackstage/TicketfromTBS.vue')['default']
     TicketListPDS: typeof import('./components/Productstatus/TicketListPDS.vue')['default']
-<<<<<<< HEAD
-=======
     TickOrder: typeof import('./components/TouristBackstage/Element/svg/tickOrder.vue')['default']
->>>>>>> 4d95c5b72a24264bb22550751ee351460c1f02d7
     TitleBG: typeof import('./components/-UI Element/svg/title/titleBG.vue')['default']
     TitleBig: typeof import('./components/-UI Element/title/TitleBig.vue')['default']
     TitleBig_pink: typeof import('./components/-UI Element/svg/title/titleBig_pink.vue')['default']
@@ -135,6 +99,7 @@ declare module '@vue/runtime-core' {
     TitleSmall1: typeof import('./components/-UI Element/svg/title/titleSmall1.vue')['default']
     TitleSmall2: typeof import('./components/-UI Element/svg/title/titleSmall2.vue')['default']
     TourTitle: typeof import('./components/TouristBackstage/Element/TourTitle.vue')['default']
+    TransformNotice: typeof import('./components/Notice/TransformNotice.vue')['default']
     Trumpet: typeof import('./components/-UI Element/svg/pic/trumpet.vue')['default']
     VideoBannerIDX: typeof import('./components/Index/VideoBannerIDX.vue')['default']
     Wrench: typeof import('./components/-UI Element/svg/pic/wrench.vue')['default']
