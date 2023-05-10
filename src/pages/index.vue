@@ -8,8 +8,7 @@
 </template>
 <style scoped lang="scss">
 //scss測試：
-p {
-}
+
 
 
 div{
