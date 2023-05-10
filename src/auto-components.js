@@ -14,10 +14,32 @@ declare module '@vue/runtime-core' {
     Axiostest: typeof import('./components/-Global/Axiostest.vue')['default']
     Btn: typeof import('./components/-UI Element/btn/Btn.vue')['default']
     copy: typeof import('./components/-UI Element/svg/header/icon-login copy.vue')['default']
-<<<<<<< HEAD
+
+    ElAside: typeof import('element-plus/es')['ElAside']
+    ElButton: typeof import('element-plus/es')['ElButton']
+    ElCheckboxButton: typeof import('element-plus/es')['ElCheckboxButton']
+    ElCheckboxGroup: typeof import('element-plus/es')['ElCheckboxGroup']
+    ElCol: typeof import('element-plus/es')['ElCol']
+    ElContainer: typeof import('element-plus/es')['ElContainer']
+    ElDatePicker: typeof import('element-plus/es')['ElDatePicker']
+    ElFooter: typeof import('element-plus/es')['ElFooter']
+    ElForm: typeof import('element-plus/es')['ElForm']
+    ElFormItem: typeof import('element-plus/es')['ElFormItem']
+    ElHeader: typeof import('element-plus/es')['ElHeader']
+    ElInput: typeof import('element-plus/es')['ElInput']
+    ElMain: typeof import('element-plus/es')['ElMain']
+    ElMenu: typeof import('element-plus/es')['ElMenu']
+    ElMenuItem: typeof import('element-plus/es')['ElMenuItem']
+    ElOption: typeof import('element-plus/es')['ElOption']
+    ElRadio: typeof import('element-plus/es')['ElRadio']
+    ElRadioButton: typeof import('element-plus/es')['ElRadioButton']
+    ElRadioGroup: typeof import('element-plus/es')['ElRadioGroup']
+    ElRow: typeof import('element-plus/es')['ElRow']
+    ElSelect: typeof import('element-plus/es')['ElSelect']
+    ElTimePicker: typeof import('element-plus/es')['ElTimePicker']
+
     ElIcon: typeof import('element-plus/es')['ElIcon']
-=======
->>>>>>> 5599fc01baa7e065797f9b48a689ca7d71ceb619
+
     Footer: typeof import('./components/-Global/Footer.vue')['default']
     H: typeof import('./components/-Global/H.vue')['default']
     Header: typeof import('./components/-Global/Header.vue')['default']
@@ -32,22 +54,28 @@ declare module '@vue/runtime-core' {
     Input: typeof import('./components/-UI Element/form/Input.vue')['default']
     InputLimitTenPS: typeof import('./components/ParkStatus/Element/InputLimitTenPS.vue')['default']
     Logo: typeof import('./components/-UI Element/svg/header/logo.vue')['default']
+    MemberEdit: typeof import('./components/TouristBackstage/MemberEdit.vue')['default']
+    MemberInfo: typeof import('./components/TouristBackstage/Element/svg/memberInfo.vue')['default']
     ModalClosePS: typeof import('./components/ParkStatus/- Modal/ModalClosePS.vue')['default']
     ModalOpenPS: typeof import('./components/ParkStatus/- Modal/ModalOpenPS.vue')['default']
     ModalS: typeof import('./components/-UI Element/modalframe/ModalS.vue')['default']
-<<<<<<< HEAD
+
+    MyOrder: typeof import('./components/TouristBackstage/Element/svg/myOrder.vue')['default']
+    NavUser: typeof import('./components/TouristBackstage/NavUser.vue')['default']
+
     MonsterBlue: typeof import('./components/-UI Element/svg/monsterBlue.vue')['default']
     MonsterCartFillBlue: typeof import('./components/-UI Element/title/monsterCartFillBlue.vue')['default']
     MonsterCartFillWhite: typeof import('./components/-UI Element/title/MonsterCartFillWhite.vue')['default']
     MonsterWhite: typeof import('./components/-UI Element/svg/monsterWhite.vue')['default']
-=======
->>>>>>> 5599fc01baa7e065797f9b48a689ca7d71ceb619
+
     ParkStatusTablePS: typeof import('./components/ParkStatus/ParkStatusTablePS.vue')['default']
     ParkStatusTimePicker: typeof import('./components/-UI Element/timepicker/ParkStatusTimePicker.vue')['default']
     ProductListPDS: typeof import('./components/Productstatus/ProductListPDS.vue')['default']
     ProductSelectPDM: typeof import('./components/ProductManage/ProductSelectPDM.vue')['default']
     ProductTablePDM: typeof import('./components/ProductManage/ProductTablePDM.vue')['default']
     QAmonster: typeof import('./components/-UI Element/svg/QAmonster.vue')['default']
+    QRcode: typeof import('./components/TouristBackstage/Element/svg/QRcode.vue')['default']
+    QrcodeList: typeof import('./components/TouristBackstage/QrcodeList.vue')['default']
     RadioStatusPS: typeof import('./components/ParkStatus/Element/RadioStatusPS.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
@@ -70,8 +98,11 @@ declare module '@vue/runtime-core' {
     SvgParking: typeof import('./components/-UI Element/svg/pic/SvgParking.vue')['default']
     SvgScrewdriver: typeof import('./components/-UI Element/svg/pic/SvgScrewdriver.vue')['default']
     SvgSun: typeof import('./components/-UI Element/svg/pic/SvgSun.vue')['default']
+    SvgTourTitle: typeof import('./components/TouristBackstage/Element/svg/SvgTourTitle.vue')['default']
     TagsTable: typeof import('./components/ProductManage/TagsTable.vue')['default']
+    TicketfromTBS: typeof import('./components/TouristBackstage/TicketfromTBS.vue')['default']
     TicketListPDS: typeof import('./components/Productstatus/TicketListPDS.vue')['default']
+    TickOrder: typeof import('./components/TouristBackstage/Element/svg/tickOrder.vue')['default']
     TitleBG: typeof import('./components/-UI Element/svg/title/titleBG.vue')['default']
     TitleBig: typeof import('./components/-UI Element/title/TitleBig.vue')['default']
     TitleBig_pink: typeof import('./components/-UI Element/svg/title/titleBig_pink.vue')['default']
@@ -79,6 +110,7 @@ declare module '@vue/runtime-core' {
     TitleMain: typeof import('./components/-UI Element/title/TitleMain.vue')['default']
     TitleSmall1: typeof import('./components/-UI Element/svg/title/titleSmall1.vue')['default']
     TitleSmall2: typeof import('./components/-UI Element/svg/title/titleSmall2.vue')['default']
+    TourTitle: typeof import('./components/TouristBackstage/Element/TourTitle.vue')['default']
     Trumpet: typeof import('./components/-UI Element/svg/pic/trumpet.vue')['default']
     Wrench: typeof import('./components/-UI Element/svg/pic/wrench.vue')['default']
   }
