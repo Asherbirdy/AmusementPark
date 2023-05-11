@@ -5,7 +5,7 @@
         <monster-cart-Fill-White>1</monster-cart-Fill-White>
         <h3>購物車</h3>
       </div>
-      <hr width="100" style="border: 3px dashed #d1825b" />
+      <hr width="100" style="border: 3px dashed $textcolor5" />
       <div class="monster">
         <monsterCartFillBlue>2</monsterCartFillBlue>
         <h3>填寫資料</h3>
@@ -175,6 +175,7 @@ const payInput = ref([
 main {
   display: flex;
   justify-content: center;
+  margin-bottom: 200px;
 }
 
 h2 {
@@ -218,6 +219,7 @@ article {
     .hrNone {
       color: white;
     }
+    
   }
 }
 //付款方式
