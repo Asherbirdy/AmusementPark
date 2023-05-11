@@ -2,7 +2,7 @@
 <template>
     <main>
         <div class="open">
-        <TitleBig_yellow class="title" />
+        <title-big-yellow class="title" />
         <h1>營業時間</h1>
         <div class="table">
             <ul class="row1">
