@@ -22,7 +22,7 @@
         </li>
 
         <li>
-          <router-link to="/about">
+          <router-link to="/notice">
             <icon-about />
             <h3>領地須知</h3>
           </router-link>
