@@ -14,17 +14,9 @@ declare module '@vue/runtime-core' {
     AdminNav: typeof import('./components/-Global/AdminNav.vue')['default']
     Axiostest: typeof import('./components/-Global/Axiostest.vue')['default']
     Btn: typeof import('./components/-UI Element/btn/Btn.vue')['default']
-<<<<<<< HEAD
-    copy: typeof import('./components/-UI Element/svg/header/icon-login copy.vue')['default']
-    ElButton: typeof import('element-plus/es')['ElButton']
-    ElButtonGroup: typeof import('element-plus/es')['ElButtonGroup']
-    ElCalendar: typeof import('element-plus/es')['ElCalendar']
-    ElIcon: typeof import('element-plus/es')['ElIcon']
-=======
     ColorPicker: typeof import('./components/-UI Element/ColorPicker/ColorPicker.vue')['default']
     ElIcon: typeof import('element-plus/es')['ElIcon']
     ExhibitionNotice: typeof import('./components/Notice/ExhibitionNotice.vue')['default']
->>>>>>> 2279cc5ad4da66fbd205188cefd081f4d1c7268f
     Footer: typeof import('./components/-Global/Footer.vue')['default']
     H: typeof import('./components/-Global/H.vue')['default']
     Header: typeof import('./components/-Global/Header.vue')['default']
@@ -43,6 +35,7 @@ declare module '@vue/runtime-core' {
     MemberInfo: typeof import('./components/TouristBackstage/Element/svg/memberInfo.vue')['default']
     ModalClosePS: typeof import('./components/ParkStatus/- Modal/ModalClosePS.vue')['default']
     ModalL: typeof import('./components/-UI Element/modalframe/ModalL.vue')['default']
+    ModalM: typeof import('./components/-UI Element/modalframe/ModalM.vue')['default']
     ModalOpenPS: typeof import('./components/ParkStatus/- Modal/ModalOpenPS.vue')['default']
     ModalS: typeof import('./components/-UI Element/modalframe/ModalS.vue')['default']
     MonsterBlue: typeof import('./components/-UI Element/svg/monsterBlue.vue')['default']

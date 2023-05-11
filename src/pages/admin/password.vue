@@ -1,6 +1,6 @@
 <script setup></script>
 <template>
-    <ModalL class="ml">
+    <ModalM class="ml">
         <h1>變更密碼</h1>
         <ul>
             <li>
@@ -20,17 +20,18 @@
             </li>
         </ul>
         <Btn id="btn">確認</Btn>
-    </ModalL>
+    </ModalM>
 </template>
 <style scoped lang="scss">
     .ml h1{
-        font-size: 50px;
-        margin: 100px 459px;
+        font-size: 25px;
+        margin: 10px 200px;
         color: #90420A;
     }
     ul{
-        font-size: 30px;
-        margin: 27px 345px;
+        font-weight: bold;
+        font-size: 20px;
+        margin: 75px 40px;
         color: #90420A;
     }
     input{
@@ -38,16 +39,16 @@
         color: #90420A;
         border-radius: 10px;
         margin: 20px auto;
-        width: 500px;
-        height: 50px;  
+        width: 400px;
+        height: 50px;
         padding-left: 20px; 
-        padding-top: 10px;  
+        padding-top: 5px;  
     }
     ::-webkit-input-placeholder{
         font-size: 25px;
     }
     #btn{
-        margin: 7px 511px;
+        margin: 7px 175px;
         width: 154px;
         color: #90420A;
         border-radius: 10px;
