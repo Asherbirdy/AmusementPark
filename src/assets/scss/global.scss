@@ -7,7 +7,10 @@ $maincolor2: #E6EFF6;
 //文字色
 $textcolor1: #FF7B51;
 $textcolor2: #B1647D;
-
+$textcolor3: #90420A;
+$textcolor4: #C0590E;
+$textcolor5: #D1825B;
+$textcolor5: #F9F3E4;
 
 //字型
 $font-family: '微軟正黑體';
@@ -16,9 +19,9 @@ main{
     padding-top: 100px;
     margin: 0 auto;
     width: $workspace;
-    font-family: '微軟正黑體';
     line-height: 1.5;
     font-size: 16px;
+    font-family:$font-family;
 }
 
 h1{
@@ -44,17 +47,17 @@ p{
     line-height: 1.5;
 }
 
-// button{
-//     cursor: pointer;
-//     height: 40px;
-//     width: 100px;
-//     background-color: $textcolor1;
-//     font-size: 20;
-//     color: #FFF;
-//     border: none;
-//     border-radius: .2rem;
-// }
+button{
+    cursor: pointer;
+    height: 40px;
+    width: 100px;
+    background-color: $textcolor1;
+    font-size: 20;
+    color: #FFF;
+    border: none;
+    border-radius: .2rem;
+}
 
-// button:active{
-//     background-color: $textcolor2; 
-// }
+button:active{
+    background-color: $textcolor2; 
+}

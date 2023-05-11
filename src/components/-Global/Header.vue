@@ -1,47 +1,46 @@
 <script setup></script>
-
 <template>
   <header :class="{ openMenu: isOpen }">
     <nav>
       <router-link to="/" class="logo">
-        <logo/>
+        <logo />
       </router-link>
 
       <ul id="menu">
-          <li>
-            <router-link to="/create">
-              <icon-create/>
-              <h3>喬裝打扮</h3>
-            </router-link>
-          </li>
+        <li>
+          <router-link to="/create">
+            <icon-create />
+            <h3>喬裝打扮</h3>
+          </router-link>
+        </li>
 
-          <li>
-            <router-link to="/map">
-              <icon-map/>
-              <h3>怪獸領地</h3>
-            </router-link>
-          </li>
+        <li>
+          <router-link to="/map">
+            <icon-map />
+            <h3>怪獸領地</h3>
+          </router-link>
+        </li>
 
-          <li>
-            <router-link to="/about">
-              <icon-about/>
-              <h3>領地須知</h3>
-            </router-link>
-          </li>
+        <li>
+          <router-link to="/about">
+            <icon-about />
+            <h3>領地須知</h3>
+          </router-link>
+        </li>
 
-          <li>
-            <router-link to="/shop">
-              <icon-shop/>
-              <h3>走私商人</h3>
-            </router-link>
-          </li>
+        <li>
+          <router-link to="/shop">
+            <icon-shop />
+            <h3>走私商人</h3>
+          </router-link>
+        </li>
 
-          <li>
-            <router-link to="/membership">
-              <icon-membership/>
-              <h3>冒險者專區</h3>
-            </router-link>
-          </li>
+        <li>
+          <router-link to="/membership">
+            <icon-membership />
+            <h3>冒險者專區</h3>
+          </router-link>
+        </li>
       </ul>
       <!-- <a id="moblie_menu" @click="handMenuOpen" href="javascript:;"></a> -->
       <div>
@@ -60,14 +59,14 @@
 </template>
 
 <style scoped lang="scss">
-header{
+header {
   font-family: $font-family;
-  background-color: #F9F3E4;
+  background-color: #f9f3e4;
   width: 100%;
   height: 140px;
 }
 
-header nav{
+header nav {
   display: flex;
   position: relative;
   width: $workspace;
@@ -75,14 +74,14 @@ header nav{
   justify-content: space-between;
   top: 6px;
 }
-header .logo{
+header .logo {
   margin: auto 0;
 }
 
-header #menu{
-    list-style: none;
-    display: flex;
-    float: left;
+header #menu {
+  list-style: none;
+  display: flex;
+  float: left;
 }
 
 header #menu a {
@@ -93,24 +92,24 @@ header #menu a {
   padding: 0 20px;
   text-decoration: none;
   filter: brightness(0%);
-  opacity: .6;
-  transition:all .3s linear
+  opacity: 0.6;
+  transition: all 0.3s linear;
 }
 
 header #menu a:hover{
   filter: brightness(100%) drop-shadow(1px 1px 1px #000000);
   opacity: 1;
-  transition-duration: .3s;
+  transition-duration: 0.3s;
 }
 
-header #menu a h3{
+header #menu a h3 {
   margin: 4px auto 0;
   text-align: center;
   // font-size: 16px;
-  color: #FF7B51;
+  color: #ff7b51;
 }
 
-header .rsite{
+header .rsite {
   display: flex;
   justify-content: space-between;
   padding: 4px;
@@ -122,7 +121,7 @@ header .rsite a {
   margin: auto 8px;
 }
 
-header .rsite svg{
+header .rsite svg {
   padding: 4px;
   color: #5b5b5b;
 }
@@ -130,5 +129,4 @@ header .rsite svg{
 a#moblie_menu {
   display: none;
 }
-
 </style>
