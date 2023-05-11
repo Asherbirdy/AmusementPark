@@ -106,7 +106,6 @@ nav::after{
 #monster-select{
   width: 640px;
   height: 600px;
-  // background: #995959;
   display: flex;
   flex-direction: column;
   border-radius:  0 0 1rem 1rem;
