@@ -31,7 +31,7 @@
 
 
 <script setup>
-const propsType = ref('TheWizardOfOz');
+const propsType = ref('DreamInterpretation');
 const showList = ref([]);
 const testArr = {
   DreamInterpretation: [
@@ -58,7 +58,7 @@ const testArr = {
       showTime: '魔幻劇場／人數限制200人\n平日／12:30、14:30\n假日／15:45',
     },
   ],
-  JazzPerformance: [
+  FireJumper: [
     {
       h1: '火焰跳躍者',
       h3: '刺激的表演節目，表演者將會在火焰中跳躍和舞蹈，呈現出一個驚人的視覺效果。這個表演節目融合了現代舞蹈和傳統藝術，帶給你一個刺激和難忘的體驗。',
@@ -66,7 +66,7 @@ const testArr = {
       showTime: '百老匯劇院／人數限制200人\n平日／12:30、14:30\n假日／15:45',
     },
   ],
-  JazzPerformance: [
+  Magic: [
     {
       h1: '魔幻舞台',
       h3: '充滿活力的表演節目，以爵士樂為主題，融合了舞蹈和唱歌等元素。這個表演節目將帶你回到爵士樂的黃金年代，讓你感受到那個時代的文化和風格。',
@@ -74,7 +74,7 @@ const testArr = {
       showTime: '魔幻劇場／人數限制200人\n平日／12:30、14:30\n假日／15:45',
     },
   ],
-  JazzPerformance: [
+  CrazyArtist: [
     {
       h1: '瘋狂藝術家',
       h3: '充滿活力的表演節目，以爵士樂為主題，融合了舞蹈和唱歌等元素。這個表演節目將帶你回到爵士樂的黃金年代，讓你感受到那個時代的文化和風格。',
