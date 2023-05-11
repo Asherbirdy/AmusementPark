@@ -11,6 +11,7 @@ $textcolor3: #90420A;
 $textcolor4: #C0590E;
 $textcolor5: #D1825B;
 $textcolor5: #F9F3E4;
+$textcolor6: #204C74;
 
 //字型
 $font-family: '微軟正黑體';
@@ -53,6 +54,8 @@ button{
     border-radius: .2rem;
 }
 
+
 button:active{
     background-color: $textcolor2; 
 }
+
