@@ -1,25 +1,21 @@
 <script setup></script>
 
 <template>
-    <main>
-        <h1>會員登入</h1>
-        <button>X</button>
-    </main>
+  <section class="top">
+    <h1 class="top__h1">會員登入</h1>
+  </section>
 </template>
 
 <style lang="scss" scoped>
-    main {
-        display: flex;
-
-        h1 {
-            color: tomato;
-        }
-
-        button {
-            width: 40px;
-            height: 40px;
-            border-radius: 20px;
-        }
+.top {
+  
+    &__h1 {
+        text-align: center;
+        font-weight: 400;
+        font-size: 24px;
+        line-height: 29.05px;
+        margin-top: 70px;
+        margin-bottom: 39px;
     }
-    
+}
 </style>
