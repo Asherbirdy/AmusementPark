@@ -1,6 +1,8 @@
 <script></script>
 <template>
-  <TicketfromTBS />
+  <TicketPriceTOR />
+  <TicketExhibitionTOR />
+  <TicketBookingTOR />
 </template>
 
 <style scoped lang="scss"></style>
