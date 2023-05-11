@@ -1,5 +1,6 @@
 <script setup></script>
 <template>
+  <headerbg id="headerbg"/>
   <header :class="{ openMenu: isOpen }">
     <nav>
       <router-link to="/" class="logo">
@@ -59,7 +60,15 @@
 </template>
 
 <style scoped lang="scss">
+#headerbg{
+  display: none;
+  width: 100%;
+    // background-color: #f9f3e4;
+
+}
 header {
+  // top: -200px;
+  // position: relative;
   font-family: $font-family;
   background-color: #f9f3e4;
   width: 100%;

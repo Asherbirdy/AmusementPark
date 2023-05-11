@@ -20,6 +20,7 @@ declare module '@vue/runtime-core' {
     Footer: typeof import('./components/-Global/Footer.vue')['default']
     H: typeof import('./components/-Global/H.vue')['default']
     Header: typeof import('./components/-Global/Header.vue')['default']
+    Headerbg: typeof import('./components/-UI Element/svg/header/headerbg.vue')['default']
     IconAbout: typeof import('./components/-UI Element/svg/header/icon-about.vue')['default']
     IconCreate: typeof import('./components/-UI Element/svg/header/icon-create.vue')['default']
     IconMap: typeof import('./components/-UI Element/svg/header/icon-map.vue')['default']
