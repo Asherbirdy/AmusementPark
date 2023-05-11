@@ -56,7 +56,11 @@ declare module '@vue/runtime-core' {
 
     ModalM: typeof import('./components/-UI Element/modalframe/ModalM.vue')['default']
 
+
+    ModalM: typeof import('./components/-UI Element/modalframe/ModalM.vue')['default']
+
     ModalLogin: typeof import('./components/-UI Element/modalframe/ModalLogin.vue')['default']
+
 
 
     ModalOpenPS: typeof import('./components/ParkStatus/- Modal/ModalOpenPS.vue')['default']
