@@ -5,17 +5,14 @@
 </template>
 
 <script setup>
-import { ref } from 'vue';
+// import getImageUrl from '@/utils/imgPath';
+// const imgURL = name => getImageUrl(name);
 
 const imgData = ref([
-  { productName: 'aaa', img: '/img/bag1.png' },
-  { productName: 'bbb', img: '/img/bag2.png' },
-  { productName: 'ccc', img: 'test/img/bag3.png' },
+  { productName: '圖片一：', img: '/bag1.png' },
+  { productName: '圖片二', img: '/bag2.png' },
+  { productName: '圖片三', img: '/bag3.png' },
 ]);
-
-const getImgPath = img => {
-  return new URL(img, import.meta.url).href;
-};
 </script>
 
 <style></style>
