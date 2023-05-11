@@ -45,7 +45,11 @@ declare module '@vue/runtime-core' {
     MemberInfo: typeof import('./components/TouristBackstage/Element/svg/memberInfo.vue')['default']
     ModalClosePS: typeof import('./components/ParkStatus/- Modal/ModalClosePS.vue')['default']
     ModalL: typeof import('./components/-UI Element/modalframe/ModalL.vue')['default']
+
+    ModalM: typeof import('./components/-UI Element/modalframe/ModalM.vue')['default']
+
     ModalLogin: typeof import('./components/-UI Element/modalframe/ModalLogin.vue')['default']
+
     ModalOpenPS: typeof import('./components/ParkStatus/- Modal/ModalOpenPS.vue')['default']
     ModalS: typeof import('./components/-UI Element/modalframe/ModalS.vue')['default']
     MonsterBlue: typeof import('./components/-UI Element/svg/monsterBlue.vue')['default']
