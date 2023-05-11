@@ -25,6 +25,8 @@
   font-size: 50px;
   margin-left: 1065px;
   color: #90420a;
+  cursor: pointer;
+
 }
 
 .layout {
