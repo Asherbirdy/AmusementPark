@@ -10,9 +10,9 @@
     <!-- <title-big-yellow class="title" /> -->
     <img id="map" src="../assets/img/MAP.png" alt="">
     <ul>
-      <li>1</li>
-      <li>2</li>
-      <li>3</li>
+      <li><h2>設施</h2></li>
+      <li><h2>飲食</h2></li>
+      <li><h2>醫療站</h2></li>
     </ul>
   </nav>
 

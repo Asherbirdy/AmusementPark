@@ -72,7 +72,7 @@ header {
   font-family: $font-family;
   background-color: #f9f3e4;
   width: 100%;
-  height: 140px;
+  height: 150px;
 }
 
 header nav {
