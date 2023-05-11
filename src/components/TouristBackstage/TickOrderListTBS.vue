@@ -62,12 +62,14 @@ onMounted(() => {
   border-collapse: collapse;
   margin-bottom: 20px;
   width: 1000px;
-  border-radius: 10px; /* Add rounded corners */
+  border-radius: 10px; 
+  overflow: hidden;
+  outline: 1px solid #c0590e;
 }
 
 .form th,
 .form td {
-  border: 1px solid #c0590e;
+  outline: 1px solid #c0590e;
   padding: 8px;
   text-align: center;
   line-height: 165px;
