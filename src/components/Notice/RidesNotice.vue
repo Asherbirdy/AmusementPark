@@ -2,7 +2,7 @@
 <template>
     <main>
         <div class="rides">
-            <TitleBig_pink class="title" />
+            <title-big-pink class="title" />
             <h1>主題特色</h1>
             <ul>
                 <li>

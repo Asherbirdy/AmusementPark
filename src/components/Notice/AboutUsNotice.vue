@@ -2,7 +2,7 @@
 <template>
     <main>
         <div class="about_us">
-            <titleBig_yellow class="title" />
+            <title-big-yellow class="title" />
             <h1>關於我們</h1>
             <logo class="logo"/>
             <div class="content">

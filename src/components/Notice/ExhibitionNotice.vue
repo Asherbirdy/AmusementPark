@@ -2,7 +2,7 @@
 <template>
     <main>
         <div class="exhi">
-        <TitleBig_yellow class="title" />
+        <Title-big-yellow class="title" />
         <h1>展覽特色</h1>
             <ul>
                 <li>
