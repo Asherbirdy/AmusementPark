@@ -3,10 +3,16 @@
 <template>
 
   <main>
-    <monster-blue/>
-    <div id="slogan">
-      <h1>現在讓我們來創造<br>屬於自己的小怪獸吧!</h1>  
+    <div class="tips">
+      <monster-divo id="monster-divo"/>
+      <div id="slogan">
+        <h1>現在讓我們來創造<br>屬於自己的小怪獸吧!</h1>  
+      </div>
+      <svg-egg id="svg-egg"/>
+      <svg-palette id="svg-palette"/>
+      <svg-brush id="svg-brush"/>
     </div>
+
 
     <nav>
       <section id="monster-view">
@@ -33,37 +39,125 @@
         </li>
 
         <li class="select-main">
-          <div class="content content1" >
-            <h3>身體</h3><br>
-            <h3>兩側</h3>
-          </div>
-          <div class="content content2" >123</div>
-          <div class="content content3" ></div>
-          <div class="content content4" >
-            <h3>自訂1</h3><br>
-            <h3>自訂2</h3>
-          </div>
+          <ul class="content content1" >
+            <h2>身體</h2>
+            <li class="type1">
+              <ol></ol>
+              <ol></ol>
+              <ol></ol>
+            </li>
+            <h2>兩側</h2>
+            <li class="type1"> 
+              <ol></ol>
+              <ol></ol>
+              <ol></ol>
+            </li><br>
+            <span><input type="color" class="colorpicker">色相</span><br>
+            <span><input type="range" name="points" min="0" max="100">明度</span>
+          </ul>
+          <ul class="content content2" >
+            <li class="type2">
+              <ol></ol>
+              <ol></ol>
+              <ol></ol>
+              <div class="space"></div>
+              <ol></ol>
+              <ol></ol>
+              <ol></ol>
+            </li><br>
+            <span><input type="color" class="colorpicker">色相</span><br>
+            <span><input type="range" name="points" min="1" max="10">明度</span>
+          </ul>
+          <ul class="content content3" >
+            <li class="type2">
+              <ol></ol>
+              <ol></ol>
+              <ol></ol>
+              <div class="space"></div>
+              <ol></ol>
+              <ol></ol>
+              <ol></ol>
+            </li><br>
+            <span><input type="color" class="colorpicker">色相</span><br>
+            <span><input type="range" name="points" min="1" max="10">明度</span>
+          </ul>
+          <ul class="content content4" >
+            <h2>自訂1</h2>
+            <li class="type1">
+              <ol></ol>
+              <ol></ol>
+              <ol></ol>
+            </li>
+            <h2>自訂2</h2>
+            <li class="type1"> 
+              <ol></ol>
+              <ol></ol>
+              <ol></ol>
+            </li><br>
+            <span><input type="color" class="colorpicker">色相</span><br>
+            <span><input type="range" name="points" min="1" max="10">明度</span>
+          </ul>
         </li>
         <!-- <div id="ColorPicker">
           <ColorPicker />
         </div> -->
       </ul>
     </nav>
-    <div>""</div>
   </main>
 
 </template>
 
 <style scoped lang="scss">
-#slogan{
-  margin: 30px auto;
-  padding: 40px;
-  width: 40%;
-  background-color: $maincolor2;
-  text-align: center;
-  border-radius: 2rem;
+.tips{
+  margin-right: 200px;
+  position: relative;
+  pointer-events: none;
+    #monster-divo{
+      width: 30%;
+      position: absolute;
+      top: -190px;
+      right: 60px;
+      rotate: -20deg;
+    }
 
+    #slogan{
+      margin: 30px auto;
+      padding: 40px;
+      width: 40%;
+      background-color: $maincolor2;
+      text-align: center;
+      border-radius: 2rem;
+      border: 5px dashed #5590D6;
+    }
+    #svg-palette{
+      width: 50%;
+      position: absolute;
+      z-index: -3;
+      top: -250px;
+      right: -500px;
+      rotate: 25deg;
+      opacity: .4;
+    }
+    #svg-brush{
+      width: 50%;
+      position: absolute;
+      z-index: -3;
+      top: 450px;
+      right: -520px;
+      rotate: -5deg;
+      opacity: .2;
+    }
+    #svg-egg{
+      width: 50%;
+      position: absolute;
+      z-index: -3;
+      top: 530px;
+      right: 900px;
+      rotate: -15deg;
+      opacity: .2;
+    }
 }
+
 
 nav{
   display: flex;
@@ -157,14 +251,43 @@ nav::after{
   height: 100%;
   background-color: $maincolor1;
 }
-.select-main .content1 {
-  width: 100%;
-  height: 100%;
-  background-color: $maincolor1;
+.select-main h2{
+  margin-top: 30px;
+  text-align: center;
+  line-height: 1;
 }
-.select-main .content2 {
-  width: 100%;
-  height: 100%;
-  background-color: #26fd43;
+ 
+.select-main .type1{
+  margin: 10px auto 0px ;
+  width: 600px;
+  display: flex;
+  justify-content: space-around;
 }
+.select-main .type2{
+  margin: 70px auto 0px ;
+  width: 600px;
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+.select-main ol{
+  width: 150px;
+  height: 150px;
+  background-color: #fff;
+}
+
+.select-main span{
+  display: flex;
+  justify-content: center;
+  margin: 0 auto;
+  width: 550px;
+  height: 10px;
+  background-color: #b5b5b5;
+}
+
+.space{
+  width: 550px;
+  height: 40px;
+}
+
 </style>

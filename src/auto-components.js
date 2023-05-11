@@ -38,6 +38,7 @@ declare module '@vue/runtime-core' {
     MonsterBlue: typeof import('./components/-UI Element/svg/monsterBlue.vue')['default']
     MonsterCartFillBlue: typeof import('./components/-UI Element/title/monsterCartFillBlue.vue')['default']
     MonsterCartFillWhite: typeof import('./components/-UI Element/title/MonsterCartFillWhite.vue')['default']
+    MonsterDivo: typeof import('./components/-UI Element/svg/monster/MonsterDivo.vue')['default']
     MonsterWhite: typeof import('./components/-UI Element/svg/monsterWhite.vue')['default']
     MyOrder: typeof import('./components/TouristBackstage/Element/svg/myOrder.vue')['default']
     NavUser: typeof import('./components/TouristBackstage/NavUser.vue')['default']
