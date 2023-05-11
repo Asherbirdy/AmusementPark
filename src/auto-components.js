@@ -22,6 +22,9 @@ declare module '@vue/runtime-core' {
 
 
     copy: typeof import('./components/-UI Element/svg/header/icon-login copy.vue')['default']
+
+    ElIcon: typeof import('element-plus/es')['ElIcon']
+
     ElButton: typeof import('element-plus/es')['ElButton']
     ElButtonGroup: typeof import('element-plus/es')['ElButtonGroup']
     ElCalendar: typeof import('element-plus/es')['ElCalendar']
@@ -31,6 +34,7 @@ declare module '@vue/runtime-core' {
 
     ElIcon: typeof import('element-plus/es')['ElIcon']
     ExhibitionNotice: typeof import('./components/Notice/ExhibitionNotice.vue')['default']
+
 
     Footer: typeof import('./components/-Global/Footer.vue')['default']
     FormInfoULGN: typeof import('./components/Login/FormInfoULGN.vue')['default']
@@ -68,7 +72,11 @@ declare module '@vue/runtime-core' {
     MonsterBlue: typeof import('./components/-UI Element/svg/monsterBlue.vue')['default']
     MonsterCartFillBlue: typeof import('./components/-UI Element/title/monsterCartFillBlue.vue')['default']
     MonsterCartFillWhite: typeof import('./components/-UI Element/title/MonsterCartFillWhite.vue')['default']
+
+    MonstertCoplete: typeof import('./components/-UI Element/svg/monstertCoplete.vue')['default']
+
     MonsterDivo: typeof import('./components/-UI Element/svg/monster/MonsterDivo.vue')['default']
+
     MonsterWhite: typeof import('./components/-UI Element/svg/monsterWhite.vue')['default']
     MyOrder: typeof import('./components/TouristBackstage/Element/svg/myOrder.vue')['default']
     NavUser: typeof import('./components/TouristBackstage/NavUser.vue')['default']
@@ -128,6 +136,7 @@ declare module '@vue/runtime-core' {
     SVGYoutube: typeof import('./components/-UI Element/svg/SVGYoutube.vue')['default']
     TagsTable: typeof import('./components/ProductManage/TagsTable.vue')['default']
     TeaserIDX: typeof import('./components/Index/TeaserIDX.vue')['default']
+
     TicketfromTBS: typeof import('./components/TouristBackstage/TicketfromTBS.vue')['default']
 
     SvgTrumpet: typeof import('./components/-UI Element/svg/pic/SvgTrumpet.vue')['default']
@@ -135,6 +144,7 @@ declare module '@vue/runtime-core' {
     SVGYoutube: typeof import('./components/-UI Element/svg/SVGYoutube.vue')['default']
     TagsTable: typeof import('./components/ProductManage/TagsTable.vue')['default']
     TeaserIDX: typeof import('./components/Index/TeaserIDX.vue')['default']
+
     TicketBookingTOR: typeof import('./components/TicketOrder/TicketBookingTOR.vue')['default']
     TicketExhibitionTOR: typeof import('./components/TicketOrder/TicketExhibitionTOR.vue')['default']
     TicketListPDS: typeof import('./components/Productstatus/TicketListPDS.vue')['default']
