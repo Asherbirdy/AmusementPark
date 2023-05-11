@@ -2,7 +2,7 @@
 <template>
   <div class="wrapper">
     <video autoplay loop controls>
-      <source src="../../assets/movie/主題影片.mp4" type="video/mp4" />
+      <source src="../../assets/mov/banner.mp4" type="video/mp4" />
       Your browser does not support the video tag.
     </video>
   </div>

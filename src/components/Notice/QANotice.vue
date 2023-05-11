@@ -1,0 +1,18 @@
+<script setup></script>
+<template>
+<main> 
+    <QAmonster class="QA" />
+</main>
+</template>
+<style lang="scss" scoped>
+    main{
+        width: $workspace;
+        position: relative;
+        .QA{
+            width: 100px;
+            position: fixed;
+            top: 415px;
+            right: 30px;
+        }
+    }
+</style>
