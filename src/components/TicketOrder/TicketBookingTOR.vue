@@ -1,7 +1,5 @@
 <template>
-  <h1>22222</h1>
+  <div></div>
 </template>
-
-<script setup></script>
-
+<script></script>
 <style scoped lang="scss"></style>
