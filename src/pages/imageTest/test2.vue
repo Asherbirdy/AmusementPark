@@ -1,17 +1,14 @@
 <template>
   <div v-for="item in imgData" :key="item.productName">
-    <!-- 正確版： -->
     <img :src="imgURL(item.img)" />
-    <!-- 路徑版： -->
-    <!-- <img :src="item.img" /> -->
   </div>
 </template>
 
 <script setup>
-// 正確版：
 import getImageUrl from '@/utils/imgPath';
 const imgURL = name => getImageUrl(name);
 
+//動態路徑版
 const imgData = ref([
   { productName: '圖片一：', img: 'bag1.png' },
   { productName: '圖片二', img: 'bag2.png' },
