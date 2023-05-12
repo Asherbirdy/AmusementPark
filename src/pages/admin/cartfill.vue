@@ -176,6 +176,7 @@ main {
   display: flex;
   justify-content: center;
   margin-bottom: 200px;
+  padding: 0;
 }
 
 h2 {
@@ -225,7 +226,6 @@ article {
 //付款方式
 .pay {
   width: 550px;
-  height: 650px;
   background-color: #f9f3e4;
   margin: 15px;
   margin-top: 100px;
@@ -238,12 +238,11 @@ article {
       margin: 30px 0 5px 0;
     }
     #pay-method {
-      margin-bottom: 30px;
+      margin-bottom: 50px;
     }
     .user-input-row {
       display: flex;
       flex-direction: column;
-      // margin-bottom: 20px;
       color: #90420a;
     }
     select {
@@ -271,7 +270,6 @@ article {
 //訂購人資料
 .user {
   width: 550px;
-  height: 650px;
   background-color: #f9f3e4;
   margin: 15px;
   margin-top: 100px;
