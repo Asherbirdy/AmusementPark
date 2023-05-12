@@ -25,15 +25,35 @@
         <li>金額</li>
         <li>刪除</li>
       </ul>
-      <div class="img">
-        <img src="@/assets/img/Tshirt4.png" alt="" />
+      <div class="detail">
+        <ul>
+          <li class="pro">
+            <img src="@/assets/img/Tshirt4.png" alt="" />
+            <ul>
+              <h1>MONSTAR上衣</h1>
+              <li>尺寸：Ｍ</li>
+              <li>顏色：白色</li>
+              <li>樣式：MONSTAR</li>
+            </ul>
+          </li>
+          <li>
+            <el-input-number
+              v-model="num" width:10px
+              :min="1"
+              :max="10"
+              @change="handleChange" class="count"
+            />
+          </li>
+          <li class="price">NT$600</li>
+          <li></li>
+        </ul>
       </div>
     </div>
     <ul class="cart2">
       <li>
         <div class="coupon">
           <h2>使用優惠碼</h2>
-          <input type="thd101" placeholder="NT-50" class="type" />
+          <input type="text" placeholder="NT-50" class="type" />
           <button type="submit" id="Submit">優惠碼折抵</button>
         </div>
       </li>
@@ -41,10 +61,22 @@
         <div class="info">
           <h2>訂單資訊</h2>
           <ul>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
+            <li>
+              <p>商品金額</p>
+              <p>NT$600</p>
+            </li>
+            <li>
+              <p>折扣金額</p>
+              <p>-NT50</p>
+            </li>
+            <li>
+              <p>運費</p>
+              <p>NT$60</p>
+            </li>
+            <li>
+              <p>訂單總額</p>
+              <p>NT$610</p>
+            </li>
           </ul>
           <button type="submit" id="Submit">結帳</button>
         </div>
@@ -53,7 +85,23 @@
   </main>
 </template>
 
-<script setup></script>
+<script>
+import { ref } from 'vue'
+
+export default {
+  name: 'MyComponent',
+  data() {
+    return {
+      num: 1,
+    }
+  },
+  methods: {
+    handleChange(value) {
+      console.log(value)
+    },
+  },
+}
+</script>
 
 <style lang="scss" scoped>
 //共同樣式
@@ -89,19 +137,65 @@ article {
   background-color: #d1825b;
   text-align: center;
   line-height: 70px;
+  width: 820px;
   height: 70px;
   display: flex;
 }
 .cart1 li {
   font-size: 20px;
-  min-width: 50px;
-  margin: 0 auto;
+}
+.cart1 li:first-child {
+  min-width: 210px;
+  padding-left: 20px;
+}
+.cart1 li:nth-child(2) {
+  min-width: 45px;
+  padding-left: 215px;
+}
+.cart1 li:nth-child(3) {
+  min-width: 45px;
+  padding-left: 120px;
+}
+.cart1 li:last-child {
+  min-width: 45px;
+  padding-left: 104px;
 }
 label {
   font-size: 16px;
   font-weight: bold;
   color: #90420a;
   margin-bottom: 10px;
+}
+.detail ul {
+  display: flex;
+  flex-direction: row;
+}
+.count{
+  margin: 110px 37px;
+}
+.pro {
+  display: flex;
+  flex-direction: row;
+}
+.pro img {
+  height: 205px;
+}
+.pro ul {
+  display: flex;
+  flex-direction: column;
+  margin-top: 65px;
+  margin-left: 10px;
+}
+.pro h1 {
+  font-size: 20px;
+}
+.pro li {
+  margin-top: 0;
+  font-size: 16px;
+}
+.price{
+  margin: 110px 18px;
+  font-size: 20px;
 }
 .coupon {
   width: 350px;
@@ -131,17 +225,17 @@ input {
 }
 #Submit {
   width: 100px;
-  height: 45px;
+  height: 44px;
   color: #f9f3e4;
   background-color: #d1825b;
   border-radius: 0 10px 10px 0;
 }
 .info {
   width: 350px;
-  height: 195px;
+  height: 435px;
   background-color: #f9f3e4;
   margin: 15px;
-  margin-top: 100px;
+  margin-top: 20px;
 }
 .info h2 {
   color: #f9f3e4;
@@ -152,13 +246,29 @@ input {
   line-height: 75px;
   height: 70px;
 }
+.info ul {
+  margin: 60px 0px;
+}
+.info li {
+  font-weight: bold;
+  display: flex;
+  justify-content: space-between;
+  margin: 25px;
+}
+.info #Submit {
+  margin-left: 100px;
+  width: 100px;
+  height: 45px;
+  color: #f9f3e4;
+  background-color: #d1825b;
+  border-radius: 10px;
+}
 
 //訂購人資料
 .user {
-  width: 790px;
+  width: 820px;
   height: 650px;
   background-color: #f9f3e4;
-  margin: 15px;
   margin-top: 100px;
   form {
     display: flex;
