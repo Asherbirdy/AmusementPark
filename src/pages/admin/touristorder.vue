@@ -12,7 +12,7 @@
       <myOrder width="20" />
       預約
     </tour-title>
-    <TicketBookingTOR />
+    <TicketBookingTOR class="perfromanceBook" />
   </div>
 </template>
 
@@ -29,6 +29,10 @@
   height: 100px;
   margin-left: 0%;
   margin-bottom: 5%;
+}
+
+.perfromanceBook {
+  width: 947px;
 }
 </style>
 <route>
