@@ -36,7 +36,6 @@ declare module '@vue/runtime-core' {
     ModalClosePS: typeof import('./components/ParkStatus/- Modal/ModalClosePS.vue')['default']
     ModalOpenPS: typeof import('./components/ParkStatus/- Modal/ModalOpenPS.vue')['default']
     ModalS: typeof import('./components/-UI Element/modalframe/ModalS.vue')['default']
-    ModelS: typeof import('./components/-UI Element/modalframe/ModelS.vue')['default']
     MonsterBlue: typeof import('./components/-UI Element/svg/monsterBlue.vue')['default']
     MonsterCartFillBlue: typeof import('./components/-UI Element/title/monsterCartFillBlue.vue')['default']
     MonsterCartFillWhite: typeof import('./components/-UI Element/title/MonsterCartFillWhite.vue')['default']

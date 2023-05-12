@@ -1,4 +1,5 @@
 <template>
+    <RebornLightbox />
     <div class="mainbox">
         <div class="navbar">
             <ul>

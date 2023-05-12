@@ -5,7 +5,7 @@
         <h2>是否重新設定寵物蛋樣式？</h2>
         <div class="button">
             <button class="yes">是</button>
-            <button>否</button>
+            <button class=".btn-secondary">否</button>
         </div>
 
     </modal-s>
