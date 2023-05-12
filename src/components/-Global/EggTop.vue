@@ -1,4 +1,8 @@
 <template>
+  <div class="QA">
+      <QAegg></QAegg>
+  </div>
+  
   <!-- Messenger 洽談外掛程式 Code -->
   <div id="fb-root"></div>
 
