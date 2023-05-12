@@ -1,6 +1,6 @@
 <script></script>
 <template>
-  <TicketfromTBS />
+  <ProductOrderTBS />
 </template>
 
 <style scoped lang="scss"></style>

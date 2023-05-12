@@ -1,0 +1,31 @@
+{
+    "facilityQrcode": [
+      {
+        "id":1,
+        "name": "設施一",
+        "qrcode": "QRcode1.png"
+      },
+      {
+        "id":2,
+        "name": "設施二",
+        "qrcode": "QRcode1"
+      }, {
+        "id":3,
+        "name": "設施三",
+        "qrcode": "QRcode1"
+      }, {
+        "id":4,
+        "name": "設施四",
+        "qrcode": "QRcode1"
+      }, {
+        "id":5,
+        "name": "設施五",
+        "qrcode": "QRcode1"
+      }, {
+        "id":6,
+        "name": "設施六",
+        "qrcode": "QRcode1"
+      }
+    ]
+  }
+  
