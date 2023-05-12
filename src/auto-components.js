@@ -67,10 +67,7 @@ declare module '@vue/runtime-core' {
     RouterView: typeof import('vue-router')['RouterView']
     SearchBarEmailPDS: typeof import('./components/Productstatus/SearchBarEmailPDS.vue')['default']
     SocialIconLGN: typeof import('./components/Login/SocialIconLGN.vue')['default']
-<<<<<<< HEAD
-=======
     SocialIconReg: typeof import('./components/Register/SocialIconReg.vue')['default']
->>>>>>> 89e36989ff7cabe37bf464afa47aacc0ab3b399e
     StaffAccountSFA: typeof import('./components/Staffaccount/StaffAccountSFA.vue')['default']
     SvgBrush: typeof import('./components/-UI Element/svg/pic/SvgBrush.vue')['default']
     SvgBus: typeof import('./components/-UI Element/svg/pic/SvgBus.vue')['default']
