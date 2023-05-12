@@ -1,7 +1,7 @@
 <template>
   <main>
     <h2 :style="{ color: internalTitleColor }"><slot>關於我們</slot></h2>
-    <SvgTitleBG :style="{ color: internalSvgColor }" class="svg" />
+    <title-b-g :style="{ color: internalSvgColor }" class="svg" />
   </main>
 </template>
 <script>

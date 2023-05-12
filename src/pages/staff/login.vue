@@ -21,9 +21,9 @@ const handleSubmit = () => {
 
     // username 和 password
     axios
-      .post('/api/PDO/login.php', {
-        account: formInput.account,
-        pwd: formInput.pwd,
+      .post('/api/PDO/staffLogin/staffLogin.php', {
+        account:formInput.account,
+        pwd:formInput.pwd
       })
       .then(res => {
         console.log(res.data);
@@ -120,7 +120,7 @@ const handleReset = () => {
 
 .title {
   margin-bottom: 20px;
-  font-size: 20px;
+  font-size: 60px;
 }
 
 .image {
