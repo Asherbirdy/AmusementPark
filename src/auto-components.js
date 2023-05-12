@@ -18,10 +18,12 @@ declare module '@vue/runtime-core' {
     ElIcon: typeof import('element-plus/es')['ElIcon']
     ExhibitionNotice: typeof import('./components/Notice/ExhibitionNotice.vue')['default']
     Footer: typeof import('./components/-Global/Footer.vue')['default']
+    FormInfoReg: typeof import('./components/Register/FormInfoReg.vue')['default']
     FormInfoULGN: typeof import('./components/Login/FormInfoULGN.vue')['default']
     H: typeof import('./components/-Global/H.vue')['default']
     Header: typeof import('./components/-Global/Header.vue')['default']
     HeaderAndCloseLGN: typeof import('./components/Login/HeaderAndCloseLGN.vue')['default']
+    HeaderAndCloseReg: typeof import('./components/Register/HeaderAndCloseReg.vue')['default']
     IconAbout: typeof import('./components/-UI Element/svg/header/icon-about.vue')['default']
     IconCreate: typeof import('./components/-UI Element/svg/header/icon-create.vue')['default']
     IconMap: typeof import('./components/-UI Element/svg/header/icon-map.vue')['default']
@@ -65,6 +67,10 @@ declare module '@vue/runtime-core' {
     RouterView: typeof import('vue-router')['RouterView']
     SearchBarEmailPDS: typeof import('./components/Productstatus/SearchBarEmailPDS.vue')['default']
     SocialIconLGN: typeof import('./components/Login/SocialIconLGN.vue')['default']
+<<<<<<< HEAD
+=======
+    SocialIconReg: typeof import('./components/Register/SocialIconReg.vue')['default']
+>>>>>>> 89e36989ff7cabe37bf464afa47aacc0ab3b399e
     StaffAccountSFA: typeof import('./components/Staffaccount/StaffAccountSFA.vue')['default']
     SvgBrush: typeof import('./components/-UI Element/svg/pic/SvgBrush.vue')['default']
     SvgBus: typeof import('./components/-UI Element/svg/pic/SvgBus.vue')['default']
