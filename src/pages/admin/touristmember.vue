@@ -1,6 +1,6 @@
 <script></script>
 <template>
-  <MemberEdit />
+  <MemberEditTBS />
 </template>
 
 <style scoped lang="scss">

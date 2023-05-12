@@ -1,0 +1,44 @@
+{
+    "productOrder": [
+        {
+            "id": "000000001",
+            "date": "2023-12-07",
+            "name": "MONSTER手機殼",
+            "num": "2",
+            "price": "NT$500",
+            "total": "NT$1000",
+            "discount": "NT$10",
+            "status": "寄送中"
+        },
+        {
+            "id": "000000002",
+            "date": "2023-09-01",
+            "name": "肥羊怪獸抱枕",
+            "num": "3",
+            "price": "NT$800",
+            "total": "NT$1600",
+            "discount": "NT$100",
+            "status": "準備中"
+        },
+        {
+            "id": "000000003",
+            "date": "2023-12-07",
+            "name": "阿設上衣",
+            "num": "1",
+            "price": "NT$1000",
+            "total": "NT$1000",
+            "discount": "NT$10",
+            "status": "寄送中"
+        },
+        {
+            "id": "000000004",
+            "date": "2023-12-07",
+            "name": "4J帆布袋",
+            "num": "5",
+            "price": "NT$200",
+            "total": "NT$1000",
+            "discount": "NT$10",
+            "status": "已送達"
+        }
+    ]
+}
