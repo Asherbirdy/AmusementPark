@@ -15,7 +15,13 @@ declare module '@vue/runtime-core' {
     Axiostest: typeof import('./components/-Global/Axiostest.vue')['default']
     Btn: typeof import('./components/-UI Element/btn/Btn.vue')['default']
     ColorPicker: typeof import('./components/-UI Element/ColorPicker/ColorPicker.vue')['default']
+
+    ElButton: typeof import('element-plus/es')['ElButton']
+    ElButtonGroup: typeof import('element-plus/es')['ElButtonGroup']
+    ElCalendar: typeof import('element-plus/es')['ElCalendar']
+
     EggTop: typeof import('./components/-Global/EggTop.vue')['default']
+
     ElIcon: typeof import('element-plus/es')['ElIcon']
     ElInputNumber: typeof import('element-plus/es')['ElInputNumber']
     ExhibitionNotice: typeof import('./components/Notice/ExhibitionNotice.vue')['default']
