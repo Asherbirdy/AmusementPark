@@ -231,7 +231,7 @@ h2 {
 }
 input {
   height: 26px;
-  padding: 10px 7px 7px 0px;
+  padding: 9px 7px 6px 0px;
   border: 1px solid #000000;
   border-radius: 10px 0 0 10px;
   text-align: right;
