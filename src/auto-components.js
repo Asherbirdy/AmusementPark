@@ -29,6 +29,7 @@ declare module '@vue/runtime-core' {
 
     ElIcon: typeof import('element-plus/es')['ElIcon']
     ExhibitionNotice: typeof import('./components/Notice/ExhibitionNotice.vue')['default']
+    ElIcon: typeof import('element-plus/es')['ElIcon']
     Footer: typeof import('./components/-Global/Footer.vue')['default']
     FormInfoReg: typeof import('./components/Register/FormInfoReg.vue')['default']
     FormInfoULGN: typeof import('./components/Login/FormInfoULGN.vue')['default']
@@ -68,6 +69,8 @@ declare module '@vue/runtime-core' {
     NavUser: typeof import('./components/TouristBackstage/NavUser.vue')['default']
     OpenNotice: typeof import('./components/Notice/OpenNotice.vue')['default']
 
+    MyOrder: typeof import('./components/TouristBackstage/Element/svg/myOrder.vue')['default']
+    NavUser: typeof import('./components/TouristBackstage/NavUser.vue')['default']
     ParkStatusTablePS: typeof import('./components/ParkStatus/ParkStatusTablePS.vue')['default']
     ParkStatusTimePicker: typeof import('./components/-UI Element/timepicker/ParkStatusTimePicker.vue')['default']
     ProductListPDS: typeof import('./components/Productstatus/ProductListPDS.vue')['default']
@@ -108,6 +111,7 @@ declare module '@vue/runtime-core' {
 
     SVGLine: typeof import('./components/-UI Element/svg/SVGLine.vue')['default']
 
+    SVGInstagram: typeof import('./components/-UI Element/svg/SVGInstagram.vue')['default']
     SvgMonster: typeof import('./components/-UI Element/svg/pic/SvgMonster.vue')['default']
     SvgNews: typeof import('./components/-UI Element/svg/pic/SvgNews.vue')['default']
     SvgNote: typeof import('./components/-UI Element/svg/pic/SvgNote.vue')['default']
@@ -120,6 +124,7 @@ declare module '@vue/runtime-core' {
     SvgTourTitle: typeof import('./components/TouristBackstage/Element/svg/SvgTourTitle.vue')['default']
 
     SVGYoutube: typeof import('./components/-UI Element/svg/SVGYoutube.vue')['default']
+    SVGYoutube: typeof import('./components/-UI Element/svg/SVGYoutube.vue')['default']
     TagsTable: typeof import('./components/ProductManage/TagsTable.vue')['default']
     TeaserIDX: typeof import('./components/Index/TeaserIDX.vue')['default']
 
@@ -131,6 +136,8 @@ declare module '@vue/runtime-core' {
     TicketBookingTOR: typeof import('./components/TicketOrder/TicketBookingTOR.vue')['default']
     TicketExhibitionTOR: typeof import('./components/TicketOrder/TicketExhibitionTOR.vue')['default']
 
+    TicketfromTBS: typeof import('./components/TouristBackstage/TicketfromTBS.vue')['default']
+    TeaserIDX: typeof import('./components/Index/TeaserIDX.vue')['default']
     TicketfromTBS: typeof import('./components/TouristBackstage/TicketfromTBS.vue')['default']
     TicketListPDS: typeof import('./components/Productstatus/TicketListPDS.vue')['default']
     TicketPriceTOR: typeof import('./components/TicketOrder/TicketPriceTOR.vue')['default']
