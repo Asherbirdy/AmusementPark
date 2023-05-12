@@ -56,6 +56,7 @@ declare module '@vue/runtime-core' {
     OpenNotice: typeof import('./components/Notice/OpenNotice.vue')['default']
     ParkStatusTablePS: typeof import('./components/ParkStatus/ParkStatusTablePS.vue')['default']
     ParkStatusTimePicker: typeof import('./components/-UI Element/timepicker/ParkStatusTimePicker.vue')['default']
+    Password: typeof import('./components/-UI Element/modalframe/password.vue')['default']
     ProductListPDS: typeof import('./components/Productstatus/ProductListPDS.vue')['default']
     ProductOrderTBS: typeof import('./components/TouristBackstage/ProductOrderTBS.vue')['default']
     ProductSelectPDM: typeof import('./components/ProductManage/ProductSelectPDM.vue')['default']
