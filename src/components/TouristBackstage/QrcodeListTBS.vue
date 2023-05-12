@@ -23,11 +23,15 @@ onMounted(() => {
 
 <template>
     <div class="qr-page">
-        <tour-title class="title">快速通關</tour-title>
+        <tour-title class="title">
+            <QRcode width="40" class="title-cion" />
+            快速通關
+        </tour-title>
         <section class="qrcode-wrap">
             <div class="qrcode" v-for="facility in tableData" :key="facility.id">
                 <!-- <img :src="facility.qrcode" :alt="facility.name" /> -->
                 <img src="@/components/TouristBackstage/Element/img/QRcode1.png" alt="">
+                <!-- <img src="../../../public/img/QRcode1.png" alt=""> -->
                 <h1>
                     {{ facility.name }}
                 </h1>
@@ -36,7 +40,10 @@ onMounted(() => {
         <btn class="btn"
                 width="150" 
                 button-text-color="white"
-                button-color="#D1825B">下載圖片</btn>
+                button-color="#D1825B">
+                下載圖片
+                <el-icon class="icon" color="black" size="20px"><Bottom /></el-icon>
+                </btn>
                 
     </div>
     
@@ -44,6 +51,8 @@ onMounted(() => {
 
 <style lang="scss" scoped>
     //te
+    .icon {margin-left: 10px;}
+
     .qr-page {
         display: flex;
         flex-direction: column;

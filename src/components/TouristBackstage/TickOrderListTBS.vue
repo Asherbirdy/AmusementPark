@@ -25,7 +25,10 @@ onMounted(() => {
 
 <template>
   <div class="tick-order-page">
-    <tour-title class="title">購票紀錄</tour-title>
+    <tour-title class="title">
+      <tickOrder width="40" />
+      購票紀錄
+    </tour-title>
     <table class="form">
       <thead>
         <tr>
