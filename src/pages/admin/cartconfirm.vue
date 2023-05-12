@@ -44,8 +44,14 @@
               @change="handleChange" class="count"
             />
           </li>
-          <li class="price">NT$600</li>
-          <li></li>
+          <li class="price">
+            NT$600
+          </li>
+          <li>
+            <el-icon>
+              <DeleteFilled />
+            </el-icon>
+          </li>
         </ul>
       </div>
     </div>
@@ -150,15 +156,15 @@ article {
 }
 .cart1 li:nth-child(2) {
   min-width: 45px;
-  padding-left: 215px;
+  padding-left: 195px;
 }
 .cart1 li:nth-child(3) {
   min-width: 45px;
-  padding-left: 120px;
+  padding-left: 110px;
 }
 .cart1 li:last-child {
   min-width: 45px;
-  padding-left: 104px;
+  padding-left: 95px;
 }
 label {
   font-size: 16px;
@@ -171,20 +177,22 @@ label {
   flex-direction: row;
 }
 .count{
-  margin: 110px 37px;
+  margin: 136px 37px;
+  font-size: 20px;
 }
 .pro {
   display: flex;
   flex-direction: row;
 }
 .pro img {
+  margin-top: 30px;
   height: 205px;
 }
 .pro ul {
   display: flex;
   flex-direction: column;
-  margin-top: 65px;
-  margin-left: 10px;
+  margin-top: 95px;
+  margin-left: -8px;
 }
 .pro h1 {
   font-size: 20px;
@@ -194,8 +202,13 @@ label {
   font-size: 16px;
 }
 .price{
-  margin: 110px 18px;
+  margin: 140px 18px;
   font-size: 20px;
+}
+i{
+  margin: 140px 0px;
+  padding-left: 75px;
+  font-size: 30px;
 }
 .coupon {
   width: 350px;
@@ -225,7 +238,7 @@ input {
 }
 #Submit {
   width: 100px;
-  height: 44px;
+  height: 43px;
   color: #f9f3e4;
   background-color: #d1825b;
   border-radius: 0 10px 10px 0;
