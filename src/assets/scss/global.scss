@@ -19,7 +19,8 @@ $font-family: '微軟正黑體';
 main{
     padding-top: 100px;
     margin: 0 auto;
-    width: $workspace;
+    max-width: $workspace;
+    width: 100%;
     font-family:$font-family;
 }
 
@@ -53,6 +54,11 @@ button{
     border: none;
     border-radius: .2rem;
 }
+
+ &.btn-primary {
+    background-color: blue;
+    color: white;
+  }
 
 
 button:active{

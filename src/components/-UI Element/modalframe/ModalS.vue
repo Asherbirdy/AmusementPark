@@ -27,7 +27,8 @@
 
 /* 彈窗框 */
 .layout {
-    width: 400px;
+    max-width: 400px;
+    width: 100%;
     background-color: #F9F3E4;
     position: absolute;
     top: 50%;

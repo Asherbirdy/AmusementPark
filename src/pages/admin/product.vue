@@ -2,17 +2,17 @@
     <div class="mainbox">
         <div class="navbar">
             <ul>
-                <li>所有商品</li>
+                <li class="bar">所有商品</li>
                 <hr>
-                <li>衣服</li>
+                <li class="bar">衣服</li>
                 <hr>
-                <li>帽子</li>
+                <li class="bar">帽子</li>
                 <hr>
-                <li>帆布袋</li>
+                <li class="bar">帆布袋</li>
                 <hr>
-                <li>手機殼</li>
+                <li class="bar">手機殼</li>
                 <hr>
-                <li>客製化商品</li>
+                <li class="bar">客製化商品</li>
                 <hr>
             </ul>
         </div>
@@ -22,8 +22,8 @@
 
                     <frame-blue>
                         <img :src="item.image" alt="">
-                        <h2> {{ item.productName }}</h2>
-
+                        <p class="productName"> {{ item.productName }}</p>
+<button>加入購物車</button>
                     </frame-blue>
                 </li>
             </ul>
@@ -34,15 +34,23 @@
 
 const product = ref([
     {
-        productName: 'aaa',
-        image: "src/assets/img/bag1.png",
+        productName: '艾比怪獸上衣',
+        image: "/product/Tshirt1.png",
     },
     {
-        productName: 'bbb',
+        productName: 'Q摸怪獸上衣',
         image: "/product/Tshirt2.png",
     },
     {
-        productName: 'ccc',
+        productName: '奇樂怪獸上衣',
+        image: "/product/Tshirt3.png",
+    },
+    {
+        productName: 'MONSTAR上衣',
+        image: "/product/Tshirt2.png",
+    },
+    {
+        productName: '戴蒙怪獸上衣',
         image: "/product/Tshirt3.png",
     }
 
@@ -60,7 +68,7 @@ const product = ref([
     padding: 30px;
 }
 
-li {
+.bar {
     color: $textcolor6;
     padding: 10px;
 
@@ -77,18 +85,26 @@ main {
 .frameBlue {
     display: flex;
     flex-wrap: wrap;
-    // outline: 1px solid red;
+    text-align: center;
+    padding-left: 60px;
 }
 
 .content {
     display: flex;
     flex-wrap: wrap;
     flex-basis: 0;
-    //    outline: 1px solid blue;
+    padding: 20px;
+    margin-bottom: 110px;
+
 }
 
 img {
     width: 70%;
     margin: 90px auto 0;
+}
+
+.productName{
+    font-size: 20px;
+    margin-top: 45px;
 }
 </style>
