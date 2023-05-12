@@ -5,7 +5,7 @@
     <Header></Header>
     <section class="container">
         <aside>
-            <NavUser />
+            <NavUserTBS />
         </aside>
         <div class="content">
             <RouterView />
