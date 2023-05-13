@@ -23,15 +23,15 @@
 .iconClose {
   margin-top: 10px;
   font-size: 50px;
-  margin-left: 1065px;
+  margin-left: 438px;
   color: #90420a;
   cursor: pointer;
 
 }
 
 .layout {
-  width: 1140px;
-  height: 850px;
+  width: 500px;
+  height: 750px;
   margin-top: 100px;
   padding: 0;
   position: absolute;

@@ -5,7 +5,7 @@
         <monster-cart-Fill-White>1</monster-cart-Fill-White>
         <h3>購物車</h3>
       </div>
-      <hr width="100" style="border: 3px dashed #d1825b" />
+      <hr width="100" style="border: 3px dashed $textcolor5" />
       <div class="monster">
         <monsterCartFillBlue>2</monsterCartFillBlue>
         <h3>填寫資料</h3>
@@ -91,6 +91,7 @@
       </form>
     </div>
   </main>
+  <EggTOP/>
 </template>
 
 <script setup>
@@ -175,6 +176,8 @@ const payInput = ref([
 main {
   display: flex;
   justify-content: center;
+  margin-bottom: 200px;
+  padding: 0;
 }
 
 h2 {
@@ -218,12 +221,12 @@ article {
     .hrNone {
       color: white;
     }
+    
   }
 }
 //付款方式
 .pay {
   width: 550px;
-  height: 650px;
   background-color: #f9f3e4;
   margin: 15px;
   margin-top: 100px;
@@ -236,12 +239,11 @@ article {
       margin: 30px 0 5px 0;
     }
     #pay-method {
-      margin-bottom: 30px;
+      margin-bottom: 50px;
     }
     .user-input-row {
       display: flex;
       flex-direction: column;
-      // margin-bottom: 20px;
       color: #90420a;
     }
     select {
@@ -269,7 +271,6 @@ article {
 //訂購人資料
 .user {
   width: 550px;
-  height: 650px;
   background-color: #f9f3e4;
   margin: 15px;
   margin-top: 100px;
