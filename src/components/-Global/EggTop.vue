@@ -8,9 +8,24 @@
 
   <!-- Your 洽談外掛程式 code -->
   <div id="fb-customer-chat" class="fb-customerchat"></div>
+
+  <!--vue新增-->
+  <vue-fb-customer-chat />
 </template>
 
 <script>
+
+//vue 新增
+import VueFbCustomerChat from 'vue-fb-customer-chat'
+Vue.use(VueFbCustomerChat, {
+  page_id: null, //  change 'null' to your Facebook Page ID,
+  theme_color: '#333333', // theme color in HEX
+  locale: 'en_US', // default 'en_US'
+})
+
+
+
+//原始html
 var chatbox = document.getElementById('fb-customer-chat');
 chatbox.setAttribute('page_id', '105529122534808');
 chatbox.setAttribute('attribution', 'biz_inbox');
