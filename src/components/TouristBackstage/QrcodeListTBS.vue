@@ -1,7 +1,9 @@
 <script setup>
 import axios from 'axios';
+import getImageUrl from '@/utils/imgPath';
 
 let tableData = ref([]);
+const imgURL = name => getImageUrl(name);
 
 // 將資料傳到畫面
 onMounted(() => {
@@ -29,9 +31,8 @@ onMounted(() => {
         </tour-title>
         <section class="qrcode-wrap">
             <div class="qrcode" v-for="facility in tableData" :key="facility.id">
-                <!-- <img :src="facility.qrcode" :alt="facility.name" /> -->
-                <img src="@/components/TouristBackstage/Element/img/QRcode1.png" alt="">
-                <!-- <img src="../../../public/img/QRcode1.png" alt=""> -->
+                <!-- <img src="@/components/TouristBackstage/Element/img/QRcode1.png" alt=""> -->
+                <img :src="imgURL(facility.qrcode)" />
                 <h1>
                     {{ facility.name }}
                 </h1>

@@ -67,7 +67,7 @@ onMounted(() => {
   width: 265px;
   height: 85px;
   margin-left: 10%;
-  margin-bottom: 5%;
+  margin-bottom: 5%; 
 }
 
 .form {
