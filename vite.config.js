@@ -44,7 +44,7 @@ export default defineConfig({
     },
   },
   // server: {
-  //   port: '5713',
+  //   port: '5173',
   //   proxy: {
   //     '/api': {
   //       target: 'http://localhost:80/',
