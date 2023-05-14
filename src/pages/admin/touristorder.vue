@@ -4,12 +4,12 @@
     <TicketPriceTOR />
     <p>*未滿4歲且有家長陪同的幼童可免費入場</p>
     <tour-title class="title">
-      <myOrder width="20" />
+      <Tickets width="20" />
       購票
     </tour-title>
     <TicketExhibitionTOR />
     <tour-title class="title">
-      <myOrder width="20" />
+      <Folder width="20" />
       預約
     </tour-title>
     <TicketBookingTOR class="perfromanceBook" />
@@ -33,6 +33,10 @@
 
 .perfromanceBook {
   width: 947px;
+}
+
+p {
+  margin: 40px 0;
 }
 </style>
 <route>

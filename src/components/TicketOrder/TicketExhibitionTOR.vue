@@ -68,7 +68,7 @@ const getChineseMonth = date => {
       width="150"
       button-text-color="white"
       button-color="#D1825B"
-      >取消</btn
+      >重設</btn
     >
 
     <btn
@@ -89,12 +89,12 @@ const getChineseMonth = date => {
     cursor: pointer;
     height: 40px;
     width: 100px;
-    background-color: rgb(212, 212, 212);
+    background-color: rgb(255, 255, 255);
     font-size: 20;
     color: black;
   }
   button:active {
-    background-color: $textcolor2;
+    background-color: gray;
   }
 }
 
