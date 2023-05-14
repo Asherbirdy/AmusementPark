@@ -91,7 +91,7 @@
       </form>
     </div>
   </main>
-  <EggTOP/>
+  <vue-fb-customer-chat />
 </template>
 
 <script setup>
