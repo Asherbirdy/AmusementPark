@@ -19,6 +19,7 @@ declare module '@vue/runtime-core' {
     ColorPicker: typeof import('./components/-UI Element/ColorPicker/ColorPicker.vue')['default']
     EggTop: typeof import('./components/-Global/EggTop.vue')['default']
     ElIcon: typeof import('element-plus/es')['ElIcon']
+    ElInputNumber: typeof import('element-plus/es')['ElInputNumber']
     ExhibitionNotice: typeof import('./components/Notice/ExhibitionNotice.vue')['default']
     Footer: typeof import('./components/-Global/Footer.vue')['default']
     FormInfoReg: typeof import('./components/Register/FormInfoReg.vue')['default']
