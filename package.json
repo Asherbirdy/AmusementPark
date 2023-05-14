@@ -13,6 +13,7 @@
     "dayjs": "^1.11.7",
     "element-plus": "^2.3.3",
     "vue": "^3.2.37",
+    "vue-fb-customer-chat": "^0.2.2",
     "vue-i18n": "^9.2.2",
     "vue-router": "^4.1.6",
     "yarn": "^1.22.19"
