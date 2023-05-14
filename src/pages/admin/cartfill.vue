@@ -92,23 +92,23 @@
     </div>
   </main>
   <QANotice />
-  <div class="fb-customerchat"
-      attribution="setup_tool"
-      page_id="105529122534808"
-      theme_color="#FF5CA1">
-  </div>
-
+  <div
+    class="fb-customerchat"
+    attribution="setup_tool"
+    page_id="105529122534808"
+    theme_color="#FF5CA1"
+  ></div>
 </template>
 
 <script setup>
- window.fbAsyncInit = function() {
-    FB.init({
-      appId            : '105529122534808',
-      autoLogAppEvents : true,
-      xfbml            : true,
-      version          : 'v16.0'
-    });
-  };
+window.fbAsyncInit = function () {
+  FB.init({
+    appId: '105529122534808',
+    autoLogAppEvents: true,
+    xfbml: true,
+    version: 'v16.0',
+  });
+};
 
 const name = '';
 const phoneNumber = '';
@@ -135,9 +135,8 @@ const orderInfo = ref([
     id: 'email',
     value: email,
     placeholder: '請輸入您的電子郵件*',
-  }
+  },
 ]);
-
 
 // let payMethod = '';
 let cardNumber = '';
@@ -184,20 +183,22 @@ const payInput = ref([
   },
 ]);
 onMounted(() => {
-  window.fbAsyncInit = function() {
+  window.fbAsyncInit = function () {
     FB.init({
       xfbml: true,
-      version: 'v11.0'
+      version: 'v11.0',
     });
   };
-  (function(d, s, id) {
-    var js, fjs = d.getElementsByTagName(s)[0];
+  (function (d, s, id) {
+    var js,
+      fjs = d.getElementsByTagName(s)[0];
     if (d.getElementById(id)) return;
-    js = d.createElement(s); js.id = id;
+    js = d.createElement(s);
+    js.id = id;
     js.src = 'https://connect.facebook.net/en_US/sdk/xfbml.customerchat.js';
     fjs.parentNode.insertBefore(js, fjs);
-  }(document, 'script', 'facebook-jssdk'));
-})
+  })(document, 'script', 'facebook-jssdk');
+});
 </script>
 
 <style lang="scss" scoped>
@@ -250,7 +251,6 @@ article {
     .hrNone {
       color: white;
     }
-    
   }
 }
 //付款方式
