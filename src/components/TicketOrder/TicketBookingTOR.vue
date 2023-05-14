@@ -15,28 +15,28 @@
       </div>
     </div>
     <div class="imgbox">
-      <img src="../../assets/img/performance3.png" />
+      <img src="@/assets/img/performance3.png" />
       <h3>綠野仙蹤</h3>
       <div class="overlay">
         <span>表演预约</span>
       </div>
     </div>
     <div class="imgbox">
-      <img src="../../assets/img/performance4.png" />
+      <img src="@/assets/img/performance4.png" />
       <h3>火焰跳躍者</h3>
       <div class="overlay">
         <span>表演预约</span>
       </div>
     </div>
     <div class="imgbox">
-      <img src="../../assets/img/performance5.png" />
+      <img src="@/assets/img/performance5.png" />
       <h3>魔幻舞台</h3>
       <div class="overlay">
         <span>表演预约</span>
       </div>
     </div>
     <div class="imgbox">
-      <img src="../../assets/img/performance6.png" />
+      <img src="@/assets/img/performance6.png" />
       <h3>瘋狂藝術家</h3>
       <div class="overlay">
         <span>表演预约</span>
