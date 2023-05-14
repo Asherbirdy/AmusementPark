@@ -155,5 +155,6 @@ declare module '@vue/runtime-core' {
     TourTitle: typeof import('./components/TouristBackstage/Element/TourTitle.vue')['default']
     TransformNotice: typeof import('./components/Notice/TransformNotice.vue')['default']
     VideoBannerIDX: typeof import('./components/Index/VideoBannerIDX.vue')['default']
+    VueFbCustomerChat: typeof import('./components/-UI Element/QA/VueFbCustomerChat.vue')['default']
   }
 }
