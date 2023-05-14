@@ -42,16 +42,16 @@ export default defineConfig({
       '@': fileURLToPath(new URL('./src', import.meta.url)),
     },
   },
-  server: {
-    port: '5173',
-    proxy: {
-      '/api': {
-        target: 'http://localhost:80/',
-        changeOrigin: true,
-        rewrite: path => path.replace(/^\/api/, ''), // 不可以省略rewrite
-      },
-    },
-  },
+  // server: {
+  //   port: '5173',
+  //   proxy: {
+  //     '/api': {
+  //       target: 'http://localhost:80/',
+  //       changeOrigin: true,
+  //       rewrite: path => path.replace(/^\/api/, ''), // 不可以省略rewrite
+  //     },
+  //   },
+  // },
   css: {
     preprocessorOptions: {
       scss: {
