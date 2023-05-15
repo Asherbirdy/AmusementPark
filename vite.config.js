@@ -11,6 +11,7 @@ import path from 'path';
 import { ElementPlusResolver } from 'unplugin-vue-components/resolvers';
 // https://vitejs.dev/config/
 export default defineConfig({
+  base: '/AmusementPark/',
   plugins: [
     vue(),
     AutoImport({
@@ -43,7 +44,7 @@ export default defineConfig({
     },
   },
   // server: {
-  //   port: '5713',
+  //   port: '5173',
   //   proxy: {
   //     '/api': {
   //       target: 'http://localhost:80/',
