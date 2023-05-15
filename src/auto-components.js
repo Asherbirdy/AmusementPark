@@ -18,6 +18,9 @@ declare module '@vue/runtime-core' {
     Btn: typeof import('./components/-UI Element/btn/Btn.vue')['default']
     ColorPicker: typeof import('./components/-UI Element/ColorPicker/ColorPicker.vue')['default']
     EggTop: typeof import('./components/-Global/EggTop.vue')['default']
+<<<<<<< HEAD
+    ElIcon: typeof import('element-plus/es')['ElIcon']
+=======
     ElAside: typeof import('element-plus/es')['ElAside']
     ElButton: typeof import('element-plus/es')['ElButton']
     ElButtonGroup: typeof import('element-plus/es')['ElButtonGroup']
@@ -81,7 +84,9 @@ declare module '@vue/runtime-core' {
     ElTabs: typeof import('element-plus/es')['ElTabs']
     ElTag: typeof import('element-plus/es')['ElTag']
     ElText: typeof import('element-plus/es')['ElText']
+>>>>>>> 872e336da8b5aed8f8f0ac273a9dcb9b98a4767c
     ExhibitionNotice: typeof import('./components/Notice/ExhibitionNotice.vue')['default']
+    FbCustomerChat: typeof import('./components/-UI Element/QA/FbCustomerChat.vue')['default']
     Footer: typeof import('./components/-Global/Footer.vue')['default']
     FormInfoReg: typeof import('./components/Register/FormInfoReg.vue')['default']
     FormInfoULGN: typeof import('./components/Login/FormInfoULGN.vue')['default']
