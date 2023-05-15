@@ -121,6 +121,7 @@ header #menu a h3 {
 }
 
 header .rsite {
+  color: #5b5b5b;
   display: flex;
   justify-content: space-between;
   padding: 4px;

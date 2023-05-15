@@ -38,12 +38,12 @@
     align-items: center;
     position: relative;
     h2 {
+      width: 60%;
       position: absolute;
       font-size: 24px;
-      color: null;
-    }
-    .svg {
-      color: null;
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
     }
   }
   </style>

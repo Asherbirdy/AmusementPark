@@ -1,6 +1,7 @@
 <script></script>
 <template>
-  <QrcodeList />
+  <QrcodeListTBS />
+  <TickOrderListTBS />
 </template>
 
 <style scoped lang="scss">

@@ -123,7 +123,7 @@ const aLinks = ref([
 .modal {
   background-color: $maincolor1;
   width: 730px;
-  height: 800px;
+  height: 650px;
   margin: 0 auto;
   margin-top: 100px;
   margin-bottom: 80px;
