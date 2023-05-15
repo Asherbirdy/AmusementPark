@@ -2,8 +2,8 @@
 <template>
     <main>
         <div class="rides">
-            <title-big-pink class="title" />
-            <h1>主題特色</h1>
+            <title-big2>主題特色</title-big2>
+
             <ul>
                 <li>
                     <div>

@@ -15,7 +15,7 @@
       <li><h2>醫療站</h2></li>
     </ul>
   </nav>
-
+  <loginw></loginw>
  </main>
 </template>
 
@@ -45,4 +45,6 @@ main{
     // background-color: #b11010;
   }
 }
+
+
 </style>

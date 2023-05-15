@@ -15,12 +15,6 @@ declare module '@vue/runtime-core' {
     Axiostest: typeof import('./components/-Global/Axiostest.vue')['default']
     Btn: typeof import('./components/-UI Element/btn/Btn.vue')['default']
     ColorPicker: typeof import('./components/-UI Element/ColorPicker/ColorPicker.vue')['default']
-
-    copy: typeof import('./components/-UI Element/svg/header/icon-login copy.vue')['default']
-    ElButton: typeof import('element-plus/es')['ElButton']
-    ElButtonGroup: typeof import('element-plus/es')['ElButtonGroup']
-    ElCalendar: typeof import('element-plus/es')['ElCalendar']
-
     ElIcon: typeof import('element-plus/es')['ElIcon']
     ExhibitionNotice: typeof import('./components/Notice/ExhibitionNotice.vue')['default']
     Footer: typeof import('./components/-Global/Footer.vue')['default']
@@ -28,12 +22,9 @@ declare module '@vue/runtime-core' {
     FormInfoULGN: typeof import('./components/Login/FormInfoULGN.vue')['default']
     H: typeof import('./components/-Global/H.vue')['default']
     Header: typeof import('./components/-Global/Header.vue')['default']
-<<<<<<< HEAD
-    Headerbg: typeof import('./components/-UI Element/svg/header/headerbg.vue')['default']
-=======
     HeaderAndCloseLGN: typeof import('./components/Login/HeaderAndCloseLGN.vue')['default']
     HeaderAndCloseReg: typeof import('./components/Register/HeaderAndCloseReg.vue')['default']
->>>>>>> 0bd9620e449f072fffb8c4e7574cdb46e3721b9d
+    Headerbg: typeof import('./components/-UI Element/svg/header/headerbg.vue')['default']
     IconAbout: typeof import('./components/-UI Element/svg/header/icon-about.vue')['default']
     IconCreate: typeof import('./components/-UI Element/svg/header/icon-create.vue')['default']
     IconMap: typeof import('./components/-UI Element/svg/header/icon-map.vue')['default']
@@ -44,6 +35,8 @@ declare module '@vue/runtime-core' {
     InformationIDX: typeof import('./components/Index/InformationIDX.vue')['default']
     Input: typeof import('./components/-UI Element/form/Input.vue')['default']
     InputLimitTenPS: typeof import('./components/ParkStatus/Element/InputLimitTenPS.vue')['default']
+    Login: typeof import('./components/-Global/login.vue')['default']
+    Loginw: typeof import('./components/-Global/loginw.vue')['default']
     Logo: typeof import('./components/-UI Element/svg/header/logo.vue')['default']
     MemberEdit: typeof import('./components/TouristBackstage/MemberEdit.vue')['default']
     MemberInfo: typeof import('./components/TouristBackstage/Element/svg/memberInfo.vue')['default']
@@ -77,10 +70,7 @@ declare module '@vue/runtime-core' {
     RouterView: typeof import('vue-router')['RouterView']
     SearchBarEmailPDS: typeof import('./components/Productstatus/SearchBarEmailPDS.vue')['default']
     SocialIconLGN: typeof import('./components/Login/SocialIconLGN.vue')['default']
-
-
     SocialIconReg: typeof import('./components/Register/SocialIconReg.vue')['default']
-
     StaffAccountSFA: typeof import('./components/Staffaccount/StaffAccountSFA.vue')['default']
     SvgBrush: typeof import('./components/-UI Element/svg/pic/SvgBrush.vue')['default']
     SvgBus: typeof import('./components/-UI Element/svg/pic/SvgBus.vue')['default']
@@ -115,15 +105,17 @@ declare module '@vue/runtime-core' {
     TeaserIDX: typeof import('./components/Index/TeaserIDX.vue')['default']
     TicketBookingTOR: typeof import('./components/TicketOrder/TicketBookingTOR.vue')['default']
     TicketExhibitionTOR: typeof import('./components/TicketOrder/TicketExhibitionTOR.vue')['default']
-    TicketfromTBS: typeof import('./components/TouristBackstage/TicketfromTBS.vue')['default']
     TicketListPDS: typeof import('./components/Productstatus/TicketListPDS.vue')['default']
     TicketPriceTOR: typeof import('./components/TicketOrder/TicketPriceTOR.vue')['default']
     TickOrder: typeof import('./components/TouristBackstage/Element/svg/tickOrder.vue')['default']
     TitleBG: typeof import('./components/-UI Element/svg/title/titleBG.vue')['default']
     TitleBig: typeof import('./components/-UI Element/title/TitleBig.vue')['default']
+    TitleBig1: typeof import('./components/-UI Element/title/TitleBig1.vue')['default']
+    TitleBig2: typeof import('./components/-UI Element/title/TitleBig2.vue')['default']
     TitleBigPink: typeof import('./components/-UI Element/svg/title/TitleBigPink.vue')['default']
     TitleBigYellow: typeof import('./components/-UI Element/svg/title/TitleBigYellow.vue')['default']
     TitleMain: typeof import('./components/-UI Element/title/TitleMain.vue')['default']
+    TitleSmall: typeof import('./components/-UI Element/title/TitleSmall.vue')['default']
     TitleSmall1: typeof import('./components/-UI Element/svg/title/titleSmall1.vue')['default']
     TitleSmall2: typeof import('./components/-UI Element/svg/title/titleSmall2.vue')['default']
     TopNotice: typeof import('./components/Notice/TopNotice.vue')['default']

@@ -46,9 +46,10 @@
       <!-- <a id="moblie_menu" @click="handMenuOpen" href="javascript:;"></a> -->
       <div>
         <div class="rsite">
-          <router-link to="/login">
+          <loginw></loginw>
+          <!-- <router-link to="/login">
             <icon-small-login/>
-          </router-link>
+          </router-link> -->
 
           <router-link to="/basket">
             <icon-small-basket/>
@@ -73,18 +74,19 @@ header {
   background-color: #f9f3e4;
   width: 100%;
   height: 150px;
-}
 
-header nav {
-  display: flex;
-  position: relative;
-  width: $workspace;
-  margin: 0 auto;
-  justify-content: space-between;
-  top: 6px;
-}
-header .logo {
-  margin: auto 0;
+  nav {
+    display: flex;
+    position: relative;
+    width: $workspace;
+    margin: 0 auto;
+    justify-content: space-between;
+    top: 6px;
+
+    .logo {
+      margin: auto 0;
+    }
+  }
 }
 
 header #menu {
