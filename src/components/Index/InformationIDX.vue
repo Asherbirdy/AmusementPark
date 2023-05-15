@@ -1,8 +1,17 @@
 <script setup></script>
 <template>
   <main>
+    <div class="bg">
+        <svg-trumpet id="svg-trumpet"/>
+        <svg-wrench id="svg-wrench"/>
+        <svg-news id="svg-news"/>
+        <svg-screwdriver id="svg-screwdriver"/>
+    </div>
     <!-- 左邊輪播圖 -->
     <div class="wrapper">
+
+
+
       <div class="leftbox">
         <div><img src="@/assets/img/facility1.png" /></div>
         <div class="dotbox">
@@ -32,6 +41,11 @@
             <p>2023/05/23</p>
             <p>XXXXXXXXXXXXXXXX</p>
             <el-icon><ArrowRight /></el-icon>
+          </div>          
+          <div class="output">
+            <p>2023/05/23</p>
+            <p>XXXXXXXXXXXXXXXX</p>
+            <el-icon><ArrowRight /></el-icon>
           </div>
         </div>
       </div>
@@ -41,9 +55,44 @@
 <style lang="scss" scoped>
 //sd
 main {
-  background-color: #fffdf8;
+  // background-color: #fffdf8;
+  .bg{
+    position: relative;
+    // pointer-events: none;
+    #svg-trumpet{
+      height: 50%;
+      position: absolute;
+      z-index: -3;
+      top: -150px;
+      left: -340px;
+    }
+    #svg-wrench{
+      height: 50%;
+      position: absolute;
+      z-index: -3;
+      top: -60px;
+      right: -1400px;
+      rotate: 25deg;
+    }
+    #svg-news{
+      height: 80%;
+      position: absolute;
+      z-index: -3;
+      top: 340px;
+      left: -500px;
+    }
+    #svg-screwdriver{
+      height: 50%;
+      position: absolute;
+      z-index: -3;
+      top: 300px;
+      right: -1500px;
+      rotate: 25deg;
+    }
+  }
   .wrapper {
-    width: 900px;
+    width: 1100px;
+    height: 500px;
     box-sizing: border-box;
     display: flex;
 
@@ -51,6 +100,9 @@ main {
     margin: 0 auto;
     margin-bottom: 30px;
     .leftbox {
+      img{
+        height: 470px;
+      }
       .dotbox {
         display: flex;
         gap: 10px;
@@ -67,10 +119,11 @@ main {
     }
     .rightbox {
       width: 100%;
+      height: 100%;
       display: flex;
       flex-direction: column;
       .tabs {
-        margin-top: 70px;
+        // margin-top: 70px;
         display: flex;
         align-items: end;
         h3 {
@@ -81,7 +134,7 @@ main {
 
           &:nth-child(1) {
             background-color: rgb(199, 120, 23);
-            padding: 5px 0;
+            height: 60px;
           }
           &:nth-child(2) {
             background-color: #82bbb5;
@@ -95,6 +148,7 @@ main {
       }
       .infobox {
         .output {
+          padding: 20px 0;
           display: flex;
           align-items: center;
           justify-content: space-evenly;
