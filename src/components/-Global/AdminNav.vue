@@ -8,14 +8,15 @@ const handleClose = (key, keyPath) => {
 };
 // 檢視權限等級：
 const userData = JSON.parse(sessionStorage.getItem('UserData'));
-// 抓取權限等級：
-const permissions = userData.permissions;
 
-// 測試資料用：
-// const permissions = 9;
-// (function () {
-//   sessionStorage.setItem('permissions', permissions);
-// })();
+// 抓取權限等級：
+// const permissions = userData.permissions;
+
+//測試資料用：
+const permissions = 9;
+(function () {
+  sessionStorage.setItem('permissions', permissions);
+})();
 
 // 先鎖定所有導覽列 <el-sub-menu /> 上的 disabled
 let disabledOne = true;
