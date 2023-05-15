@@ -18,6 +18,13 @@ declare module '@vue/runtime-core' {
     Btn: typeof import('./components/-UI Element/btn/Btn.vue')['default']
     Cartadd: typeof import('./components/-UI Element/modalframe/cartadd.vue')['default']
     ColorPicker: typeof import('./components/-UI Element/ColorPicker/ColorPicker.vue')['default']
+<<<<<<< HEAD
+=======
+    EggTop: typeof import('./components/-Global/EggTop.vue')['default']
+<<<<<<< HEAD
+    ElIcon: typeof import('element-plus/es')['ElIcon']
+=======
+>>>>>>> b842a6b3ed97e7f93867898f8e26e9229fd211d3
     ElAside: typeof import('element-plus/es')['ElAside']
     ElAutocomplete: typeof import('element-plus/es')['ElAutocomplete']
     ElButton: typeof import('element-plus/es')['ElButton']
@@ -47,7 +54,9 @@ declare module '@vue/runtime-core' {
     ElTabs: typeof import('element-plus/es')['ElTabs']
     ElTag: typeof import('element-plus/es')['ElTag']
     ElText: typeof import('element-plus/es')['ElText']
+>>>>>>> 872e336da8b5aed8f8f0ac273a9dcb9b98a4767c
     ExhibitionNotice: typeof import('./components/Notice/ExhibitionNotice.vue')['default']
+    FbCustomerChat: typeof import('./components/-UI Element/QA/FbCustomerChat.vue')['default']
     Footer: typeof import('./components/-Global/Footer.vue')['default']
     FormInfoReg: typeof import('./components/Register/FormInfoReg.vue')['default']
     FormInfoULGN: typeof import('./components/Login/FormInfoULGN.vue')['default']

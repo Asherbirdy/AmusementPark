@@ -2,44 +2,42 @@
 const tableData = [
   {
     id: 1,
-    date: '2016-05-02',
-    name: 'wangxiaohu',
-    address: 'No. 189, Grove St, Los Angeles',
+    orderDate: '2016-05-02',
+    numbers: 3,
+    ticketType: '成人票',
   },
   {
     id: 2,
-    date: '2016-05-04',
-    name: 'wangxiaohu',
-    address: 'No. 189, Grove St, Los Angeles',
+    orderDate: '2016-05-04',
+    numbers: 4,
+    ticketType: '兒童票',
   },
   {
     id: 3,
-    date: '2016-05-01',
-    name: 'wangxiaohu',
-    address: 'No. 189, Grove St, Los Angeles',
+    orderDate: '2016-05-01',
+    numbers: 1,
+    ticketType: '優惠票',
   },
   {
     id: 4,
-    date: '2016-05-03',
-    name: 'wangxiaohu',
-    address: 'No. 189, Grove St, Los Angeles',
+    orderDate: '2016-05-03',
+    numbers: 5,
+    ticketType: '成人票',
   },
 ];
 </script>
 <template>
-  <main>
-    <el-table
-      :data="tableData"
-      style="width: 100%; margin-bottom: 20px"
-      row-key="id"
-      border
-      default-expand-all
-    >
-      <el-table-column prop="date" label="訂票時間" sortable />
-      <el-table-column prop="name" label="數量" />
-      <el-table-column prop="address" label="票種" />
-    </el-table>
-  </main>
+  <el-table
+    :data="tableData"
+    style="width: 100%; margin-bottom: 20px"
+    row-key="id"
+    border
+    default-expand-all
+  >
+    <el-table-column prop="orderDate" label="訂票時間" sortable />
+    <el-table-column prop="numbers" label="數量" />
+    <el-table-column prop="ticketType" label="票種" />
+  </el-table>
 </template>
 <style scoped lang="scss">
 main {

@@ -1,11 +1,8 @@
 <template>
   <el-table :data="filterTableData" style="width: 100%">
-    <el-table-column label="Date" prop="date" />
-    <el-table-column label="Name" prop="name" />
+    <el-table-column label="ID" prop="id" />
+    <el-table-column label="商品分類" prop="name" />
     <el-table-column align="right">
-      <template #header>
-        <el-input v-model="search" size="small" placeholder="Type to search" />
-      </template>
       <template #default="scope">
         <el-button size="small" @click="handleEdit(scope.$index, scope.row)"
           >Edit</el-button
@@ -21,15 +18,7 @@
   </el-table>
 </template>
 
-<script lang="ts" setup>
-import { computed, ref } from 'vue';
-
-interface User {
-  date: string;
-  name: string;
-  address: string;
-}
-
+<script setup>
 const search = ref('');
 const filterTableData = computed(() =>
   tableData.filter(
@@ -38,33 +27,25 @@ const filterTableData = computed(() =>
       data.name.toLowerCase().includes(search.value.toLowerCase())
   )
 );
-const handleEdit = (index: number, row: User) => {
+const handleEdit = (index, row) => {
   console.log(index, row);
 };
-const handleDelete = (index: number, row: User) => {
+const handleDelete = (index, row) => {
   console.log(index, row);
 };
 
-const tableData: User[] = [
+const tableData = [
   {
-    date: '2016-05-03',
-    name: 'Tom',
-    address: 'No. 189, Grove St, Los Angeles',
+    id: 0,
+    name: '帽子',
   },
   {
-    date: '2016-05-02',
-    name: 'John',
-    address: 'No. 189, Grove St, Los Angeles',
+    id: 1,
+    name: '衣服',
   },
   {
-    date: '2016-05-04',
-    name: 'Morgan',
-    address: 'No. 189, Grove St, Los Angeles',
-  },
-  {
-    date: '2016-05-01',
-    name: 'Jessy',
-    address: 'No. 189, Grove St, Los Angeles',
+    id: 2,
+    name: '手機殼',
   },
 ];
 </script>

@@ -60,4 +60,7 @@ $headerHeight: 100px;
     background-color: rgb(245, 245, 245);
   }
 }
+main {
+  padding-top: 30px;
+}
 </style>
