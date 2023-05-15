@@ -11,27 +11,20 @@
   </main>
 </template>
 
-<script>
-import { ref } from 'vue';
-import getImageUrl from '@/utils/imgPath';
+<script setup>
+import getImageUrl from '@/utils/imgPath'
 
-export default {
-  name: 'performance',
-  setup() {
-    const header = ref('展覽資訊');
-    const performance = ref([
-      { name: '夢幻演繹', image: 'performance1.png' },
-      { name: '爵士表演', image: 'performance2.png' },
-      { name: '綠野仙蹤', image: 'performance3.png' },
-      { name: '火焰跳躍者', image: 'performance4.png' },
-      { name: '魔幻舞台', image: 'performance5.png' },
-      { name: '瘋狂藝術家', image: 'performance6.png' },
-    ]);
-    const imgURL = getImageUrl;
+const header = ref('展覽資訊')
+const performance = ref([
+  { name: '夢幻演繹', image: 'performance1.png' },
+  { name: '爵士表演', image: 'performance2.png' },
+  { name: '綠野仙蹤', image: 'performance3.png' },
+  { name: '火焰跳躍者', image: 'performance4.png' },
+  { name: '魔幻舞台', image: 'performance5.png' },
+  { name: '瘋狂藝術家', image: 'performance6.png' },
+])
+const imgURL = getImageUrl
 
-    return { header, performance, imgURL };
-  },
-};
 </script>
 
 <style lang="scss" scoped>

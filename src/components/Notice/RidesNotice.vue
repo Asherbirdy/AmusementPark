@@ -1,7 +1,7 @@
 <template>
   <main>
     <div class="rides">
-      <title-big-pink class="title" />
+      <TitleBigPink class="title" />
       <h1>{{ header }}</h1>
       <ul>
         <li v-for="(ride, index) in rides" :key="index">
@@ -16,27 +16,20 @@
   </main>
 </template>
 
-<script>
-import { ref } from 'vue';
+<script setup>
 import getImageUrl from '@/utils/imgPath';
 
-export default {
-  name: 'Rides',
-  setup() {
-    const header = ref('主題設施');
-    const rides = ref([
-      { name: '旋轉飛椅', image: 'facility1.png' },
-      { name: '雲霄飛車', image: 'facility2.png' },
-      { name: '摩天輪', image: 'facility3.png' },
-      { name: '探空飛梭', image: 'facility4.png' },
-      { name: '旋轉木馬', image: 'facility5.png' },
-      { name: '碰碰車', image: 'facility6.png' }
-    ]);
-    const imgURL = getImageUrl;
 
-    return { header, rides, imgURL };
-  }
-};
+const header = ref('主題設施');
+const imgURL = getImageUrl;
+const rides = [
+  { name: '旋轉飛椅', image: 'facility1.png' },
+  { name: '雲霄飛車', image: 'facility2.png' },
+  { name: '摩天輪', image: 'facility3.png' },
+  { name: '探空飛梭', image: 'facility4.png' },
+  { name: '旋轉木馬', image: 'facility5.png' },
+  { name: '碰碰車', image: 'facility6.png' },
+];
 </script>
 <style lang="scss" scoped>
 main {
