@@ -5,7 +5,7 @@
         <monster-cart-Fill-White>1</monster-cart-Fill-White>
         <h3>購物車</h3>
       </div>
-      <hr width="100" style="border: 3px dashed $textcolor5" />
+      <hr width="100" style="border: 3px dashed #D1825B" />
       <div class="monster">
         <monsterCartFillBlue>2</monsterCartFillBlue>
         <h3>填寫資料</h3>
@@ -91,13 +91,6 @@
       </form>
     </div>
   </main>
-  <QANotice />
-  <div
-    class="fb-customerchat"
-    attribution="setup_tool"
-    page_id="105529122534808"
-    theme_color="#FF5CA1"
-  ></div>
 </template>
 
 <script setup>
