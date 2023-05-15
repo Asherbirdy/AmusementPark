@@ -10,11 +10,11 @@ export default {
   <div class="frame">
     <slot></slot>
   </div>
-
+  
 </template>
 <style lang="scss" scoped>
 .frame {
-  background-image: url(@/assets/svg/SvgFrameBlue.svg);
+  background-image: url(@/assets/svg/SvgFrameGreen.svg);
   width: 250px;
   height: 300px;
   background-repeat: no-repeat;

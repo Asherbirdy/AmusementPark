@@ -9,36 +9,33 @@ export {}
 
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
-<<<<<<< HEAD
-=======
+    Aaa: typeof import('./components/product/aaa.vue')['default']
     AboutUsNotice: typeof import('./components/Notice/AboutUsNotice.vue')['default']
->>>>>>> 30b189fefccdfdf961efcb8d02c109dd619054f8
     ActivityList: typeof import('./components/Activity/ActivityList.vue')['default']
     AdminNav: typeof import('./components/-Global/AdminNav.vue')['default']
     Axiostest: typeof import('./components/-Global/Axiostest.vue')['default']
+    Bag: typeof import('./components/product/Bag.vue')['default']
+    Bar: typeof import('./components/product/Bar.vue')['default']
+    Born: typeof import('./components/-UI Element/modalframe/born.vue')['default']
+    Brand: typeof import('./components/product/Brand.vue')['default']
     Btn: typeof import('./components/-UI Element/btn/Btn.vue')['default']
-<<<<<<< HEAD
-    copy: typeof import('./components/-UI Element/svg/header/icon-login copy.vue')['default']
-=======
+    Button: typeof import('./components/-UI Element/btn/Button.vue')['default']
+    Cap: typeof import('./components/product/Cap.vue')['default']
+    Clothes: typeof import('./components/product/Clothes.vue')['default']
     ColorPicker: typeof import('./components/-UI Element/ColorPicker/ColorPicker.vue')['default']
-
-    ElButton: typeof import('element-plus/es')['ElButton']
-    ElButtonGroup: typeof import('element-plus/es')['ElButtonGroup']
-    ElCalendar: typeof import('element-plus/es')['ElCalendar']
-
+    Create: typeof import('./components/product/create.vue')['default']
+    Customization: typeof import('./components/product/Customization.vue')['default']
     EggTop: typeof import('./components/-Global/EggTop.vue')['default']
-
->>>>>>> 30b189fefccdfdf961efcb8d02c109dd619054f8
     ElIcon: typeof import('element-plus/es')['ElIcon']
-    ElInputNumber: typeof import('element-plus/es')['ElInputNumber']
     ExhibitionNotice: typeof import('./components/Notice/ExhibitionNotice.vue')['default']
     Footer: typeof import('./components/-Global/Footer.vue')['default']
-<<<<<<< HEAD
-    FrameBlue: typeof import('./components/-UI Element/modalframe/FrameBlue.vue')['default']
-=======
     FormInfoReg: typeof import('./components/Register/FormInfoReg.vue')['default']
     FormInfoULGN: typeof import('./components/Login/FormInfoULGN.vue')['default']
->>>>>>> 30b189fefccdfdf961efcb8d02c109dd619054f8
+    FrameBlue: typeof import('./components/-UI Element/modalframe/FrameBlue.vue')['default']
+    FrameGreeen: typeof import('./components/-UI Element/modalframe/FrameGreeen.vue')['default']
+    FrameGreen: typeof import('./components/-UI Element/modalframe/FrameGreen.vue')['default']
+    FramePink: typeof import('./components/-UI Element/modalframe/FramePink.vue')['default']
+    FrameYellow: typeof import('./components/-UI Element/modalframe/FrameYellow.vue')['default']
     H: typeof import('./components/-Global/H.vue')['default']
     Header: typeof import('./components/-Global/Header.vue')['default']
     HeaderAndCloseLGN: typeof import('./components/Login/HeaderAndCloseLGN.vue')['default']
@@ -62,22 +59,24 @@ declare module '@vue/runtime-core' {
     ModalM: typeof import('./components/-UI Element/modalframe/ModalM.vue')['default']
     ModalOpenPS: typeof import('./components/ParkStatus/- Modal/ModalOpenPS.vue')['default']
     ModalS: typeof import('./components/-UI Element/modalframe/ModalS.vue')['default']
+    Monstar: typeof import('./components/-UI Element/svg/monster/Monstar.vue')['default']
+    MonsterBeige: typeof import('./components/-UI Element/svg/monster/MonsterBeige.vue')['default']
     MonsterBlue: typeof import('./components/-UI Element/svg/monsterBlue.vue')['default']
     MonsterCartFillBlue: typeof import('./components/-UI Element/svg/monster/monsterCartFillBlue.vue')['default']
     MonsterCartFillWhite: typeof import('./components/-UI Element/svg/monster/MonsterCartFillWhite.vue')['default']
     MonsterDivo: typeof import('./components/-UI Element/svg/monster/MonsterDivo.vue')['default']
+    MonsterGrey: typeof import('./components/-UI Element/svg/monster/MonsterGrey.vue')['default']
+    MonsterLightBlue: typeof import('./components/-UI Element/svg/monster/MonsterLightBlue.vue')['default']
+    MonsterPink: typeof import('./components/-UI Element/svg/monster/MonsterPink.vue')['default']
     MonstertCoplete: typeof import('./components/-UI Element/svg/monstertCoplete.vue')['default']
     MonsterWhite: typeof import('./components/-UI Element/svg/monsterWhite.vue')['default']
     MyOrder: typeof import('./components/TouristBackstage/Element/svg/myOrder.vue')['default']
-<<<<<<< HEAD
-    NavUser: typeof import('./components/TouristBackstage/NavUser.vue')['default']
-=======
     NavUserTBS: typeof import('./components/TouristBackstage/NavUserTBS.vue')['default']
     OpenNotice: typeof import('./components/Notice/OpenNotice.vue')['default']
->>>>>>> 30b189fefccdfdf961efcb8d02c109dd619054f8
     ParkStatusTablePS: typeof import('./components/ParkStatus/ParkStatusTablePS.vue')['default']
     ParkStatusTimePicker: typeof import('./components/-UI Element/timepicker/ParkStatusTimePicker.vue')['default']
     Password: typeof import('./components/-UI Element/modalframe/password.vue')['default']
+    PhoneCase: typeof import('./components/product/PhoneCase.vue')['default']
     ProductListPDS: typeof import('./components/Productstatus/ProductListPDS.vue')['default']
     ProductOrderTBS: typeof import('./components/TouristBackstage/ProductOrderTBS.vue')['default']
     ProductSelectPDM: typeof import('./components/ProductManage/ProductSelectPDM.vue')['default']
@@ -88,19 +87,13 @@ declare module '@vue/runtime-core' {
     QRcode: typeof import('./components/TouristBackstage/Element/svg/QRcode.vue')['default']
     QrcodeListTBS: typeof import('./components/TouristBackstage/QrcodeListTBS.vue')['default']
     RadioStatusPS: typeof import('./components/ParkStatus/Element/RadioStatusPS.vue')['default']
-<<<<<<< HEAD
     RebornLightbox: typeof import('./components/-UI Element/modalframe/RebornLightbox.vue')['default']
-    RouterLink: typeof import('vue-router')['RouterLink']
-    RouterView: typeof import('vue-router')['RouterView']
-    SearchBarEmailPDS: typeof import('./components/Productstatus/SearchBarEmailPDS.vue')['default']
-=======
     RidesNotice: typeof import('./components/Notice/RidesNotice.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
     SearchBarEmailPDS: typeof import('./components/Productstatus/SearchBarEmailPDS.vue')['default']
     SocialIconLGN: typeof import('./components/Login/SocialIconLGN.vue')['default']
     SocialIconReg: typeof import('./components/Register/SocialIconReg.vue')['default']
->>>>>>> 30b189fefccdfdf961efcb8d02c109dd619054f8
     StaffAccountSFA: typeof import('./components/Staffaccount/StaffAccountSFA.vue')['default']
     SuccessfulReservation: typeof import('./components/-UI Element/modalframe/SuccessfulReservation.vue')['default']
     SuccessfulTicketPurchase: typeof import('./components/-UI Element/modalframe/SuccessfulTicketPurchase.vue')['default']
@@ -119,10 +112,7 @@ declare module '@vue/runtime-core' {
     SvgFrameYellow: typeof import('./components/-UI Element/svg/frame/SvgFrameYellow.vue')['default']
     SvgIcon: typeof import('./components/SvgIcon.vue')['default']
     SVGInstagram: typeof import('./components/-UI Element/svg/SVGInstagram.vue')['default']
-<<<<<<< HEAD
-=======
     SVGLine: typeof import('./components/-UI Element/svg/SVGLine.vue')['default']
->>>>>>> 30b189fefccdfdf961efcb8d02c109dd619054f8
     SvgMonster: typeof import('./components/-UI Element/svg/pic/SvgMonster.vue')['default']
     SvgNews: typeof import('./components/-UI Element/svg/pic/SvgNews.vue')['default']
     SvgNote: typeof import('./components/-UI Element/svg/pic/SvgNote.vue')['default']
@@ -133,12 +123,6 @@ declare module '@vue/runtime-core' {
     SvgSun: typeof import('./components/-UI Element/svg/pic/SvgSun.vue')['default']
     SvgTop: typeof import('./components/-UI Element/svg/pic/SvgTop.vue')['default']
     SvgTourTitle: typeof import('./components/TouristBackstage/Element/svg/SvgTourTitle.vue')['default']
-<<<<<<< HEAD
-    SVGYoutube: typeof import('./components/-UI Element/svg/SVGYoutube.vue')['default']
-    TagsTable: typeof import('./components/ProductManage/TagsTable.vue')['default']
-    TeaserIDX: typeof import('./components/Index/TeaserIDX.vue')['default']
-    TicketfromTBS: typeof import('./components/TouristBackstage/TicketfromTBS.vue')['default']
-=======
     SvgTrumpet: typeof import('./components/-UI Element/svg/pic/SvgTrumpet.vue')['default']
     SvgWrench: typeof import('./components/-UI Element/svg/pic/SvgWrench.vue')['default']
     SVGYoutube: typeof import('./components/-UI Element/svg/SVGYoutube.vue')['default']
@@ -146,7 +130,6 @@ declare module '@vue/runtime-core' {
     TeaserIDX: typeof import('./components/Index/TeaserIDX.vue')['default']
     TicketBookingTOR: typeof import('./components/TicketOrder/TicketBookingTOR.vue')['default']
     TicketExhibitionTOR: typeof import('./components/TicketOrder/TicketExhibitionTOR.vue')['default']
->>>>>>> 30b189fefccdfdf961efcb8d02c109dd619054f8
     TicketListPDS: typeof import('./components/Productstatus/TicketListPDS.vue')['default']
     TicketPriceTOR: typeof import('./components/TicketOrder/TicketPriceTOR.vue')['default']
     TickOrder: typeof import('./components/TouristBackstage/Element/svg/tickOrder.vue')['default']
@@ -156,11 +139,17 @@ declare module '@vue/runtime-core' {
     TitleBigPink: typeof import('./components/-UI Element/svg/title/TitleBigPink.vue')['default']
     TitleBigYellow: typeof import('./components/-UI Element/svg/title/TitleBigYellow.vue')['default']
     TitleMain: typeof import('./components/-UI Element/title/TitleMain.vue')['default']
-    TitleSmall1: typeof import('./components/-UI Element/svg/title/titleSmall1.vue')['default']
-    TitleSmall2: typeof import('./components/-UI Element/svg/title/titleSmall2.vue')['default']
+    TitleS: typeof import('./components/-UI Element/modalframe/TitleS.vue')['default']
+    Titles1: typeof import('./components/-UI Element/modalframe/Titles1.vue')['default']
+    TitleS1: typeof import('./components/-UI Element/modalframe/TitleS1.vue')['default']
+    TitleS2: typeof import('./components/-UI Element/modalframe/TitleS2.vue')['default']
+    TitleSmall: typeof import('./components/-UI Element/svg/titleSmall.vue')['default']
+    TitleSmall1: typeof import('./components/-UI Element/svg/titleSmall1.vue')['default']
+    TitleSmall2: typeof import('./components/-UI Element/svg/titleSmall2.vue')['default']
     TopNotice: typeof import('./components/Notice/TopNotice.vue')['default']
     TourTitle: typeof import('./components/TouristBackstage/Element/TourTitle.vue')['default']
     TransformNotice: typeof import('./components/Notice/TransformNotice.vue')['default']
+    Type: typeof import('./components/product/Type.vue')['default']
     VideoBannerIDX: typeof import('./components/Index/VideoBannerIDX.vue')['default']
   }
 }
