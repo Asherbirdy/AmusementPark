@@ -28,6 +28,11 @@ declare module '@vue/runtime-core' {
     Create: typeof import('./components/product/create.vue')['default']
     Customization: typeof import('./components/product/Customization.vue')['default']
     EggTop: typeof import('./components/-Global/EggTop.vue')['default']
+<<<<<<< HEAD
+    ElCarousel: typeof import('element-plus/es')['ElCarousel']
+    ElCarouselItem: typeof import('element-plus/es')['ElCarouselItem']
+    ElIcon: typeof import('element-plus/es')['ElIcon']
+=======
     EggTop: typeof import('./components/-Global/EggTop.vue')['default']
 <<<<<<< HEAD
     ElIcon: typeof import('element-plus/es')['ElIcon']
@@ -82,6 +87,7 @@ declare module '@vue/runtime-core' {
     ElTag: typeof import('element-plus/es')['ElTag']
     ElText: typeof import('element-plus/es')['ElText']
 >>>>>>> 872e336da8b5aed8f8f0ac273a9dcb9b98a4767c
+>>>>>>> 2598bb421e8ddf68cf211cdbc0230505b409c87e
     ExhibitionNotice: typeof import('./components/Notice/ExhibitionNotice.vue')['default']
     FbCustomerChat: typeof import('./components/-UI Element/QA/FbCustomerChat.vue')['default']
     Footer: typeof import('./components/-Global/Footer.vue')['default']
