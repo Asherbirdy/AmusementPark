@@ -94,6 +94,15 @@
 </template>
 
 <script setup>
+window.fbAsyncInit = function () {
+  FB.init({
+    appId: '105529122534808',
+    autoLogAppEvents: true,
+    xfbml: true,
+    version: 'v16.0',
+  });
+};
+
 const name = '';
 const phoneNumber = '';
 const email = '';
@@ -121,8 +130,6 @@ const orderInfo = ref([
     placeholder: '請輸入您的電子郵件*',
   },
 ]);
-
-const commentLabel = ref([]);
 
 // let payMethod = '';
 let cardNumber = '';
@@ -168,6 +175,23 @@ const payInput = ref([
     placeholder: '安全碼',
   },
 ]);
+onMounted(() => {
+  window.fbAsyncInit = function () {
+    FB.init({
+      xfbml: true,
+      version: 'v11.0',
+    });
+  };
+  (function (d, s, id) {
+    var js,
+      fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s);
+    js.id = id;
+    js.src = 'https://connect.facebook.net/en_US/sdk/xfbml.customerchat.js';
+    fjs.parentNode.insertBefore(js, fjs);
+  })(document, 'script', 'facebook-jssdk');
+});
 </script>
 
 <style lang="scss" scoped>
@@ -220,7 +244,6 @@ article {
     .hrNone {
       color: white;
     }
-    
   }
 }
 //付款方式

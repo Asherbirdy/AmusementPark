@@ -1,4 +1,4 @@
-<template lang="">
+<template>
   <div>
     <table>
       <tr>
@@ -27,42 +27,36 @@
         <td>限持有身心障礙證明者與1位陪同者、孕婦、滿65歲以上長者適用</td>
       </tr>
     </table>
-    <div class="title">
-      <tour-title svg-width = "145" >購票</tour-title>
-    </div>
   </div>
-
-
 </template>
-<script>
-export default {};
-</script>
+<script setup></script>
 <style lang="scss" scoped>
-table, th, td {
+table,
+th,
+td {
   border: 1px solid black;
 }
 
-th, td {
+th,
+td {
   padding: 8px;
 }
 
 tr {
-    th {
-        background-color: #D1825B;
-        text-align: center;
-        color: white;
-        font-size: 24px;
-    }
+  th {
+    background-color: #d1825b;
+    text-align: center;
+    color: white;
+    font-size: 24px;
+  }
 
-    td {
-        background-color: #F9F3E4;
-        text-align-last: left;
-        font-size: 24px;
-    }
+  td {
+    background-color: #f9f3e4;
+    text-align-last: left;
+    font-size: 24px;
+  }
 }
 
 .title {
-
 }
-
 </style>

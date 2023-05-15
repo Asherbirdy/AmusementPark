@@ -7,71 +7,65 @@
       border
       default-expand-all
     >
-      <el-table-column prop="date" label="訂單編號" sortable />
-      <el-table-column prop="name" label="數量" sortable />
-      <el-table-column prop="address" label="價格" sortable />
-      <el-table-column prop="address" label="寄送狀態" sortable />
+      <el-table-column prop="orderID" label="訂單編號" sortable />
+      <el-table-column prop="name" label="名稱" sortable />
+      <el-table-column prop="numbers" label="數量" sortable />
+      <el-table-column prop="totalPrice" label="價格" sortable />
+      <el-table-column prop="deliveryStatus" label="寄送狀態" sortable />
     </el-table>
   </div>
 </template>
 <script setup>
-const load = (row, treeNode, resolve) => {
-  setTimeout(() => {
-    resolve([
-      {
-        id: 31,
-        date: '2016-05-01',
-        name: 'wangxiaohu',
-        address: 'No. 189, Grove St, Los Angeles',
-      },
-      {
-        id: 32,
-        date: '2016-05-01',
-        name: 'wangxiaohu',
-        address: 'No. 189, Grove St, Los Angeles',
-      },
-    ]);
-  }, 1000);
-};
-
 const tableData = [
   {
     id: 1,
-    date: '2016-05-02',
-    name: 'wangxiaohu',
-    address: 'No. 189, Grove St, Los Angeles',
+    orderID: '234234234',
+    name: '帽子 S 藍色',
+    totalPrice: 200,
+    numbers: 3,
+    deliveryStatus: '已完成',
   },
   {
     id: 2,
-    date: '2016-05-04',
-    name: 'wangxiaohu',
-    address: 'No. 189, Grove St, Los Angeles',
+    orderID: '234234234',
+    name: '帽子 S 藍色',
+    totalPrice: 200,
+    numbers: 3,
+    deliveryStatus: '已完成',
   },
   {
     id: 3,
-    date: '2016-05-01',
-    name: 'wangxiaohu',
-    address: 'No. 189, Grove St, Los Angeles',
+    orderID: '234234234',
+    numbers: 3,
+    totalPrice: 200,
+    name: '',
+    deliveryStatus: '已完成',
     children: [
       {
         id: 31,
-        date: '2016-05-01',
-        name: 'wangxiaohu',
-        address: 'No. 189, Grove St, Los Angeles',
+        orderID: '234234234',
+        numbers: 1,
+        totalPrice: 200,
+        name: '帽子 S 藍色',
+        deliveryStatus: '已完成',
       },
       {
         id: 32,
-        date: '2016-05-01',
-        name: 'wangxiaohu',
-        address: 'No. 189, Grove St, Los Angeles',
+        orderID: '20160501',
+        numbers: 2,
+        totalPrice: 200,
+        name: '帽子 S 藍色',
+        deliveryStatus: '已完成',
       },
     ],
   },
   {
     id: 4,
-    date: '2016-05-03',
-    name: 'wangxiaohu',
-    address: 'No. 189, Grove St, Los Angeles',
+    orderID: '20160503',
+    numbers: 3,
+    totalPrice: 200,
+    name: '帽子 S 藍色',
+    deliveryStatus: '寄送中',
   },
 ];
 </script>
