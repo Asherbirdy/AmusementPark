@@ -23,7 +23,7 @@ declare module '@vue/runtime-core' {
     Cap: typeof import('./components/product/Cap.vue')['default']
     Clothes: typeof import('./components/product/Clothes.vue')['default']
     ColorPicker: typeof import('./components/-UI Element/ColorPicker/ColorPicker.vue')['default']
-    Create: typeof import('./components/product/create.vue')['default']
+    Create: typeof import('./components/product/Create.vue')['default']
     Customization: typeof import('./components/product/Customization.vue')['default']
     EggTop: typeof import('./components/-Global/EggTop.vue')['default']
     ElIcon: typeof import('element-plus/es')['ElIcon']
