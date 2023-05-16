@@ -31,7 +31,8 @@ const imgURL = getImageUrl
 main {
   width: $workspace;
   position: relative;
-  margin: 0 150px;
+  margin: 0 auto;
+  max-width: 1200px;
   .title {
     margin: 0 350px;
   }

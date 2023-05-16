@@ -26,11 +26,8 @@ declare module '@vue/runtime-core' {
     Create: typeof import('./components/product/create.vue')['default']
     Customization: typeof import('./components/product/Customization.vue')['default']
     EggTop: typeof import('./components/-Global/EggTop.vue')['default']
-<<<<<<< HEAD
     ElCarousel: typeof import('element-plus/es')['ElCarousel']
     ElCarouselItem: typeof import('element-plus/es')['ElCarouselItem']
-=======
->>>>>>> 6cbd45dae9ac972354d52e0492c5ab04b9cf2b73
     ElIcon: typeof import('element-plus/es')['ElIcon']
     ExhibitionNotice: typeof import('./components/Notice/ExhibitionNotice.vue')['default']
     FbCustomerChat: typeof import('./components/-UI Element/QA/FbCustomerChat.vue')['default']
@@ -151,10 +148,7 @@ declare module '@vue/runtime-core' {
     TitleMain: typeof import('./components/-UI Element/title/TitleMain.vue')['default']
     TitleS1: typeof import('./components/-UI Element/modalframe/TitleS1.vue')['default']
     TitleS2: typeof import('./components/-UI Element/modalframe/TitleS2.vue')['default']
-<<<<<<< HEAD
-=======
     TitleSmall: typeof import('./components/-UI Element/title/TitleSmall.vue')['default']
->>>>>>> 6cbd45dae9ac972354d52e0492c5ab04b9cf2b73
     TitleSmall1: typeof import('./components/-UI Element/svg/titleSmall1.vue')['default']
     TitleSmall2: typeof import('./components/-UI Element/svg/titleSmall2.vue')['default']
     TopNotice: typeof import('./components/Notice/TopNotice.vue')['default']

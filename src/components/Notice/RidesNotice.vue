@@ -61,7 +61,7 @@ main {
     min-width: 188px;
   }
   .rides h3 {
-    font-size: 10px;
+    font-size: 16px;
     color: #204c74;
     text-align: left;
     min-width: 100px;
