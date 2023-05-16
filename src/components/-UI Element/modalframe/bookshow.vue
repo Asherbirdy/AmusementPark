@@ -98,7 +98,7 @@ showList.value = testArr[propsType.value];
 article {
   display: flex;
   justify-content: space-between;
-  padding:0 30px;
+  padding:0 50px;
 }
 
 
@@ -126,6 +126,7 @@ h2 {
   background-color: #fff7a6;
   line-height: 65px;
   text-align: center;
+  margin-top: 30px;
 
 
   border-radius: 100px;
@@ -141,6 +142,7 @@ h3 {
 
   margin: 15px;
   margin-right: 0;
+
 }
 
 
@@ -172,13 +174,13 @@ h3 {
   }
 }
 h1 {
-  margin-top: 50px;
+  margin-top: 45px;
   color:$textcolor7;
 }
 .orderBtn {
   float: right;
   margin-right: 70px;
-  margin-bottom: -30px;
+  margin-bottom: 50px;
   width: 162px;
   height: 75px;
   background-color: #d1825b;
