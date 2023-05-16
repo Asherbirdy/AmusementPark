@@ -2,6 +2,8 @@
 <template>
 <main> 
     <QAmonster class="QA" />
+    <!-- <vue-fb-customer-chat/> -->
+
 </main>
 </template>
 <style lang="scss" scoped>
@@ -13,6 +15,7 @@
             position: fixed;
             top: 415px;
             right: 30px;
+            z-index: 100;
         }
     }
 </style>

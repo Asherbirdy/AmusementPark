@@ -1,9 +1,10 @@
 <script></script>
 <template>
   <el-tabs type="border-card">
-    <!-- 商品選單： -->
     <el-tab-pane label="商品列表">
+      <!-- 選單 -->
       <ProductSelectPDM />
+      <!-- Table -->
       <ProductTablePDM />
     </el-tab-pane>
     <!-- 商品分類： -->

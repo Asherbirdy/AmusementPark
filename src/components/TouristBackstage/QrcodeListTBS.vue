@@ -7,14 +7,16 @@ const imgURL = name => getImageUrl(name);
 
 // 將資料傳到畫面
 onMounted(() => {
-  axios.get('../public/json/facility_qrcode.json').then(res => {
+  axios.get('/api/PDO/touristBackStage/qrcodeSelect.php').then(res => {
     // API 抓取到的資料：
-    const data = res.data.facilityQrcode;
-    // 將資料轉成 element 可以讀的參數，參考 public/json/facility_qrcode.json
+    const data = res.data;
+    // console.log (data);
+    // 將資料轉成 element 可以讀的參數
+
     const fitData = data.map(facility => ({
-        id:facility.id,  
-        name: facility.name,
-        qrcode: facility.qrcode
+        id:facility.RIDES_ID,  
+        name: facility.RIDES_NAME,
+        qrcode: facility.RIDES_QRCODE_URL
     }));
     //
     tableData.value = fitData;
@@ -66,9 +68,11 @@ onMounted(() => {
         margin-left: 10%;
     }
     .qrcode-wrap {
+        width: 1200px;
+        margin: 0 auto;
         display: flex;
         flex-direction: row;
-        justify-content: center;
+        justify-content: start;
         align-items: center;
         flex-wrap: wrap;
 
@@ -77,7 +81,7 @@ onMounted(() => {
             flex-direction: column;
             justify-content: start;
             align-items: center;    
-            margin: 5%;
+            margin: 3%;
 
             h1 {
                 margin-top: 10%;
