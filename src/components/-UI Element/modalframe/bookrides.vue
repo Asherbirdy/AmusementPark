@@ -1,7 +1,7 @@
 <template>
   <modal-l>
     <article>
-      <div v-for="(item, index) in ridesList" :key="index" class="showImg">
+      <div v-for="(item, index) in ridesList" :key="index" class="ridesImg">
         <img :src="imgURL(item.imgUrl)" alt="" />
         <h1>{{ item.h1 }}</h1>
       </div>
@@ -95,7 +95,7 @@ article {
 }
 
 //圖片區塊
-.showImg {
+.ridesImg {
   display: flex;
   flex-direction: column;
   align-items: center;

@@ -1,21 +1,26 @@
 <script setup></script>
 <template>
   <div class="wrapper">
-    <video autoplay loop controls>
-      <source src="../../assets/mov/banner.mp4" type="video/mp4" />
+    <video autoplay loop muted>
+      <!-- <source src="../../assets/mov/banner.mp4" type="video/mp4"/> -->
+      <source src="../../assets/mov/banner2.mp4" type="video/mp4"/>
       Your browser does not support the video tag.
     </video>
   </div>
 </template>
 <style lang="scss" scoped>
 .wrapper {
-  width: $workspace;
+  // width: $workspace;
+  // height: 650px;
   margin: 0 auto;
-  background-color: antiquewhite;
-  margin-top: 80px;
+  // background-color: antiquewhite;
+  // background-color: $maincolor1;
+  // margin-top: 80px;
+  // position: relative;
   video {
+    // position: absolute;
     width: 100%;
-    height: auto;
+    height: 700px;
   }
 }
 </style>
