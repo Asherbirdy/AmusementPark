@@ -31,7 +31,6 @@
 
 .layout {
   width: 1140px;
-  height: 850px;
   margin-top: 100px;
   padding: 0;
   position: absolute;
