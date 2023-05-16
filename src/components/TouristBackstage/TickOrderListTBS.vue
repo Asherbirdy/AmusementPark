@@ -5,20 +5,21 @@ let tableData = ref([]);
 
 // 將資料傳到畫面
 onMounted(() => {
-  axios.get('../public/json/tickOrder.json').then(res => {
+  axios.get('/api/PDO/touristBackStage/tickOrderSelect.php').then(res => {
     // API 抓取到的資料：
-    const data = res.data.tickOrder;
+    const data = res.data;
+    console.log(data);
     // 將資料轉成 element 可以讀的參數，參考 public/json/facility_qrcode.json
     const fitData = data.map(tickOrder => ({
-      id: tickOrder.id,
-      type: tickOrder.type,
-      date: tickOrder.date,
-      price: tickOrder.price,
-      num: tickOrder.num,
+      id: tickOrder.TICK_ORDER_ID,
+      type: tickOrder.TICK_NAME,
+      date: tickOrder.TICK_DATE,
+      price: tickOrder.TICK_PRICE,
+      num: tickOrder.TICK_NUM,
     }));
     //
     tableData.value = fitData;
-    console.log(tableData);
+    // console.log(tableData);
   });
 });
 </script>
@@ -41,7 +42,9 @@ onMounted(() => {
       </thead>
       <tbody>
         <tr v-for="tickOrder in tableData" :key="tickOrder.id">
-          <td>{{ tickOrder.id }}</td>
+          
+          <!-- 補0補至9位數 -->
+          <td>{{ tickOrder.id.toString().padStart(9, '0') }}</td>
           <td>{{ tickOrder.date }}</td>
           <td>{{ tickOrder.type }}</td>
           <td>{{ tickOrder.num }}</td>

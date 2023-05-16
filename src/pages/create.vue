@@ -1,16 +1,17 @@
 <script setup></script>
 
 <template>
-
+<div class="bg">
+  <svg-egg id="svg-egg"/>
+  <svg-palette width="500" height="500" id="svg-palette"/>
+  <svg-brush id="svg-brush"/>
+</div>
   <main>
     <div class="tips">
       <monster-divo id="monster-divo"/>
       <div id="slogan">
         <h1>現在讓我們來創造<br>屬於自己的小怪獸吧!</h1>  
       </div>
-      <svg-egg id="svg-egg"/>
-      <svg-palette id="svg-palette"/>
-      <svg-brush id="svg-brush"/>
     </div>
 
 
@@ -23,7 +24,6 @@
           <btn><h2>儲存</h2></btn>  
         </div>
       </section>
-
       
       <ul id="monster-select">
         <input type="radio" name="panel-radio" id="radio1" class="panel-control" checked>
@@ -112,6 +112,7 @@
   margin-right: 200px;
   position: relative;
   pointer-events: none;
+  
     #monster-divo{
       width: 30%;
       position: absolute;
@@ -129,35 +130,44 @@
       border-radius: 2rem;
       border: 5px dashed #5590D6;
     }
+}
+.bg{
+  width: 90vw;
+  // height: 90vw;
+  // overflow: hidden;
+  // margin-right: 200px;
+  position: relative;
+  pointer-events: none;
+  z-index: -3;
+  
     #svg-palette{
-      width: 50%;
+      width: 20%;
       position: absolute;
       z-index: -3;
-      top: -250px;
-      right: -500px;
+      top: 100px;
+      right: 50px;
       rotate: 25deg;
       opacity: .4;
     }
     #svg-brush{
-      width: 50%;
+      width: 30%;
       position: absolute;
       z-index: -3;
-      top: 450px;
-      right: -520px;
+      top: 500px;
+      right: -160px;
       rotate: -5deg;
       opacity: .2;
     }
     #svg-egg{
-      width: 50%;
+      width: 60%;
       position: absolute;
       z-index: -3;
-      top: 530px;
-      right: 900px;
+      top: 700px;
+      left: -300px;
       rotate: -15deg;
       opacity: .2;
     }
 }
-
 
 nav{
   display: flex;

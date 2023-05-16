@@ -24,7 +24,7 @@ const inputInfos = ref([
   },
   {
     title: '出生日期：',
-    type: 'text',
+    type: 'date',
     id: 'birthda',
     placeholder: '請輸入您的出生日期',
     value: birthda,
@@ -99,7 +99,7 @@ const inputInfos = ref([
       margin-right: 19px;
     }
     &--input {
-      font-size: 26px;
+      font-size: 20px;
       width: 300px;
       height: 60px;
       border-width: 1px;
@@ -108,7 +108,7 @@ const inputInfos = ref([
       padding-left: 9px;
     }
     &--input::placeholder {
-      font-size: 18px;
+      font-size: 20px;
     }
     &--Btn {
       background-color: #D1825B;
