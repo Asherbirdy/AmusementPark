@@ -43,7 +43,7 @@ main {
         .logo{
             position: absolute;
             top: 305px;
-            left: 280px;
+            left: 180px;
             opacity: 0.3;
             width: 700px;
         }
@@ -61,13 +61,13 @@ main {
         .oran{
             width: 100px;
             position: absolute;
-            top: 780px;
+            top: 614px;
             left: 22px;
         }
         .pin{
             width: 134px;
             position: absolute;
-            top: 297px;
+            top: 142px;
             right: 42px;
         }
 }
