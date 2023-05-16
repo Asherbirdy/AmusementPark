@@ -46,11 +46,11 @@
       <div>
         <div class="rsite">
           <router-link to="/login">
-            <icon-small-login/>
+            <icon-small-login />
           </router-link>
 
           <router-link to="/basket">
-            <icon-small-basket/>
+            <icon-small-basket />
           </router-link>
         </div>
       </div>
@@ -74,6 +74,7 @@ header nav {
   justify-content: space-between;
   top: 6px;
 }
+
 header .logo {
   margin: auto 0;
 }
@@ -96,7 +97,7 @@ header #menu a {
   transition: all 0.3s linear;
 }
 
-header #menu a:hover{
+header #menu a:hover {
   filter: brightness(100%) drop-shadow(1px 1px 1px #000000);
   opacity: 1;
   transition-duration: 0.3s;
@@ -114,6 +115,7 @@ header .rsite {
   justify-content: space-between;
   padding: 4px;
   margin: 10px 0;
+  align-items: center;
 }
 
 header .rsite a {
