@@ -31,16 +31,16 @@
         <router-link to="#">變更密碼</router-link>
       </section>
       <section class="btn-wrap">
-        <btn class="btn" button-text-color="white" button-color="#D1825B"
-          >確認</btn
+        <button class="btn" button-text-color="white" button-color="#D1825B"
+          >確認</button
         >
 
-        <btn
+        <button
           class="btn"
           width="150"
           button-text-color="white"
           button-color="#D1825B"
-          >取消</btn
+          >取消</button
         >
       </section>
     </form>
@@ -52,11 +52,6 @@ input[type='date']::-webkit-datetime-edit {
   font-size: 24px;
 }
 
-// input[type="date"]::-webkit-datetime-edit-fields-wrapper {
-//   /* 這裡設置表格的寬度和高度 */
-//   width: 50px;
-//   height: 50px;
-// }
 .form {
   // border:1px solid black;
   width: 800px;
@@ -98,6 +93,7 @@ input[type='date']::-webkit-datetime-edit {
     font-size: 20px;
     font-family: $font-family;
     margin-right: 20px;
+    margin-left: 20px;
   }
 
   select {
