@@ -1,4 +1,5 @@
 <template lang="">
+  <!--購物車步驟-->
   <article>
     <div class="CartStep">
       <div class="monster">
@@ -17,6 +18,7 @@
       </div>
     </div>
   </article>
+  <!--訂購人資料-->
   <main>
     <div class="user">
       <h2>訂購人資料</h2>
@@ -56,7 +58,7 @@
         ></textarea>
       </form>
     </div>
-
+  <!--付款方式-->
     <div class="pay">
       <h2>付款方式</h2>
       <form>
@@ -72,14 +74,12 @@
             {{ option.label }}
           </option>
         </select>
-
         <label for="payData">付款資料：</label>
         <div
           v-for="(item, index) in payInput"
           :key="index"
           class="user-input-row"
         >
-          <!-- <label for="item.id">{{ item.label }}</label> -->
           <input
             :type="item.type"
             :id="item.id"
@@ -91,9 +91,11 @@
       </form>
     </div>
   </main>
+
 </template>
 
 <script setup>
+//FB帳號 id
 window.fbAsyncInit = function () {
   FB.init({
     appId: '105529122534808',
@@ -175,6 +177,7 @@ const payInput = ref([
     placeholder: '安全碼',
   },
 ]);
+//fb-message sdk串接
 onMounted(() => {
   window.fbAsyncInit = function () {
     FB.init({
