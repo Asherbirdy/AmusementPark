@@ -13,6 +13,7 @@
             position: fixed;
             top: 376px;
             right: 52px;
+            z-index: 100;
         }
     }
 </style>

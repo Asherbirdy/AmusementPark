@@ -2,8 +2,7 @@
 <template>
     <main>
         <div class="about_us">
-            <title-big-yellow class="title" />
-            <h1>關於我們</h1>
+            <title-big1>關於我們</title-big1>
             <logo class="logo"/>
             <div class="content">
                 <p>

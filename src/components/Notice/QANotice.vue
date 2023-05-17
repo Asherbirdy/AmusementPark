@@ -15,6 +15,7 @@
             position: fixed;
             top: 415px;
             right: 30px;
+            z-index: 100;
         }
     }
 </style>
