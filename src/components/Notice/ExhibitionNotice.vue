@@ -1,7 +1,6 @@
 <template>
   <main>
-    <title-big-yellow class="title" />
-    <h1>{{ header }}</h1>
+    <TitleBig1 class="title">{{ header }}</TitleBig1>
     <el-carousel :interval="4000" type="card" height="500px">
       <el-carousel-item v-for="item in performance" :key="item.name">
         <img :src="imgURL(item.image)" alt="" />
@@ -34,14 +33,7 @@ main {
   margin: 0 auto;
   max-width: 1200px;
   .title {
-    margin: 0 350px;
-  }
-  h1 {
-    position: absolute;
-    top: 268px;
-    left: 513px;
-    color: #ce5b5b;
-    font-size: 50px;
+    margin-bottom: 100px;
   }
   .el-carousel__item h3 {
     opacity: 0.75;
