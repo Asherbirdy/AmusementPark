@@ -234,8 +234,6 @@ input {
   padding: 8px 7px 7px 0px;
   border: 1px solid #b5b5b5;
   border-radius: 10px 0 0 10px;
-  text-align: right;
-  margin-right: 100px;
 }
 #Submit {
   width: 100px;
