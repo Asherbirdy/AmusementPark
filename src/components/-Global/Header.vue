@@ -1,6 +1,6 @@
 <script setup></script>
 <template>
-  <headerbg id="headerbg"/>
+  <headerbg id="headerbg" />
   <header :class="{ openMenu: isOpen }">
     <nav>
       <router-link to="/" class="logo">
@@ -21,7 +21,6 @@
             <h3>怪獸領地</h3>
           </router-link>
         </li>
-
         <li>
           <router-link to="/notice">
             <icon-about />
@@ -46,16 +45,9 @@
       <!-- <a id="moblie_menu" @click="handMenuOpen" href="javascript:;"></a> -->
       <div>
         <div class="rsite">
-<<<<<<< HEAD
           <router-link to="/login">
             <icon-small-login />
           </router-link>
-=======
-          <loginw></loginw>
-          <!-- <router-link to="/login">
-            <icon-small-login/>
-          </router-link> -->
->>>>>>> b4229de97e8c86a6272334b6a5ea5817420014a8
 
           <router-link to="/basket">
             <icon-small-basket />
@@ -67,12 +59,13 @@
 </template>
 
 <style scoped lang="scss">
-#headerbg{
+#headerbg {
   display: none;
   width: 100%;
-    // background-color: #f9f3e4;
+  // background-color: #f9f3e4;
 
 }
+
 header {
   // top: -200px;
   // position: relative;
@@ -81,19 +74,6 @@ header {
   width: 100%;
   height: 150px;
 
-<<<<<<< HEAD
-header nav {
-  display: flex;
-  position: relative;
-  width: $workspace;
-  margin: 0 auto;
-  justify-content: space-between;
-  top: 6px;
-}
-
-header .logo {
-  margin: auto 0;
-=======
   nav {
     display: flex;
     position: relative;
@@ -106,7 +86,6 @@ header .logo {
       margin: auto 0;
     }
   }
->>>>>>> b4229de97e8c86a6272334b6a5ea5817420014a8
 }
 
 header #menu {
