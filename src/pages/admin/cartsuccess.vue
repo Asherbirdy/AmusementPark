@@ -18,24 +18,17 @@
     </div>
   </div>
   <div class="content">
-    <monstertCoplete class="complete"/>
+    <monstertCoplete class="complete" />
     <p>謝謝您!您的訂單已經成立!</p>
     <ul class="order">
-      <li>
-        訂單編號  202304250001
-      </li>
-      <li>
-        訂單確認信已經發送至 xxxxxx1234@gmail.com
-      </li>
-      <li>
-        將立即為您安排出貨   Thank You!
-      </li>
+      <li>訂單編號 202304250001</li>
+      <li>訂單確認信已經發送至 xxxxxx1234@gmail.com</li>
+      <li>將立即為您安排出貨 Thank You!</li>
     </ul>
   </div>
 </template>
 
-<script setup>
-</script>
+<script setup></script>
 
 <style lang="scss" scoped>
 //共同樣式
@@ -62,22 +55,27 @@ main {
     }
   }
 }
-.complete{
+.complete {
+  
   margin: 0px auto 80px;
 }
-.content{
+.content {
   text-align: center;
-  margin: 100px auto 120px;
-  width: 470px;
+  margin: 100px auto 190px;
+  width: 1000px;
 }
-.content p{
+.content p {
+  font-weight: 400;
   font-size: 40px;
 }
-.order{
+.order {
+  margin: 100px 0;
   text-align: left;
 }
-.order li{
-  font-size: 20px;
-  margin-top: 30px;
+.order li {
+  font-weight: 400;
+  font-size: 36px;
+  line-height: 60px;
+  letter-spacing: 0.2em;
 }
 </style>

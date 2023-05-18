@@ -59,7 +59,7 @@
       <li>
         <div class="coupon">
           <h2>使用優惠碼</h2>
-          <input type="text" placeholder="NT-50" class="type" />
+          <input type="text" class="type" />
           <button type="submit" id="Submit">優惠碼折抵</button>
         </div>
       </li>
@@ -92,8 +92,6 @@
 </template>
 
 <script>
-import { ref } from 'vue'
-
 export default {
   name: 'MyComponent',
   data() {
@@ -143,7 +141,7 @@ article {
   background-color: #d1825b;
   text-align: center;
   line-height: 70px;
-  width: 820px;
+  width: 924px;
   height: 70px;
   display: flex;
 }
@@ -156,11 +154,11 @@ article {
 }
 .cart1 li:nth-child(2) {
   min-width: 45px;
-  padding-left: 195px;
+  padding-left: 254px;
 }
 .cart1 li:nth-child(3) {
   min-width: 45px;
-  padding-left: 110px;
+  padding-left: 171px;
 }
 .cart1 li:last-child {
   min-width: 45px;
@@ -173,11 +171,12 @@ label {
   margin-bottom: 10px;
 }
 .detail ul {
+  width: 924px;
   display: flex;
   flex-direction: row;
 }
 .count{
-  margin: 136px 37px;
+  margin: 136px 30px;
   font-size: 20px;
 }
 .pro {
@@ -189,6 +188,7 @@ label {
   height: 205px;
 }
 .pro ul {
+  width: 200px;
   display: flex;
   flex-direction: column;
   margin-top: 95px;
@@ -200,14 +200,14 @@ label {
 .pro li {
   margin-top: 0;
   font-size: 16px;
+  padding: 10px 0;
 }
 .price{
-  margin: 140px 18px;
+  margin: 140px 80px;
   font-size: 20px;
 }
 i{
-  margin: 140px 0px;
-  padding-left: 75px;
+  margin: 140px 10px;
   font-size: 30px;
 }
 .coupon {
@@ -231,10 +231,9 @@ h2 {
 }
 input {
   height: 26px;
-  padding: 9px 7px 6px 0px;
-  border: 1px solid #000000;
+  padding: 8px 7px 7px 0px;
+  border: 1px solid #b5b5b5;
   border-radius: 10px 0 0 10px;
-  text-align: right;
 }
 #Submit {
   width: 100px;
@@ -249,6 +248,7 @@ input {
   background-color: #f9f3e4;
   margin: 15px;
   margin-top: 20px;
+  text-align: right;
 }
 .info h2 {
   color: #f9f3e4;
@@ -269,7 +269,7 @@ input {
   margin: 25px;
 }
 .info #Submit {
-  margin-left: 100px;
+  margin-right: 25px;
   width: 100px;
   height: 45px;
   color: #f9f3e4;
@@ -279,7 +279,7 @@ input {
 
 //訂購人資料
 .user {
-  width: 820px;
+  width: 927px;
   height: 650px;
   background-color: #f9f3e4;
   margin-top: 100px;
