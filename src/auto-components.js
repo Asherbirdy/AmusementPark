@@ -27,6 +27,10 @@ declare module '@vue/runtime-core' {
     Customization: typeof import('./components/product/Customization.vue')['default']
     EggTop: typeof import('./components/-Global/EggTop.vue')['default']
     ElIcon: typeof import('element-plus/es')['ElIcon']
+
+    ElInputNumber: typeof import('element-plus/es')['ElInputNumber']
+
+
     ExhibitionNotice: typeof import('./components/Notice/ExhibitionNotice.vue')['default']
     FbCustomerChat: typeof import('./components/-UI Element/QA/FbCustomerChat.vue')['default']
     Footer: typeof import('./components/-Global/Footer.vue')['default']
@@ -68,6 +72,7 @@ declare module '@vue/runtime-core' {
     MonsterDivo: typeof import('./components/-UI Element/svg/monster/MonsterDivo.vue')['default']
     MonsterGrey: typeof import('./components/-UI Element/svg/monster/MonsterGrey.vue')['default']
     MonsterLightBlue: typeof import('./components/-UI Element/svg/monster/MonsterLightBlue.vue')['default']
+    MonsterMaker: typeof import('./components/create/MonsterMaker.vue')['default']
     MonsterPink: typeof import('./components/-UI Element/svg/monster/MonsterPink.vue')['default']
     MonsterTag: typeof import('./components/-UI Element/svg/monster/MonsterTag.vue')['default']
     MonstertCoplete: typeof import('./components/-UI Element/svg/monstertCoplete.vue')['default']

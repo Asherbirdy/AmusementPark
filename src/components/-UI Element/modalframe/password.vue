@@ -19,7 +19,7 @@
                 <input type="text" placeholder="請再次輸入您的新密碼">
             </li>
         </ul>
-        <Btn id="btn">確認</Btn>
+        <button id="btn">確認</button>
     </ModalM>
 </template>
 <style scoped lang="scss">
@@ -42,7 +42,6 @@
         width: 400px;
         height: 50px;
         padding-left: 20px; 
-        padding-top: 5px;  
     }
     ::-webkit-input-placeholder{
         font-size: 25px;
@@ -50,7 +49,6 @@
     #btn{
         margin: 7px 175px;
         width: 154px;
-        color: #90420A;
         border-radius: 10px;
     }
 </style>

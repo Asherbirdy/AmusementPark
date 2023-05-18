@@ -2,7 +2,6 @@
 
 <template>
 
-  <main>
     <nav>
       <section id="monster-view">
         <div id="view-window"></div>
@@ -12,7 +11,6 @@
           <btn><h2>儲存</h2></btn>  
         </div>
       </section>
-
       
       <ul id="monster-select">
         <input type="radio" name="panel-radio" id="radio1" class="panel-control" checked>
@@ -92,137 +90,114 @@
         </div> -->
       </ul>
     </nav>
-  </main>
 
 </template>
 
 <style scoped lang="scss">
-.tips{
-  margin-right: 200px;
-  position: relative;
-  pointer-events: none;
-    #monster-divo{
-      width: 30%;
-      position: absolute;
-      top: -190px;
-      right: 60px;
-      rotate: -20deg;
-    }
-
-    #slogan{
-      margin: 30px auto;
-      padding: 40px;
-      width: 40%;
-      background-color: $maincolor2;
-      text-align: center;
-      border-radius: 2rem;
-      border: 5px dashed #5590D6;
-    }
-    #svg-palette{
-      width: 50%;
-      position: absolute;
-      z-index: -3;
-      top: -250px;
-      right: -500px;
-      rotate: 25deg;
-      opacity: .4;
-    }
-    #svg-brush{
-      width: 50%;
-      position: absolute;
-      z-index: -3;
-      top: 450px;
-      right: -520px;
-      rotate: -5deg;
-      opacity: .2;
-    }
-    #svg-egg{
-      width: 50%;
-      position: absolute;
-      z-index: -3;
-      top: 530px;
-      right: 900px;
-      rotate: -15deg;
-      opacity: .2;
-    }
-}
-
-
 nav{
   display: flex;
   justify-content: space-between;
   margin: 100px auto;
+  filter: drop-shadow(0 0 4px #b5b5b5);
+    
+  #monster-view{
+    width: 500px;
+    height: 600px;
+    .set{
+      display: flex;
+      justify-content: space-between;
+      margin-top: 40px;
+    }
+    button{
+      width: 150px;
+      height: 60px;
+    }   
+
+    #view-window{
+      width: 500px;
+      height: 500px;
+      background: #ffffff;
+      border-radius: 2rem;
+      border: 5px dashed $textcolor1;
+      box-sizing: border-box;
+    } 
+  }
+
+  #monster-select{
+    width: 640px;
+    height: 600px;
+    display: flex;
+    flex-direction: column;
+    border-radius:  0 0 1rem 1rem;
+    overflow: hidden;
+    .select-label{
+      display: flex;
+      width: 100%;
+      height: 60px;
+      justify-content: space-between;
+
+      label{
+        flex-grow: 4;
+        width: 100px;
+        background-color: $textcolor1;
+        text-align: center;
+        color: #FFF;
+        border: 1px solid #fff;
+        cursor: pointer;
+        border-radius:  .5rem .5rem 0 0;
+
+        h2{
+          line-height: 50px;
+        }
+      }
+    }
+    .select-main{
+      width: 100%;
+      height: 100%;
+      background-color: $maincolor1;
+      h2{
+        margin-top: 30px;
+        text-align: center;
+        line-height: 1;
+      }
+      .type1{
+        margin: 10px auto 0px ;
+        width: 600px;
+        display: flex;
+        justify-content: space-around;
+      }
+      .type2{
+        margin: 70px auto 0px ;
+        width: 600px;
+        display: flex;
+        justify-content: space-around;
+        flex-wrap: wrap;
+        .space{
+          width: 550px;
+          height: 40px;
+        }
+      }
+      ol{
+        width: 150px;
+        height: 150px;
+        background-color: #fff;
+      }
+      span{
+        display: flex;
+        justify-content: center;
+        margin: 0 auto;
+        width: 550px;
+        height: 10px;
+        background-color: #b5b5b5;
+      }
+
+    }
+  }
 }
-
-nav::after{
-  content: url(svg-sun.vue);
-}
-
-#monster-view{
-  width: 500px;
-  height: 600px;
-  // background: #949494;
-}
-
-#view-window{
-  width: 500px;
-  height: 500px;
-  background: #ffffff;
-  border-radius: 2rem;
-  border: 5px dashed $textcolor1;
-  box-sizing: border-box;
-}
-
-.set{
-
-  display: flex;
-  justify-content: space-between;
-  margin-top: 40px;
-
-}
-
-#monster-view button{
-  width: 150px;
-  height: 60px;
-}
-
-#monster-select{
-  width: 640px;
-  height: 600px;
-  display: flex;
-  flex-direction: column;
-  border-radius:  0 0 1rem 1rem;
-  overflow: hidden;
-
-}
-
-#monster-select input{
+input{
   position:absolute;
   opacity:0;
 }
-
-.select-label{
-  display: flex;
-  width: 100%;
-  height: 60px;
-  justify-content: space-between;
-  
-}
-
-#monster-select label{
-  flex-grow: 4;
-  width: 100px;
-  background-color: $textcolor1;
-  text-align: center;
-  color: #FFF;
-  border: 1px solid #fff;
-  cursor: pointer;
-  border-radius:  .5rem .5rem 0 0;
-}
-#monster-select label h2{
-  line-height: 50px;
-}
-
 .content{display:none;}
 
 #radio1:checked ~ .select-label [for="radio1"],
@@ -234,49 +209,5 @@ nav::after{
 #radio2:checked ~ .select-main .content2,
 #radio3:checked ~ .select-main .content3,
 #radio4:checked ~ .select-main .content4{display:block}
-
-.select-main{
-  width: 100%;
-  height: 100%;
-  background-color: $maincolor1;
-}
-.select-main h2{
-  margin-top: 30px;
-  text-align: center;
-  line-height: 1;
-}
- 
-.select-main .type1{
-  margin: 10px auto 0px ;
-  width: 600px;
-  display: flex;
-  justify-content: space-around;
-}
-.select-main .type2{
-  margin: 70px auto 0px ;
-  width: 600px;
-  display: flex;
-  justify-content: space-around;
-  flex-wrap: wrap;
-}
-.select-main ol{
-  width: 150px;
-  height: 150px;
-  background-color: #fff;
-}
-
-.select-main span{
-  display: flex;
-  justify-content: center;
-  margin: 0 auto;
-  width: 550px;
-  height: 10px;
-  background-color: #b5b5b5;
-}
-
-.space{
-  width: 550px;
-  height: 40px;
-}
 
 </style>

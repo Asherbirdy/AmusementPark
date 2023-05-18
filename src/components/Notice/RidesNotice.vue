@@ -1,8 +1,7 @@
 <template>
   <main>
     <div class="rides">
-      <TitleBigPink class="title" />
-      <h1>{{ header }}</h1>
+      <title-big2 class="title">{{ header }}</title-big2>
       <ul>
         <li v-for="(ride, index) in rides" :key="index">
           <img :src="imgURL(ride.image)" alt="" />
@@ -41,14 +40,7 @@ main {
     position: relative;
   }
   .title {
-    margin: 0 350px;
-  }
-  h1 {
-    position: absolute;
-    top: 136px;
-    left: 531px;
-    color: #ce5b5b;
-    font-size: 50px;
+    margin: 100px auto;
   }
   .rides img {
     height: 250px;
@@ -61,7 +53,7 @@ main {
     min-width: 188px;
   }
   .rides h3 {
-    font-size: 10px;
+    font-size: 16px;
     color: #204c74;
     text-align: left;
     min-width: 100px;
