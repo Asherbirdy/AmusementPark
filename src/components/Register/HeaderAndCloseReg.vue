@@ -16,6 +16,7 @@
         line-height: 29.05px;
         margin-top: 70px;
         margin-bottom: 39px;
+        font-weight: bold;
     }
 }
 </style>
