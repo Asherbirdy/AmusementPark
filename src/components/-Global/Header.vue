@@ -1,6 +1,6 @@
 <script setup></script>
 <template>
-  <headerbg id="headerbg"/>
+  <headerbg id="headerbg" />
   <header :class="{ openMenu: isOpen }">
     <nav>
       <router-link to="/" class="logo">
@@ -21,7 +21,6 @@
             <h3>怪獸領地</h3>
           </router-link>
         </li>
-
         <li>
           <router-link to="/notice">
             <icon-about />
@@ -46,13 +45,12 @@
       <!-- <a id="moblie_menu" @click="handMenuOpen" href="javascript:;"></a> -->
       <div>
         <div class="rsite">
-          <loginw></loginw>
-          <!-- <router-link to="/login">
-            <icon-small-login/>
-          </router-link> -->
+          <router-link to="/login">
+            <icon-small-login />
+          </router-link>
 
           <router-link to="/basket">
-            <icon-small-basket/>
+            <icon-small-basket />
           </router-link>
         </div>
       </div>
@@ -61,12 +59,13 @@
 </template>
 
 <style scoped lang="scss">
-#headerbg{
+#headerbg {
   display: none;
   width: 100%;
-    // background-color: #f9f3e4;
+  // background-color: #f9f3e4;
 
 }
+
 header {
   // top: -200px;
   // position: relative;
@@ -107,7 +106,7 @@ header #menu a {
   transition: all 0.3s linear;
 }
 
-header #menu a:hover{
+header #menu a:hover {
   filter: brightness(100%) drop-shadow(1px 1px 1px #000000);
   opacity: 1;
   transition-duration: 0.3s;
@@ -126,6 +125,7 @@ header .rsite {
   justify-content: space-between;
   padding: 4px;
   margin: 10px 0;
+  align-items: center;
 }
 
 header .rsite a {

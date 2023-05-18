@@ -25,7 +25,21 @@ export default {
             { id: 9, name: 'iPhone 11' },
             { id: 10, name: 'iPhone 11 Pro' },
             { id: 11, name: 'iPhone 11 Pro Max ' },
-        ]);
+        ],
+            [{ id: 12, name: 'Galaxy S23 Ultra ' },
+            { id: 13, name: 'Galaxy S23+' },
+            { id: 14, name: 'Galaxy S23' },
+            { id: 15, name: 'Galaxy S22 Ultra' },
+            { id: 16, name: 'Galaxy S22+' },
+            { id: 17, name: 'Galaxy S22' },
+            { id: 18, name: 'Galaxy S21 FE 5G' },
+            { id: 19, name: 'Galaxy S21 Ultra 5G' },
+            { id: 20, name: 'Galaxy S21+ 5G' },
+            { id: 21, name: 'Galaxy S21 5G' },
+            { id: 22, name: 'Galaxy S20 FE 5G' },
+            { id: 23, name: 'Galaxy S20 Ultra 5G' },
+            { id: 24, name: 'iGalaxy S20+ 5G' },
+            ]);
 
         const selected = ref(1);
 

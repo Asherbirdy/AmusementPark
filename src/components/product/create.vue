@@ -154,6 +154,9 @@ nav{
   margin: 100px auto;
 }
 
+nav::after{
+  content: url(svg-sun.vue);
+}
 
 #monster-view{
   width: 500px;
