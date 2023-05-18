@@ -1,16 +1,11 @@
-<script setup></script>
 <template>
   <main>
     <div class="open">
       <TitleBig1 class="title">營業時間</TitleBig1>
       <div class="table">
-        <ul class="row1">
-          <li>週日~週五</li>
-          <li>09:00-18:00</li>
-        </ul>
-        <ul class="row2">
-          <li>週六</li>
-          <li>09:00-20:00</li>
+        <ul v-for="row in timeTable" :key="row.id" :class="`row${row.id}`">
+          <li>{{ row.day }}</li>
+          <li>{{ row.time }}</li>
         </ul>
         <h3>最終入場時間為閉館前1小時，實際營業狀況請依官方公告為主。</h3>
       </div>
@@ -18,6 +13,14 @@
     </div>
   </main>
 </template>
+
+<script setup>
+const timeTable = [
+  { id: 1, day: '週日~週五', time: '09:00-18:00' },
+  { id: 2, day: '週六', time: '09:00-20:00' }
+];
+</script>
+
 <style lang="scss" scoped>
 main {
   width: $workspace;

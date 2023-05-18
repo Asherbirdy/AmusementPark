@@ -1,4 +1,3 @@
-<script setup></script>
 <template>
   <main>
     <div class="trans">
@@ -14,27 +13,40 @@
       ></iframe>
       <logo class="logo" />
       <ul>
-        <li>
-          <SvgCar class="car" />
-          <h3>國道一號</h3>
-          <p>臺北(重慶北路)交流道→百齡橋→承德路→基河路→兒童新樂園</p>
+        <li v-for="item in items" :key="item.id">
+          <h3>{{ item.title }}</h3>
+          <p>{{ item.description }}</p>
         </li>
-        <li>
-          <SvgSubway class="sub" />
-          <h3>捷運士林站</h3>
-          <p>搭乘至臺北車站轉捷運淡水信義線至劍潭站、士林站或芝山站轉乘公車</p>
-        </li>
-        <li>
-          <SvgBus class="bus" />
-          <h3>捷運士林站</h3>
-          <p>
-            出口1→公車轉乘站255區、紅30、620、兒樂１號線(平日停駛)→兒童新樂園
-          </p>
-        </li>
+        <SvgCar class="car"/>
+        <SvgBus class="bus"/>
+        <SvgSubway class="sub"/>
       </ul>
     </div>
   </main>
 </template>
+
+<script setup>
+const items = ref([
+  {
+    id: 'car',
+    title: '國道一號',
+    description: '臺北(重慶北路)交流道→百齡橋→承德路→基河路→兒童新樂園',
+  },
+  {
+    id: 'subway',
+    title: '捷運士林站',
+    description:
+      '搭乘至臺北車站轉捷運淡水信義線至劍潭站、士林站或芝山站轉乘公車',
+  },
+  {
+    id: 'bus',
+    title: '捷運士林站',
+    description:
+      '出口1→公車轉乘站255區、紅30、620、兒樂１號線(平日停駛)→兒童新樂園',
+  },
+]);
+</script>
+
 <style lang="scss" scoped>
 main {
   width: $workspace;
