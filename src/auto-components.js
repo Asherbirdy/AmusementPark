@@ -29,7 +29,13 @@ declare module '@vue/runtime-core' {
     ElCarousel: typeof import('element-plus/es')['ElCarousel']
     ElCarouselItem: typeof import('element-plus/es')['ElCarouselItem']
     ElIcon: typeof import('element-plus/es')['ElIcon']
+
     ElInputNumber: typeof import('element-plus/es')['ElInputNumber']
+
+
+    ElInputNumber: typeof import('element-plus/es')['ElInputNumber']
+
+
     ExhibitionNotice: typeof import('./components/Notice/ExhibitionNotice.vue')['default']
     FbCustomerChat: typeof import('./components/-UI Element/QA/FbCustomerChat.vue')['default']
     Footer: typeof import('./components/-Global/Footer.vue')['default']

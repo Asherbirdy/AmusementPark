@@ -1,7 +1,7 @@
 <template>
     <div class="titleS1">
         <title-s1 class="s1">
-            <h3>衣服</h3>
+            <h3 id="clothes">衣服</h3>
         </title-s1>
 
     </div>
