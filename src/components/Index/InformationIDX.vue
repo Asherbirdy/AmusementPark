@@ -1,15 +1,14 @@
 <script setup></script>
 <template>
   <main>
-    <div class="bg">
+    <!-- 左邊輪播圖 -->
+    <div class="wrapper">
+      <div class="bg">
         <svg-trumpet id="svg-trumpet"/>
         <svg-wrench id="svg-wrench"/>
         <svg-news id="svg-news"/>
         <svg-screwdriver id="svg-screwdriver"/>
-    </div>
-    <!-- 左邊輪播圖 -->
-    <div class="wrapper">
-
+      </div>
 
 
       <div class="leftbox">
@@ -57,6 +56,7 @@
 main {
   // background-color: #fffdf8;
   .bg{
+    // margin-right: 200px;
     position: relative;
     // pointer-events: none;
     #svg-trumpet{
