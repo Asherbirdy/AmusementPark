@@ -86,7 +86,7 @@ main {
       position: absolute;
       z-index: -3;
       top: 300px;
-      right: -1500px;
+      right: -1450px;
       rotate: 25deg;
     }
   }
