@@ -27,6 +27,10 @@ declare module '@vue/runtime-core' {
     Customization: typeof import('./components/product/Customization.vue')['default']
     EggTop: typeof import('./components/-Global/EggTop.vue')['default']
     ElIcon: typeof import('element-plus/es')['ElIcon']
+
+    ElInputNumber: typeof import('element-plus/es')['ElInputNumber']
+
+
     ExhibitionNotice: typeof import('./components/Notice/ExhibitionNotice.vue')['default']
     FbCustomerChat: typeof import('./components/-UI Element/QA/FbCustomerChat.vue')['default']
     Footer: typeof import('./components/-Global/Footer.vue')['default']
