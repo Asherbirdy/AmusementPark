@@ -1,19 +1,27 @@
 <template>
-  <el-dialog v-model="isOpen" title="退票資訊" width="30%" center>
+  <el-dialog title="退票資訊" width="30%" center>
     <span>
-      It should be noted that the content will not be aligned in center by
-      default
+      <p>票型：{{ ticketType }}</p>
+      <p>日期：{{ ticketDate }}</p>
+      <p>票數：{{ ticketAmount }}</p>
+      <p>快速通關設施：{{ fastPassFacility }}</p>
+      <span>我要退票<input type="text" style="width: 30px" /> 張</span>
+      <p style="color: red">我沒寫條件，不要退票超過{{ ticketAmount }}張</p>
     </span>
     <template #footer>
       <span class="dialog-footer">
-        <el-button @click="isOpen = false">Cancel</el-button>
-        <el-button type="primary" @click="isOpen = false"> Confirm </el-button>
+        <el-button type="primary"> 退票 </el-button>
       </span>
     </template>
   </el-dialog>
 </template>
 <script setup>
-const isOpen = ref(true);
+const props = defineProps({
+  ticketType: String,
+  ticketDate: String,
+  ticketAmount: Number,
+  fastPassFacility: Array,
+});
 </script>
 <style scoped>
 .dialog-footer button:first-child {
