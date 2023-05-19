@@ -1,0 +1,32 @@
+{
+  "ticketBooking": [
+    {
+      "id": 1,
+      "ticketType": "adult",
+      "ticketDate": "2023-05-28",
+      "ticketAmount": 4,
+      "fastPassFacility": ["設施一", "設施五", "設施六"]
+    },
+    {
+      "id": 2,
+      "ticketType": "student",
+      "ticketDate": "2023-05-28",
+      "ticketAmount": 1,
+      "fastPassFacility": ["設施一", "設施五"]
+    },
+    {
+      "id": 3,
+      "ticketType": "kid",
+      "ticketDate": "2023-05-28",
+      "ticketAmount": 3,
+      "fastPassFacility": ["設施一"]
+    },
+    {
+      "id": 4,
+      "ticketType": "concession",
+      "ticketDate": "2023-06-16",
+      "ticketAmount": 1,
+      "fastPassFacility": []
+    }
+  ]
+}

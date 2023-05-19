@@ -26,11 +26,15 @@ declare module '@vue/runtime-core' {
     Create: typeof import('./components/product/create.vue')['default']
     Customization: typeof import('./components/product/Customization.vue')['default']
     EggTop: typeof import('./components/-Global/EggTop.vue')['default']
+
+    ElButton: typeof import('element-plus/es')['ElButton']
+    ElButtonGroup: typeof import('element-plus/es')['ElButtonGroup']
+    ElCalendar: typeof import('element-plus/es')['ElCalendar']
+    ElCarousel: typeof import('element-plus/es')['ElCarousel']
+    ElCarouselItem: typeof import('element-plus/es')['ElCarouselItem']
+    ElDialog: typeof import('element-plus/es')['ElDialog']
+
     ElIcon: typeof import('element-plus/es')['ElIcon']
-
-    ElInputNumber: typeof import('element-plus/es')['ElInputNumber']
-
-
     ExhibitionNotice: typeof import('./components/Notice/ExhibitionNotice.vue')['default']
     FbCustomerChat: typeof import('./components/-UI Element/QA/FbCustomerChat.vue')['default']
     Footer: typeof import('./components/-Global/Footer.vue')['default']
@@ -60,6 +64,7 @@ declare module '@vue/runtime-core' {
     MemberEditTBS: typeof import('./components/TouristBackstage/MemberEditTBS.vue')['default']
     MemberInfo: typeof import('./components/TouristBackstage/Element/svg/memberInfo.vue')['default']
     ModalClosePS: typeof import('./components/ParkStatus/- Modal/ModalClosePS.vue')['default']
+    ModalCRUD: typeof import('./components/CRUDTest/ModalCRUD.vue')['default']
     ModalL: typeof import('./components/-UI Element/modalframe/ModalL.vue')['default']
     ModalLogin: typeof import('./components/-UI Element/modalframe/ModalLogin.vue')['default']
     ModalM: typeof import('./components/-UI Element/modalframe/ModalM.vue')['default']
