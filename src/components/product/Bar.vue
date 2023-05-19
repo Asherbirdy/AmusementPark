@@ -1,5 +1,6 @@
 <template>
     <div class="sidebar">
+        
         <ul>
             <li class="bar">所有商品</li>
             <br>

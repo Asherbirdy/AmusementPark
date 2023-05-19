@@ -103,6 +103,13 @@ const product = ref([
         margin-right: 50px;
         color: $textcolor5;
         background-color: $textcolor6;
+        cursor: pointer;
+        height: 40px;
+        width: 100px;
+        font-size: 20;
+        border: none;
+        border-radius: 0.2rem;
+
 
     }
 
@@ -142,9 +149,10 @@ const product = ref([
             height: 25px;
             font-size: 14px;
         }
-.btn{
-margin: 20px  0 0 50px;
-}
+
+        .btn {
+            margin: 20px 0 0 50px;
+        }
     }
 
     .white:active {
