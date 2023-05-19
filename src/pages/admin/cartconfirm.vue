@@ -27,21 +27,23 @@
       </ul>
       <div class="detail">
         <ul>
-          <li class="pro">
-            <img src="@/assets/img/Tshirt4.png" alt="" />
+          <li class="pro" v-for="item in products" :key="item.id">
+            <img src="@/assets/img/Tshirt4.png" alt="">
             <ul>
-              <h1>MONSTAR上衣</h1>
-              <li>尺寸：Ｍ</li>
-              <li>顏色：白色</li>
-              <li>樣式：MONSTAR</li>
+              <h1>{{ item.name }}</h1>
+              <li>尺寸：{{ item.size }}</li>
+              <li>顏色：{{ item.color }}</li>
+              <li>樣式：{{ item.style }}</li>
             </ul>
           </li>
           <li>
             <el-input-number
-              v-model="num" width:10px
+              v-model="num"
+              width:10px
               :min="1"
               :max="10"
-              @change="handleChange" class="count"
+              @change="handleChange"
+              class="count"
             />
           </li>
           <li class="price">
@@ -67,21 +69,9 @@
         <div class="info">
           <h2>訂單資訊</h2>
           <ul>
-            <li>
-              <p>商品金額</p>
-              <p>NT$600</p>
-            </li>
-            <li>
-              <p>折扣金額</p>
-              <p>-NT50</p>
-            </li>
-            <li>
-              <p>運費</p>
-              <p>NT$60</p>
-            </li>
-            <li>
-              <p>訂單總額</p>
-              <p>NT$610</p>
+            <li v-for="item in orderInfo" :key="item.id">
+              <p>{{ item.label }}</p>
+              <p>{{ item.value }}</p>
             </li>
           </ul>
           <button type="submit" id="Submit">結帳</button>
@@ -91,20 +81,40 @@
   </main>
 </template>
 
-<script>
-export default {
-  name: 'MyComponent',
-  data() {
-    return {
-      num: 1,
-    }
+<script setup>
+const products = [
+  {
+    id: "product1",
+    name: "MONSTAR上衣",
+    size: "M",
+    color: "白色",
+    style: "MONSTAR",
   },
-  methods: {
-    handleChange(value) {
-      console.log(value)
-    },
+  // Add more product items here if needed
+];
+
+const orderInfo = [
+  {
+    id: "info1",
+    label: "商品金額",
+    value: "NT$600",
   },
-}
+  {
+    id: "info2",
+    label: "折扣金額",
+    value: "-NT$50",
+  },
+  {
+    id: "info3",
+    label: "運費",
+    value: "NT$60",
+  },
+  {
+    id: "info4",
+    label: "訂單總額",
+    value: "NT$610",
+  },
+];
 </script>
 
 <style lang="scss" scoped>
