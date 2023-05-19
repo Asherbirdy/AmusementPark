@@ -29,6 +29,7 @@
   </el-dialog>
 </template>
 <script setup>
+import axios from 'axios';
 // 監聽目前退票數量：
 const tickets = ref(0);
 
@@ -48,6 +49,14 @@ const refundTickets = () => {
   refundTicketsData.fastPassFacility = props.fastPassFacility;
   refundTicketsData.refundTicketsAmount = tickets.value;
   console.log(refundTicketsData);
+  axios
+    .post('', { refundTicketsDatas })
+    .then(res => {
+      console.log(res);
+    })
+    .catch(err => {
+      console.log(err);
+    });
 };
 
 // 外部資料導入資訊
