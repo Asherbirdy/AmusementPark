@@ -32,7 +32,7 @@
                 </template>
                 <!-- 如果 id 是 color，就顯示 <button> 元件 -->
                 <template v-else-if="item.id === 'color'">
-                    <button class="white">白色</button>
+                    <button class="white" style="border-radius: 5px;">白色</button>
                 </template>
                 <!-- 如果 id 是 style，就顯示選項列表 -->
                 <template v-else-if="item.id === 'style'">

@@ -1,9 +1,5 @@
 <template>
     <div class="sidebar">
-<<<<<<< HEAD
-        
-=======
->>>>>>> 44416b03d2d8fcca883fb21862eca08a9fbdad2d
         <ul>
             <li class="bar">所有商品</li>
             <br>

@@ -1,4 +1,7 @@
 <script setup>
+const goTop = () => {
+    window.scrollTo({ top: 0 });
+}
 </script>
 <template>
     <footer>
@@ -23,20 +26,20 @@
                 <div class="list">
                     <ul>
                         <router-link class="routerlink" to="/create">
-                            <li>喬裝打扮</li>
+                            <li @click="goTop">喬裝打扮</li>
                         </router-link>
                         <li>寵物蛋養成系統</li>
                     </ul>
                     <ul>
                         <router-link class="routerlink" to="map">
-                            <li>怪獸領地</li>
+                            <li @click="goTop">怪獸領地</li>
                         </router-link>
                         <li>園區地圖</li>
                         <li>園區動態</li>
                     </ul>
                     <ul>
                         <router-link class="routerlink" to="/notice">
-                            <li>領地須知</li>
+                            <li @click="goTop">領地須知</li>
                         </router-link>
 
                         <li>關於我們</li>
@@ -46,7 +49,7 @@
                     </ul>
                     <ul>
                         <router-link class="routerlink" to="/shop">
-                            <li>走私商人</li>
+                            <li @click="goTop">走私商人</li>
                         </router-link>
                         <li>所有商品</li>
                         <li>手機殼</li>
@@ -56,8 +59,8 @@
                         <li>客製化專區</li>
                     </ul>
                     <ul>
-                        <router-link class="routerlink" to="/membership">
-                            <li>冒險者專區</li>
+                        <router-link class="routerlink" to="/admin/touristmember">
+                            <li @click="goTop">冒險者專區</li>
                         </router-link>
                         <li>會員資料</li>
                         <li>線上預約&購票</li>
