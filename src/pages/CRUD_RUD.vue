@@ -24,20 +24,17 @@ const openModal = index => {
   ticketAmount.value = rowData.ticketAmount;
   fastPassFacility.value = rowData.fastPassFacility;
 };
+const closeModal = () => {
+  showmodal.value = false;
+};
 </script>
 
 <template>
   <!-- 顯示畫面 -->
-  <div v-for="(item, i) in bookingData.value">
+  <div v-for="(item, i) in bookingData.value" :key="item.id">
     <div style="display: flex">
-      <p style="margin-bottom: 10px" :id="'btn' + i">{{ item }}</p>
-      <button
-        style="margin-bottom: 10px"
-        :id="'ticket' + i"
-        @click="openModal(i)"
-      >
-        退票
-      </button>
+      <p style="margin-bottom: 10px">{{ item }}</p>
+      <button style="margin-bottom: 10px" @click="openModal(i)">退票</button>
     </div>
   </div>
   <!--  -->
@@ -47,6 +44,7 @@ const openModal = index => {
     :ticket-date="ticketDate"
     :ticket-amount="ticketAmount"
     :fast-pass-facility="fastPassFacility"
+    @close-modal="closeModal"
   ></modal-c-r-u-d>
 </template>
 
