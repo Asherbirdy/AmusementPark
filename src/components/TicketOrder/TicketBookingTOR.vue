@@ -9,7 +9,7 @@
       <img :src="imgURL(item.img)" />
       <h3>{{ item.name }}</h3>
       <div class="overlay">
-        <span>表演预约</span>
+        <span>表演預約</span>
       </div>
     </div>
   </div>
