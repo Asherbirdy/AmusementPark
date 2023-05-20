@@ -1,7 +1,8 @@
 <script setup></script>
 <template>
-  <headerbg id="headerbg" />
+  
   <header :class="{ openMenu: isOpen }">
+    <headerbg id="headerbg" />
     <nav>
       <router-link to="/" class="logo">
         <logo />
@@ -72,9 +73,11 @@
 
 <style scoped lang="scss">
 #headerbg {
-  display: none;
+  // display: none;
   width: 100%;
   // background-color: #f9f3e4;
+  position: absolute;
+  z-index: -1;
 
 }
 
@@ -152,7 +155,8 @@ header {
 
 #space{
   width: 100%;
-  height: 150px;
+  // height: 150px;
+  height: 200px;
 }
 a#moblie_menu {
   display: none;

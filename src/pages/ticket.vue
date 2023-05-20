@@ -7,6 +7,7 @@
   <!-- <TicketExhibitionTOR1 id="orderdate"/> -->
   <TicketPriceTOR id="ticketprice"/>
   <TicketExhibitionTOR2 id="ticketselect"/>
+  <!-- <ticket-express-pass/> -->
   <!-- <TicketBookingTOR id="show"/> -->
 </main>
 

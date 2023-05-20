@@ -35,6 +35,10 @@
         <el-icon size="30px"><Remove /></el-icon>
       </div>
     </div>
+    
+  <ticket-express-pass/>
+
+
     <div class="btnbox">
       <btn
         class="btn"
@@ -49,7 +53,7 @@
         width="150"
         button-text-color="white"
         button-color="#D1825B"
-        ><h3>確認</h3></btn
+        ><h3>追加</h3></btn
       >
     </div>
   </div>
