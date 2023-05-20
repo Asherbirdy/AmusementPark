@@ -1,14 +1,14 @@
 <template>
   <div>
-    <div class="imgbox" v-for="item in data.value">
+    <div class="imgbox" v-for="item in data.value" :key="item.h1">
       <img :src="imgURL(item.img)" />
-      <h3></h3>
+      <h3>{{ item.name }}</h3>
       <div class="overlay">
         <span>表演预约</span>
       </div>
     </div>
   </div>
-  <BookShow style="opacity: 0" />
+  <!-- <BookShow  /> -->
 </template>
 <script setup>
 import getImageUrl from '@/utils/imgPath';
@@ -26,7 +26,7 @@ onMounted(() => {
     .get('../../../src/assets/json/performaceInfo.json')
     .then(res => {
       data.value = res.data.performanceData;
-      console.log(data);
+      console.log(data.value);
     })
     .catch(err => {
       console.log(err);
