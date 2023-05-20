@@ -1,50 +1,49 @@
 <script setup>
 import axios from 'axios';
 
+let tableData = ref([]);
+
 // 訂票
 
 const ticketBooking = reactive({
-  username: 'asher',
+  username: 11,
   ticketBooking: [
     {
-      ticketType: 'adult',
+      ticketType: 4,
       ticketDate: '2023-05-28',
-      ticketAmmount: 4,
-      fastPassFacility: ['設施一', '設施五', '設施六'],
+      ticketAmmount: 10,
+      fastPassFacility: [1,1,1,1,1,1],
     },
     {
-      ticketType: 'student',
+      ticketType: 2,
       ticketDate: '2023-05-28',
       ticketAmmount: 1,
-      fastPassFacility: ['設施一', '設施五'],
+      fastPassFacility: [1,0,0,0,0,1],
     },
     {
-      ticketType: 'kid',
+      ticketType: 3,
       ticketDate: '2023-05-28',
       ticketAmmount: 3,
-      fastPassFacility: ['設施一'],
+      fastPassFacility:[1,0,0,0,0,0],
     },
     {
-      ticketType: 'concession',
+      ticketType: 4,
       ticketDate: '2023-05-28',
       ticketAmmount: 1,
-      fastPassFacility: [],
+      fastPassFacility: [0,0,0,0,0,0],
     },
   ],
 });
 
 function submit() {
-  return axios
-    .post('', { ticketBooking })
-    .then(res => {
-      console.log(ticketBooking);
-      console.log(res);
-    })
-    .catch(err => {
-      console.log(err);
-      console.log(ticketBooking);
-    });
-  cl;
+
+  axios.post('/api/PDO/tickOrder/tickOrderInsert.php',{
+      ticketBooking
+  }).
+  then(res => {
+    const data = res.data;
+    console.log(data);
+  });
 }
 </script>
 <template>
