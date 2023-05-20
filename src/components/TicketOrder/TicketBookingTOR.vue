@@ -1,13 +1,13 @@
 <template>
   <div>
-    <div class="imgbox">
-      <img src="../../assets/img/performance1.png" />
-      <h3>夢幻演繹</h3>
+    <div class="imgbox" v-for="item in performanceData">
+      <img :src="imgURL(item.img)" />
+      <h3>{{ item.name }}</h3>
       <div class="overlay">
         <span>表演预约</span>
       </div>
     </div>
-    <div class="imgbox">
+    <!-- <div class="imgbox">
       <img src="../../assets/img/performance2.png" />
       <h3>爵士表演</h3>
       <div class="overlay">
@@ -41,10 +41,40 @@
       <div class="overlay">
         <span>表演预约</span>
       </div>
-    </div>
+    </div> -->
   </div>
 </template>
-<script setup></script>
+<script setup>
+import getImageUrl from '@/utils/imgPath';
+const imgURL = name => getImageUrl(name);
+// DATA
+const performanceData = [
+  {
+    name: '夢幻演繹',
+    img: 'performance1.png',
+  },
+  {
+    name: '爵士表演',
+    img: 'performance2.png',
+  },
+  {
+    name: '綠野仙蹤',
+    img: 'performance3.png',
+  },
+  {
+    name: '火焰跳躍者',
+    img: 'performance4.png',
+  },
+  {
+    name: '魔幻舞台',
+    img: 'performance5.png',
+  },
+  {
+    name: '瘋狂藝術家',
+    img: 'performance6.png',
+  },
+];
+</script>
 <style scoped lang="scss">
 div {
   display: flex;
