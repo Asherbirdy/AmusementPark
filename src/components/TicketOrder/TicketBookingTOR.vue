@@ -12,12 +12,14 @@
 </template>
 <script setup>
 import getImageUrl from '@/utils/imgPath';
+import axios from 'axios';
+import { onMounted, reactive } from 'vue';
 const imgURL = img => getImageUrl(img);
 
 const isOpen = ref(false);
 
 // DATA
-const performanceData = [
+const performanceData2 = [
   {
     h1: '夢幻演繹',
     h3: '夢幻般的表演節目，結合音樂、舞蹈和劇場元素，呈現一個奇幻的故事。這個表演節目將會讓你進入一個夢境般的世界，帶給你全新的視覺和聽覺體驗。',
@@ -55,6 +57,21 @@ const performanceData = [
     showTime: '貝影劇場／人數限制200人\n平日／12:30、14:30\n假日／15:45',
   },
 ];
+
+let performanceData = reactive({});
+
+onMounted(() => {
+  axios
+    .get('../../../src/assets/json/performaceInfo.json')
+    .then(res => {
+      console.log(res.data.performanceData);
+      performanceData = res.data.performanceData;
+      console.log(performanceData);
+    })
+    .catch(err => {
+      console.log(err);
+    });
+});
 </script>
 <style scoped lang="scss">
 div {

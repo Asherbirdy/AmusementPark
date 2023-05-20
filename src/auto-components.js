@@ -15,7 +15,6 @@ declare module '@vue/runtime-core' {
     Bag: typeof import('./components/product/Bag.vue')['default']
     Bar: typeof import('./components/product/Bar.vue')['default']
     Bookrides: typeof import('./components/-UI Element/modalframe/bookrides.vue')['default']
-    Bookshow: typeof import('./components/-UI Element/modalframe/bookshow.vue')['default']
     BookShow: typeof import('./components/-UI Element/modalframe/BookShow.vue')['default']
     Born: typeof import('./components/-UI Element/modalframe/born.vue')['default']
     Brand: typeof import('./components/product/Brand.vue')['default']
