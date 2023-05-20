@@ -13,7 +13,7 @@
       </div>
     </div>
   </div>
-  <BookShow v-if="showmodal" class="modal" @close-modal="closeModal" />
+  <bookshow v-if="showmodal" class="modal" @close-modal="closeModal" />
 </template>
 <script setup>
 import getImageUrl from '@/utils/imgPath';
