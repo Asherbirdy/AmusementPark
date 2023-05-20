@@ -1,4 +1,4 @@
-<template>
+ <template>
     <button :style="{ color: internalTextColor, backgroundColor: internalButtonColor }"
         @mouseover="internalButtonColor = internalHoverColor" @mouseleave="internalButtonColor = this.buttonColor">
         <slot>預設按鈕</slot>

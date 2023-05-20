@@ -6,6 +6,7 @@ const app = createApp(App);
 // import "./assets/main.css";
 import 'virtual:svg-icons-register';
 import '@/assets/css/reset.css';
+// import gsap from 'gsap';
 import * as ElementPlusIconsVue from '@element-plus/icons-vue';
 for (const [key, component] of Object.entries(ElementPlusIconsVue)) {
   app.component(key, component);

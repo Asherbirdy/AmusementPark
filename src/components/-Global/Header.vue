@@ -9,7 +9,7 @@
 
       <ul id="menu">
         <li>
-          <router-link to="/ticket">
+          <router-link to="/#">
             <icon-ticket />
             <h3>快速購票</h3>
           </router-link>
@@ -43,7 +43,7 @@
         </li>
 
         <!-- <li>
-          <router-link to="/membership">
+          <router-link to="/admin/touristmember">
             <icon-membership />
             <h3>冒險者專區</h3>
           </router-link>
@@ -88,21 +88,22 @@ header {
   nav {
     display: flex;
     position: relative;
-    // width: $workspace;
+    width: $workspace;
     margin: 0 auto;
     justify-content: space-between;
     top: 6px;
 
     .logo {
-      margin: auto 0;
+      margin: auto 40px;
     }
   }
 
   #menu {
-    width: 40%;
+    // width: 40%;
     list-style: none;
     display: flex;
     float: left;
+    justify-content: space-between;
     a {
       display: flex;
       flex-direction: column;
@@ -132,7 +133,7 @@ header {
     display: flex;
     justify-content: space-between;
     padding: 4px;
-    margin: 10px 0;
+    margin: 10px;
     align-items: center;
     a {
       text-decoration: none;
