@@ -40,7 +40,8 @@ main {
       padding-top: 80px;
       line-height: 2;
       width: 330px;
-
+      // font-family: nanifont;
+      // font-size: 22px;
     }
     // h3:nth-child(1) {
     //   padding-top: 100px;
