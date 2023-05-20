@@ -14,6 +14,11 @@ $textcolor6: #f9f3e4;
 $textcolor7: #163767;
 
 //字型
+@font-face {
+  font-family: nanifont;
+  src: url(https://cdn.jsdelivr.net/gh/max32002/nanifont@1.036/webfont/NaniFont-Regular.woff2) format("woff2")
+  , url(https://cdn.jsdelivr.net/gh/max32002/nanifont@1.036/webfont/NaniFont-Regular.woff) format("woff");
+}
 $font-family: '微軟正黑體';
 
 main {

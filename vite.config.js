@@ -1,5 +1,5 @@
 import { fileURLToPath, URL } from 'node:url';
-
+// import gsap from 'gsap';
 import { defineConfig } from 'vite';
 import vue from '@vitejs/plugin-vue';
 import AutoImport from 'unplugin-auto-import/vite';
@@ -8,7 +8,9 @@ import { createSvgIconsPlugin } from 'vite-plugin-svg-icons';
 import Pages from 'vite-plugin-pages';
 import Layouts from 'vite-plugin-vue-layouts';
 import path from 'path';
+
 import { ElementPlusResolver } from 'unplugin-vue-components/resolvers';
+
 // https://vitejs.dev/config/
 export default defineConfig({
   base: '/AmusementPark/',
@@ -43,16 +45,16 @@ export default defineConfig({
       '@': fileURLToPath(new URL('./src', import.meta.url)),
     },
   },
-  // server: {
-  //   port: '5173',
-  //   proxy: {
-  //     '/api': {
-  //       target: 'http://localhost:80/',
-  //       changeOrigin: true,
-  //       rewrite: path => path.replace(/^\/api/, ''), // 不可以省略rewrite
-  //     },
-  //   },
-  // },
+  server: {
+    port: '5173',
+    proxy: {
+      '/api': {
+        target: 'http://localhost:80/',
+        changeOrigin: true,
+        rewrite: path => path.replace(/^\/api/, ''), // 不可以省略rewrite
+      },
+    },
+  },
   css: {
     preprocessorOptions: {
       scss: {
