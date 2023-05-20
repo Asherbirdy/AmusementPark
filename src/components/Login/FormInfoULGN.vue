@@ -12,12 +12,30 @@ const inputInfos = ref([
   },
   {
     title: '密碼：',
-    type: 'tel',
+    type: 'password',
     id: 'password',
     placeholder: '請輸入您的密碼',
     value: password,
   },
 ]);
+
+const handleClick = () => {
+  const inputAccount = inputInfos.value[0].value;
+  const isPhoneNumber = !isNaN(inputAccount) && inputAccount.length === 10 && inputAccount.trim().length > 0;
+  const emailRegex  =
+  /^([a-zA-Z0-9_\.\-\+])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+  const isEmail = emailRegex.test(inputAccount);
+
+  if (isPhoneNumber === true || isEmail === true) {
+    console.log('true');
+  }
+  console.log(
+    inputInfos.value[0].value,
+    inputInfos.value[1].value,
+    alert('帳號格式錯誤，請輸入正確Email或手機')
+  );
+};
+
 // 會員註冊 + 忘記密碼 的 a標籤
 const aLinks = ref([
   {
@@ -37,8 +55,8 @@ const aLinks = ref([
 
 <template>
   <section class="middle">
-    <form action="middle__form">
-      <!-- 帳號 + 密碼 的 input欄位 -->
+    <!-- 帳號 + 密碼 的 input欄位 -->
+    <div class="middle__form">
       <div
         class="middle__form--wrapOfLabelInput"
         v-for="(inputInfo, index) in inputInfos"
@@ -62,13 +80,25 @@ const aLinks = ref([
           v-bind:key="aLink.id"
           v-bind:href="aLink.url"
         >
-          <el-icon class="middle__form--Icon"><component :is="aLink.icon" /></el-icon>  <!-- 在 <el-icon> 组件内部動態渲染 aLink.icon 所代表的组件 -->
+          <el-icon class="middle__form--Icon"
+            ><component :is="aLink.icon"
+          /></el-icon>
+          <!-- 在 <el-icon> 组件内部動態渲染 aLink.icon 所代表的组件 -->
           <a class="middle__form--A">{{ aLink.text }}</a>
         </div>
       </div>
 
-      <button class="middle__form--Btn" type="submit" id="Submit">登入</button>
-    </form>
+      <button
+        class="middle__form--Btn"
+        type="submit"
+        id="Submit"
+        @click="handleClick"
+      >
+        登入
+      </button>
+    </div>
+    <!-- <form action="middle__form">
+    </form> -->
   </section>
 </template>
 
@@ -78,7 +108,6 @@ const aLinks = ref([
   justify-content: center;
 
   &__form {
-
     &--wrapOfLabelInput {
       margin-bottom: 36px;
     }
@@ -119,7 +148,7 @@ const aLinks = ref([
     }
 
     &--Btn {
-      background-color: #D1825B;
+      background-color: #d1825b;
       display: block;
       margin: 0 auto;
       width: 300px;
