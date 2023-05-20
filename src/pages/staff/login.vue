@@ -1,5 +1,6 @@
 <script setup>
 import axios from 'axios';
+
 // input 資料：
 const formInput = reactive({
   account: '',
@@ -22,8 +23,8 @@ const handleSubmit = () => {
     // username 和 password
     axios
       .post('/api/PDO/staffAccount/staffLogin.php', {
-        account:formInput.account,
-        pwd:formInput.pwd
+        account: formInput.account,
+        pwd: formInput.pwd,
       })
       .then(res => {
         console.log(res.data);
@@ -61,7 +62,11 @@ const handleReset = () => {
   isPasswordEmpty.value = false;
 };
 
-// 其他：
+onMounted(() => {
+  gsap.from('.container', {
+    autoAlpha: 0,
+  });
+});
 </script>
 <template>
   <layout name="cms_layout">
