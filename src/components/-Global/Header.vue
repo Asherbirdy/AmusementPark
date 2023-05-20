@@ -10,7 +10,7 @@
       <ul id="menu">
         <li>
           <router-link to="/ticket">
-            <icon-membership />
+            <icon-ticket />
             <h3>快速購票</h3>
           </router-link>
         </li>
@@ -52,19 +52,17 @@
       <!-- <a id="moblie_menu" @click="handMenuOpen" href="javascript:;"></a> -->
       <div>
         <div class="rsite">
-          
-          <router-link to="/basket">
-            <icon-small-basket />
+          <router-link to="#">
+            <icon-small-bell />
           </router-link>
           
-          <router-link to="/basket">
+          <router-link to="#">
             <icon-small-basket />
           </router-link>
 
           <router-link to="/login">
             <icon-small-login />
           </router-link>
-
         </div>
       </div>
     </nav>
@@ -90,7 +88,7 @@ header {
   nav {
     display: flex;
     position: relative;
-    width: $workspace;
+    // width: $workspace;
     margin: 0 auto;
     justify-content: space-between;
     top: 6px;
@@ -99,7 +97,9 @@ header {
       margin: auto 0;
     }
   }
+
   #menu {
+    width: 40%;
     list-style: none;
     display: flex;
     float: left;
@@ -126,25 +126,23 @@ header {
       transition-duration: 0.3s;
     }
   }
-}
 
-header .rsite {
-  color: #5b5b5b;
-  display: flex;
-  justify-content: space-between;
-  padding: 4px;
-  margin: 10px 0;
-  align-items: center;
-}
-
-header .rsite a {
-  text-decoration: none;
-  margin: auto 8px;
-}
-
-header .rsite svg {
-  padding: 4px;
-  color: #5b5b5b;
+  .rsite {
+    color: #5b5b5b;
+    display: flex;
+    justify-content: space-between;
+    padding: 4px;
+    margin: 10px 0;
+    align-items: center;
+    a {
+      text-decoration: none;
+      margin: auto 8px;
+    }
+    svg {
+      padding: 4px;
+      color: #5b5b5b;
+    }
+  }
 }
 
 a#moblie_menu {
