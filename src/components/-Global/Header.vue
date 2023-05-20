@@ -9,6 +9,13 @@
 
       <ul id="menu">
         <li>
+          <router-link to="/ticket">
+            <icon-membership />
+            <h3>快速購票</h3>
+          </router-link>
+        </li>
+
+        <li>
           <router-link to="/create">
             <icon-create />
             <h3>喬裝打扮</h3>
@@ -35,23 +42,29 @@
           </router-link>
         </li>
 
-        <li>
+        <!-- <li>
           <router-link to="/membership">
             <icon-membership />
             <h3>冒險者專區</h3>
           </router-link>
-        </li>
+        </li> -->
       </ul>
       <!-- <a id="moblie_menu" @click="handMenuOpen" href="javascript:;"></a> -->
       <div>
         <div class="rsite">
+          
+          <router-link to="/basket">
+            <icon-small-basket />
+          </router-link>
+          
+          <router-link to="/basket">
+            <icon-small-basket />
+          </router-link>
+
           <router-link to="/login">
             <icon-small-login />
           </router-link>
 
-          <router-link to="/basket">
-            <icon-small-basket />
-          </router-link>
         </div>
       </div>
     </nav>
@@ -86,37 +99,33 @@ header {
       margin: auto 0;
     }
   }
-}
-
-header #menu {
-  list-style: none;
-  display: flex;
-  float: left;
-}
-
-header #menu a {
-  display: flex;
-  flex-direction: column;
-  float: left;
-  margin: 0 2px;
-  padding: 0 20px;
-  text-decoration: none;
-  filter: brightness(0%);
-  opacity: 0.6;
-  transition: all 0.3s linear;
-}
-
-header #menu a:hover {
-  filter: brightness(100%) drop-shadow(1px 1px 1px #000000);
-  opacity: 1;
-  transition-duration: 0.3s;
-}
-
-header #menu a h3 {
-  margin: 4px auto 0;
-  text-align: center;
-  // font-size: 16px;
-  color: #ff7b51;
+  #menu {
+    list-style: none;
+    display: flex;
+    float: left;
+    a {
+      display: flex;
+      flex-direction: column;
+      float: left;
+      margin: 0 2px;
+      padding: 0 20px;
+      text-decoration: none;
+      filter: brightness(0%);
+      opacity: 0.6;
+      transition: all 0.3s linear;
+      h3 {
+        margin: 4px auto 0;
+        text-align: center;
+        // font-size: 16px;
+        color: #ff7b51;
+      }
+    }
+    a:hover {
+      filter: brightness(100%) drop-shadow(1px 1px 1px #000000);
+      opacity: 1;
+      transition-duration: 0.3s;
+    }
+  }
 }
 
 header .rsite {
