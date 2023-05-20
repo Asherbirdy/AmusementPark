@@ -9,12 +9,19 @@
         </ul>
         <h3>最終入場時間為閉館前1小時，實際營業狀況請依官方公告為主。</h3>
       </div>
-      <img src="@/assets/img/castle.png" alt="" />
+      <div v-for="item in imgData" :key="item.productName">
+      <img :src="imgURL(item.img)" alt="" />
+    </div>
     </div>
   </main>
 </template>
 
 <script setup>
+import getImageUrl from '@/utils/imgPath';
+const imgURL = name => getImageUrl(name);
+const imgData = ref([
+  { img: 'castle.png' },
+]);
 const timeTable = [
   { id: 1, day: '週日~週五', time: '09:00-18:00' },
   { id: 2, day: '週六', time: '09:00-20:00' }

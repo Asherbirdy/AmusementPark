@@ -17,10 +17,10 @@
 
 <script setup>
 import getImageUrl from '@/utils/imgPath';
+const imgURL = name => getImageUrl(name);
 
 
 const header = ref('主題設施');
-const imgURL = getImageUrl;
 const rides = [
   { name: '旋轉飛椅', image: 'facility1.png' },
   { name: '雲霄飛車', image: 'facility2.png' },

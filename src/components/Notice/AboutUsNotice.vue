@@ -8,14 +8,22 @@
           {{ paragraph }}
           <br />
         </p>
-        <img class="oran" src="@/assets/img/OrangeMonster.png" alt="" />
-        <img class="pin" src="@/assets/img/PinkMonster.png" alt="" />
+        <img v-for="item in smallLogo" 
+        :key="item.img" 
+        :src="imgURL(item.img)" 
+        :class="{'oran': item.img === 'OrangeMonster.png', 'pin': item.img === 'PinkMonster.png'}" />
       </div>
     </div>
   </main>
 </template>
 
 <script setup>
+import getImageUrl from '@/utils/imgPath';
+const imgURL = name => getImageUrl(name);
+const smallLogo = ref([
+  { img: 'OrangeMonster.png' },
+  { img: 'PinkMonster.png' },
+]);
 const paragraphs = [
   '怪奇遊樂園是一個充滿奇幻和冒險的地方，有令人驚喜和挑戰的遊戲和活動，如過山車、飛行器、高空彈跳、神秘迷宮等等，我們也提供許多奇幻表演，與家庭成員一同創造難忘的回憶，感受不一樣的刺激和樂趣。',
   '此外，你還可以與可愛的怪獸一起冒險，他們非常聰明和有趣，能夠幫助你解決許多問題和挑戰。',

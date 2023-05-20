@@ -11,7 +11,8 @@
 </template>
 
 <script setup>
-import getImageUrl from '@/utils/imgPath'
+import getImageUrl from '@/utils/imgPath';
+const imgURL = name => getImageUrl(name);
 
 const header = ref('展覽資訊')
 const performance = ref([
@@ -22,7 +23,7 @@ const performance = ref([
   { name: '魔幻舞台', image: 'performance5.png' },
   { name: '瘋狂藝術家', image: 'performance6.png' },
 ])
-const imgURL = getImageUrl
+
 
 </script>
 

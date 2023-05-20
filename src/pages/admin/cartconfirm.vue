@@ -28,7 +28,7 @@
       <div class="detail">
         <ul>
           <li class="pro" v-for="item in products" :key="item.id">
-            <img src="@/assets/img/Tshirt4.png" alt="">
+            <img :src="imgURL(item.img)" />
             <ul>
               <h1>{{ item.name }}</h1>
               <li>尺寸：{{ item.size }}</li>
@@ -82,9 +82,12 @@
 </template>
 
 <script setup>
+import getImageUrl from '@/utils/imgPath';
+const imgURL = name => getImageUrl(name);
 const products = [
   {
     id: "product1",
+    img:"Tshirt4.png",
     name: "MONSTAR上衣",
     size: "M",
     color: "白色",
