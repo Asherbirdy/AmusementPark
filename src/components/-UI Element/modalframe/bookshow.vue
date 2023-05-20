@@ -11,9 +11,9 @@
           :key="titleIndex"
           class="introduce"
         >
-        <h2>表演介紹</h2>
+          <h2>表演介紹</h2>
           <h3>{{ title.h3 }}</h3>
-        <h2>表演時間</h2>
+          <h2>表演時間</h2>
           <h3 class="showTime">{{ title.showTime }}</h3>
         </section>
         <div class="order">
@@ -21,17 +21,15 @@
           <div class="icon">
             <el-icon class="iconRemove"><Remove /></el-icon><span>1</span
             ><el-icon class="iconPlus"><CirclePlus /></el-icon>
+          </div>
         </div>
-        </div>
-        </div>
-      </article>
-      <button class="orderBtn">立即預約</button>
-    </modal-l>
+      </div>
+    </article>
+    <button class="orderBtn">立即預約</button>
+  </modal-l>
 </template>
 
-
 <script setup>
-
 import getImageUrl from '@/utils/imgPath';
 const imgURL = name => getImageUrl(name);
 
@@ -40,7 +38,7 @@ const showList = ref([]);
 const testArr = {
   DreamInterpretation: [
     {
-      h1:'夢幻演繹',
+      h1: '夢幻演繹',
       h3: '夢幻般的表演節目，結合音樂、舞蹈和劇場元素，呈現一個奇幻的故事。這個表演節目將會讓你進入一個夢境般的世界，帶給你全新的視覺和聽覺體驗。',
       imgUrl: 'performance1.png',
       showTime: '貝影劇場／人數限制200人\n平日／12:30、14:30\n假日／15:45',
@@ -90,17 +88,14 @@ const testArr = {
 showList.value = testArr[propsType.value];
 </script>
 
-
 <style lang="scss" scoped>
 //外框
-
 
 article {
   display: flex;
   justify-content: space-between;
-  padding:0 30px;
+  padding: 0 50px;
 }
-
 
 //圖片區塊
 .showImg {
@@ -114,7 +109,6 @@ article {
   }
 }
 
-
 //展演內容
 .showContent {
   // width: 645px;
@@ -126,7 +120,7 @@ h2 {
   background-color: #fff7a6;
   line-height: 65px;
   text-align: center;
-
+  margin-top: 30px;
 
   border-radius: 100px;
   border: 5px dashed #5590d6;
@@ -134,15 +128,12 @@ h2 {
 h3 {
   white-space: pre-wrap;
 
-
   line-height: 40px;
   letter-spacing: 8px;
-
 
   margin: 15px;
   margin-right: 0;
 }
-
 
 .order {
   .icon {
@@ -157,14 +148,12 @@ h3 {
     width: 30px;
     height: 30px;
     cursor: pointer;
-
   }
   .iconRemove {
     font-size: 30px;
     width: 30px;
     height: 30px;
     cursor: pointer;
-
   }
   span {
     font-size: 40px;
@@ -172,13 +161,13 @@ h3 {
   }
 }
 h1 {
-  margin-top: 50px;
-  color:$textcolor7;
+  margin-top: 45px;
+  color: $textcolor7;
 }
 .orderBtn {
   float: right;
   margin-right: 70px;
-  margin-bottom: -30px;
+  margin-bottom: 50px;
   width: 162px;
   height: 75px;
   background-color: #d1825b;
@@ -186,6 +175,3 @@ h1 {
   font-size: 24px;
 }
 </style>
-
-
-

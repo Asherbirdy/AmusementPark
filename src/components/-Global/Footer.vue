@@ -1,4 +1,8 @@
-<script setup></script>
+<script setup>
+const goTop = () => {
+    window.scrollTo({ top: 0 });
+}
+</script>
 <template>
     <footer>
         <SVGFooter class="SVGFooter" />
@@ -21,23 +25,32 @@
                 </div>
                 <div class="list">
                     <ul>
-                        <li>喬裝打扮</li>
+                        <router-link class="routerlink" to="/create">
+                            <li @click="goTop">喬裝打扮</li>
+                        </router-link>
                         <li>寵物蛋養成系統</li>
                     </ul>
                     <ul>
-                        <li>怪獸領地</li>
+                        <router-link class="routerlink" to="map">
+                            <li @click="goTop">怪獸領地</li>
+                        </router-link>
                         <li>園區地圖</li>
                         <li>園區動態</li>
                     </ul>
                     <ul>
-                        <li>領地須知</li>
+                        <router-link class="routerlink" to="/notice">
+                            <li @click="goTop">領地須知</li>
+                        </router-link>
+
                         <li>關於我們</li>
                         <li>主題特色</li>
                         <li>展場資訊</li>
                         <li>交通資訊</li>
                     </ul>
                     <ul>
-                        <li>走私商人</li>
+                        <router-link class="routerlink" to="/shop">
+                            <li @click="goTop">走私商人</li>
+                        </router-link>
                         <li>所有商品</li>
                         <li>手機殼</li>
                         <li>帆布袋</li>
@@ -46,7 +59,9 @@
                         <li>客製化專區</li>
                     </ul>
                     <ul>
-                        <li>冒險者專區</li>
+                        <router-link class="routerlink" to="/admin/touristmember">
+                            <li @click="goTop">冒險者專區</li>
+                        </router-link>
                         <li>會員資料</li>
                         <li>線上預約&購票</li>
                         <li>快速通關&購票紀錄</li>
@@ -59,6 +74,11 @@
 </template>
 
 <style lang="scss" scoped>
+.routerlink {
+    text-decoration-line: none;
+}
+
+
 .footer_bgc {
     background-color: $maincolor2;
 }

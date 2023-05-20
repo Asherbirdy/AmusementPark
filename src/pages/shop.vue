@@ -1,15 +1,19 @@
 <template>
-  <div class="about">
-    <h1>This is an about page</h1>
-  </div>
+  <Bar />
+  <main>
+    <Clothes />
+    <Cap />
+    <Bag />
+    <PhoneCase />
+    <Customization />
+    <create />
+  </main>
 </template>
+<script setup>
 
-<style scoped>
-@media (min-width: 1024px) {
-  .about {
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-  }
+</script>
+<style lang="scss" scoped>
+main {
+  padding-top: 0;
 }
 </style>

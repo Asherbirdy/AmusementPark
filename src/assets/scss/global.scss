@@ -2,64 +2,67 @@
 $workspace: 1200px;
 
 //背景色
-$maincolor1: #F9F3E4;
-$maincolor2: #E6EFF6;
+$maincolor1: #f9f3e4;
+$maincolor2: #e6eff6;
 //文字色
-$textcolor1: #FF7B51;
-$textcolor2: #B1647D;
-$textcolor3: #90420A;
-$textcolor4: #C0590E;
-$textcolor5: #D1825B;
-$textcolor6: #F9F3E4;
+$textcolor1: #ff7b51;
+$textcolor2: #b1647d;
+$textcolor3: #90420a;
+$textcolor4: #c0590e;
+$textcolor5: #d1825b;
+$textcolor6: #f9f3e4;
 $textcolor7: #163767;
 
-
 //字型
+@font-face {
+  font-family: nanifont;
+  src: url(https://cdn.jsdelivr.net/gh/max32002/nanifont@1.036/webfont/NaniFont-Regular.woff2) format("woff2")
+  , url(https://cdn.jsdelivr.net/gh/max32002/nanifont@1.036/webfont/NaniFont-Regular.woff) format("woff");
+}
 $font-family: '微軟正黑體';
 
-main{
-    padding-top: 100px;
-    margin: 0 auto;
-    width: $workspace;
-    line-height: 1.5;
-    font-size: 16px;
-    font-family:$font-family;
+main {
+  padding-top: 100px;
+  margin: 0 auto;
+  max-width: $workspace;
+  width: 100%;
+  font-family: $font-family;
 }
 
-h1{
-    font-weight: bold;
-    font-size: 32px;
-    line-height: 1.5;
+h1 {
+  font-weight: bold;
+  font-size: 32px;
+  line-height: 1.5;
 }
 
-h2{
-    font-weight: bold;
-    font-size: 24px;
-    line-height: 1.5;
+h2 {
+  font-weight: bold;
+  font-size: 24px;
+  line-height: 1.5;
 }
 
-h3{
-    font-weight: bold;
-    font-size: 20px;
-    line-height: 1.5
+h3 {
+  font-weight: bold;
+  font-size: 20px;
+  line-height: 1.5;
 }
 
-p{
-    font-size: 18px;
-    line-height: 1.5;
+p {
+  font-size: 18px;
+  line-height: 1.5;
 }
 
-button{
-    cursor: pointer;
-    height: 40px;
-    width: 100px;
-    background-color: $textcolor1;
-    font-size: 20;
-    color: #FFF;
-    border: none;
-    border-radius: .2rem;
-}
+// button{
+//     cursor: pointer;
+//     height: 40px;
+//     width: 100px;
+//     background-color: $textcolor5;
+//     font-size: 20;
+//     color: $maincolor1;
+//     border: none;
+//     border-radius: .2rem;
+// }
 
-button:active{
-    background-color: $textcolor2; 
-}
+// button:active{
+//     background-color: $textcolor4;
+// }

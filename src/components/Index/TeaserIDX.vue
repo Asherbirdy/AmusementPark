@@ -2,24 +2,29 @@
 <template>
   <main>
     <div>
-      <p>
-        從前從前，在一個充滿魔法與奇幻的世界中，住著一個年輕的冒險家，名叫艾莉。艾莉是一個勇敢的少女，一直夢想著能有一個可愛的寵物陪伴自己的旅途。
-        有一天，艾莉在森林裡走著，突然聽到一陣奇怪的聲音。她跟著聲音來到一個草叢前，發現一顆巨大的蛋。這個蛋看起來非常特別，有著各種奇怪的圖案和紋路，這讓艾莉的心跳加速。艾莉蹲下來看了看，決定和它一起旅行。
-      </p>
-      <p>
-        在旅途中，那顆蛋也漸漸孵化出一隻新的怪獸，艾莉發現這個小怪獸非常聰明，能夠幫助自己解決許多問題。在艾莉的旅程中，她遇到了許多困難和挑戰，但在可愛怪獸的陪伴下，她勇往直前，不斷獲得成長和進步。
+      <h3>
+        　　從前從前，在一個充滿魔法的奇幻世界中，住著一個年輕、勇敢的冒險家———艾莉，一直夢想著能有一個一起冒險的夥伴。<br><br>
+        有一天，艾莉在森林裡走著，突然聽到一個奇怪的聲音。她跟著聲音找到一個藏寶箱，發現裡面放了一顆看起來非常特別的蛋。這個蛋，有著像魔法般的奇妙紋路，於是艾莉決定帶著牠一起旅行。
+      </h3>
+      <h3>
+        在旅途中，蛋孵化成一隻奇妙的生物，調查下知道了是一種叫"怪獸"的物種。艾莉發現她的這個怪獸小夥伴非常聰明，能夠幫助自己解決許多問題。在後來的旅程中，她遭遇了許多困難和挑戰，但在搭檔的陪伴下，她勇往直前，不斷獲得成長和進步。
         最後，艾莉成為了一位優秀的冒險家，與她的怪獸一起度過了許多美好的時光。
-      </p>
+      </h3>
+      <div id="svg-book">
+      <svg-book/>        
+      </div>
+
     </div>
   </main>
 </template>
 <style lang="scss" scoped>
 $pWidth: 340px;
 
-$bookFontSize: 20px;
+// $bookFontSize: 20px;
 main {
   div {
-    background-image: url(@/assets/img/Book_Index.jpg);
+    // background-image: url(@/assets/img/Book_Index.jpg);
+    position: relative;
     background-size: cover;
     width: calc(1644px * 0.6);
     height: calc(1183px * 0.6);
@@ -31,15 +36,28 @@ main {
 
     padding-left: 10px;
 
-    p:nth-child(1) {
-      padding-top: 100px;
-      width: $pWidth;
-      font-size: $bookFontSize;
+    h3{
+      padding-top: 80px;
+      line-height: 2;
+      width: 330px;
+      // font-family: nanifont;
+      // font-size: 22px;
     }
-    p:nth-child(2) {
-      padding-top: 100px;
-      width: $pWidth;
-      font-size: $bookFontSize;
+    // h3:nth-child(1) {
+    //   padding-top: 100px;
+    //   width: $pWidth;
+    //   font-size: $bookFontSize;
+    // }
+    // h3:nth-child(2) {
+    //   padding-top: 100px;
+    //   width: $pWidth;
+    //   font-size: $bookFontSize;
+    // }
+    #svg-book{
+      display: flex;
+      position: absolute;
+      z-index: -1;
+      top: -350px;
     }
   }
 }
