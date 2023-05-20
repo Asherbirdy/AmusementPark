@@ -87,7 +87,7 @@ header {
   height: 150px;
   filter: brightness(100%) drop-shadow(0px 0px 5px #5b5b5b); 
   position: fixed;
-  z-index: 10;
+  z-index: 15;
 
   nav {
     display: flex;
