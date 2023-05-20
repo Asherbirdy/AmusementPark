@@ -35,15 +35,14 @@ main {
   width: $workspace;
   padding-top: 0;
   .rides {
-    width: 1200px;
     margin: 0 auto;
     position: relative;
   }
   .title {
-    margin: 100px auto;
+    margin-bottom: 100px;
   }
   .rides img {
-    height: 250px;
+    height: 450px;
     display: block;
   }
   .rides div {
@@ -53,29 +52,29 @@ main {
     min-width: 188px;
   }
   .rides h3 {
-    font-size: 16px;
+    font-size: 30px;
+    font-weight: bold;
     color: #204c74;
     text-align: left;
-    min-width: 100px;
+    min-width: 120px;
     padding: 10px 57px 10px 10px;
   }
   .rides ul {
-    margin: 0 180px;
     display: flex;
     flex-wrap: wrap;
   }
   .rides li {
-    margin: 40px 39px;
+    margin: 40px 20px;
   }
 
   i {
-    font-size: 15px;
+    font-size: 30px;
     color: #838383;
     border: 1px solid #838383;
     border-radius: 50%;
-    margin-top: 10px;
-    margin-right: 10px;
+    margin-top: 16px;
     cursor: pointer;
+    margin-left: 117px;
   }
 }
 </style>

@@ -43,11 +43,11 @@ main {
   }
   .logo {
     position: absolute;
-    top: 193px;
-    left: 226px;
+    top: 253px;
+    left: 326px;
     rotate: 3deg;
     opacity: 0.3;
-    width: 800px;
+    width: 600px;
   }
   .content {
     width: 900px;
@@ -55,7 +55,7 @@ main {
     margin-bottom: 100px;
   }
   .about_us p {
-    font-size: 30px;
+    font-size: 20px;
     padding-bottom: 50px;
     position: relative;
     font-size: 30px;
