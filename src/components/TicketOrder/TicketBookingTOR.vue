@@ -32,11 +32,16 @@ let showmodal = ref(false);
 // 點及圖片彈出視窗鑑識
 const openModal = () => {
   showmodal.value = true;
-  // gsap.from('.modal', {
-  //   autoAlpha: 0,
-  //   y: 20,
-  //   onComplete: () => {},
-  // });
+  nextTick(() => {
+    gsap.from('.modal', {
+      duration: 0.3,
+      autoAlpha: 0,
+      y: 20,
+      onComplete: () => {
+        // 动画完成后的回调函数
+      },
+    });
+  });
 };
 
 // 自動顯示六張展演圖片及H1文字
@@ -54,7 +59,7 @@ onMounted(() => {
 
 // 關掉視窗
 const closeModal = () => {
-  showmodal.value = false;
+  // showmodal.value = false;
   // gsap.to('.modal', {
   //   autoAlpha: 0,
   //   y: -20,
@@ -62,12 +67,21 @@ const closeModal = () => {
   //     console.log('end');
   //   },
   // });
+  gsap.to('.modal', {
+    duration: 0.3,
+    autoAlpha: 0,
+    y: -20,
+    onComplete: () => {
+      showmodal.value = false;
+      // 动画完成后的回调函数
+    },
+  });
 };
 </script>
 <style scoped lang="scss">
-// .modal {
-//   visibility: hidden;
-// }
+.modal {
+  visibility: hidden;
+}
 .wrapper {
   width: 947px;
 }
