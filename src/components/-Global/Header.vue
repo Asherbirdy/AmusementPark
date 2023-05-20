@@ -36,7 +36,7 @@
         </li>
 
         <li>
-          <router-link to="/membership">
+          <router-link to="/admin/touristmember">
             <icon-membership />
             <h3>冒險者專區</h3>
           </router-link>

@@ -32,7 +32,7 @@
                 </template>
                 <!-- 如果 id 是 color，就顯示 <button> 元件 -->
                 <template v-else-if="item.id === 'color'">
-                    <button class="white">白色</button>
+                    <button class="white" style="border-radius: 5px;">白色</button>
                 </template>
                 <!-- 如果 id 是 style，就顯示選項列表 -->
                 <template v-else-if="item.id === 'style'">
@@ -103,6 +103,13 @@ const product = ref([
         margin-right: 50px;
         color: $textcolor5;
         background-color: $textcolor6;
+        cursor: pointer;
+        height: 40px;
+        width: 100px;
+        font-size: 20;
+        border: none;
+        border-radius: 0.2rem;
+
 
     }
 
@@ -142,9 +149,10 @@ const product = ref([
             height: 25px;
             font-size: 14px;
         }
-.btn{
-margin: 20px  0 0 50px;
-}
+
+        .btn {
+            margin: 20px 0 0 50px;
+        }
     }
 
     .white:active {
