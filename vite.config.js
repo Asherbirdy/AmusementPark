@@ -1,5 +1,5 @@
 import { fileURLToPath, URL } from 'node:url';
-
+// import gsap from 'gsap';
 import { defineConfig } from 'vite';
 import vue from '@vitejs/plugin-vue';
 import AutoImport from 'unplugin-auto-import/vite';
@@ -8,10 +8,17 @@ import { createSvgIconsPlugin } from 'vite-plugin-svg-icons';
 import Pages from 'vite-plugin-pages';
 import Layouts from 'vite-plugin-vue-layouts';
 import path from 'path';
+
 import { ElementPlusResolver } from 'unplugin-vue-components/resolvers';
+
 // https://vitejs.dev/config/
 export default defineConfig({
   base: '/AmusementPark/',
+  build: {
+    rollupOptions: {
+      external: ['gsap'],
+    },
+  },
   plugins: [
     vue(),
     AutoImport({

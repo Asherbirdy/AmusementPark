@@ -9,7 +9,7 @@
 
       <ul id="menu">
         <li>
-          <router-link to="/#">
+          <router-link to="/ticket">
             <icon-ticket />
             <h3>快速購票</h3>
           </router-link>
@@ -67,6 +67,7 @@
       </div>
     </nav>
   </header>
+  <div id="space"></div>
 </template>
 
 <style scoped lang="scss">
@@ -84,6 +85,9 @@ header {
   background-color: #f9f3e4;
   width: 100%;
   height: 150px;
+  filter: brightness(100%) drop-shadow(0px 0px 5px #5b5b5b); 
+  position: fixed;
+  z-index: 10;
 
   nav {
     display: flex;
@@ -146,6 +150,10 @@ header {
   }
 }
 
+#space{
+  width: 100%;
+  height: 150px;
+}
 a#moblie_menu {
   display: none;
 }
