@@ -67,12 +67,60 @@ main {
     position: absolute;
     top: 614px;
     left: 22px;
+    animation: oran 10s ease infinite;
   }
+  @keyframes oran {
+  0% {
+    left: 22px;
+    top:  614px;
+  }
+  25% {
+    left: 0px;
+    top: 564px;
+  }
+  50% {
+    left: -70px;
+    top: 524px;
+  }
+  75% {
+    left: -30px;
+    top: 584px;
+    rotate: 50deg;
+  }
+  100% {
+    left: 22px;
+    top:  614px;
+  }
+}
   .pin {
     width: 134px;
     position: absolute;
     top: 142px;
     right: 42px;
+    animation: pin 10s ease infinite;
   }
+  @keyframes pin {
+  0% {
+    right: 22px;
+    top:  142px;
+  }
+  25% {
+    right: 0px;
+    top: 0px;
+  }
+  50% {
+    right: -70px;
+    top: 524px;
+    rotate: -30deg;
+  }
+  75% {
+    right: -10px;
+    top: 384px;
+  }
+  100% {
+    right: 22px;
+    top:  142px;
+  }
+}
 }
 </style>

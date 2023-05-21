@@ -16,16 +16,6 @@ declare module '@vue/runtime-core' {
     Bar: typeof import('./components/product/Bar.vue')['default']
     Bookrides: typeof import('./components/-UI Element/modalframe/bookrides.vue')['default']
     Bookshow: typeof import('./components/-UI Element/modalframe/bookshow.vue')['default']
-<<<<<<< HEAD
-=======
-
-
-
-
-    BookShow: typeof import('./components/-UI Element/modalframe/BookShow.vue')['default']
-
-
->>>>>>> 0696335a481fd697f367c63551efe531228f9dbe
     Born: typeof import('./components/-UI Element/modalframe/born.vue')['default']
     Brand: typeof import('./components/product/Brand.vue')['default']
     Btn: typeof import('./components/-UI Element/btn/Btn.vue')['default']
@@ -33,54 +23,13 @@ declare module '@vue/runtime-core' {
     Cap: typeof import('./components/product/Cap.vue')['default']
     Clothes: typeof import('./components/product/Clothes.vue')['default']
     ColorPicker: typeof import('./components/-UI Element/ColorPicker/ColorPicker.vue')['default']
-<<<<<<< HEAD
-=======
-
->>>>>>> 0696335a481fd697f367c63551efe531228f9dbe
     Create: typeof import('./components/product/create.vue')['default']
     Customization: typeof import('./components/product/Customization.vue')['default']
     EggTop: typeof import('./components/-Global/EggTop.vue')['default']
-    ElCarousel: typeof import('element-plus/es')['ElCarousel']
-    ElCarouselItem: typeof import('element-plus/es')['ElCarouselItem']
-    ElIcon: typeof import('element-plus/es')['ElIcon']
-
-    copy: typeof import('./components/TicketOrder/TicketPriceTOR copy.vue')['default']
-    Create: typeof import('./components/product/create.vue')['default']
-    Customization: typeof import('./components/product/Customization.vue')['default']
-    EggTop: typeof import('./components/-Global/EggTop.vue')['default']
-
     ElCarousel: typeof import('element-plus/es')['ElCarousel']
     ElCarouselItem: typeof import('element-plus/es')['ElCarouselItem']
     ElIcon: typeof import('element-plus/es')['ElIcon']
     ElInputNumber: typeof import('element-plus/es')['ElInputNumber']
-
-    ElButton: typeof import('element-plus/es')['ElButton']
-
-    ElDialog: typeof import('element-plus/es')['ElDialog']
-
-    ElButtonGroup: typeof import('element-plus/es')['ElButtonGroup']
-    ElCalendar: typeof import('element-plus/es')['ElCalendar']
-    ElCarousel: typeof import('element-plus/es')['ElCarousel']
-    ElCarouselItem: typeof import('element-plus/es')['ElCarouselItem']
-<<<<<<< HEAD
-    ElIcon: typeof import('element-plus/es')['ElIcon']
-=======
-    ElDialog: typeof import('element-plus/es')['ElDialog']
-    ElForm: typeof import('element-plus/es')['ElForm']
-    ElFormItem: typeof import('element-plus/es')['ElFormItem']
-
-    ElIcon: typeof import('element-plus/es')['ElIcon']
-    ElInput: typeof import('element-plus/es')['ElInput']
-    ElMenu: typeof import('element-plus/es')['ElMenu']
-    ElMenuItem: typeof import('element-plus/es')['ElMenuItem']
-    ElMenuItemGroup: typeof import('element-plus/es')['ElMenuItemGroup']
-    ElRadioButton: typeof import('element-plus/es')['ElRadioButton']
-    ElRadioGroup: typeof import('element-plus/es')['ElRadioGroup']
-    ElSubMenu: typeof import('element-plus/es')['ElSubMenu']
-    ElText: typeof import('element-plus/es')['ElText']
-
-
->>>>>>> 0696335a481fd697f367c63551efe531228f9dbe
     ExhibitionNotice: typeof import('./components/Notice/ExhibitionNotice.vue')['default']
     FbCustomerChat: typeof import('./components/-UI Element/QA/FbCustomerChat.vue')['default']
     Footer: typeof import('./components/-Global/Footer.vue')['default']

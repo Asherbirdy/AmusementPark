@@ -68,6 +68,7 @@ const timeTable = [
 <style lang="scss" scoped>
 main {
   width: $workspace;
+  padding-top: 0;
   .open {
     width: 1200px;
     position: relative;

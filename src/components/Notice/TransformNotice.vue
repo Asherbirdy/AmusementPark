@@ -1,7 +1,7 @@
 <template>
   <title-big2 class="title"
     >交通資訊
-    <logo class="logo" />
+    <SvgMonster class="logo" />
   </title-big2>
   <div class="wrapper">
     <iframe
@@ -77,10 +77,10 @@ main {
     margin: 42px -69px 0 80px;
   }
   .sub {
-    margin: 113px -61px 0 80px;
+    margin:136px -61px 0 80px;
   }
   .bus {
-    margin: 139px -61px 0 80px;
+    margin: 139px 0 0 80px;
   }
   .trans h3 {
     font-size: 30px;
@@ -142,32 +142,32 @@ iframe{
 }
 @keyframes logo {
   0% {
-    right: 0;
-    top: -190px;
-  }
-  25% {
-    right: -250px;
-    top: 0;
-  }
-  50% {
-    right: 0;
-    top: 200px;
-  }
-  75% {
-    right: 250px;
-    top: 100px;
-  }
-  85% {
-    right: 150px;
+    right: 800px;
     top: 0px;
   }
-  90% {
-    right: 150px;
+  25% {
+    right: 650px;
     top: -100px;
   }
+  50% {
+    right: 550;
+    top: 100px;
+  }
+  75% {
+    right: 400px;
+    top: 200px;
+  }
+  85% {
+    right: 750px;
+    top: 50px;
+  }
+  90% {
+    right: 500px;
+    top: 100px;
+  }
   100% {
-    right: 0;
-    top: -190px;
+    right: 800px;
+    top: 0px;
   }
 }
 </style>
