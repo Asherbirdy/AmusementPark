@@ -1,13 +1,21 @@
 <script setup></script>
 <template>
-  <headerbg id="headerbg" />
+  
   <header :class="{ openMenu: isOpen }">
+    <headerbg id="headerbg" />
     <nav>
       <router-link to="/" class="logo">
         <logo />
       </router-link>
 
       <ul id="menu">
+        <li>
+          <router-link to="/ticket">
+            <icon-ticket />
+            <h3>快速購票</h3>
+          </router-link>
+        </li>
+
         <li>
           <router-link to="/create">
             <icon-create />
@@ -35,34 +43,45 @@
           </router-link>
         </li>
 
+<<<<<<< HEAD
         <li>
+=======
+        <!-- <li>
+>>>>>>> a1320de2602b2a29d8f277c733365a1c35e82310
           <router-link to="/admin/touristmember">
             <icon-membership />
             <h3>冒險者專區</h3>
           </router-link>
-        </li>
+        </li> -->
       </ul>
       <!-- <a id="moblie_menu" @click="handMenuOpen" href="javascript:;"></a> -->
       <div>
         <div class="rsite">
-          <router-link to="/login">
-            <icon-small-login />
+          <router-link to="#">
+            <icon-small-bell />
+          </router-link>
+          
+          <router-link to="#">
+            <icon-small-basket />
           </router-link>
 
-          <router-link to="/basket">
-            <icon-small-basket />
+          <router-link to="/login">
+            <icon-small-login />
           </router-link>
         </div>
       </div>
     </nav>
   </header>
+  <div id="space"></div>
 </template>
 
 <style scoped lang="scss">
 #headerbg {
-  display: none;
+  // display: none;
   width: 100%;
   // background-color: #f9f3e4;
+  position: absolute;
+  z-index: -1;
 
 }
 
@@ -73,6 +92,9 @@ header {
   background-color: #f9f3e4;
   width: 100%;
   height: 150px;
+  filter: brightness(100%) drop-shadow(0px 0px 5px #5b5b5b); 
+  position: fixed;
+  z-index: 15;
 
   nav {
     display: flex;
@@ -83,61 +105,63 @@ header {
     top: 6px;
 
     .logo {
-      margin: auto 0;
+      margin: auto 40px;
+    }
+  }
+
+  #menu {
+    // width: 40%;
+    list-style: none;
+    display: flex;
+    float: left;
+    justify-content: space-between;
+    a {
+      display: flex;
+      flex-direction: column;
+      float: left;
+      margin: 0 2px;
+      padding: 0 20px;
+      text-decoration: none;
+      filter: brightness(0%);
+      opacity: 0.6;
+      transition: all 0.3s linear;
+      h3 {
+        margin: 4px auto 0;
+        text-align: center;
+        // font-size: 16px;
+        color: #ff7b51;
+      }
+    }
+    a:hover {
+      filter: brightness(100%) drop-shadow(1px 1px 1px #000000);
+      opacity: 1;
+      transition-duration: 0.3s;
+    }
+  }
+
+  .rsite {
+    color: #5b5b5b;
+    display: flex;
+    justify-content: space-between;
+    padding: 4px;
+    margin: 10px;
+    align-items: center;
+    a {
+      text-decoration: none;
+      margin: auto 8px;
+    }
+    svg {
+      padding: 4px;
+      color: #5b5b5b;
     }
   }
 }
 
-header #menu {
-  list-style: none;
-  display: flex;
-  float: left;
+#space{
+  width: 100%;
+  // height: 150px;
+  height: 200px;
 }
-
-header #menu a {
-  display: flex;
-  flex-direction: column;
-  float: left;
-  margin: 0 2px;
-  padding: 0 20px;
-  text-decoration: none;
-  filter: brightness(0%);
-  opacity: 0.6;
-  transition: all 0.3s linear;
-}
-
-header #menu a:hover {
-  filter: brightness(100%) drop-shadow(1px 1px 1px #000000);
-  opacity: 1;
-  transition-duration: 0.3s;
-}
-
-header #menu a h3 {
-  margin: 4px auto 0;
-  text-align: center;
-  // font-size: 16px;
-  color: #ff7b51;
-}
-
-header .rsite {
-  color: #5b5b5b;
-  display: flex;
-  justify-content: space-between;
-  padding: 4px;
-  margin: 10px 0;
-  align-items: center;
-}
-
-header .rsite a {
-  text-decoration: none;
-  margin: auto 8px;
-}
-
-header .rsite svg {
-  padding: 4px;
-  color: #5b5b5b;
-}
-
 a#moblie_menu {
   display: none;
 }
