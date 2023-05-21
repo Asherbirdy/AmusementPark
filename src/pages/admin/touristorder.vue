@@ -12,7 +12,7 @@
       <Folder width="20" />
       預約
     </tour-title>
-    <TicketBookingTOR class="perfromanceBook" />
+    <TicketBookingTOR />
   </div>
 </template>
 

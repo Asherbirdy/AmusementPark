@@ -13,7 +13,6 @@
     "cors": "^2.8.5",
     "dayjs": "^1.11.7",
     "element-plus": "^2.3.3",
-    "gasp": "^0.0.2",
     "vue": "^3.2.37",
     "vue-fb-customer-chat": "^0.2.2",
     "vue-i18n": "^9.2.2",
