@@ -1,24 +1,57 @@
 <template>
   <main>
     <div class="rides">
-      <title-big2 class="title">{{ header }}</title-big2>
-      <ul>
-        <li v-for="(ride, index) in rides" :key="index">
-          <img :src="imgURL(ride.image)" alt="" />
-          <div>
-            <h3>{{ ride.name }}</h3>
-            <el-icon><ArrowDownBold /></el-icon>
+        <title-big2 class="title">{{ header }}</title-big2>
+        <!-- <div
+        class="imgbox"
+        v-for="item in data.value"
+        :key="item.h1"
+        @click="openModal"
+      > -->
+      <div class="aboutrides">
+          <div class="ridesname" v-for="(ride, index) in rides" :key="index">
+            <img :src="imgURL(ride.image)" alt="" />
+            <div class="ridesinfo">
+              <h3>{{ ride.name }}</h3>
+              <el-icon><ArrowDownBold /></el-icon>
+            </div>
           </div>
-        </li>
-      </ul>
+        </div>
+      <!-- </div> -->
     </div>
   </main>
+  <bookrides v-if="ridemodal" class="modal" @close-modal="closeModal" />
 </template>
 
 <script setup>
 import getImageUrl from '@/utils/imgPath';
 const imgURL = name => getImageUrl(name);
+import axios from 'axios';
+import { reactive } from 'vue';
 
+// 設施資料 :
+let data = reactive({});
+// 談窗開關
+let ridemodal = ref(false);
+
+const openModal = () => {
+  ridemodal.value = true;
+};
+const closeModal = () => {
+  ridemodal.value = false;
+};
+
+onMounted(() => {
+  axios
+    .get('../../../src/assets/json/ridesInfo.json')
+    .then(res => {
+      data.value = res.data.ridesData;
+      console.log(data.value);
+    })
+    .catch(err => {
+      console.log(err);
+    });
+});
 
 const header = ref('主題設施');
 const rides = [
@@ -34,22 +67,37 @@ const rides = [
 main {
   width: $workspace;
   padding-top: 0;
+  .modal {
+    visibility: hidden;
+  }
+  .imgbox {
+    width: 1200px;
+    font-size: 20px;
+    gap: 20px;
+    cursor: pointer;
+  }
   .rides {
     margin: 0 auto;
-    position: relative;
   }
   .title {
     margin-bottom: 100px;
   }
-  .rides img {
-    height: 450px;
-    display: block;
-  }
-  .rides div {
-    border: 1px solid #838383;
+  .aboutrides{
     display: flex;
     flex-direction: row;
-    min-width: 188px;
+    flex-wrap: wrap;
+    width: 1200px;
+  }
+  .rides img {
+    width: 350px;
+    display: block;
+    margin: 40px 0 0 40px;
+  }
+  .rides .ridesinfo {
+    border: 1px solid #838383;
+    display: flex;
+    width: 348px;
+    margin-left: 40px;
   }
   .rides h3 {
     font-size: 30px;
@@ -59,14 +107,11 @@ main {
     min-width: 120px;
     padding: 10px 57px 10px 10px;
   }
-  .rides ul {
+  .rides .ridesname {
     display: flex;
     flex-wrap: wrap;
+    flex-direction: column;
   }
-  .rides li {
-    margin: 40px 20px;
-  }
-
   i {
     font-size: 30px;
     color: #838383;

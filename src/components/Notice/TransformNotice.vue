@@ -16,14 +16,14 @@
         ></iframe>
         <ul>
           <li v-for="item in items" :key="item.id">
-            <div @click="toggleText(item)" class="icon">
-              <SvgCar class="car" v-if="item.id === 'car'" />
-              <SvgBus class="bus" v-if="item.id === 'bus'"  />
+            <div class="icon">
+              <SvgCar class="car" />
+              <SvgBus class="bus" />
               <SvgSubway class="sub" v-if="item.id === 'subway'" />
             </div>
             <div class="info">
-            <h3 v-show="item.expanded && item.visible">{{ item.title }}</h3>
-            <p v-show="item.expanded && item.visible">{{ item.description }}</p>
+            <h3 v-show="item.visible">{{ item.title }}</h3>
+            <p v-show=" item.visible">{{ item.description }}</p>
           </div>
             
           </li>
@@ -40,37 +40,25 @@ const items = ref([
     id: 'car',
     title: '國道一號',
     description: '臺北(重慶北路)交流道→百齡橋→承德路→基河路→兒童新樂園',
-    expanded: false,
-    visible: false,
+
   },
   {
     id: 'subway',
     title: '捷運士林站',
     description:
       '搭乘至臺北車站轉捷運淡水信義線至劍潭站、士林站或芝山站轉乘公車',
-    expanded: false,
-    visible: false,
+
   },
   {
     id: 'bus',
     title: '捷運士林站',
     description:
       '出口1→公車轉乘站255區、紅30、620、兒樂１號線(平日停駛)→兒童新樂園',
-    expanded: false,
-    visible: false,
+
   },
 ]);
 
-const toggleText = (item) => {
-  item.expanded = !item.expanded;
-  if (item.expanded) {
-    setTimeout(() => {
-      item.visible = true;
-    }, 0.3);
-  } else {
-    item.visible = false;
-  }
-};
+
 </script>
 
 <style lang="scss" scoped>
@@ -98,7 +86,7 @@ main {
   @keyframes logo {
     0%{
       right: 0;
-      top:-200px;
+      top:-190px;
     }
     25%{
       right: -250px;
@@ -122,7 +110,7 @@ main {
     }
     100%{
       right: 0;
-      top:-200px;
+      top:-190px;
     }
   }
   .trans iframe {
@@ -154,15 +142,9 @@ main {
   }
   .icon{
     margin: 85px 0;
-    cursor: pointer;
-    pointer-events: all;
     padding: 5px 0px;
   }
-  .icon:hover{
-    background-color: #d1825b;
-    border-radius: 10px;
-  }
- 
+
   .trans p::before {
     content: '';
     position: absolute;
