@@ -16,7 +16,10 @@ declare module '@vue/runtime-core' {
     Bar: typeof import('./components/product/Bar.vue')['default']
     Bookrides: typeof import('./components/-UI Element/modalframe/bookrides.vue')['default']
     Bookshow: typeof import('./components/-UI Element/modalframe/bookshow.vue')['default']
+
+
     BookShow: typeof import('./components/-UI Element/modalframe/BookShow.vue')['default']
+
     Born: typeof import('./components/-UI Element/modalframe/born.vue')['default']
     Brand: typeof import('./components/product/Brand.vue')['default']
     Btn: typeof import('./components/-UI Element/btn/Btn.vue')['default']
@@ -24,10 +27,16 @@ declare module '@vue/runtime-core' {
     Cap: typeof import('./components/product/Cap.vue')['default']
     Clothes: typeof import('./components/product/Clothes.vue')['default']
     ColorPicker: typeof import('./components/-UI Element/ColorPicker/ColorPicker.vue')['default']
-    copy: typeof import('./components/TicketOrder/TicketExhibitionTOR2 copy.vue')['default']
+    copy: typeof import('./components/TicketOrder/TicketPriceTOR copy.vue')['default']
     Create: typeof import('./components/product/create.vue')['default']
     Customization: typeof import('./components/product/Customization.vue')['default']
     EggTop: typeof import('./components/-Global/EggTop.vue')['default']
+
+    ElCarousel: typeof import('element-plus/es')['ElCarousel']
+    ElCarouselItem: typeof import('element-plus/es')['ElCarouselItem']
+    ElIcon: typeof import('element-plus/es')['ElIcon']
+    ElInputNumber: typeof import('element-plus/es')['ElInputNumber']
+
     ElButton: typeof import('element-plus/es')['ElButton']
 
     ElDialog: typeof import('element-plus/es')['ElDialog']
@@ -49,6 +58,7 @@ declare module '@vue/runtime-core' {
     ElRadioGroup: typeof import('element-plus/es')['ElRadioGroup']
     ElSubMenu: typeof import('element-plus/es')['ElSubMenu']
     ElText: typeof import('element-plus/es')['ElText']
+
     ExhibitionNotice: typeof import('./components/Notice/ExhibitionNotice.vue')['default']
     FbCustomerChat: typeof import('./components/-UI Element/QA/FbCustomerChat.vue')['default']
     Footer: typeof import('./components/-Global/Footer.vue')['default']
@@ -159,12 +169,12 @@ declare module '@vue/runtime-core' {
     TagsTable: typeof import('./components/ProductManage/TagsTable.vue')['default']
     TeaserIDX: typeof import('./components/Index/TeaserIDX.vue')['default']
     TicketBookingTOR: typeof import('./components/TicketOrder/TicketBookingTOR.vue')['default']
-    TicketEx: typeof import('./components/TicketOrder/TicketEx.vue')['default']
     TicketExhibitionTOR: typeof import('./components/TicketOrder/TicketExhibitionTOR.vue')['default']
     TicketExhibitionTOR1: typeof import('./components/TicketOrder/TicketExhibitionTOR1.vue')['default']
     TicketExhibitionTOR2: typeof import('./components/TicketOrder/TicketExhibitionTOR2.vue')['default']
     TicketExpressPass: typeof import('./components/TicketOrder/TicketExpressPass.vue')['default']
     TicketListPDS: typeof import('./components/Productstatus/TicketListPDS.vue')['default']
+    TicketOrder: typeof import('./components/TicketOrder/TicketOrder.vue')['default']
     TicketPriceTOR: typeof import('./components/TicketOrder/TicketPriceTOR.vue')['default']
     TickOrder: typeof import('./components/TouristBackstage/Element/svg/tickOrder.vue')['default']
     TickOrderListTBS: typeof import('./components/TouristBackstage/TickOrderListTBS.vue')['default']
