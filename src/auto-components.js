@@ -29,6 +29,9 @@ declare module '@vue/runtime-core' {
     Customization: typeof import('./components/product/Customization.vue')['default']
     EggTop: typeof import('./components/-Global/EggTop.vue')['default']
     ElButton: typeof import('element-plus/es')['ElButton']
+
+    ElDialog: typeof import('element-plus/es')['ElDialog']
+
     ElButtonGroup: typeof import('element-plus/es')['ElButtonGroup']
     ElCalendar: typeof import('element-plus/es')['ElCalendar']
     ElCarousel: typeof import('element-plus/es')['ElCarousel']
@@ -36,6 +39,7 @@ declare module '@vue/runtime-core' {
     ElDialog: typeof import('element-plus/es')['ElDialog']
     ElForm: typeof import('element-plus/es')['ElForm']
     ElFormItem: typeof import('element-plus/es')['ElFormItem']
+
     ElIcon: typeof import('element-plus/es')['ElIcon']
     ElInput: typeof import('element-plus/es')['ElInput']
     ElMenu: typeof import('element-plus/es')['ElMenu']
@@ -76,6 +80,7 @@ declare module '@vue/runtime-core' {
     MemberInfo: typeof import('./components/TouristBackstage/Element/svg/memberInfo.vue')['default']
     ModalClosePS: typeof import('./components/ParkStatus/- Modal/ModalClosePS.vue')['default']
     ModalCRUD: typeof import('./components/CRUDTest/ModalCRUD.vue')['default']
+    ModalD: typeof import('./components/CRUDTest/ModalD.vue')['default']
     ModalL: typeof import('./components/-UI Element/modalframe/ModalL.vue')['default']
     ModalLogin: typeof import('./components/-UI Element/modalframe/ModalLogin.vue')['default']
     ModalM: typeof import('./components/-UI Element/modalframe/ModalM.vue')['default']
