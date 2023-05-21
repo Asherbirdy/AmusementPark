@@ -1,5 +1,6 @@
 <script setup>
 import axios from 'axios';
+
 // input 資料：
 const formInput = reactive({
   account: '',
@@ -22,8 +23,8 @@ const handleSubmit = () => {
     // username 和 password
     axios
       .post('/api/PDO/staffAccount/staffLogin.php', {
-        account:formInput.account,
-        pwd:formInput.pwd
+        account: formInput.account,
+        pwd: formInput.pwd,
       })
       .then(res => {
         console.log(res.data);
@@ -61,66 +62,86 @@ const handleReset = () => {
   isPasswordEmpty.value = false;
 };
 
-// 其他：
+onMounted(() => {
+  gsap.from('.container', {
+    autoAlpha: 0,
+  });
+});
 </script>
 <template>
   <layout name="cms_layout">
     <!-- 这里是内容部分 -->
   </layout>
   <div class="container">
-    <div class="image"></div>
-    <div class="box" style="padding: 30px">
-      <!-- 標題 -->
-      <el-text class="title" size="large">園區後台</el-text>
-      <!-- 表單 -->
-      <el-form :model="formInput" class="demo-ruleForm" label-position="center">
-        <!-- 表單：帳號 -->
-        <el-form-item label="">
-          <p>帳號</p>
-          <el-input v-model="formInput.account" placeholder="" />
-          <p v-if="isUsernameEmpty">帳號不能為空</p>
-        </el-form-item>
-        <!-- 表單：密碼 -->
-        <el-form-item label="">
-          <p>密碼</p>
-          <el-input
-            v-model="formInput.pwd"
-            type="password"
-            placeholder=""
-            show-password
-          />
-          <p v-if="isPasswordEmpty">密碼不能為空</p>
-        </el-form-item>
-        <!-- 表單：按鈕 -->
-        <el-form-item>
-          <el-button
-            name="submit"
-            type="primary"
-            style="width: 46%"
-            @click="handleSubmit"
-            >送出</el-button
-          >
-          <el-button style="width: 46%" @click="handleReset">重置</el-button>
-        </el-form-item>
-      </el-form>
+    <div class="wrapper">
+      <div class="image"></div>
+      <div class="box">
+        <!-- 標題 -->
+        <el-text class="title">園區後台</el-text>
+        <!-- 表單 -->
+        <el-form
+          :model="formInput"
+          class="demo-ruleForm"
+          label-position="center"
+        >
+          <!-- 表單：帳號 -->
+          <el-form-item label="">
+            <p>帳號</p>
+            <el-input v-model="formInput.account" placeholder="" />
+            <p v-if="isUsernameEmpty">帳號不能為空</p>
+          </el-form-item>
+          <!-- 表單：密碼 -->
+          <el-form-item label="">
+            <p>密碼</p>
+            <el-input
+              v-model="formInput.pwd"
+              type="password"
+              placeholder=""
+              show-password
+            />
+            <p v-if="isPasswordEmpty">密碼不能為空</p>
+          </el-form-item>
+          <!-- 表單：按鈕 -->
+          <el-form-item>
+            <el-button
+              name="submit"
+              type="primary"
+              style="width: 46%"
+              @click="handleSubmit"
+              >送出</el-button
+            >
+            <el-button style="width: 46%" @click="handleReset">重置</el-button>
+          </el-form-item>
+        </el-form>
+      </div>
     </div>
   </div>
 </template>
 
 <style scoped>
 .container {
-  width: 1280px;
+  margin-top: 200px;
+}
+
+.wrapper {
+  width: 500px;
+  margin: 0 auto;
   display: flex;
   justify-content: center;
+  padding: 20px;
+  box-shadow: 0px 0px 25px 3px rgba(202, 202, 202, 0.75);
 }
+
 .box {
   display: flex;
   flex-direction: column;
+  padding: 0 30px;
 }
 
 .title {
+  margin-top: 20px;
   margin-bottom: 20px;
-  font-size: 60px;
+  font-size: 20px;
 }
 
 .image {

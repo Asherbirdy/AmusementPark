@@ -15,7 +15,7 @@
   margin: 0 auto;
   // background-color: antiquewhite;
   // background-color: $maincolor1;
-  // margin-top: 80px;
+  margin-top: 40px;
   // position: relative;
   video {
     // position: absolute;
