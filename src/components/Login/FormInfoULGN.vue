@@ -18,24 +18,30 @@ const inputInfos = ref([
     value: password,
   },
 ]);
+const emailRegex =
+  /^([a-zA-Z0-9_\.\-\+])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+const isInputFail = ref(false);
 
 const handleClick = () => {
-  const inputAccount = inputInfos.value[0].value;
-  const isPhoneNumber = !isNaN(inputAccount) && inputAccount.length === 10 && inputAccount.trim().length > 0;
-  const emailRegex  =
-  /^([a-zA-Z0-9_\.\-\+])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
-  const isEmail = emailRegex.test(inputAccount);
-
-  if (isPhoneNumber === true || isEmail === true) {
-    console.log('true');
-  }
-  console.log(
-    inputInfos.value[0].value,
-    inputInfos.value[1].value,
-    alert('帳號格式錯誤，請輸入正確Email或手機')
-  );
+  if (isInputFail.value) return;
 };
+const blurCheck = inputType => {
+  if (inputType !== 'account') return;
+  const inputAccount = inputInfos.value[0].value;
+  if (inputAccount === '') {
+    isInputFail.value = false;
+    return;
+  }
+  const isPhoneNumber =
+    !isNaN(inputAccount) &&
+    inputAccount.length === 10 &&
+    inputAccount.trim().length > 0 &&
+    inputAccount[0] === '0' &&
+    inputAccount[1] === '9';
 
+  const isEmail = emailRegex.test(inputAccount);
+  isInputFail.value = !(isPhoneNumber || isEmail);
+};
 // 會員註冊 + 忘記密碼 的 a標籤
 const aLinks = ref([
   {
@@ -69,7 +75,11 @@ const aLinks = ref([
           v-bind:id="inputInfo.id"
           v-bind:placeholder="inputInfo.placeholder"
           v-model="inputInfo.value"
+          @blur="blurCheck(inputInfo.id)"
         />
+        <span v-if="isInputFail && inputInfo.id === 'account'"
+          >請輸入正確帳號</span
+        >
       </div>
 
       <!-- 會員註冊 + 忘記密碼 的 a標籤 -->
