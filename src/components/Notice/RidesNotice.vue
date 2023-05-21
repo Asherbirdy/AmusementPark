@@ -2,12 +2,10 @@
   <main>
     <div class="rides">
         <title-big2 class="title">{{ header }}</title-big2>
-        <!-- <div
+        <div
         class="imgbox"
-        v-for="item in data.value"
-        :key="item.h1"
         @click="openModal"
-      > -->
+      >
       <div class="aboutrides">
           <div class="ridesname" v-for="(ride, index) in rides" :key="index">
             <img :src="imgURL(ride.image)" alt="" />
@@ -17,7 +15,7 @@
             </div>
           </div>
         </div>
-      <!-- </div> -->
+      </div>
     </div>
   </main>
   <bookrides v-if="ridemodal" class="modal" @close-modal="closeModal" />
