@@ -18,7 +18,10 @@ declare module '@vue/runtime-core' {
     Bookshow: typeof import('./components/-UI Element/modalframe/bookshow.vue')['default']
 
 
+
+
     BookShow: typeof import('./components/-UI Element/modalframe/BookShow.vue')['default']
+
 
     Born: typeof import('./components/-UI Element/modalframe/born.vue')['default']
     Brand: typeof import('./components/product/Brand.vue')['default']
@@ -27,6 +30,14 @@ declare module '@vue/runtime-core' {
     Cap: typeof import('./components/product/Cap.vue')['default']
     Clothes: typeof import('./components/product/Clothes.vue')['default']
     ColorPicker: typeof import('./components/-UI Element/ColorPicker/ColorPicker.vue')['default']
+
+    Create: typeof import('./components/product/create.vue')['default']
+    Customization: typeof import('./components/product/Customization.vue')['default']
+    EggTop: typeof import('./components/-Global/EggTop.vue')['default']
+    ElCarousel: typeof import('element-plus/es')['ElCarousel']
+    ElCarouselItem: typeof import('element-plus/es')['ElCarouselItem']
+    ElIcon: typeof import('element-plus/es')['ElIcon']
+
     copy: typeof import('./components/TicketOrder/TicketPriceTOR copy.vue')['default']
     Create: typeof import('./components/product/create.vue')['default']
     Customization: typeof import('./components/product/Customization.vue')['default']
@@ -58,6 +69,7 @@ declare module '@vue/runtime-core' {
     ElRadioGroup: typeof import('element-plus/es')['ElRadioGroup']
     ElSubMenu: typeof import('element-plus/es')['ElSubMenu']
     ElText: typeof import('element-plus/es')['ElText']
+
 
     ExhibitionNotice: typeof import('./components/Notice/ExhibitionNotice.vue')['default']
     FbCustomerChat: typeof import('./components/-UI Element/QA/FbCustomerChat.vue')['default']
