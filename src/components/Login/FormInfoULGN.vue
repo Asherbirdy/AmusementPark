@@ -73,6 +73,7 @@ const aLinks = ref([
       <button class="middle__form--Btn" type="submit" id="Submit">登入</button>
     </form>
   </section>
+  <cartadd />
 </template>
 
 <style lang="scss" scoped>
