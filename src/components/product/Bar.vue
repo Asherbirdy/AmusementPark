@@ -37,7 +37,7 @@ let bar = { bar: 'bar' };
     display: inline-block;
     padding: 30px;
     position: fixed;
-    top: 125px;
+    top: 215px;
     left: 0;
 }
 
