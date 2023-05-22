@@ -88,8 +88,9 @@ header {
   background-color: #f9f3e4;
   width: 100%;
   height: 150px;
-  filter: brightness(100%) drop-shadow(0px 0px 5px #5b5b5b); 
-  position: fixed;
+  // filter: brightness(100%) drop-shadow(0px 0px 5px #5b5b5b); 
+  // position: fixed;
+  position: relative;
   z-index: 15;
 
   nav {
@@ -155,8 +156,8 @@ header {
 
 #space{
   width: 100%;
-  // height: 150px;
-  height: 200px;
+  height: 50px;
+  // height: 200px;
 }
 a#moblie_menu {
   display: none;
