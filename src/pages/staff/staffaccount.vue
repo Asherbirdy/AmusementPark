@@ -1,7 +1,9 @@
 <script setup>
 import axios from 'axios';
+// import { checkLoginStatus } from '@/utils/backstageCheck';
 let showmodal = ref(false);
 const router = useRouter();
+// checkLoginStatus();
 
 axios
   .post('/api/PDO/staffAccount/staffLoginCheck.php')
@@ -19,22 +21,17 @@ axios
         alert('登入狀態檢查出錯');
       });
 
-
-const openModal =() => {
+const openModal = () => {
   showmodal.value = true;
 };
-
-
 </script>
 <template>
-  <modal-insert
-    v-model="showmodal"
-  ></modal-insert>
+  <modal-insert v-model="showmodal"></modal-insert>
   <el-checkbox-group v-model="checkList" class="title-bar">
     <div class="checkbox-wrap">
+      <el-checkbox label="園長" />
       <el-checkbox label="高階主管" />
-      <el-checkbox label="主管" />
-      <el-checkbox label="員工" />
+      <el-checkbox label="一般員工" />
     </div>
     <el-button type="primary" style="" @click="openModal">新增帳號</el-button>
   </el-checkbox-group>
@@ -42,10 +39,10 @@ const openModal =() => {
 </template>
 
 <style scoped lang="scss">
-  .title-bar {
-    display: flex;
-    justify-content: space-between;
-  }
+.title-bar {
+  display: flex;
+  justify-content: space-between;
+}
 </style>
 <route>
     {

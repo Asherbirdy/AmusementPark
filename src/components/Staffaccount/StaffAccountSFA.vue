@@ -58,7 +58,6 @@ onMounted(() => {
       return staff;
     });
 
-
     // 將資料轉成 element 可以讀的參數，參考 public/json/facility_status.json
     const staffData = data.map(staff => ({
       id: staff.BACKSTAGE_MEMBER_ID,
@@ -73,10 +72,17 @@ onMounted(() => {
 
 
 
-const openModal = () => {
+let id = ref('');
+const account = ref('');
+const permissions = ref('');
+
+const openModal = index => {
     showmodal.value = true;
-    id.value = staff[0].BACKSTAGE_MEMBER_ID;
-    account.value = staff[0].ACCOUNT;
+    const rowData = tableData.value[index];
+    console.log(tableData);
+    id.value = rowData.BACKSTAGE_MEMBER_ID;
+    account.value = rowData.ACCOUNT;
+    permissions.value = rowData.permissions;
   };
 
 </script>
