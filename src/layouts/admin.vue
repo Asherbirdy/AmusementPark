@@ -1,3 +1,14 @@
+<script setup>
+import axios from 'axios';
+const router = useRouter();
+
+const logout = () => {
+  axios.post('/api/PDO/staffAccount/staffLogout.php').then(res => {
+    console.log(res.data);
+    router.push('/staff/login');
+  });
+};
+</script>
 <template>
   <div class="common-layout">
     <el-container class="container">
@@ -7,12 +18,21 @@
           <h1>怪獸樂園後台管理系統</h1>
         </div>
 
-        <div class="userbox">
+        <div class="userbox" style="">
           <p>ID:MP2313</p>
           <p>等級:高階主管</p>
-          <router-link class="logout" to="/staff/login">
-            <el-button>登出</el-button></router-link
-          >
+          <div class="logout" to="/staff/login" @click="logout">
+            <el-button>登出</el-button>
+          </div>
+          <IconUserProfile class="icon-user" />
+
+          <!-- <el-button
+            name="submit"
+            type="primary"
+            style="width: 46%"
+            @click="logout"
+            >登出</el-button
+          > -->
         </div>
       </el-header>
       <el-container>
