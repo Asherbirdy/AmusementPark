@@ -170,4 +170,12 @@ const aLinks = ref([
     }
   }
 }
+
+span {
+  display: flex;
+  margin-left: 90px;
+  margin-top: 10px;
+  color: red;
+  font-weight: bold;
+}
 </style>
