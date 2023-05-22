@@ -2,11 +2,16 @@
   <div class="common-layout">
     <el-container class="container">
       <el-header class="header">
-        <h1>怪獸樂園後台管理系統</h1>
+        <div class="logoTitle">
+          <logo style="width: 40px" />
+          <h1>怪獸樂園後台管理系統</h1>
+        </div>
+
         <div class="userbox">
-          <IconUserProfile class="icon-user" />
-          <router-link class="logout" to="/admin/login"
-            ><a>登出</a></router-link
+          <p>ID:MP2313</p>
+          <p>等級:高階主管</p>
+          <router-link class="logout" to="/staff/login">
+            <el-button>登出</el-button></router-link
           >
         </div>
       </el-header>
@@ -18,7 +23,7 @@
           <el-main class="main">
             <RouterView />
           </el-main>
-          <el-footer class="footer">Footer</el-footer>
+          <el-footer class="footer"><p>版本資訊：1.2.44</p></el-footer>
         </el-container>
       </el-container>
     </el-container>
@@ -26,6 +31,10 @@
 </template>
 <style scoped lang="scss">
 $headerHeight: 100px;
+
+p {
+  font-size: 16px;
+}
 .container {
   .header {
     background-color: rgb(245, 245, 245);
@@ -33,6 +42,11 @@ $headerHeight: 100px;
     align-items: center;
     justify-content: space-between;
     height: $headerHeight;
+    .logoTitle {
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+    }
     h1 {
       font-size: 20px;
     }
@@ -42,6 +56,8 @@ $headerHeight: 100px;
     .userbox {
       display: flex;
       gap: 10px;
+      display: flex;
+      align-items: center;
 
       a {
         margin: auto 0;
@@ -58,6 +74,10 @@ $headerHeight: 100px;
   }
   .footer {
     background-color: rgb(245, 245, 245);
+    display: flex;
+    align-items: center;
+    justify-content: end;
+    color: rgb(195, 195, 195);
   }
 }
 main {

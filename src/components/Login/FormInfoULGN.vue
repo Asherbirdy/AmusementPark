@@ -49,12 +49,14 @@ const aLinks = ref([
     url: '#',
     text: '會員註冊',
     icon: 'User',
+    url: '/register',
   },
   {
     id: '2',
     url: '#',
     text: '忘記密碼',
     icon: 'Unlock',
+    url: '/register',
   },
 ]);
 </script>
@@ -151,10 +153,12 @@ const aLinks = ref([
     &--Icon {
       margin-right: 9px;
     }
-    &--A {
+    &--Link {
       font-weight: 400;
       font-size: 16px;
       line-height: 19.36px;
+      color: black;
+      text-decoration: none;
     }
 
     &--Btn {

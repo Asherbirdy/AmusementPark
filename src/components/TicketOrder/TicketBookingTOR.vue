@@ -1,51 +1,90 @@
 <template>
-  <div>
-    <div class="imgbox">
-      <img src="../../assets/img/performance1.png" />
-      <h3>夢幻演繹</h3>
+  <div class="wrapper">
+    <div
+      class="imgbox"
+      v-for="item in data.value"
+      :key="item.h1"
+      @click="openModal"
+    >
+      <img :src="imgURL(item.img)" />
+      <h3>{{ item.name }}</h3>
       <div class="overlay">
-        <span>表演预约</span>
-      </div>
-    </div>
-    <div class="imgbox">
-      <img src="../../assets/img/performance2.png" />
-      <h3>爵士表演</h3>
-      <div class="overlay">
-        <span>表演预约</span>
-      </div>
-    </div>
-    <div class="imgbox">
-      <img src="@/assets/img/performance3.png" />
-      <h3>綠野仙蹤</h3>
-      <div class="overlay">
-        <span>表演预约</span>
-      </div>
-    </div>
-    <div class="imgbox">
-      <img src="@/assets/img/performance4.png" />
-      <h3>火焰跳躍者</h3>
-      <div class="overlay">
-        <span>表演预约</span>
-      </div>
-    </div>
-    <div class="imgbox">
-      <img src="@/assets/img/performance5.png" />
-      <h3>魔幻舞台</h3>
-      <div class="overlay">
-        <span>表演预约</span>
-      </div>
-    </div>
-    <div class="imgbox">
-      <img src="@/assets/img/performance6.png" />
-      <h3>瘋狂藝術家</h3>
-      <div class="overlay">
-        <span>表演预约</span>
+        <span>表演預約</span>
       </div>
     </div>
   </div>
+  <bookshow v-if="showmodal" class="modal" @close-modal="closeModal" />
 </template>
-<script setup></script>
+<script setup>
+import getImageUrl from '@/utils/imgPath';
+import axios from 'axios';
+
+import { reactive } from 'vue';
+
+const imgURL = img => getImageUrl(img);
+
+// 展演資料 :
+let data = reactive({});
+
+// 談窗開關
+let showmodal = ref(false);
+
+// 點及圖片彈出視窗鑑識
+const openModal = () => {
+  showmodal.value = true;
+  nextTick(() => {
+    gsap.from('.modal', {
+      duration: 0.3,
+      autoAlpha: 0,
+      y: 20,
+      onComplete: () => {
+        // 动画完成后的回调函数
+      },
+    });
+  });
+};
+
+// 自動顯示六張展演圖片及H1文字
+onMounted(() => {
+  axios
+    .get('../../../src/assets/json/performaceInfo.json')
+    .then(res => {
+      data.value = res.data.performanceData;
+      console.log(data.value);
+    })
+    .catch(err => {
+      console.log(err);
+    });
+});
+
+// 關掉視窗
+const closeModal = () => {
+  // showmodal.value = false;
+  // gsap.to('.modal', {
+  //   autoAlpha: 0,
+  //   y: -20,
+  //   onComplete: () => {
+  //     console.log('end');
+  //   },
+  // });
+  gsap.to('.modal', {
+    duration: 0.3,
+    autoAlpha: 0,
+    y: -20,
+    onComplete: () => {
+      showmodal.value = false;
+      // 动画完成后的回调函数
+    },
+  });
+};
+</script>
 <style scoped lang="scss">
+.modal {
+  visibility: hidden;
+}
+.wrapper {
+  width: 947px;
+}
 div {
   display: flex;
   gap: 20px;
@@ -59,6 +98,7 @@ div {
     align-items: center;
     font-size: 20px;
     gap: 20px;
+    cursor: pointer;
     &:hover {
       filter: opacity(80%);
     }

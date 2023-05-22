@@ -11,7 +11,7 @@
             <frame-green>
                 <img :src="imgURL(item.image)" alt="">
                 <p class="product_name"> {{ item.productName }}</p>
-                <button>加入購物車</button>
+                <Button>加入購物車</Button>
             </frame-green>
         </li>
     </ul>

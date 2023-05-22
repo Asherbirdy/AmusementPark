@@ -3,7 +3,15 @@
 <template>
   <div class="bgc">
     <div class="layout">
-      <el-icon class="iconClose"><CircleClose /></el-icon>
+      <el-icon
+        class="iconClose"
+        @click="
+          () => {
+            $emit('close-modal');
+          }
+        "
+        ><CircleClose
+      /></el-icon>
       <slot> </slot>
     </div>
   </div>
@@ -26,7 +34,6 @@
   margin-left: 1065px;
   color: #90420a;
   cursor: pointer;
-
 }
 
 .layout {
