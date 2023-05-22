@@ -7,16 +7,16 @@
     <el-table-column label="園區位置" prop="position" />
     <el-table-column label="編輯" align="center">
       <template #default="scope">
-        <el-button size="small" @click="handleEdit(scope.$index, scope.row)"
-          >編輯</el-button
-        >
+        <el-button size="small" @click="showModal = true">編輯</el-button>
       </template>
     </el-table-column>
   </el-table>
+  <!-- <ActivityModalACL v-if="showModal" /> -->
 </template>
 
 <script setup>
 const search = ref('');
+let showModal = ref(false);
 const filterTableData = computed(() =>
   tableData.filter(
     data =>
@@ -26,6 +26,8 @@ const filterTableData = computed(() =>
 );
 const handleEdit = (index, row) => {
   console.log(index, row);
+
+
 };
 const handleDelete = (index, row) => {
   console.log(index, row);

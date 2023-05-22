@@ -6,7 +6,7 @@
     <Bag />
     <PhoneCase />
     <Customization />
-    <create />
+    <MonsterMaker />
   </main>
 </template>
 <script setup>
