@@ -56,15 +56,11 @@ const product = ref([
     }
 }
 
-.s1 {
-    padding: 0 0 0 100px;
-}
-
 .frame_pink {
     display: flex;
     flex-wrap: wrap;
     text-align: center;
-    padding-left: 200px;
+    padding-left: 30px;
 
     li {
         display: flex;
@@ -77,13 +73,20 @@ const product = ref([
 
 img {
     width: 70%;
-    margin: 90px 0 0 30px;
+    margin: 130px 0 0 50px;
 }
 
 .product_name {
-    font-size: 18px;
-    margin-top: 50px;
+    font-size: 24px;
+    margin-top: 80px;
     margin-bottom: 15px;
     color: $textcolor7;
+}
+
+Button{
+    font-size: 20px;
+    width: 140px;
+    height: 50px;
+    border-radius: 10px;
 }
 </style>
