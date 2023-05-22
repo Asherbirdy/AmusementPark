@@ -7,6 +7,7 @@
         <th>適用對象</th>  
         <th>票價</th>
         <th>張數</th>
+        <th>快速通關</th>
       </tr>
       <tr>
         <td>全票</td>        
@@ -18,6 +19,7 @@
             :min="0"
             @change="handleChange" class="count"
           /></td>
+          <td><input type="checkbox"></td>
       </tr>
       <tr>
         <td>學生票</td>        
@@ -29,6 +31,7 @@
             :min="0"
             @change="handleChange" class="count"
           /></td>
+          <td><input type="checkbox"></td>
       </tr>
       <tr>
         <td>兒童票</td>       
@@ -40,6 +43,7 @@
             :min="0"
             @change="handleChange" class="count"
           /></td>
+          <td><input type="checkbox"></td>
       </tr>
       <tr>
         <td>優待票</td>        
@@ -51,8 +55,9 @@
             :min="0"
             @change="handleChange" class="count"
           /></td>
+          <td><input type="checkbox"></td>
       </tr>
-      <tr><td colspan="4" class="ex">4歲以下免費入場</td></tr>
+      <tr><td colspan="10" class="ex">4歲以下免費入場</td></tr>
     </table>
     
   </div>
@@ -84,7 +89,7 @@ th,td {
 }
 table{
   margin: 0 auto;
-  width: 1000px;
+  // width: 1000px;
 
   tr {
     th {
