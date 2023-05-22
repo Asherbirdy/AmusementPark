@@ -25,12 +25,14 @@ const aLinks = ref([
     url: '#',
     text: '會員註冊',
     icon: 'User',
+    url: '/register',
   },
   {
     id: '2',
     url: '#',
     text: '忘記密碼',
     icon: 'Unlock',
+    url: '/register',
   },
 ]);
 </script>
@@ -63,7 +65,8 @@ const aLinks = ref([
           v-bind:href="aLink.url"
         >
           <el-icon class="middle__form--Icon"><component :is="aLink.icon" /></el-icon>  <!-- 在 <el-icon> 组件内部動態渲染 aLink.icon 所代表的组件 -->
-          <a class="middle__form--A">{{ aLink.text }}</a>
+          <!-- <a class="middle__form--A">{{ aLink.text }}</a> -->
+          <router-link :to="aLink.url" class="middle__form--Link">{{ aLink.text }}</router-link>
         </div>
       </div>
 
@@ -112,10 +115,12 @@ const aLinks = ref([
     &--Icon {
       margin-right: 9px;
     }
-    &--A {
+    &--Link {
       font-weight: 400;
       font-size: 16px;
       line-height: 19.36px;
+      color: black;
+      text-decoration: none;
     }
 
     &--Btn {
