@@ -40,14 +40,16 @@
     </el-table-column>
   </el-table>
   <!-- 彈跳視窗 -->
-  <ModalClosePS />
-  <ModalOpenPS />
+  <ModalClosePS v-if="modalClose" />
+  <ModalOpenPS v-if="modalOpen" />
 </template>
 
 <script setup>
 import axios from 'axios';
 import { Timer } from '@element-plus/icons-vue';
 
+let modalClose = ref(false);
+let modalOpen = ref(false);
 // 園區狀態字串邏輯
 const getStatusType = status => {
   switch (status) {
@@ -94,7 +96,8 @@ const handleSwitchChange = row => {
   console.log(!row.toggle);
   // 判斷 toggle 是 開 還是 關 來判斷要出現哪一個組件的彈窗
   if (!row.toggle) {
-    const confirmed = window.confirm('確定要切換開關嗎？(True到False)');
+    // 打開ModalClose的False
+    modalClose.value = true;
     if (!confirmed) {
       row.toggle = !row.toggle;
     } else {
@@ -102,9 +105,9 @@ const handleSwitchChange = row => {
       row.toggle = row.toggle;
     }
     // 觸發 v-model 綁定的更新
-    // scope.row.toggle = row.toggle;
   } else {
-    const confirmed = window.confirm('確定要切換開關嗎？(False到True)');
+    modalOpen.value = true;
+    // const confirmed = window.confirm('確定要切換開關嗎？(False到True)');
     if (!confirmed) {
       row.toggle = !row.toggle;
     } else {

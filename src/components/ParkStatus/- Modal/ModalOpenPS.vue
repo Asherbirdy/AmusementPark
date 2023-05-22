@@ -1,11 +1,11 @@
 <template>
   <el-dialog
     v-model="centerDialogVisible"
-    title="強制開啟 設施?"
+    title="強制開啟 設施一"
     width="30%"
     center
   >
-    <span> 離開啟日還有?日，確定要打開設施？嗎? </span>
+    <span> 離開啟日還有1日，確定要打開設施設施一嗎? </span>
     <template #footer>
       <span class="dialog-footer">
         <el-button @click="centerDialogVisible = false">取消</el-button>

@@ -21,14 +21,18 @@
     <monstertCoplete class="complete" />
     <p>謝謝您!您的訂單已經成立!</p>
     <ul class="order">
-      <li>訂單編號 202304250001</li>
-      <li>訂單確認信已經發送至 xxxxxx1234@gmail.com</li>
-      <li>將立即為您安排出貨 Thank You!</li>
+      <li v-for="item in orderItems" :key="item">{{ item }}</li>
     </ul>
   </div>
 </template>
 
-<script setup></script>
+<script setup>
+const orderItems = [
+  '訂單編號 202304250001',
+  '訂單確認信已經發送至 xxxxxx1234@gmail.com',
+  '將立即為您安排出貨 Thank You!',
+];
+</script>
 
 <style lang="scss" scoped>
 //共同樣式
@@ -56,7 +60,6 @@ main {
   }
 }
 .complete {
-  
   margin: 0px auto 80px;
 }
 .content {

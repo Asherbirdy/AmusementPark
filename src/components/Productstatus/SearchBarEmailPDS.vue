@@ -13,26 +13,19 @@
   </el-row>
 </template>
 
-<script lang="ts" setup>
-import { onMounted, ref } from 'vue';
-
-interface RestaurantItem {
-  value: string;
-  link: string;
-}
-
+<script setup>
 const state1 = ref('');
 
-const restaurants = ref<RestaurantItem[]>([]);
-const querySearch = (queryString: string, cb: any) => {
+const restaurants = ref([]);
+const querySearch = (queryString, cb) => {
   const results = queryString
     ? restaurants.value.filter(createFilter(queryString))
     : restaurants.value;
   // call callback function to return suggestions
   cb(results);
 };
-const createFilter = (queryString: string) => {
-  return (restaurant: RestaurantItem) => {
+const createFilter = queryString => {
+  return restaurant => {
     return (
       restaurant.value.toLowerCase().indexOf(queryString.toLowerCase()) === 0
     );
@@ -40,17 +33,17 @@ const createFilter = (queryString: string) => {
 };
 const loadAll = () => {
   return [
-    { value: 'vue', link: 'https://github.com/vuejs/vue' },
-    { value: 'element', link: 'https://github.com/ElemeFE/element' },
-    { value: 'cooking', link: 'https://github.com/ElemeFE/cooking' },
-    { value: 'mint-ui', link: 'https://github.com/ElemeFE/mint-ui' },
-    { value: 'vuex', link: 'https://github.com/vuejs/vuex' },
-    { value: 'vue-router', link: 'https://github.com/vuejs/vue-router' },
-    { value: 'babel', link: 'https://github.com/babel/babel' },
+    { value: 'asher5elin', link: 'https://github.com/vuejs/vue' },
+    { value: 'samuek34', link: 'https://github.com/ElemeFE/element' },
+    { value: 'hupeon23', link: 'https://github.com/ElemeFE/cooking' },
+    { value: 'javasciprt3', link: 'https://github.com/ElemeFE/mint-ui' },
+    { value: 'hlle24', link: 'https://github.com/vuejs/vuex' },
+    { value: 'aap', link: 'https://github.com/vuejs/vue-router' },
+    { value: 'vueJS', link: 'https://github.com/babel/babel' },
   ];
 };
 
-const handleSelect = (item: RestaurantItem) => {
+const handleSelect = item => {
   console.log(item);
 };
 
