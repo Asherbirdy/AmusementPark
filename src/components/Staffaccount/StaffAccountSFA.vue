@@ -1,4 +1,5 @@
 <template>
+  <!-- <ModalInsertSFA /> -->
   <el-table :data="tableData" style="width: 100%">
     <el-table-column label="員工編號" prop="id" />
     <el-table-column label="員工帳號" prop="account" />
@@ -11,6 +12,8 @@
         <el-button size="small" @click="handleEdit(scope.$index, scope.row)"
           >Edit</el-button
         >
+
+        <!-- <ModalDeleteSFA /> -->
         <el-button
           size="small"
           type="danger"
@@ -39,10 +42,6 @@ onMounted(() => {
       id: staff.BACKSTAGE_MEMBER_ID,
       account: staff.ACCOUNT,
       permissions: staff.PURVIEW_LEVEL_ID,
-      // date:
-      //   facility.startDate && facility.endDate
-      //     ? `${facility.startDate} 至 ${facility.endDate}`
-      //     : '',
     }));
     //
 
@@ -51,18 +50,4 @@ onMounted(() => {
   });
 });
 
-// const search = ref('');
-// const filterTableData = computed(() =>
-//   tableData.filter(
-//     data =>
-//       !search.value ||
-//       data.name.toLowerCase().includes(search.value.toLowerCase())
-//   )
-// );
-// const handleEdit = (index: number, row: User) => {
-//   console.log(index, row);
-// };
-// const handleDelete = (index: number, row: User) => {
-//   console.log(index, row);
-// };
 </script>
