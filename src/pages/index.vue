@@ -1,15 +1,19 @@
 <script setup></script>
 
 <template>
-  <VideoBannerIDX />
+  <VideoBannerIDX id="VideoBannerIDX"/>
   <title-big1 id="title-big1">前導故事</title-big1>
   <TeaserIDX id="TeaserIDX" />
   <!-- 小怪獸彈窗 -->
 
   <InformationIDX />
+  <login></login>
 </template>
 <style scoped lang="scss">
-//scss測試：
+#VideoBannerIDX{
+  margin-top: -40px;
+}
+
 #title-big1{
   padding-top: 80px;
 }
