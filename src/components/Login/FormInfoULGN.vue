@@ -67,7 +67,7 @@ const aLinks = ref([
         </div>
       </div>
 
-      <button class="middle__form--Btn" type="submit" id="Submit">登入</button>
+      <Button class="middle__form--Btn" type="submit" id="Submit">登入</Button>
     </form>
   </section>
 </template>

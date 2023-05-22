@@ -25,7 +25,7 @@
         </div>
       </div>
     </article>
-    <button class="orderBtn">立即預約</button>
+    <Button class="orderBtn">立即預約</Button>
   </modal-l>
 </template>
 
@@ -95,6 +95,7 @@ article {
   display: flex;
   justify-content: space-between;
   padding: 0 50px;
+  margin-top: -50px;
 }
 
 //圖片區塊
@@ -106,6 +107,7 @@ article {
   img {
     width: 450px;
     height: 600px;
+    padding-top: 30px;
   }
 }
 
@@ -167,7 +169,7 @@ h1 {
 .orderBtn {
   float: right;
   margin-right: 70px;
-  margin-bottom: 50px;
+  margin-bottom: 20px;
   width: 162px;
   height: 75px;
   background-color: #d1825b;

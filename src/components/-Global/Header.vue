@@ -43,11 +43,7 @@
           </router-link>
         </li>
 
-<<<<<<< HEAD
-        <li>
-=======
         <!-- <li>
->>>>>>> a1320de2602b2a29d8f277c733365a1c35e82310
           <router-link to="/admin/touristmember">
             <icon-membership />
             <h3>冒險者專區</h3>
