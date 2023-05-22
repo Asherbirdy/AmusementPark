@@ -5,10 +5,10 @@
 <!-- <side-menu id="side-menu"/> -->
 <main>
   <summary>
-      <TicketExhibitionTOR1 id="orderdate"/>
+      <ticket-exhibitionTOR1 id="orderdate"/>
 
   </summary>
-  <TicketOrder id="ticketprice"/>
+  <ticket-order id="ticketprice"/>
   <!-- <ticketExpressPass id="ticketexpresspass"/> -->
   <!-- <TicketExhibitionTOR2 id="ticketselect"/> -->
   <!-- <ticket-express-pass/> -->
