@@ -3,7 +3,9 @@
   <div class="container">
     <ParkStatusTablePS />
     <aside>
-      <el-button type="primary" default>官網</el-button>
+      <router-link to="/map" target="_blank">
+        <el-button type="primary" default>官網地圖</el-button>
+      </router-link>
     </aside>
   </div>
 </template>
@@ -16,7 +18,11 @@
   aside {
     width: 50%;
     height: 400px;
-    background-color: rgb(222, 222, 222);
+    border: 1px solid rgb(234, 234, 234);
+    background-image: url(../../assets/img/MAP.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: 50%;
   }
 }
 </style>

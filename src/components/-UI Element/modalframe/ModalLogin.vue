@@ -2,7 +2,7 @@
 
 <template>
   <div class="modal">
-    <el-icon class="modal__iconClose"><CircleClose /></el-icon>
+    <!-- <el-icon class="modal__iconClose"><CircleClose /></el-icon> -->
     <slot> </slot>
   </div>
 </template>
