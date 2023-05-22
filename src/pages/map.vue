@@ -1,4 +1,20 @@
-<script setup></script>
+<script setup>
+import axios from 'axios';
+import dayjs  from 'dayjs';
+
+const localTemp = ref()
+const getTemp = async()  => {
+  const weatherRes = await axios('https://opendata.cwb.gov.tw/api/v1/rest/datastore/F-D0047-061?Authorization=CWB-D86E32DD-4173-4C38-BF76-04A68E6E5AEF&limit=10&offset=0&format=JSON&locationName=%E5%A3%AB%E6%9E%97%E5%8D%80&elementName=T')
+  if(weatherRes.status === 200) {
+    const weatherList = weatherRes.data.records.locations[0].location[0].weatherElement[0].time
+    const matchNowTimeIndex =  weatherList.findIndex(item => (dayjs(item.dataTime).diff(dayjs(new Date()), 'hour')) < 3 && (dayjs(item.dataTime).diff(dayjs(new Date()), 'hour')) > 0)
+    localTemp.value = weatherList[matchNowTimeIndex].elementValue[0].value
+  }
+}
+onMounted(() => {
+  getTemp()
+})
+</script>
 
 <template>
   <div class="bg">
@@ -39,14 +55,7 @@
           <h1>天氣</h1>
           <div class="weatherCon">
             <h2>台北市</h2>
-            <div id="app" class="container px-1 px-sm-4 py-5 mx-auto">
-              <div class="row d-flex justify-content-center">
-                <div class="card text-center pt-4 border-0">
-                  <h2 id="tempture" class="large-font">18&#176;</h2>
-                  <div class="text-center mt-3 mb-4"></div>
-                </div>
-              </div>
-            </div>
+            <span>{{ `${localTemp}&#176C` }}</span>
           </div>
         </li>
         <li id="Parking">
