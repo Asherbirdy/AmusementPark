@@ -11,6 +11,9 @@ declare module '@vue/runtime-core' {
   export interface GlobalComponents {
     AboutUsNotice: typeof import('./components/Notice/AboutUsNotice.vue')['default']
     ActivityList: typeof import('./components/Activity/ActivityList.vue')['default']
+    ActivityListACL: typeof import('./components/Activity/ActivityListACL.vue')['default']
+    ActivityModalACL: typeof import('./components/Activity/ActivityModalACL.vue')['default']
+    ActivityTimeACL: typeof import('./components/Activity/ActivityTimeACL.vue')['default']
     AdminNav: typeof import('./components/-Global/AdminNav.vue')['default']
     Bag: typeof import('./components/product/Bag.vue')['default']
     Bar: typeof import('./components/product/Bar.vue')['default']
@@ -117,7 +120,7 @@ declare module '@vue/runtime-core' {
     MyOrder: typeof import('./components/TouristBackstage/Element/svg/myOrder.vue')['default']
     NavUserTBS: typeof import('./components/TouristBackstage/NavUserTBS.vue')['default']
     OpenNotice: typeof import('./components/Notice/OpenNotice.vue')['default']
-    ParkStatusTablePS: typeof import('./components/ParkStatus/ParkStatusTablePS.vue')['default']
+    ParkStatusTablePS: typeof import('./components/Productstatus/ParkStatusTablePS.vue')['default']
     ParkStatusTimePicker: typeof import('./components/-UI Element/timepicker/ParkStatusTimePicker.vue')['default']
     Password: typeof import('./components/-UI Element/modalframe/password.vue')['default']
     PhoneCase: typeof import('./components/product/PhoneCase.vue')['default']
