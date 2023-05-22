@@ -1,4 +1,5 @@
 <template>
+  <el-dialog>
     <el-form
       ref="staffRef"
       :model="staff"
@@ -29,6 +30,7 @@
         <el-button @click="resetForm(staffRef)"> Reset </el-button>
       </el-form-item>
     </el-form>
+  </el-dialog>
   </template>
   
   <script lang="ts" setup>
