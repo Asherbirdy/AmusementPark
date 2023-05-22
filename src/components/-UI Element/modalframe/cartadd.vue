@@ -1,4 +1,7 @@
 <script setup>
+import getImageUrl from '@/utils/imgPath';
+const imgURL = name => getImageUrl(name);
+
 const options = ref([{ size: 'S' }, { size: 'M' }, { size: 'L' }]);
 
 const num = ref(1);
@@ -12,7 +15,7 @@ const btns = ref([{ action: '加入購物車' }, { action: '立即購買' }]);
 <template>
   <modal-l>
     <div class="wrap">
-      <img class="wrap__leftImg" src="../../src/assets/img/Tshirt.png" alt="" />
+      <img class="wrap__leftImg" :src="imgURL('bag1.png')" />
       <div class="wrap__rightDiv">
         <h1 class="wrap__rightDiv--h1">MONSTAR上衣</h1>
         <p class="wrap__rightDiv--p">
@@ -70,8 +73,8 @@ const btns = ref([{ action: '加入購物車' }, { action: '立即購買' }]);
       font-size: 20px;
       line-height: 40px;
     }
-    &--from {
-    }
+    // &--from {
+    // }
     &--formLabel {
       display: block;
       font-size: 20px;

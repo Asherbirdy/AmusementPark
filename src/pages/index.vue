@@ -7,6 +7,7 @@
   <!-- 小怪獸彈窗 -->
 
   <InformationIDX />
+  <login></login>
 </template>
 <style scoped lang="scss">
 //scss測試：
