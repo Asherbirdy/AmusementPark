@@ -11,7 +11,9 @@
 </template>
 
 <script setup>
-import getImageUrl from '@/utils/imgPath'
+import getImageUrl from '@/utils/imgPath';
+import Bookrides from '../-UI Element/modalframe/bookrides.vue';
+const imgURL = name => getImageUrl(name);
 
 const header = ref('展覽資訊')
 const performance = ref([
@@ -22,7 +24,6 @@ const performance = ref([
   { name: '魔幻舞台', image: 'performance5.png' },
   { name: '瘋狂藝術家', image: 'performance6.png' },
 ])
-const imgURL = getImageUrl
 
 </script>
 
@@ -32,18 +33,23 @@ main {
   position: relative;
   margin: 0 auto;
   max-width: 1200px;
+  
   .title {
     margin-bottom: 100px;
   }
   .el-carousel__item h3 {
+    font-size: 30px;
     opacity: 0.75;
     line-height: 100px;
     min-width: 100px;
     display: inline-block;
-    padding-left: 260px;
+    padding-left: 228px;
   }
   img{
     margin: 0 150px;
+  }
+  el-carousel{
+    z-index: auto !important;
   }
   .el-carousel__arrow--right {
     background-color: #555555!important;
