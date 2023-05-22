@@ -9,7 +9,9 @@
     <el-tab-pane label="訂票">
       <TicketListPDS />
     </el-tab-pane>
-    <el-tab-pane label="商品訂單"><ProductListPDS /> </el-tab-pane>
+    <el-tab-pane label="商品訂單">
+      <ProductListPDS />
+    </el-tab-pane>
   </el-tabs>
 </template>
 

@@ -55,6 +55,7 @@
 //sd
 main {
   // background-color: #fffdf8;
+  
   .bg{
     // margin-right: 200px;
     position: relative;

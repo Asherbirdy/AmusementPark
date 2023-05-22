@@ -1,4 +1,7 @@
 <template>
+  <modal-delete
+    v-model="showmodal"  
+  ></modal-delete>
   <el-table :data="tableData" style="width: 100%">
     <el-table-column label="員工編號" prop="id" />
     <el-table-column label="員工帳號" prop="account" />
@@ -8,14 +11,19 @@
         <el-input v-model="search" size="small" placeholder="Type to search" />
       </template>
       <template #default="scope">
-        <el-button size="small" @click="handleEdit(scope.$index, scope.row)"
-          >Edit</el-button
+        <el-button size="small" @click="handleEdit"
+          >編輯</el-button
         >
+
         <el-button
           size="small"
           type="danger"
-          @click="handleDelete(scope.$index, scope.row)"
-          >Delete</el-button
+          v-model="showmodal"
+          :id="id"
+          :account="account"
+          :permissions="permissions"
+          @click="openModal(i)"
+          >刪除</el-button
         >
       </template>
     </el-table-column>
@@ -25,44 +33,56 @@
 <script setup>
 import axios from 'axios';
 import { computed, ref } from 'vue';
-
+let showmodal = ref(false);
 let tableData = ref([]);
 
 onMounted(() => {
   axios.get('/api/PDO/staffAccount/staffAccountSelect.php').then(res => {
     // API 抓取到的資料：
     const data = res.data;
-    console.log(data);
+    // console.log(data);
+
+    // 把抓到的權限轉成中文
+    const staffDataZh = data.map(staff => {
+      const { PURVIEW_LEVEL_ID } = staff;
+
+      if (PURVIEW_LEVEL_ID === 999) {
+        staff.permissions = 'DBA';
+      } else if (PURVIEW_LEVEL_ID === 9) {
+        staff.permissions = '園長';
+      } else if (PURVIEW_LEVEL_ID === 1) {
+        staff.permissions = '主管';
+      } else {
+        staff.permissions = '員工'
+      }
+      return staff;
+    });
 
     // 將資料轉成 element 可以讀的參數，參考 public/json/facility_status.json
     const staffData = data.map(staff => ({
       id: staff.BACKSTAGE_MEMBER_ID,
       account: staff.ACCOUNT,
-      permissions: staff.PURVIEW_LEVEL_ID,
-      // date:
-      //   facility.startDate && facility.endDate
-      //     ? `${facility.startDate} 至 ${facility.endDate}`
-      //     : '',
+      permissions: staff.permissions,
+      
     }));
-    //
-
     tableData.value = staffData;
-    console.log(tableData);
+    // console.log(tableData);
   });
 });
 
-// const search = ref('');
-// const filterTableData = computed(() =>
-//   tableData.filter(
-//     data =>
-//       !search.value ||
-//       data.name.toLowerCase().includes(search.value.toLowerCase())
-//   )
-// );
-// const handleEdit = (index: number, row: User) => {
-//   console.log(index, row);
-// };
-// const handleDelete = (index: number, row: User) => {
-//   console.log(index, row);
-// };
+
+
+let id = ref('');
+const account = ref('');
+const permissions = ref('');
+
+const openModal = index => {
+    showmodal.value = true;
+    const rowData = tableData.value[index];
+    console.log(tableData);
+    id.value = rowData.BACKSTAGE_MEMBER_ID;
+    account.value = rowData.ACCOUNT;
+    permissions.value = rowData.permissions;
+  };
+
 </script>
