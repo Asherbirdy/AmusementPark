@@ -1,16 +1,14 @@
 <template>
   <main>
     <div class="rides">
-        <title-big2 class="title">{{ header }}</title-big2>
-        <div
-        class="imgbox"
-        @click="openModal"
-      >
+      <title-big2 class="title">{{ header }}</title-big2>
+
       <div class="aboutrides">
-          <div class="ridesname" v-for="(ride, index) in rides" :key="index">
-            <img :src="imgURL(ride.image)" alt="" />
-            <div class="ridesinfo">
-              <h3>{{ ride.name }}</h3>
+        <div class="ridesname" v-for="(ride, index) in rides" :key="index">
+          <img :src="imgURL(ride.image)" alt="" />
+          <div class="ridesinfo">
+            <h3>{{ ride.name }}</h3>
+            <div class="imgbox" @click="openModal">
               <el-icon><ArrowDownBold /></el-icon>
             </div>
           </div>
@@ -80,7 +78,7 @@ main {
   .title {
     margin-bottom: 100px;
   }
-  .aboutrides{
+  .aboutrides {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
