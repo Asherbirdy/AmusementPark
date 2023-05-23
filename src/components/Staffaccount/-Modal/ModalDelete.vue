@@ -1,7 +1,7 @@
 <template>
   <el-dialog title="刪除員工" width="30%" center>
     <span>
-      <p>員工編號:{{id}}</p>
+      <p>員工編號:{{ id }}</p>
       <p>員工帳號：{{ account }}</p>
       <p>權限：{{ permissions }}</p>
     </span>
@@ -28,7 +28,10 @@ import axios from 'axios';
 
 // 外部資料導入資訊
 const props = defineProps({
-  id:Number,
+  id: {
+    type: Number,
+    default: '資料沒進來',
+  },
   account: String,
   permissions: String,
 });
@@ -38,7 +41,7 @@ const tickets = ref(0);
 
 // 帳號名稱 / 票型  / 時間  / 快速通關  / 退票數量：
 let deleteMemberData = reactive({
-  id:0,
+  id: 0,
   account: '',
   permissions: '',
 });
@@ -48,17 +51,25 @@ const deleteMember = () => {
   deleteMemberData.id = props.id;
   deleteMemberData.account = props.account;
   deleteMemberData.permissions = props.permissions;
-  console.log(deleteMemberData);
-  // axios
-  //   .post('/api/PDO/tickOrder/tickOrderUpdate.php', { refundTicketsData })
-  //   .then(res => {
-  //     console.log(res);
-  //   })
-  //   .catch(err => {
-  //     console.log(err);
-  //   });
-};
+  console.log(deleteMemberData.permissions);
 
+  if (deleteMemberData.permissions === 'DBA') {
+    alert('冷靜 你想幹嘛');
+  } else {
+    axios
+      .post('/api/PDO/staffAccount/staffAccountDelete.php', {
+        deleteMemberData,
+      })
+      .then(res => {
+        console.log(res);
+        alert('刪除成功');
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  }
+
+};
 </script>
 <style scoped>
 .dialog-footer button:first-child {
