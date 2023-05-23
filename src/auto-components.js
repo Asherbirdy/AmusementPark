@@ -36,14 +36,13 @@ declare module '@vue/runtime-core' {
     E2: typeof import('./components/-UI Element/svg/monsterComponent/e2.vue')['default']
     E3: typeof import('./components/-UI Element/svg/monsterComponent/e3.vue')['default']
     E4: typeof import('./components/-UI Element/svg/monsterComponent/e4.vue')['default']
-
+    E5: typeof import('./components/-UI Element/svg/monsterComponent/e5.vue')['default']
+    E6: typeof import('./components/-UI Element/svg/monsterComponent/e6.vue')['default']
     ElAside: typeof import('element-plus/es')['ElAside']
     ElAutocomplete: typeof import('element-plus/es')['ElAutocomplete']
     ElButton: typeof import('element-plus/es')['ElButton']
-
-    E5: typeof import('./components/-UI Element/svg/monsterComponent/e5.vue')['default']
-    E6: typeof import('./components/-UI Element/svg/monsterComponent/e6.vue')['default']
-
+    ElButtonGroup: typeof import('element-plus/es')['ElButtonGroup']
+    ElCalendar: typeof import('element-plus/es')['ElCalendar']
     ElCarousel: typeof import('element-plus/es')['ElCarousel']
     ElCarouselItem: typeof import('element-plus/es')['ElCarouselItem']
     ElCheckbox: typeof import('element-plus/es')['ElCheckbox']
@@ -58,6 +57,7 @@ declare module '@vue/runtime-core' {
     ElHeader: typeof import('element-plus/es')['ElHeader']
     ElIcon: typeof import('element-plus/es')['ElIcon']
     ElInput: typeof import('element-plus/es')['ElInput']
+    ElInputNumber: typeof import('element-plus/es')['ElInputNumber']
     ElMain: typeof import('element-plus/es')['ElMain']
     ElMenu: typeof import('element-plus/es')['ElMenu']
     ElMenuItem: typeof import('element-plus/es')['ElMenuItem']
