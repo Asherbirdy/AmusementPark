@@ -11,7 +11,7 @@
           type="primary"
           @click="
             () => {
-              refundTickets();
+              deleteMember();
               $emit('close-modal');
             }
           "
@@ -24,33 +24,7 @@
 </template>
 <script setup>
 import axios from 'axios';
-// 監聽目前退票數量：
-const tickets = ref(0);
 
-// 帳號名稱 / 票型  / 時間  / 快速通關  / 退票數量：
-let refundTicketsData = reactive({
-  id:0,
-  account: '',
-  permissions: '',
-});
-
-// 退票按鈕函式
-const refundTickets = () => {
-  refundTicketsData.id = props.id;
-  refundTicketsData.ticketType = props.ticketType;
-  refundTicketsData.ticketDate = props.ticketDate;
-  refundTicketsData.fastPassFacility = props.fastPassFacility;
-  refundTicketsData.refundTicketsAmount = tickets.value;
-  // console.log(refundTicketsData);
-  axios
-    .post('/api/PDO/tickOrder/tickOrderUpdate.php', { refundTicketsData })
-    .then(res => {
-      console.log(res);
-    })
-    .catch(err => {
-      console.log(err);
-    });
-};
 
 // 外部資料導入資訊
 const props = defineProps({
@@ -58,6 +32,33 @@ const props = defineProps({
   account: String,
   permissions: String,
 });
+
+// 監聽目前退票數量：
+const tickets = ref(0);
+
+// 帳號名稱 / 票型  / 時間  / 快速通關  / 退票數量：
+let deleteMemberData = reactive({
+  id:0,
+  account: '',
+  permissions: '',
+});
+
+// 退票按鈕函式
+const deleteMember = () => {
+  deleteMemberData.id = props.id;
+  deleteMemberData.account = props.account;
+  deleteMemberData.permissions = props.permissions;
+  console.log(deleteMemberData);
+  // axios
+  //   .post('/api/PDO/tickOrder/tickOrderUpdate.php', { refundTicketsData })
+  //   .then(res => {
+  //     console.log(res);
+  //   })
+  //   .catch(err => {
+  //     console.log(err);
+  //   });
+};
+
 </script>
 <style scoped>
 .dialog-footer button:first-child {

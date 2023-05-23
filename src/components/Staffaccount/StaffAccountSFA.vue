@@ -22,7 +22,7 @@
           :id="id"
           :account="account"
           :permissions="permissions"
-          @click="openModal(i)"
+          @click="openModal(scope.row)"
           >刪除</el-button
         >
       </template>
@@ -76,13 +76,13 @@ let id = ref('');
 const account = ref('');
 const permissions = ref('');
 
-const openModal = index => {
-    showmodal.value = true;
-    const rowData = tableData.value[index];
-    console.log(tableData);
-    id.value = rowData.BACKSTAGE_MEMBER_ID;
-    account.value = rowData.ACCOUNT;
+const openModal =  rowData => {
+    showmodal.value = true;  
+    id.value = rowData.id;
+    account.value = rowData.account;
     permissions.value = rowData.permissions;
+    console.log(id.value);
+    console.log(account.value);
   };
 
 </script>
