@@ -1,7 +1,7 @@
 <template>
   <el-dialog title="刪除員工" width="30%" center>
     <span>
-      <p>員工編號:{{id}}</p>
+      <p>員工編號:{{ id }}</p>
       <p>員工帳號：{{ account }}</p>
       <p>權限：{{ permissions }}</p>
     </span>
@@ -11,7 +11,7 @@
           type="primary"
           @click="
             () => {
-              refundTickets();
+              deleteMember();
               $emit('close-modal');
             }
           "
@@ -24,40 +24,52 @@
 </template>
 <script setup>
 import axios from 'axios';
+
+
+// 外部資料導入資訊
+const props = defineProps({
+  id: {
+    type: Number,
+    default: '資料沒進來',
+  },
+  account: String,
+  permissions: String,
+});
+
 // 監聽目前退票數量：
 const tickets = ref(0);
 
 // 帳號名稱 / 票型  / 時間  / 快速通關  / 退票數量：
-let refundTicketsData = reactive({
-  id:0,
+let deleteMemberData = reactive({
+  id: 0,
   account: '',
   permissions: '',
 });
 
 // 退票按鈕函式
-const refundTickets = () => {
-  refundTicketsData.id = props.id;
-  refundTicketsData.ticketType = props.ticketType;
-  refundTicketsData.ticketDate = props.ticketDate;
-  refundTicketsData.fastPassFacility = props.fastPassFacility;
-  refundTicketsData.refundTicketsAmount = tickets.value;
-  // console.log(refundTicketsData);
-  axios
-    .post('/api/PDO/tickOrder/tickOrderUpdate.php', { refundTicketsData })
-    .then(res => {
-      console.log(res);
-    })
-    .catch(err => {
-      console.log(err);
-    });
-};
+const deleteMember = () => {
+  deleteMemberData.id = props.id;
+  deleteMemberData.account = props.account;
+  deleteMemberData.permissions = props.permissions;
+  console.log(deleteMemberData.permissions);
 
-// 外部資料導入資訊
-const props = defineProps({
-  id:Number,
-  account: String,
-  permissions: String,
-});
+  if (deleteMemberData.permissions === 'DBA') {
+    alert('冷靜 你想幹嘛');
+  } else {
+    axios
+      .post('/api/PDO/staffAccount/staffAccountDelete.php', {
+        deleteMemberData,
+      })
+      .then(res => {
+        console.log(res);
+        alert('刪除成功');
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  }
+
+};
 </script>
 <style scoped>
 .dialog-footer button:first-child {
