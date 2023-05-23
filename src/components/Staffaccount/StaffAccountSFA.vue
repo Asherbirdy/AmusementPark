@@ -1,7 +1,11 @@
 <template>
-  <modal-delete
-    v-model="showmodal"  
-  ></modal-delete>
+  <ModalDelete
+    v-model="showmodal"
+    :id="id"
+    :account="account"
+    :permissions="permissions"
+  />
+
   <el-table :data="tableData" style="width: 100%">
     <el-table-column label="員工編號" prop="id" />
     <el-table-column label="員工帳號" prop="account" />
@@ -11,9 +15,7 @@
         <el-input v-model="search" size="small" placeholder="Type to search" />
       </template>
       <template #default="scope">
-        <el-button size="small" @click="handleEdit"
-          >編輯</el-button
-        >
+        <el-button size="small" @click="handleEdit">編輯</el-button>
 
         <el-button
           size="small"
@@ -22,7 +24,7 @@
           :id="id"
           :account="account"
           :permissions="permissions"
-          @click="openModal(i)"
+          @click="openModal(scope.row)"
           >刪除</el-button
         >
       </template>
@@ -31,13 +33,13 @@
 </template>
 
 <script setup>
-import axios from 'axios';
-import { computed, ref } from 'vue';
+import axios from "axios";
+import { computed, ref } from "vue";
 let showmodal = ref(false);
 let tableData = ref([]);
 
 onMounted(() => {
-  axios.get('/api/PDO/staffAccount/staffAccountSelect.php').then(res => {
+  axios.get("/api/PDO/staffAccount/staffAccountSelect.php").then(res => {
     // API 抓取到的資料：
     const data = res.data;
     // console.log(data);
@@ -47,13 +49,13 @@ onMounted(() => {
       const { PURVIEW_LEVEL_ID } = staff;
 
       if (PURVIEW_LEVEL_ID === 999) {
-        staff.permissions = 'DBA';
+        staff.permissions = "DBA";
       } else if (PURVIEW_LEVEL_ID === 9) {
-        staff.permissions = '園長';
+        staff.permissions = "園長";
       } else if (PURVIEW_LEVEL_ID === 1) {
-        staff.permissions = '主管';
+        staff.permissions = "主管";
       } else {
-        staff.permissions = '員工'
+        staff.permissions = "員工";
       }
       return staff;
     });
@@ -63,26 +65,27 @@ onMounted(() => {
       id: staff.BACKSTAGE_MEMBER_ID,
       account: staff.ACCOUNT,
       permissions: staff.permissions,
-      
     }));
     tableData.value = staffData;
     // console.log(tableData);
   });
 });
 
+let id = ref(0);
+const account = ref("");
+const permissions = ref("");
 
+// 打開彈窗
+const openModal = rowData => {
+  showmodal.value = true;
+  id.value = rowData.id;
+  account.value = rowData.account;
+  permissions.value = rowData.permissions;
+};
 
-let id = ref('');
-const account = ref('');
-const permissions = ref('');
-
-const openModal = index => {
-    showmodal.value = true;
-    const rowData = tableData.value[index];
-    console.log(tableData);
-    id.value = rowData.BACKSTAGE_MEMBER_ID;
-    account.value = rowData.ACCOUNT;
-    permissions.value = rowData.permissions;
-  };
-
+// 關閉彈窗
+const closeModal = () => {
+  showmodal.value = false;
+  console.log("關閉彈窗");
+};
 </script>
