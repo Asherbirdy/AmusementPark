@@ -14,7 +14,7 @@
             @click="
               () => {
                 deleteTickets();
-                $emit('close-modal');
+                $emit('close-delete-modal');
               }
             "
           >

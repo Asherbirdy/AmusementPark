@@ -86,6 +86,5 @@ const openModal = rowData => {
 // 關閉彈窗
 const closeModal = () => {
   showmodal.value = false;
-  console.log("關閉彈窗");
 };
 </script>
