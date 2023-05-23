@@ -1,4 +1,35 @@
 <script setup>
+const route = useRoute();
+const routePath = useRoute().path
+
+
+let routePathNum = ref('1');
+
+// 動態nav
+switch (routePath) {
+  case '/staff/parkstatus':
+    routePathNum = '1'
+    console.log(routePathNum);
+    break;
+  case '/staff/activity':
+    routePathNum = '2'
+    console.log(routePathNum);
+    break;
+  case '/staff/productstatus':
+    routePathNum = '3'
+    console.log(routePathNum);
+    break;
+  case '/staff/productmanage':
+    routePathNum = '4'
+    console.log(routePathNum);
+    break;
+  case '/staff/staffaccount':
+    routePathNum = '5'
+    console.log(routePathNum);
+    break;
+}
+
+
 // 開關
 const handleOpen = (key, keyPath) => {
   // console.log(key, keyPath);
@@ -56,16 +87,16 @@ switch (permissions) {
     break;
 }
 // 根據不同權限來顯示頁面 導覽列：
+
+
+
+
+
 </script>
 <template>
   <el-row class="tac">
     <el-col :span="100">
-      <el-menu
-        default-active="1"
-        class="el-menu-vertical-demo"
-        @open="handleOpen"
-        @close="handleClose"
-      >
+      <el-menu :default-active="routePathNum" class="el-menu-vertical-demo" @open="handleOpen" @close="handleClose">
         <!-- Nav1 -->
         <router-link class="nav" to="/staff/parkstatus">
           <el-menu-item index="1" :disabled="disabledOne">
