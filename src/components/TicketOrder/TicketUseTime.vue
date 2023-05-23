@@ -14,42 +14,49 @@ const getChineseMonth = date => {
 };
 </script>
 <template>
-  <el-icon>
+  <!-- <el-icon>
     <Calendar/>
-  </el-icon>
-  <el-calendar class="calendarUI" ref="calendar">
-    <template #header="{ date }">
-      <span>{{ getChineseMonth(date) }}</span>
-      <el-button-group>
-        <el-button size="small" @click="selectDate('prev-month')">
-          上個月
-        </el-button>
-        <el-button size="small" @click="selectDate('today')">今天</el-button>
-        <el-button size="small" @click="selectDate('next-month')">
-          下個月
-        </el-button>
-      </el-button-group>
-    </template>
-  </el-calendar>
+  </el-icon> -->
+  <nav>
+    <el-calendar class="calendarUI" ref="calendar">
+      <template #header="{ date }">
+        <span>{{ getChineseMonth(date) }}</span>
+        <el-button-group>
+          <el-button size="small" @click="selectDate('prev-month')">
+            上個月
+          </el-button>
+          <el-button size="small" @click="selectDate('today')">今天</el-button>
+          <el-button size="small" @click="selectDate('next-month')">
+            下個月
+          </el-button>
+        </el-button-group>
+      </template>
+    </el-calendar>
+  </nav>
 </template>
 
 <style scoped lang="scss">
-.calendarUI {
-  width: 400px;
-  line-height: 40px;
-  
+nav{
+  width: 1000px;
+  .calendarUI {
+    margin-left: 250px;
+    line-height: 40px;
+    
 
-  button {
-    cursor: pointer;
-    height: 40px;
-    width: 40px;
-    background-color: rgb(255, 255, 255);
-    font-size: 20;
-    color: black;
-    line-height: 20px;
-  }
-  button:active {
-    background-color: gray;
-  }
+    button {
+      cursor: pointer;
+      height: 40px;
+      width: 40px;
+      background-color: rgb(255, 255, 255);
+      font-size: 20;
+      color: black;
+      line-height: 20px;
+    }
+    button:active {
+      background-color: gray;
+    }
+  }  
 }
+
+
 </style>
