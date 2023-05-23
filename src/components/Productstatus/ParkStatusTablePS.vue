@@ -4,7 +4,9 @@
     <el-table-column label="設施名稱" width="100">
       <template #default="scope">
         <div style="display: flex; align-items: center">
-          <el-icon><timer /></el-icon>
+          <el-icon>
+            <timer />
+          </el-icon>
           <span style="margin-left: 10px">{{ scope.row.name }}</span>
         </div>
       </template>
@@ -18,35 +20,35 @@
       </template>
     </el-table-column>
     <!-- 時間 -->
-    <el-table-column prop="date" label="時期" width="220" />
+    <el-table-column label="時期" prop="date" width="220" />
     <!-- 說明 -->
     <el-table-column prop="reason" label="說明" width="290" />
     <!-- 按鈕 -->
     <el-table-column prop="toggle" label="開關">
       <template #default="scope">
         <!-- 按鈕範例，隱藏的按鈕不要刪掉，要參考他的寫法 -->
-        <el-switch
-          @change="handleSwitchChange(scope.row)"
-          :disabled="isDisabled"
-          v-model="scope.row.toggle"
-          class="ml-2"
-          :style="`--el-switch-on-color: ${
-            scope.row.toggle ? '#13ce66' : '#cccccc'
-          }; --el-switch-off-color: ${
-            scope.row.toggle ? '#cccccc' : '#ff4949'
-          };`"
-        />
+        <el-switch @change="handleSwitchChange(scope.row)" :disabled="isDisabled" v-model="scope.row.toggle" class="ml-2"
+          :style="getSwitchStyle(scope.row)" />
       </template>
     </el-table-column>
   </el-table>
   <!-- 彈跳視窗 -->
-  <ModalClosePS v-if="modalClose" />
-  <ModalOpenPS v-if="modalOpen" />
+  <ModalClosePS v-if="modalClose" @close="modalClose = false" />
+  <ModalOpenPS v-if="modalOpen" @close="modalOpen = false" />
 </template>
 
 <script setup>
 import axios from 'axios';
 import { Timer } from '@element-plus/icons-vue';
+
+// 園區狀態顏色
+const getSwitchStyle = row => {
+  return {
+    '--el-switch-on-color': row.toggle ? '#13ce66' : '#cccccc',
+    '--el-switch-off-color': row.toggle ? '#cccccc' : '#ff4949',
+  };
+};
+
 
 let modalClose = ref(false);
 let modalOpen = ref(false);
@@ -93,28 +95,19 @@ const isDisabled = computed(() => {
 });
 
 const handleSwitchChange = row => {
-  console.log(!row.toggle);
-  // 判斷 toggle 是 開 還是 關 來判斷要出現哪一個組件的彈窗
   if (!row.toggle) {
-    // 打開ModalClose的False
     modalClose.value = true;
-    if (!confirmed) {
-      row.toggle = !row.toggle;
-    } else {
-      // 如果使用者按下取消按鈕，將開關切回原本的值
-      row.toggle = row.toggle;
-    }
-    // 觸發 v-model 綁定的更新
   } else {
     modalOpen.value = true;
-    // const confirmed = window.confirm('確定要切換開關嗎？(False到True)');
-    if (!confirmed) {
-      row.toggle = !row.toggle;
-    } else {
-      // 如果使用者按下取消按鈕，將開關切回原本的值
-      row.toggle = row.toggle;
-    }
   }
+};
+
+const handleCloseModalClose = () => {
+  modalClose.value = false;
+};
+
+const handleCloseModalOpen = () => {
+  modalOpen.value = false;
 };
 
 console.log(tableData);
