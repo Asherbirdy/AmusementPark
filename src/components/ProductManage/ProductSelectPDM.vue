@@ -1,13 +1,11 @@
 <template>
-  <!-- 商品類別選單： -->
-  <el-select v-model="value" class="m-2" placeholder="商品分類">
-    <el-option
-      v-for="item in options"
-      :key="item.value"
-      :label="item.label"
-      :value="item.value"
-    />
-  </el-select>
+  <div class="wrapper">
+    <!-- 商品類別選單： -->
+    <el-select v-model="value" class="m-2" placeholder="商品分類">
+      <el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value" />
+    </el-select>
+    <el-button>加入商品</el-button>
+  </div>
 </template>
 
 <script setup>
@@ -28,3 +26,13 @@ const options = [
   },
 ];
 </script>
+
+<style scoped lang="scss">
+//
+
+.wrapper {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+</style>

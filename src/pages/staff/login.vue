@@ -13,10 +13,25 @@ const router = useRouter();
 let isUsernameEmpty = ref(false);
 let isPasswordEmpty = ref(false);
 
+axios
+  .post('/api/PDO/staffAccount/staffLoginCheck.php')
+  .then(res => {
+    if(res.data ==="") {
+      console.log("還沒登入");
+    }else {
+      router.push('/staff/parkstatus');
+      console.log("已經登入了");
+    }
+  })
+  .catch(err => {
+        console.log(err);
+        alert('登入狀態檢查出錯');
+      });
+
 // 送出表單
 const handleSubmit = () => {
   if (formInput.account !== '' && formInput.pwd !== '') {
-    console.log('送出表單' + formInput.account + formInput.pwd);
+    // console.log('送出表單' + formInput.account + formInput.pwd);
     isUsernameEmpty.value = false;
     isPasswordEmpty.value = false;
 
@@ -28,13 +43,13 @@ const handleSubmit = () => {
       })
       .then(res => {
         console.log(res.data);
-        const dataToJSON = JSON.stringify(res.data);
+        // const dataToJSON = JSON.stringify(res.data);
 
         // 如果登入成功:
-        if (res.data.status === 'true') {
+        if (res.data === true) {
           alert('登入成功');
 
-          sessionStorage.setItem('UserData', dataToJSON);
+          // sessionStorage.setItem('UserData', dataToJSON);
           router.push('/staff/parkstatus');
         } else {
           alert('錯誤帳號密碼');

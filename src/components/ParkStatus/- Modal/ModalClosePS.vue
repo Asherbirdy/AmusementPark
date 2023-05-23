@@ -23,7 +23,7 @@
   </el-dialog>
 </template>
 <script setup>
-const centerDialogVisible = ref(false);
+let centerDialogVisible = ref(true);
 </script>
 <style lang="scss" scoped>
 .dialog-footer button:first-child {

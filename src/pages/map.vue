@@ -1,4 +1,50 @@
-<script setup></script>
+<!-- <script setup>
+import axios from 'axios';
+import dayjs from 'dayjs';
+
+const localTemp = ref();
+const getTemp = async () => {
+  const weatherRes = await axios(
+    'https://opendata.cwb.gov.tw/api/v1/rest/datastore/F-D0047-061?Authorization=CWB-D86E32DD-4173-4C38-BF76-04A68E6E5AEF&limit=10&offset=0&format=JSON&locationName=%E5%A3%AB%E6%9E%97%E5%8D%80&elementName=T'
+  );
+  if (weatherRes.status === 200) {
+    const weatherList =
+      weatherRes.data.records.locations[0].location[0].weatherElement[0].time;
+    const matchNowTimeIndex = weatherList.findIndex(
+      item =>
+        dayjs(item.dataTime).diff(dayjs(new Date()), 'hour') < 3 &&
+        dayjs(item.dataTime).diff(dayjs(new Date()), 'hour') > 0
+    );
+    localTemp.value = weatherList[matchNowTimeIndex].elementValue[0].value;
+    console.log(weatherRes);
+  }
+};
+onMounted(() => {
+  getTemp();
+});
+</script> -->
+
+<script setup>
+import axios from 'axios';
+
+const localTemp = ref();
+const getTemp = async () => {
+  const weatherRes = await axios(
+    'https://opendata.cwb.gov.tw/api/v1/rest/datastore/F-D0047-061?Authorization=CWB-D86E32DD-4173-4C38-BF76-04A68E6E5AEF&limit=10&offset=0&format=JSON&locationName=%E5%A3%AB%E6%9E%97%E5%8D%80&elementName=T'
+  );
+
+  if (weatherRes.status === 200) {
+    const weatherList =
+      weatherRes.data.records.locations[0].location[0].weatherElement[0].time;
+    localTemp.value = weatherList[0].elementValue[0].value;
+    console.log(weatherRes);
+  }
+};
+
+onMounted(() => {
+  getTemp();
+});
+</script>
 
 <template>
   <div class="bg">
@@ -39,14 +85,10 @@
           <h1>天氣</h1>
           <div class="weatherCon">
             <h2>台北市</h2>
-            <div id="app" class="container px-1 px-sm-4 py-5 mx-auto">
-              <div class="row d-flex justify-content-center">
-                <div class="card text-center pt-4 border-0">
-                  <h2 id="tempture" class="large-font">18&#176;</h2>
-                  <div class="text-center mt-3 mb-4"></div>
-                </div>
-              </div>
+            <div id="weatherImg">
+              <svg-sun-weather />
             </div>
+            <span v-html="`${localTemp}&#176;C`"></span>
           </div>
         </li>
         <li id="Parking">
@@ -161,14 +203,14 @@ main {
 
           display: flex;
           flex-direction: column;
-          justify-content: center;
+          justify-content: space-around;
           h2 {
             font-size: 30px;
             height: 70px;
           }
           p {
             font-size: 100px;
-            margin-top: 70px;
+            // margin-top: 70px;
           }
         }
       }
@@ -188,10 +230,17 @@ main {
           margin-top: -50px;
           width: 300px;
           height: 400px;
-          font-size: 30px;
+
           display: flex;
           flex-direction: column;
-          justify-content: center;
+          justify-content: space-around;
+          h2 {
+            font-size: 60px;
+          }
+          span {
+            font-size: 100px;
+            margin-bottom: 51px;
+          }
         }
       }
       #Parking {
@@ -213,7 +262,7 @@ main {
 
           display: flex;
           flex-direction: column;
-          justify-content: center;
+          justify-content: space-around;
           .ParkText {
             display: flex;
             align-items: center;
@@ -226,7 +275,7 @@ main {
           }
           p {
             font-size: 100px;
-            margin-top: 70px;
+            // margin-top: 70px;
           }
         }
       }

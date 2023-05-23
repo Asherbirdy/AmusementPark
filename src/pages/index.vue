@@ -6,12 +6,14 @@
   <TeaserIDX id="TeaserIDX" />
   <!-- 小怪獸彈窗 -->
 
+  <monster-create />
+
   <InformationIDX />
   <login></login>
 </template>
 <style scoped lang="scss">
 #VideoBannerIDX{
-  margin-top: -40px;
+  margin-top: -50px;
 }
 
 #title-big1{
@@ -20,5 +22,6 @@
 
 #TeaserIDX{
   padding-top: 0;
+  margin-top: 80px;
 }
 </style>

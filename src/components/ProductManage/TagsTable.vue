@@ -1,18 +1,12 @@
 <template>
+  <el-button>加入類別 </el-button>
   <el-table :data="filterTableData" style="width: 100%">
     <el-table-column label="ID" prop="id" />
     <el-table-column label="商品分類" prop="name" />
     <el-table-column align="right">
       <template #default="scope">
-        <el-button size="small" @click="handleEdit(scope.$index, scope.row)"
-          >Edit</el-button
-        >
-        <el-button
-          size="small"
-          type="danger"
-          @click="handleDelete(scope.$index, scope.row)"
-          >Delete</el-button
-        >
+        <el-button size="small" @click="handleEdit(scope.$index, scope.row)">編輯</el-button>
+        <el-button size="small" type="danger" @click="handleDelete(scope.$index, scope.row)">刪除</el-button>
       </template>
     </el-table-column>
   </el-table>
@@ -49,3 +43,5 @@ const tableData = [
   },
 ];
 </script>
+
+<style scoped lang="scss"></style>

@@ -6,7 +6,11 @@
     <el-table-column prop="size" label="尺寸" width="120" />
     <el-table-column prop="price" label="價格" width="120" />
     <el-table-column prop="productStatus" label="狀態" width="120" />
-    <el-table-column fixed="right" label="編輯" width="120"> </el-table-column>
+    <el-table-column fixed="right" label="編輯" width="120">
+      <el-button size="small" @click="handleEdit(scope.$index, scope.row)"
+        >編輯</el-button
+      ></el-table-column
+    >
   </el-table>
 </template>
 

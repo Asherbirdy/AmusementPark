@@ -49,9 +49,6 @@ const product = ref([
     position: relative;
     padding: 20px 0 0 35px;
 
-    .s2 {
-        padding: 0 0 0 100px;
-    }
 
     h3 {
         margin: 8px 18px 0 0;
@@ -65,7 +62,7 @@ const product = ref([
     display: flex;
     flex-wrap: wrap;
     text-align: center;
-    padding-left: 200px;
+    padding-left: 30px;
 
     li {
         display: flex;
@@ -78,13 +75,20 @@ const product = ref([
 
 img {
     width: 40%;
-    margin: 90px 0 0 70px;
+    margin: 135px 0 0 107px;
 }
 
 .product_name {
-    font-size: 18px;
-    margin-top: 45px;
+    font-size: 24px;
+    margin-top: 80px;
     margin-bottom: 15px;
     color: $textcolor7;
+}
+
+Button{
+    font-size: 20px;
+    width: 140px;
+    height: 50px;
+    border-radius: 10px;
 }
 </style>

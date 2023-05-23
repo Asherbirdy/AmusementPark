@@ -12,12 +12,36 @@ const inputInfos = ref([
   },
   {
     title: '密碼：',
-    type: 'tel',
+    type: 'password',
     id: 'password',
     placeholder: '請輸入您的密碼',
     value: password,
   },
 ]);
+const emailRegex =
+  /^([a-zA-Z0-9_\.\-\+])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+const isInputFail = ref(false);
+
+const handleClick = () => {
+  if (isInputFail.value) return;
+};
+const blurCheck = inputType => {
+  if (inputType !== 'account') return;
+  const inputAccount = inputInfos.value[0].value;
+  if (inputAccount === '') {
+    isInputFail.value = false;
+    return;
+  }
+  const isPhoneNumber =
+    !isNaN(inputAccount) &&
+    inputAccount.length === 10 &&
+    inputAccount.trim().length > 0 &&
+    inputAccount[0] === '0' &&
+    inputAccount[1] === '9';
+
+  const isEmail = emailRegex.test(inputAccount);
+  isInputFail.value = !(isPhoneNumber || isEmail);
+};
 // 會員註冊 + 忘記密碼 的 a標籤
 const aLinks = ref([
   {
@@ -32,15 +56,15 @@ const aLinks = ref([
     url: '#',
     text: '忘記密碼',
     icon: 'Unlock',
-    url: '/register',
+    url: '/ForgetPassword',
   },
 ]);
 </script>
 
 <template>
   <section class="middle">
-    <form action="middle__form">
-      <!-- 帳號 + 密碼 的 input欄位 -->
+    <!-- 帳號 + 密碼 的 input欄位 -->
+    <div class="middle__form">
       <div
         class="middle__form--wrapOfLabelInput"
         v-for="(inputInfo, index) in inputInfos"
@@ -53,7 +77,11 @@ const aLinks = ref([
           v-bind:id="inputInfo.id"
           v-bind:placeholder="inputInfo.placeholder"
           v-model="inputInfo.value"
+          @blur="blurCheck(inputInfo.id)"
         />
+        <span v-if="isInputFail && inputInfo.id === 'account'"
+          >請輸入正確帳號</span
+        >
       </div>
 
       <!-- 會員註冊 + 忘記密碼 的 a標籤 -->
@@ -64,14 +92,28 @@ const aLinks = ref([
           v-bind:key="aLink.id"
           v-bind:href="aLink.url"
         >
-          <el-icon class="middle__form--Icon"><component :is="aLink.icon" /></el-icon>  <!-- 在 <el-icon> 组件内部動態渲染 aLink.icon 所代表的组件 -->
+          <el-icon class="middle__form--Icon"
+            ><component :is="aLink.icon"
+          /></el-icon>
+          <!-- 在 <el-icon> 组件内部動態渲染 aLink.icon 所代表的组件 -->
           <!-- <a class="middle__form--A">{{ aLink.text }}</a> -->
-          <router-link :to="aLink.url" class="middle__form--Link">{{ aLink.text }}</router-link>
+          <router-link :to="aLink.url" class="middle__form--Link">{{
+            aLink.text
+          }}</router-link>
         </div>
       </div>
 
-      <button class="middle__form--Btn" type="submit" id="Submit">登入</button>
-    </form>
+      <Button
+        class="middle__form--Btn"
+        type="submit"
+        id="Submit"
+        @click="handleClick"
+      >
+        登入
+      </Button>
+    </div>
+    <!-- <form action="middle__form">
+    </form> -->
   </section>
 </template>
 
@@ -81,7 +123,6 @@ const aLinks = ref([
   justify-content: center;
 
   &__form {
-
     &--wrapOfLabelInput {
       margin-bottom: 36px;
     }
@@ -111,6 +152,7 @@ const aLinks = ref([
     &--wrapOfIconA {
       display: inline-block;
       margin-bottom: 39px;
+      // color: ;
     }
     &--Icon {
       margin-right: 9px;
@@ -119,12 +161,12 @@ const aLinks = ref([
       font-weight: 400;
       font-size: 16px;
       line-height: 19.36px;
-      color: black;
+      color: $textcolor4;
       text-decoration: none;
     }
 
     &--Btn {
-      background-color: #D1825B;
+      background-color: #d1825b;
       display: block;
       margin: 0 auto;
       width: 300px;
@@ -135,5 +177,13 @@ const aLinks = ref([
       font-size: 24px;
     }
   }
+}
+
+span {
+  display: flex;
+  margin-left: 90px;
+  margin-top: 10px;
+  color: red;
+  font-weight: bold;
 }
 </style>
