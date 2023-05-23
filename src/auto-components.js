@@ -37,6 +37,10 @@ declare module '@vue/runtime-core' {
     E3: typeof import('./components/-UI Element/svg/monsterComponent/e3.vue')['default']
     E4: typeof import('./components/-UI Element/svg/monsterComponent/e4.vue')['default']
 
+    ElIcon: typeof import('element-plus/es')['ElIcon']
+    ElInputNumber: typeof import('element-plus/es')['ElInputNumber']
+
+
     ElAside: typeof import('element-plus/es')['ElAside']
     ElAutocomplete: typeof import('element-plus/es')['ElAutocomplete']
     ElButton: typeof import('element-plus/es')['ElButton']
@@ -73,9 +77,11 @@ declare module '@vue/runtime-core' {
     ElTabs: typeof import('element-plus/es')['ElTabs']
     ElTag: typeof import('element-plus/es')['ElTag']
     ElText: typeof import('element-plus/es')['ElText']
+
     ExhibitionNotice: typeof import('./components/Notice/ExhibitionNotice.vue')['default']
     FbCustomerChat: typeof import('./components/-UI Element/QA/FbCustomerChat.vue')['default']
     Footer: typeof import('./components/-Global/Footer.vue')['default']
+    FormInfoFP: typeof import('./components/ForgetPassword/FormInfoFP.vue')['default']
     FormInfoReg: typeof import('./components/Register/FormInfoReg.vue')['default']
     FormInfoULGN: typeof import('./components/Login/FormInfoULGN.vue')['default']
     FrameBlue: typeof import('./components/-UI Element/modalframe/FrameBlue.vue')['default']
@@ -83,6 +89,7 @@ declare module '@vue/runtime-core' {
     FramePink: typeof import('./components/-UI Element/modalframe/FramePink.vue')['default']
     FrameYellow: typeof import('./components/-UI Element/modalframe/FrameYellow.vue')['default']
     Header: typeof import('./components/-Global/Header.vue')['default']
+    HeaderAndCloseFP: typeof import('./components/ForgetPassword/HeaderAndCloseFP.vue')['default']
     HeaderAndCloseLGN: typeof import('./components/Login/HeaderAndCloseLGN.vue')['default']
     HeaderAndCloseReg: typeof import('./components/Register/HeaderAndCloseReg.vue')['default']
     Headerbg: typeof import('./components/-UI Element/svg/header/headerbg.vue')['default']

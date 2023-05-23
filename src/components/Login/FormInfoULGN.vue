@@ -56,7 +56,7 @@ const aLinks = ref([
     url: '#',
     text: '忘記密碼',
     icon: 'Unlock',
-    url: '/register',
+    url: '/ForgetPassword',
   },
 ]);
 </script>
@@ -97,7 +97,9 @@ const aLinks = ref([
           /></el-icon>
           <!-- 在 <el-icon> 组件内部動態渲染 aLink.icon 所代表的组件 -->
           <!-- <a class="middle__form--A">{{ aLink.text }}</a> -->
-          <router-link :to="aLink.url" class="middle__form--Link">{{ aLink.text }}</router-link>
+          <router-link :to="aLink.url" class="middle__form--Link">{{
+            aLink.text
+          }}</router-link>
         </div>
       </div>
 
