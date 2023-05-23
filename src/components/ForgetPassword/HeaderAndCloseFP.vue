@@ -2,7 +2,7 @@
 
 <template>
   <section class="top">
-    <h1 class="top__h1">會員登入</h1>
+    <h1 class="top__h1">忘記密碼</h1>
   </section>
 </template>
 
@@ -11,11 +11,12 @@
   
     &__h1 {
         text-align: center;
-        font-weight: bold;
+        font-weight: 400;
         font-size: 24px;
         line-height: 29.05px;
         margin-top: 70px;
         margin-bottom: 39px;
+        font-weight: bold;
     }
 }
 </style>

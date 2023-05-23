@@ -2,6 +2,7 @@
   <main>
     <div class="rides">
       <title-big2 class="title">{{ header }}</title-big2>
+<<<<<<< HEAD
       <div class="imgbox" @click="openModal">
         <div class="aboutrides">
           <div class="ridesname" v-for="(ride, index) in rides" :key="index">
@@ -11,6 +12,15 @@
               <el-icon>
                 <ArrowDownBold />
               </el-icon>
+=======
+      <div class="aboutrides">
+        <div class="ridesname" v-for="(ride, index) in rides" :key="index">
+          <img :src="imgURL(ride.image)" alt="" />
+          <div class="ridesinfo">
+            <h3>{{ ride.name }}</h3>
+            <div class="imgbox" @click="openModal">
+              <el-icon><ArrowDownBold /></el-icon>
+>>>>>>> 49adabe90ad347daaaa7735e591a47a895517512
             </div>
           </div>
         </div>
@@ -83,7 +93,10 @@ main {
   .title {
     margin-bottom: 100px;
   }
+<<<<<<< HEAD
 
+=======
+>>>>>>> 49adabe90ad347daaaa7735e591a47a895517512
   .aboutrides {
     display: flex;
     flex-direction: row;

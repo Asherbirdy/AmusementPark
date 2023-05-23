@@ -23,6 +23,7 @@
 <script setup>
 import getImageUrl from '@/utils/imgPath';
 
+
 let isopen = ref(true);
 // 談窗開關
 let ridemodal = ref(true);
