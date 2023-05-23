@@ -55,7 +55,6 @@
 //sd
 main {
   // background-color: #fffdf8;
-  
   .bg{
     // margin-right: 200px;
     position: relative;
@@ -100,7 +99,7 @@ main {
     gap: 10px;
     margin: 0 auto;
     margin-bottom: 30px;
-    margin-top: 50px;
+    margin-top: 120px;
     .leftbox {
       img{
         height: 600px;
