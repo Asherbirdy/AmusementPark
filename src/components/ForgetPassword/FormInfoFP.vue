@@ -17,7 +17,10 @@
           :placeholder="item.placeholder"
         />
       </div>
+<<<<<<< HEAD
       <router-link to="/" class="routerlink">
+=======
+>>>>>>> 43cc52d52b5d8e2d890148f4dd6d842a8d329189
       <div class="btn">
         <Button
           class="middle__form--Btn"
@@ -35,7 +38,10 @@
           確認送出
         </Button>
       </div>
+<<<<<<< HEAD
       </router-link>
+=======
+>>>>>>> 43cc52d52b5d8e2d890148f4dd6d842a8d329189
     </form>
   </section>
 </template>
@@ -106,8 +112,11 @@ const passInf = ref([
   .btn{
     display: flex;
   }
+<<<<<<< HEAD
   .routerlink {
     text-decoration-line: none;
 }
+=======
+>>>>>>> 43cc52d52b5d8e2d890148f4dd6d842a8d329189
 }
 </style>

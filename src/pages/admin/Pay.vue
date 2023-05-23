@@ -2,7 +2,7 @@
 <template>
   <!-- <QrcodeListTBS />
   <TickOrderListTBS /> -->
-  <TicketQR/>
+  <PayCreditCard/>
 </template>
 
 <style scoped lang="scss">

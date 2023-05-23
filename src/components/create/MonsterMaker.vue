@@ -87,7 +87,9 @@
             <ol>
               <e5 />
             </ol>
-            <ol></ol>
+            <ol>
+              <e6 />
+            </ol>
           </li><br>
           <!-- <span><img src="../../assets/img/colorPicker.png" alt=""></span>
           <span><img src="../../assets/img/colorPicker1.png" alt=""></span> -->
@@ -105,9 +107,15 @@
               <m3 />
             </ol>
             <div class="space"></div>
-            <ol></ol>
-            <ol></ol>
-            <ol></ol>
+            <ol>
+              <m4 />
+            </ol>
+            <ol>
+              <m5 />
+            </ol>
+            <ol>
+              <m6 />
+            </ol>
           </li><br>
           <!-- <span><img src="../../assets/img/colorPicker.png" alt=""></span>
           <span><img src="../../assets/img/colorPicker1.png" alt=""></span> -->

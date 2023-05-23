@@ -19,6 +19,12 @@
 <script setup>
 import getImageUrl from '@/utils/imgPath';
 const imgURL = name => getImageUrl(name);
+document.addEventListener('mousedown', function(event) {
+  var x = event.clientX;
+  var y = event.clientY;
+  console.log('点击的坐标位置：', x, y);
+});
+
 const product = ref([
     {
         productName: '火寶怪獸帽子',

@@ -4,31 +4,22 @@
 
 <!-- <side-menu id="side-menu"/> -->
 <main>
-  <summary>
-      <ticket-exhibitionTOR1 id="orderdate"/>
-
-  </summary>
+  <ticket-use-time id="orderdate"/>
   <ticket-order id="ticketprice"/>
   <!-- <ticketExpressPass id="ticketexpresspass"/> -->
   <!-- <TicketExhibitionTOR2 id="ticketselect"/> -->
   <!-- <ticket-express-pass/> -->
   <!-- <TicketBookingTOR id="show"/> -->
   <div class="btnbox">
-    <btn
-      class="btn"
-      width="150"
-      button-text-color="white"
-      button-color="#D1825B"
-      ><h3>清空</h3></btn
-    >
-
-    <btn
-      class="btn"
-      :width="350"
-      button-text-color="white"
-      button-color="#D1825B"
-      ><h3>追加</h3></btn
-    >
+    <btn class="btn" button-text-color="white" button-color="#D1825B">
+      <h3>清空</h3>
+    </btn>
+    <btn :style="{ width: '150px'}" class="btn" button-text-color="white" button-color="#D1825B">
+      <h3>加入購物車</h3>
+    </btn>
+    <btn class="btn" button-text-color="white" button-color="#D1825B">
+      <h3>立即購買</h3>
+    </btn>
   </div>
 </main>
 
@@ -59,12 +50,12 @@ main{
     // display: flex;
     // gap: 200px;
     // margin-left: 23%;
-  width: 300px;
+  width: 400px;
   display: flex;
   float: right;
   justify-content: space-between;
   margin-bottom: 100px ;
-  margin-right: 100px;
+  margin-right: 60px;
 }
 
 </style>

@@ -4,22 +4,27 @@ $workspace: 1200px;
 //背景色
 $maincolor1: #f9f3e4;
 $maincolor2: #e6eff6;
+$maincolor3: #d1825b;
 //文字色
 $textcolor1: #ff7b51;
 $textcolor2: #b1647d;
 $textcolor3: #90420a;
 $textcolor4: #c0590e;
 $textcolor5: #d1825b;
-$textcolor6: #f9f3e4;
+$textcolor6: #f9f3e4;//重複
 $textcolor7: #163767;
 
 //字型
+$font-family: '微軟正黑體';
 @font-face {
   font-family: nanifont;
   src: url(https://cdn.jsdelivr.net/gh/max32002/nanifont@1.036/webfont/NaniFont-Regular.woff2) format("woff2")
   , url(https://cdn.jsdelivr.net/gh/max32002/nanifont@1.036/webfont/NaniFont-Regular.woff) format("woff");
 }
-$font-family: '微軟正黑體';
+
+body{
+  font-family: '微軟正黑體';
+}
 
 main {
   padding-top: 100px;
@@ -51,6 +56,11 @@ p {
   line-height: 1.5;
 }
 
+.app{
+  background-image: url(../img/rainbow.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
 // button{
 //     cursor: pointer;
 //     height: 40px;

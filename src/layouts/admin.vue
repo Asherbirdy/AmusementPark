@@ -24,7 +24,15 @@ const logout = () => {
           <div class="logout" to="/staff/login" @click="logout">
             <el-button>登出</el-button>
           </div>
-          <!-- <IconUserProfile class="icon-user" /> -->
+          <IconUserProfile class="icon-user" />
+
+          <!-- <el-button
+            name="submit"
+            type="primary"
+            style="width: 46%"
+            @click="logout"
+            >登出</el-button
+          > -->
         </div>
       </el-header>
       <el-container>
