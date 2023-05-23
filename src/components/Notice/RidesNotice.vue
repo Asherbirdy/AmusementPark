@@ -81,10 +81,7 @@ main {
   .title {
     margin-bottom: 100px;
   }
-<<<<<<< HEAD
 
-=======
->>>>>>> 49adabe90ad347daaaa7735e591a47a895517512
   .aboutrides {
     display: flex;
     flex-direction: row;
