@@ -1,4 +1,8 @@
-<script setup></script>
+<script setup>
+const goTop = () => {
+  window.scrollTo({ top: 0 });
+};
+</script>
 
 <template>
   <div class="wrapper">
@@ -6,15 +10,21 @@
     <img src="../assets/img/entrance.png" alt="" />
     <div class="entrance">
       <router-link to="/">
-      <h1  class="front">前台</h1>
-    </router-link>
-    <router-link to="staff/login">
-      <h1  class="back">後台</h1>
-    </router-link>
+        <h1 class="front" @click="goTop">前台</h1>
+      </router-link>
+      <router-link to="staff/login">
+        <h1 class="back" @click="goTop">後台</h1>
+      </router-link>
     </div>
   </div>
 </template>
 <style scoped lang="scss">
+#headerbg{
+  display: none !important;
+}
+footer{
+  display: none !important;
+}
 .wrapper {
   width: 1200px;
   margin: 0 auto;
@@ -59,4 +69,12 @@
     }
   }
 }
+
 </style>
+<route>
+  {
+      meta: {
+        layout: false,
+      }
+  }
+</route>
