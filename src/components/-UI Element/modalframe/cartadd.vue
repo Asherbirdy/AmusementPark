@@ -15,7 +15,7 @@ const btns = ref([{ action: '加入購物車' }, { action: '立即購買' }]);
 <template>
   <modal-l>
     <div class="wrap">
-      <img class="wrap__leftImg" :src="imgURL('bag1.png')" />
+      <img class="wrap__leftImg" :src="imgURL('Tshirt1.png')" />
       <div class="wrap__rightDiv">
         <h1 class="wrap__rightDiv--h1">MONSTAR上衣</h1>
         <p class="wrap__rightDiv--p">
@@ -38,9 +38,9 @@ const btns = ref([{ action: '加入購物車' }, { action: '立即購買' }]);
             class="wrap__rightDiv--formCount"
           />
 
-          <button class="wrap__rightDiv--formBtn" v-for="(btn, index) in btns">
+          <Button class="wrap__rightDiv--formBtn" v-for="(btn, index) in btns">
             {{ btn.action }}
-          </button>
+          </Button>
         </form>
       </div>
     </div>
@@ -57,6 +57,8 @@ const btns = ref([{ action: '加入購物車' }, { action: '立即購買' }]);
 
   &__leftImg {
     width: 532px;
+    border: 2px solid $textcolor5;
+    border-radius: 20px;
   }
 
   &__rightDiv {

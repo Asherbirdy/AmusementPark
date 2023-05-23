@@ -2,6 +2,7 @@
   <main>
     <div class="rides">
       <title-big2 class="title">{{ header }}</title-big2>
+<<<<<<< HEAD
 
       <div class="aboutrides">
         <div class="ridesname" v-for="(ride, index) in rides" :key="index">
@@ -10,6 +11,17 @@
             <h3>{{ ride.name }}</h3>
             <div class="imgbox" @click="openModal">
               <el-icon><ArrowDownBold /></el-icon>
+=======
+      <div class="imgbox" @click="openModal">
+        <div class="aboutrides">
+          <div class="ridesname" v-for="(ride, index) in rides" :key="index">
+            <img :src="imgURL(ride.image)" alt="" />
+            <div class="ridesinfo">
+              <h3>{{ ride.name }}</h3>
+              <el-icon>
+                <ArrowDownBold />
+              </el-icon>
+>>>>>>> 0f580aec0f0d80e6c09a379501d82d4172bf9a12
             </div>
           </div>
         </div>
@@ -63,38 +75,49 @@ const rides = [
 main {
   width: $workspace;
   padding-top: 0;
+
   .modal {
     visibility: hidden;
   }
+
   .imgbox {
     width: 1200px;
     font-size: 20px;
     gap: 20px;
     cursor: pointer;
   }
+
   .rides {
     margin: 0 auto;
   }
+
   .title {
     margin-bottom: 100px;
   }
+<<<<<<< HEAD
+=======
+
+>>>>>>> 0f580aec0f0d80e6c09a379501d82d4172bf9a12
   .aboutrides {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     width: 1200px;
   }
+
   .rides img {
     width: 350px;
     display: block;
     margin: 40px 0 0 40px;
   }
+
   .rides .ridesinfo {
     border: 1px solid #838383;
     display: flex;
     width: 348px;
     margin-left: 40px;
   }
+
   .rides h3 {
     font-size: 30px;
     font-weight: bold;
@@ -103,11 +126,13 @@ main {
     min-width: 120px;
     padding: 10px 57px 10px 10px;
   }
+
   .rides .ridesname {
     display: flex;
     flex-wrap: wrap;
     flex-direction: column;
   }
+
   i {
     font-size: 30px;
     color: #838383;
@@ -117,5 +142,4 @@ main {
     cursor: pointer;
     margin-left: 117px;
   }
-}
-</style>
+}</style>

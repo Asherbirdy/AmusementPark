@@ -102,7 +102,7 @@ const inputInfos = ref([
           </option>
         </select>
       </div>
-      <button class="middle__form--Btn" type="submit" id="Submit">確認</button>
+      <Button class="middle__form--Btn" type="submit" id="Submit">確認</Button>
     </form>
   </section>
 </template>
