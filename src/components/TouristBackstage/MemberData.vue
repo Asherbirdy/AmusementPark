@@ -6,7 +6,7 @@
       <form>
         <section class="name">
           <label for="name">會員姓名：</label>
-          <input class="inp_short" type="text" id="name" name="name" /><br />
+          <input class="inp_short" type="text" id="name" name="name" />
         </section>
 
         <section>
@@ -22,6 +22,11 @@
         <section>
           <label for="email">電子郵件：</label>
           <input class="inp_long" type="email" id="email" name="email" />
+        </section>
+
+        <section>
+          <label for="place">通訊地址：</label>
+          <input class="inp_long" type="place" id="place" name="place" />
         </section>
 
         <section>
