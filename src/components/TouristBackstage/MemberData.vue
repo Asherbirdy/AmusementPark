@@ -6,7 +6,11 @@
       <form>
         <section class="name">
           <label for="name">會員姓名：</label>
+<<<<<<< HEAD
           <input class="inp_short" type="text" id="name" name="name" />
+=======
+          <input class="inp_short" type="text" id="name" name="name" /><br />
+>>>>>>> 43cc52d52b5d8e2d890148f4dd6d842a8d329189
         </section>
 
         <section>
@@ -25,11 +29,14 @@
         </section>
 
         <section>
+<<<<<<< HEAD
           <label for="email">通訊地址：</label>
           <input class="inp_long" type="email" id="email" name="email" />
         </section>
 
         <section>
+=======
+>>>>>>> 43cc52d52b5d8e2d890148f4dd6d842a8d329189
           <label for="password">密碼：</label>
           <router-link to="#">變更密碼</router-link>
         </section>
