@@ -26,8 +26,8 @@ main {
     // background-image: url(@/assets/img/Book_Index.jpg);
     position: relative;
     background-size: cover;
-    width: calc(1644px * 0.6);
-    height: calc(1183px * 0.6);
+    width: 1115px;
+    // height: calc(1183px * 0.6);
     margin: 0 auto;
     display: flex;
     gap: 80px;
@@ -35,11 +35,13 @@ main {
     line-height: 2.2;
 
     padding-left: 10px;
+    margin-bottom: 400px;
+    
 
     h3{
       padding-top: 80px;
       line-height: 2;
-      width: 330px;
+      width: 380px;
       // font-family: nanifont;
       // font-size: 22px;
     }
