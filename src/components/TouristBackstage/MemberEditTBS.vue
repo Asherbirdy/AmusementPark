@@ -38,8 +38,6 @@
         <button
           class="btn"
           width="150"
-          button-text-color="white"
-          button-color="#D1825B"
           >取消</button
         >
       </section>
@@ -86,6 +84,10 @@ input[type='date']::-webkit-datetime-edit {
       height: 70px;
       font-size: 20px;
       border-radius: 10px;
+      color: #fff;
+      background-color: #D1825B;
+      border: none;
+      cursor: pointer;
     }
   }
 
