@@ -1,71 +1,40 @@
 <template lang="">
-  <!--購物車步驟-->
-  <article>
-    <div class="CartStep">
-      <div class="monster">
-        <monster-cart-Fill-White>1</monster-cart-Fill-White>
-        <h3>購物車</h3>
-      </div>
-      <hr width="100" style="border: 3px dashed #D1825B" />
-      <div class="monster">
-        <monsterCartFillBlue>2</monsterCartFillBlue>
-        <h3>填寫資料</h3>
-      </div>
-      <hr width="100" style="border: 3px dashed #ffffff" />
-      <div class="monster">
-        <monster-cart-Fill-White>3</monster-cart-Fill-White>
-        <h3>訂購完成</h3>
-      </div>
-    </div>
-  </article>
-  <!--訂購人資料-->
-  <main>
-    <div class="user">
-      <h2>訂購人資料</h2>
-      <form>
-        <div
-          v-for="(item, index) in orderInfo"
-          :key="item.id"
-          class="user-input-row"
-        >
-          <label>{{ item.title }}</label>
-          <input
-            :type="item.type"
-            :id="index"
-            v-model="item.value"
-            :placeholder="item.placeholder"
-          />
-        </div>
-        <label class="checkbox">
-          <input type="checkbox" name="same_as_member" id="same_as_member" />
-          <span> 同會員資料 </span>
-        </label>
-        <label for="address">寄送地址：</label>
-        <input
-          type="text"
-          id="address"
-          v-model="address"
-          placeholder="請輸入您的地址*"
-        />
-        <label class="checkbox">
-          <input type="checkbox" name="same_as_member" id="same_as_member" />
-          <span> 儲存為預設地址 </span>
-         </label> 
-        <label for="comment">訂單備註：</label>
-        <textarea
-          id="comment"
-          v-model="comment"
-          cols="20"
-          rows="5"
-          placeholder="請填寫您的訂單備註"
-          resize="none"
-        ></textarea>
-      </form>
-    </div>
   <!--付款方式-->
     <div class="pay">
-      <h2>付款</h2>
-      <form>
+      <h2>付款資訊</h2>
+      <nav>
+        <form>
+          <section>
+            <label for="phone">卡號：</label>
+            <input type="text" class="card" maxlength="4"> -
+            <input type="text" class="card" maxlength="4"> -
+            <input type="text" class="card" maxlength="4"> -
+            <input type="text" class="card" maxlength="4">
+          </section>
+
+          <section class="name">
+            <label for="name">持卡人姓名：</label>
+            <input class="inp_short" type="text" id="name" name="name" /><br />
+          </section>   
+
+          <section>
+            <label for="date">有效期：</label>
+            <input type="text" class="card" maxlength="4">
+          </section>
+
+          <section>
+            <label for="password">安全碼：：</label>
+            <input type="text" class="card" maxlength="3">
+          </section>
+        </form>
+        <form>
+          <section>
+            <label for="phone">連結APPLE PAY</label>
+            <label for="phone">連結Line PAY</label>
+          </section>
+        </form>
+      </nav>
+      <!-- <form>
         <label for="pay-method">付款方式：</label>
         <select id="pay-method" v-model="payMethod">
           <option value="" disabled selected>請選擇付款方式</option>
@@ -91,16 +60,14 @@
             :placeholder="item.placeholder"
           />
         </div>
-        <label class="checkbox">
-          <input type="checkbox" name="same_as_member" id="same_as_member" />
-          <span> 儲存信用卡資訊 </span>
-        </label>
-        <router-link to="/admin/cartsuccess">
-          <button type="submit" id="Submit">提交訂單</button>
-        </router-link>
-      </form>
+      </form> -->
+
+    <section class="btn-wrap">
+      <btn  class="btn" :style="{ width: '200px'}" button-text-color="white"  button-color="#D1825B">取消</btn>
+      <btn class="btn" :style="{ width: '200px'}" button-text-color="white" button-color="#D1825B">儲存</btn>
+    </section>
+      
     </div>
-  </main>
 
 </template>
 
@@ -118,31 +85,6 @@ window.fbAsyncInit = function () {
 const name = '';
 const phoneNumber = '';
 const email = '';
-
-const orderInfo = ref([
-  {
-    title: '姓名：',
-    type: 'text',
-    id: 'name',
-    value: name,
-    placeholder: '請輸入您的姓名*',
-  },
-  {
-    title: '手機號碼：',
-    type: 'tel',
-    id: 'phone-number',
-    value: phoneNumber,
-    placeholder: '請輸入您的手機號碼*',
-  },
-  {
-    title: '電子郵件：',
-    type: 'text',
-    id: 'email',
-    value: email,
-    placeholder: '請輸入您的電子郵件*',
-  },
-]);
-
 // let payMethod = '';
 let cardNumber = '';
 let cardName = '';
@@ -156,7 +98,6 @@ const payOption = ref([
 ]);
 
 const payMethod = ref('credit-card'); // 設定預設值
-
 const payInput = ref([
   {
     label: '卡號',
@@ -208,13 +149,24 @@ onMounted(() => {
 </script>
 
 <style lang="scss" scoped>
-//共同樣式
-main {
-  display: flex;
-  justify-content: center;
-  margin-bottom: 200px;
-  padding: 0;
+input.card{
+  width: 42px;
 }
+.btn-wrap {
+  margin: 0 auto;
+  width: 60%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 40px;  
+  .btn {
+    // width: 150px;
+    height: 55px;
+    font-size: 20px;
+    // border-radius: 10px;
+  }
+}
+
 
 h2 {
   color: #f9f3e4;
@@ -224,63 +176,37 @@ h2 {
   height: 70px;
 }
 
-label {
-  font-size: 16px;
-  font-weight: bold;
-  color: #90420a;
-  margin-bottom: 10px;
-}
-
 input {
   padding: 10px;
   border: 2px solid #000000;
   border-radius: 10px;
 }
 
-//購物車步驟
-article {
-  display: flex;
-  justify-content: space-evenly;
-  margin-top: 150px;
-  .CartStep {
-    display: flex;
-    align-items: center;
-    .monster {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      h3 {
-        margin-top: 20px;
-        color: #163767;
-      }
-    }
-    .hrNone {
-      color: white;
-    }
-  }
-}
 //付款方式
 .pay {
-  width: 550px;
+  width: 75%;
   background-color: #f9f3e4;
-  margin: 15px;
-  margin-top: 100px;
+  margin-left: 40px;
+  nav{
+    margin: 40px;
+    display: flex;
+    justify-content: space-between;}
   form {
     display: flex;
     flex-direction: column;
     align-items: stretch;
     padding: 40px 50px;
-    .pay-label {
-      margin: 30px 0 5px 0;
+    section{
+      label {
+        display: block;
+        width: 200px;
+        font-size: 20px;
+        font-weight: bold;
+        color: #90420a;
+        margin-bottom: 10px;
+      }  
     }
-    #pay-method {
-      margin-bottom: 50px;
-    }
-    .user-input-row {
-      display: flex;
-      flex-direction: column;
-      color: #90420a;
-    }
+
     select {
       padding: 10px;
       border: 2px solid #000000;

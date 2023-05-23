@@ -12,10 +12,10 @@
         </router-link>
       </li>
       <li>
-        <router-link to="/admin/touristorder">
+        <router-link to="/admin/pay">
           <tickOrder class="icon" />
           <h3>
-            購票&線上預約
+            付款資訊
           </h3>
         </router-link>
       </li>
@@ -23,8 +23,7 @@
         <router-link to="/admin/touristqrcode">
           <QRcode class="icon" />
           <h3>
-            快速通關QR code <br />
-            購票紀錄
+            現有票卷
           </h3>
         </router-link>
       </li>
@@ -32,7 +31,7 @@
         <router-link to="/admin/touristproductorder">
           <myOrder class="icon" />
           <h3>
-            我的訂單
+            歷史訂單
           </h3>
         </router-link>
       </li>
@@ -46,15 +45,17 @@ ul {
   background-color: #f9f3e4;
   width: 360px;
   line-height: 1.2;
+  color: #5b5b5b;
 
   li {
 
     .icon {
+      color: #5b5b5b;
       margin-bottom: 20px;
     }
 
     a {
-      color: black;
+      color: #5b5b5b;
       height: 200px;
       text-decoration: none;
       display: flex;

@@ -57,7 +57,7 @@
             <icon-small-bell />
           </router-link>
           
-          <router-link to="#">
+          <router-link to="/cart">
             <icon-small-basket />
           </router-link>
 
