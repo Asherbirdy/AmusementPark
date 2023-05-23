@@ -17,9 +17,11 @@
     <btn :style="{ width: '150px'}" class="btn" button-text-color="white" button-color="#D1825B">
       <h3>加入購物車</h3>
     </btn>
-    <btn class="btn" button-text-color="white" button-color="#D1825B">
-      <h3>立即購買</h3>
-    </btn>
+    <router-link to="/cart">
+      <btn class="btn" button-text-color="white" button-color="#D1825B">
+        <h3>立即購買</h3>
+      </btn>
+    </router-link>
   </div>
 </main>
 
@@ -33,6 +35,7 @@ main{
   #orderdate{
     // width: 900px;
     margin: 0 auto;
+    // height: 400px;
     
   }
   #ticketprice,#ticketexpresspass{
