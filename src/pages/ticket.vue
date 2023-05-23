@@ -17,17 +17,11 @@
     <btn :style="{ width: '150px'}" class="btn" button-text-color="white" button-color="#D1825B">
       <h3>加入購物車</h3>
     </btn>
-<<<<<<< HEAD
     <router-link to="/cart">
       <btn class="btn" button-text-color="white" button-color="#D1825B">
         <h3>立即購買</h3>
       </btn>
     </router-link>
-=======
-    <btn class="btn" button-text-color="white" button-color="#D1825B">
-      <h3>立即購買</h3>
-    </btn>
->>>>>>> 43cc52d52b5d8e2d890148f4dd6d842a8d329189
   </div>
 </main>
 
