@@ -11,7 +11,7 @@
   
     &__h1 {
         text-align: center;
-        font-weight: 400;
+        font-weight: bold;
         font-size: 24px;
         line-height: 29.05px;
         margin-top: 70px;

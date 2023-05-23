@@ -78,7 +78,9 @@ const goTop = () => {
     text-decoration-line: none;
 }
 
-
+footer{
+    margin-top: 200px;
+}
 .footer_bgc {
     background-color: $maincolor2;
 }

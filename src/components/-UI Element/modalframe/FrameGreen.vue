@@ -15,8 +15,8 @@ export default {
 <style lang="scss" scoped>
 .frame {
   background-image: url(@/assets/svg/SvgFrameGreen.svg);
-  width: 250px;
-  height: 300px;
+  width: 350px;
+  height: 450px;
   background-repeat: no-repeat;
   background-size: contain;
 }

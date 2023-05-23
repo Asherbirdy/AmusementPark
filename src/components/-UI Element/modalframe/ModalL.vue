@@ -46,7 +46,7 @@
   transform: translate(-50%, -50%);
 
   background-color: $maincolor1;
-  border: 5px solid #ce5b5b;
+  border: 5px solid $textcolor4;
   border-radius: 35px;
 }
 </style>

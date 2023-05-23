@@ -10,13 +10,12 @@ export default {
   <div class="frame">
     <slot></slot>
   </div>
-
 </template>
 <style lang="scss" scoped>
 .frame {
   background-image: url(@/assets/svg/SvgFrameBlue.svg);
-  width: 250px;
-  height: 300px;
+  width: 350px;
+  height: 450px;
   background-repeat: no-repeat;
   background-size: contain;
 }

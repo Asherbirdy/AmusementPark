@@ -239,7 +239,7 @@ main {
           }
           span {
             font-size: 100px;
-            margin-bottom: 40px;
+            margin-bottom: 51px;
           }
         }
       }

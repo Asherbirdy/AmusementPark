@@ -4,8 +4,8 @@
         <h1>重生</h1>
         <h2>是否重新設定寵物蛋樣式？</h2>
         <div class="button">
-            <button class="yes">是</button>
-            <button class=".btn-secondary">否</button>
+            <Button class="yes">是</Button>
+            <Button class=".btn-secondary">否</Button>
         </div>
 
     </modal-s>
@@ -25,7 +25,7 @@ h2 {
 
 .button {
     text-align: center;
-    margin: 50px auto 20px;
+    margin: 50px auto 30px;
 }
 
 .yes {
