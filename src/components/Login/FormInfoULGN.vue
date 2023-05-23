@@ -101,14 +101,14 @@ const aLinks = ref([
         </div>
       </div>
 
-      <button
+      <Button
         class="middle__form--Btn"
         type="submit"
         id="Submit"
         @click="handleClick"
       >
         登入
-      </button>
+      </Button>
     </div>
     <!-- <form action="middle__form">
     </form> -->
@@ -150,6 +150,7 @@ const aLinks = ref([
     &--wrapOfIconA {
       display: inline-block;
       margin-bottom: 39px;
+      // color: ;
     }
     &--Icon {
       margin-right: 9px;
@@ -158,7 +159,7 @@ const aLinks = ref([
       font-weight: 400;
       font-size: 16px;
       line-height: 19.36px;
-      color: black;
+      color: $textcolor4;
       text-decoration: none;
     }
 

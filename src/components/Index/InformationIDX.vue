@@ -28,22 +28,22 @@
         <div class="infobox">
           <div class="output">
             <p>2023/05/23</p>
-            <p>XXXXXXXXXXXXXXXX</p>
+            <p>🐕‍🦺寵物入園規定公告</p>
             <el-icon><ArrowRight /></el-icon>
           </div>
           <div class="output">
-            <p>2023/05/23</p>
-            <p>XXXXXXXXXXXXXXXX</p>
+            <p>2023/03/06</p>
+            <p>租借辦法-嬰兒車/輪椅/行動電源</p>
             <el-icon><ArrowRight /></el-icon>
           </div>
           <div class="output">
-            <p>2023/05/23</p>
-            <p>XXXXXXXXXXXXXXXX</p>
+            <p>2023/02/24</p>
+            <p>觀光旅遊安全錦囊-觀光遊樂業安全遊</p>
             <el-icon><ArrowRight /></el-icon>
           </div>          
           <div class="output">
-            <p>2023/05/23</p>
-            <p>XXXXXXXXXXXXXXXX</p>
+            <p>2023/01/20</p>
+            <p>112年2月餐廳店休公告</p>
             <el-icon><ArrowRight /></el-icon>
           </div>
         </div>
@@ -92,7 +92,7 @@ main {
     }
   }
   .wrapper {
-    width: 1100px;
+    width: 1200px;
     height: 500px;
     box-sizing: border-box;
     display: flex;
@@ -100,9 +100,11 @@ main {
     gap: 10px;
     margin: 0 auto;
     margin-bottom: 30px;
+    margin-top: 50px;
     .leftbox {
       img{
-        height: 470px;
+        height: 600px;
+        margin-top: -50px;
       }
       .dotbox {
         display: flex;
@@ -152,17 +154,22 @@ main {
           padding: 20px 0;
           display: flex;
           align-items: center;
-          justify-content: space-evenly;
+          // justify-content: space-evenly;
           width: 100%;
           gap: 30px;
           border-bottom: 1px solid #d1825b;
           p {
             padding: 20px 0;
+            margin-left: 70PX;
+           
             &:nth-child(1) {
               padding: 5px 10px;
               background-color: #d1825b;
               color: white;
               border-radius: 5px;
+
+              margin-left: 50PX;
+              margin-right: 0;
             }
           }
         }
