@@ -25,7 +25,7 @@
         訂單編號 {{ item }}<br>
         訂單成立副本已發送至會員信箱<br>
         將立即為您安排出貨 Thank You!<br>
-        如欲查詢訂單請至<router-link to="/admin/touristqrcode">我的訂單</router-link>  查詢</li>
+        如欲查詢訂單請至<router-link to="/admin/touristproductorder">歷史訂單</router-link>  查詢</li>
     </ul>
   </div>
 </template>
