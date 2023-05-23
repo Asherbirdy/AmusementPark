@@ -1,6 +1,5 @@
 <script setup></script>
 
-
 <template>
     <Header></Header>
     <section class="container">
@@ -13,13 +12,11 @@
     </section>
     <Footer />
   </template>
-  
-  
 
 <style lang="scss" scoped>
 .container {
     display: flex;
-    margin-top: 20%;
+    margin-top: 5%;
     margin-bottom: 15%;
 }
 .content {

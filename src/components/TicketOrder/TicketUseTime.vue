@@ -14,6 +14,9 @@ const getChineseMonth = date => {
 };
 </script>
 <template>
+  <el-icon>
+    <Calendar/>
+  </el-icon>
   <el-calendar class="calendarUI" ref="calendar">
     <template #header="{ date }">
       <span>{{ getChineseMonth(date) }}</span>
@@ -32,15 +35,18 @@ const getChineseMonth = date => {
 
 <style scoped lang="scss">
 .calendarUI {
-  width: 900px;
+  width: 400px;
+  line-height: 40px;
+  
 
   button {
     cursor: pointer;
     height: 40px;
-    width: 100px;
+    width: 40px;
     background-color: rgb(255, 255, 255);
     font-size: 20;
     color: black;
+    line-height: 20px;
   }
   button:active {
     background-color: gray;
