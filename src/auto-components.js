@@ -36,17 +36,6 @@ declare module '@vue/runtime-core' {
     E2: typeof import('./components/-UI Element/svg/monsterComponent/e2.vue')['default']
     E3: typeof import('./components/-UI Element/svg/monsterComponent/e3.vue')['default']
     E4: typeof import('./components/-UI Element/svg/monsterComponent/e4.vue')['default']
-
-
-    ElCarousel: typeof import('element-plus/es')['ElCarousel']
-    ElCarouselItem: typeof import('element-plus/es')['ElCarouselItem']
-    ElIcon: typeof import('element-plus/es')['ElIcon']
-    ElInputNumber: typeof import('element-plus/es')['ElInputNumber']
-    E1: typeof import('./components/-UI Element/svg/monsterComponent/e1.vue')['default']
-    E2: typeof import('./components/-UI Element/svg/monsterComponent/e2.vue')['default']
-    E3: typeof import('./components/-UI Element/svg/monsterComponent/e3.vue')['default']
-    E4: typeof import('./components/-UI Element/svg/monsterComponent/e4.vue')['default']
-
     ElAside: typeof import('element-plus/es')['ElAside']
     ElAutocomplete: typeof import('element-plus/es')['ElAutocomplete']
     ElButton: typeof import('element-plus/es')['ElButton']
