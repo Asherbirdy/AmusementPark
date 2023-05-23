@@ -1,6 +1,7 @@
 <script></script>
 <template>
-  <MemberEditTBS />
+  <!-- <MemberEditTBS /> -->
+<MemberData/>
 </template>
 
 <style scoped lang="scss">

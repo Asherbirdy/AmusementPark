@@ -21,17 +21,19 @@
     <monstertCoplete class="complete" />
     <p>謝謝您!您的訂單已經成立!</p>
     <ul class="order">
-      <li v-for="item in orderItems" :key="item">{{ item }}</li>
+      <li v-for="item in orderItems" :key="item">
+        訂單編號 {{ item }}<br>
+        訂單成立副本已發送至會員信箱<br>
+        將立即為您安排出貨 Thank You!<br>
+        如欲查詢訂單請至<router-link to="/admin/touristqrcode">我的訂單</router-link>  查詢</li>
     </ul>
   </div>
 </template>
 
 <script setup>
-const orderItems = [
-  '訂單編號 202304250001',
-  '訂單確認信已經發送至 xxxxxx1234@gmail.com',
-  '將立即為您安排出貨 Thank You!',
-];
+const orderItems = [ 'MS102304250001']
+
+// const orderItems = ['xxxxxx1234@gmail.com'];
 </script>
 
 <style lang="scss" scoped>
