@@ -5,6 +5,7 @@
     <Cap />
     <Bag />
     <PhoneCase />
+    <top />
     <!-- <Customization />
     <MonsterMaker /> -->
 

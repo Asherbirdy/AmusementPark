@@ -23,14 +23,19 @@ document.addEventListener('scroll', function () {
 
     var sidebar = document.querySelector('.sidebar');
     if (scrollTop > 150) {
+        sidebar.style.transition = 'top 0.3s ease';
         sidebar.style.top = '50px';
     } else {
         sidebar.style.top = '';
     }
 });
 const scrollToPosition = (y) => {
-  window.scrollTo(window.pageXOffset, y);
+    window.scrollTo({
+        top: y,
+        behavior: 'smooth'
+    });
 }
+
 let bar = { bar: 'bar' };
 </script>
 <style lang="scss" scoped>
@@ -55,7 +60,8 @@ li {
     font-size: 24px;
     cursor: pointer;
 }
-li:hover{
+
+li:hover {
     color: #172944;
     font-weight: bold;
 }

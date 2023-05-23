@@ -6,6 +6,7 @@
   <ExhibitionNotice />
   <TransformNotice />
   <OpenNotice />
+  <top />
 </template>
 <style scoped lang="scss">
 </style>

@@ -10,6 +10,7 @@
 
   <InformationIDX />
   <login></login>
+  <top />
 </template>
 <style scoped lang="scss">
 #VideoBannerIDX{

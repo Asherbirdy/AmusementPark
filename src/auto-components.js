@@ -194,6 +194,7 @@ declare module '@vue/runtime-core' {
     TitleSmall: typeof import('./components/-UI Element/title/TitleSmall.vue')['default']
     TitleSmall1: typeof import('./components/-UI Element/svg/titleSmall1.vue')['default']
     TitleSmall2: typeof import('./components/-UI Element/svg/titleSmall2.vue')['default']
+    Top: typeof import('./components/-UI Element/modalframe/top.vue')['default']
     TopNotice: typeof import('./components/Notice/TopNotice.vue')['default']
     TourTitle: typeof import('./components/TouristBackstage/Element/TourTitle.vue')['default']
     TransformNotice: typeof import('./components/Notice/TransformNotice.vue')['default']

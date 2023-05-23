@@ -17,6 +17,7 @@
 
     <monster-maker />
   </main>
+  <top />
 </template>
 
 <style scoped lang="scss">
