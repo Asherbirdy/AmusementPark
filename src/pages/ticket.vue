@@ -33,9 +33,9 @@
 // }
 main{
   #orderdate{
-    // width: 900px;
     margin: 0 auto;
-    // height: 400px;
+    margin-left: -50px;
+
     
   }
   #ticketprice,#ticketexpresspass{

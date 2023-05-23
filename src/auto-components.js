@@ -37,8 +37,6 @@ declare module '@vue/runtime-core' {
     E2: typeof import('./components/-UI Element/svg/monsterComponent/e2.vue')['default']
     E3: typeof import('./components/-UI Element/svg/monsterComponent/e3.vue')['default']
     E4: typeof import('./components/-UI Element/svg/monsterComponent/e4.vue')['default']
-<<<<<<< HEAD
-=======
     E5: typeof import('./components/-UI Element/svg/monsterComponent/e5.vue')['default']
     E6: typeof import('./components/-UI Element/svg/monsterComponent/e6.vue')['default']
     ElButton: typeof import('element-plus/es')['ElButton']
@@ -46,7 +44,6 @@ declare module '@vue/runtime-core' {
     ElCalendar: typeof import('element-plus/es')['ElCalendar']
     ElCarousel: typeof import('element-plus/es')['ElCarousel']
     ElCarouselItem: typeof import('element-plus/es')['ElCarouselItem']
->>>>>>> 43cc52d52b5d8e2d890148f4dd6d842a8d329189
     ElIcon: typeof import('element-plus/es')['ElIcon']
     ElInputNumber: typeof import('element-plus/es')['ElInputNumber']
     ExhibitionNotice: typeof import('./components/Notice/ExhibitionNotice.vue')['default']
