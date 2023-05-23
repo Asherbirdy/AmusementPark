@@ -5,7 +5,7 @@
     <logo class="logo" />
     <img src="../assets/img/entrance.png" alt="" />
     <div class="entrance">
-      <router-link to="index">
+      <router-link to="/">
       <h1  class="front">前台</h1>
     </router-link>
     <router-link to="staff/login">
