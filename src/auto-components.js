@@ -36,6 +36,17 @@ declare module '@vue/runtime-core' {
     E2: typeof import('./components/-UI Element/svg/monsterComponent/e2.vue')['default']
     E3: typeof import('./components/-UI Element/svg/monsterComponent/e3.vue')['default']
     E4: typeof import('./components/-UI Element/svg/monsterComponent/e4.vue')['default']
+
+
+    ElCarousel: typeof import('element-plus/es')['ElCarousel']
+    ElCarouselItem: typeof import('element-plus/es')['ElCarouselItem']
+    ElIcon: typeof import('element-plus/es')['ElIcon']
+    ElInputNumber: typeof import('element-plus/es')['ElInputNumber']
+    E1: typeof import('./components/-UI Element/svg/monsterComponent/e1.vue')['default']
+    E2: typeof import('./components/-UI Element/svg/monsterComponent/e2.vue')['default']
+    E3: typeof import('./components/-UI Element/svg/monsterComponent/e3.vue')['default']
+    E4: typeof import('./components/-UI Element/svg/monsterComponent/e4.vue')['default']
+
     ElAside: typeof import('element-plus/es')['ElAside']
     ElAutocomplete: typeof import('element-plus/es')['ElAutocomplete']
     ElButton: typeof import('element-plus/es')['ElButton']
@@ -115,6 +126,7 @@ declare module '@vue/runtime-core' {
     MonsterBlue: typeof import('./components/-UI Element/svg/monsterBlue.vue')['default']
     MonsterCartFillBlue: typeof import('./components/-UI Element/svg/monster/monsterCartFillBlue.vue')['default']
     MonsterCartFillWhite: typeof import('./components/-UI Element/svg/monster/MonsterCartFillWhite.vue')['default']
+    MonsterCreate: typeof import('./components/-UI Element/modalframe/MonsterCreate.vue')['default']
     MonsterDivo: typeof import('./components/-UI Element/svg/monster/MonsterDivo.vue')['default']
     MonsterGrey: typeof import('./components/-UI Element/svg/monster/MonsterGrey.vue')['default']
     MonsterLightBlue: typeof import('./components/-UI Element/svg/monster/MonsterLightBlue.vue')['default']
