@@ -34,9 +34,9 @@ button {
     cursor: pointer;
     height: 40px;
     width: 100px;
-    font-size: 20;
+    font-size: 20px;
     border: none;
-    border-radius: 0.2rem;
+    border-radius: 0.3rem;
 }
 </style>
   
