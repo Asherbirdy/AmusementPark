@@ -4,7 +4,17 @@
     :id="id"
     :account="account"
     :permissions="permissions"
+    @close-modal="closeModal"
   />
+  <ModalUpdate
+    v-model="showUpdateModal"
+    :id="id"
+    :account="account"
+    :password = "password"
+    :permissions="permissions"
+    @close-update-modal="closeUpdateModal"
+  />
+
 
   <el-table :data="tableData" style="width: 100%">
     <el-table-column label="員工編號" prop="id" />
@@ -15,7 +25,14 @@
         <el-input v-model="search" size="small" placeholder="Type to search" />
       </template>
       <template #default="scope">
-        <el-button size="small" @click="handleEdit">編輯</el-button>
+        <el-button 
+          size="small"
+          v-model="showUpdateModal"
+          :id="id"
+          :account="account"
+          :permissions="permissions"
+          @click="openUpdateModal(scope.row)"
+          >編輯</el-button>
 
         <el-button
           size="small"
@@ -36,6 +53,7 @@
 import axios from "axios";
 import { computed, ref } from "vue";
 let showmodal = ref(false);
+let showUpdateModal = ref(false);
 let tableData = ref([]);
 
 onMounted(() => {
@@ -53,9 +71,9 @@ onMounted(() => {
       } else if (PURVIEW_LEVEL_ID === 9) {
         staff.permissions = "園長";
       } else if (PURVIEW_LEVEL_ID === 1) {
-        staff.permissions = "主管";
+        staff.permissions = "高階主管";
       } else {
-        staff.permissions = "員工";
+        staff.permissions = "一般員工";
       }
       return staff;
     });
@@ -64,6 +82,7 @@ onMounted(() => {
     const staffData = data.map(staff => ({
       id: staff.BACKSTAGE_MEMBER_ID,
       account: staff.ACCOUNT,
+      password:staff.PASSWORD,
       permissions: staff.permissions,
     }));
     tableData.value = staffData;
@@ -73,6 +92,7 @@ onMounted(() => {
 
 let id = ref(0);
 const account = ref("");
+const password = ref("");
 const permissions = ref("");
 
 // 打開彈窗
@@ -86,5 +106,19 @@ const openModal = rowData => {
 // 關閉彈窗
 const closeModal = () => {
   showmodal.value = false;
+};
+
+// 打開彈窗
+const openUpdateModal = rowData => {
+  showUpdateModal.value = true;
+  id.value = rowData.id;
+  account.value = rowData.account;
+  password.value = rowData.password;
+  permissions.value = rowData.permissions;
+};
+
+// 關閉彈窗
+const closeUpdateModal = () => {
+  showUpdateModal.value = false;
 };
 </script>
