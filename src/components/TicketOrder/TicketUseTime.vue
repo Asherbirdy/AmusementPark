@@ -2,16 +2,25 @@
 import dayjs from 'dayjs';
 import 'dayjs/locale/zh-cn';
 const calendar = ref();
+
+
+const emit = defineEmits(['selectDate']);
+
 const selectDate = val => {
-  calendar.value.selectDate(val);
+  const selectedDate = calendar.value.selectDate(val);
+  console.log(calendar.value.selectDate(val))
 };
 
-// 将英文月份转换为中文月份
+// 将英文月份转换为中文月份 且emit到父層
 const getChineseMonth = date => {
   const chineseMonth = dayjs(date).locale('zh-cn').format('YYYY MMMM');
-  console.log(chineseMonth);
+    console.log(chineseMonth);
   return chineseMonth;
 };
+
+
+
+
 </script>
 <template>
   <!-- <el-icon>

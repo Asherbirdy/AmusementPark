@@ -30,6 +30,10 @@ let bookingData = reactive([
   },
 ]);
 
+const handleSelectDate = (chineseMonth) =>{
+  // console.log(chineseMonth);
+};
+
 // 清空按鈕
 const clearOut = () => {
   bookingData[0].adult.ticketNum = 1,
@@ -54,12 +58,10 @@ const addDataToLocal = () =>{
 
 // 夾到購物車
 const addToCart = () =>{
-  console.log('test')
   addDataToLocal()
 };
 
 const buyTicket = () =>{
-  console.log('test');
    addDataToLocal();
    router.push('/cart');
   
@@ -67,6 +69,9 @@ const buyTicket = () =>{
 
 </script>
 <template>
+    <!-- 日曆： -->
+    <!-- <ticket-use-time id="orderdate" @selectDate="handleSelectDate"/> -->
+    
   <div>
     <table>
       <tr>
@@ -180,21 +185,6 @@ const buyTicket = () =>{
   </div>
 </template>
 
-<!-- <script>
-export default {
-  name: 'MyComponent',
-  data() {
-    return {
-      num: 0,
-    }
-  },
-  methods: {
-    handleChange(value) {
-      console.log(value)
-    },
-  },
-}
-</script> -->
 <style lang="scss" scoped>
 table,
 th,
@@ -244,4 +234,8 @@ table {
   margin-right: 60px;
   margin-top: 20px;
 }
+
+
+
+
 </style>
