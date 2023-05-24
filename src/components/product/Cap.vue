@@ -19,6 +19,12 @@
 <script setup>
 import getImageUrl from '@/utils/imgPath';
 const imgURL = name => getImageUrl(name);
+document.addEventListener('mousedown', function(event) {
+  var x = event.clientX;
+  var y = event.clientY;
+  console.log('点击的坐标位置：', x, y);
+});
+
 const product = ref([
     {
         productName: '火寶怪獸帽子',
@@ -49,10 +55,6 @@ const product = ref([
     position: relative;
     padding: 20px 0 0 35px;
 
-    .s2 {
-        padding: 0 0 0 100px;
-    }
-
     h3 {
         margin: 8px 18px 0 0;
         color: $textcolor7;
@@ -65,8 +67,7 @@ const product = ref([
     display: flex;
     flex-wrap: wrap;
     text-align: center;
-    padding-left: 60px;
-    padding-left: 200px;
+    padding-left: 30px;
 
     li {
         display: flex;
@@ -79,13 +80,20 @@ const product = ref([
 
 img {
     width: 55%;
-    margin: 105px 0 0 52px;
+    margin: 155px 0 0 75px;
 }
 
 .product_name {
-    font-size: 18px;
-    margin-top: 75px;
+    font-size: 24px;
+    margin-top: 110px;
     margin-bottom: 15px;
     color: $textcolor7;
+}
+
+Button{
+    font-size: 20px;
+    width: 140px;
+    height: 50px;
+    border-radius: 10px;
 }
 </style>

@@ -1,6 +1,6 @@
 <template>
   <button
-    :style="{ color: internalTextColor, backgroundColor: internalButtonColor }"
+    :style="{ width: internalWidth, color: internalTextColor, backgroundColor: internalButtonColor }"
     @mouseover="internalButtonColor = internalHoverColor"
     @mouseleave="internalButtonColor = this.buttonColor"
   >
@@ -22,12 +22,17 @@ export default {
       type: String,
       default: '#B1647D',
     },
+    buttonWidth: {
+      type: String,
+      default: '100px',
+    }
   },
   data() {
     return {
       internalTextColor: this.buttonTextColor,
       internalButtonColor: this.buttonColor,
       internalHoverColor: this.buttonHoverColor,
+      internalWidth: this.buttonWidth,
     };
   },
 };

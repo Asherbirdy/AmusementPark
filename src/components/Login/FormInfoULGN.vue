@@ -56,7 +56,7 @@ const aLinks = ref([
     url: '#',
     text: '忘記密碼',
     icon: 'Unlock',
-    url: '/register',
+    url: '/ForgetPassword',
   },
 ]);
 </script>
@@ -96,18 +96,33 @@ const aLinks = ref([
             ><component :is="aLink.icon"
           /></el-icon>
           <!-- 在 <el-icon> 组件内部動態渲染 aLink.icon 所代表的组件 -->
+<<<<<<< HEAD
           <a class="middle__form--A">{{ aLink.text }}</a>
         </div>
       </div>
 
       <button
+=======
+          <!-- <a class="middle__form--A">{{ aLink.text }}</a> -->
+          <router-link :to="aLink.url" class="middle__form--Link">{{
+            aLink.text
+          }}</router-link>
+        </div>
+      </div>
+
+      <Button
+>>>>>>> a7a8ce4d24b7dbd208664e27fc3ca7b1d2e4dfd8
         class="middle__form--Btn"
         type="submit"
         id="Submit"
         @click="handleClick"
       >
         登入
+<<<<<<< HEAD
       </button>
+=======
+      </Button>
+>>>>>>> a7a8ce4d24b7dbd208664e27fc3ca7b1d2e4dfd8
     </div>
     <!-- <form action="middle__form">
     </form> -->
@@ -149,6 +164,7 @@ const aLinks = ref([
     &--wrapOfIconA {
       display: inline-block;
       margin-bottom: 39px;
+      // color: ;
     }
     &--Icon {
       margin-right: 9px;
@@ -157,7 +173,7 @@ const aLinks = ref([
       font-weight: 400;
       font-size: 16px;
       line-height: 19.36px;
-      color: black;
+      color: $textcolor4;
       text-decoration: none;
     }
 
@@ -182,4 +198,8 @@ span {
   color: red;
   font-weight: bold;
 }
+<<<<<<< HEAD
 </style>
+=======
+</style>
+>>>>>>> a7a8ce4d24b7dbd208664e27fc3ca7b1d2e4dfd8

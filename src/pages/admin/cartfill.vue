@@ -47,6 +47,10 @@
           v-model="address"
           placeholder="請輸入您的地址*"
         />
+        <label class="checkbox">
+          <input type="checkbox" name="same_as_member" id="same_as_member" />
+          <span> 儲存為預設地址 </span>
+         </label> 
         <label for="comment">訂單備註：</label>
         <textarea
           id="comment"
@@ -60,7 +64,7 @@
     </div>
   <!--付款方式-->
     <div class="pay">
-      <h2>付款方式</h2>
+      <h2>付款</h2>
       <form>
         <label for="pay-method">付款方式：</label>
         <select id="pay-method" v-model="payMethod">
@@ -87,7 +91,13 @@
             :placeholder="item.placeholder"
           />
         </div>
-        <button type="submit" id="Submit">提交訂單</button>
+        <label class="checkbox">
+          <input type="checkbox" name="same_as_member" id="same_as_member" />
+          <span> 儲存信用卡資訊 </span>
+        </label>
+        <router-link to="/admin/cartsuccess">
+          <button type="submit" id="Submit">提交訂單</button>
+        </router-link>
       </form>
     </div>
   </main>

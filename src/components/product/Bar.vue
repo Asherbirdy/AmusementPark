@@ -1,18 +1,18 @@
 <template>
     <div class="sidebar">
         <ul>
-            <li class="bar">所有商品</li>
+            <li class="bar" @click="scrollToPosition(0)">所有商品</li>
             <br>
-            <li class="bar">衣服</li>
+            <li class="bar" @click="scrollToPosition(200)">衣服</li>
             <br>
-            <li class="bar">帽子</li>
+            <li class="bar" @click="scrollToPosition(1620)">帽子</li>
             <br>
-            <li class="bar">帆布袋</li>
+            <li class="bar" @click="scrollToPosition(3050)">帆布袋</li>
             <br>
-            <li class="bar">手機殼</li>
+            <li class="bar" @click="scrollToPosition(4475)">手機殼</li>
             <br>
-            <li class="bar">客製化商品</li>
-            <br>
+            <!-- <li class="bar">客製化商品</li>
+            <br> -->
         </ul>
     </div>
 </template>
@@ -23,21 +23,24 @@ document.addEventListener('scroll', function () {
 
     var sidebar = document.querySelector('.sidebar');
     if (scrollTop > 150) {
-        sidebar.style.top = '0';
+        sidebar.style.top = '50px';
     } else {
         sidebar.style.top = '';
     }
 });
-
+const scrollToPosition = (y) => {
+  window.scrollTo(window.pageXOffset, y);
+}
 let bar = { bar: 'bar' };
 </script>
 <style lang="scss" scoped>
 .sidebar {
     width: 180px;
     display: inline-block;
-    padding: 30px;
+    margin-top: 25px;
+    padding-left: 130px;
     position: fixed;
-    top: 125px;
+    top: 215px;
     left: 0;
 }
 
@@ -46,5 +49,14 @@ let bar = { bar: 'bar' };
     padding: 10px;
     border-bottom: 3px dashed #D1825B;
 
+}
+
+li {
+    font-size: 24px;
+    cursor: pointer;
+}
+li:hover{
+    color: #172944;
+    font-weight: bold;
 }
 </style>

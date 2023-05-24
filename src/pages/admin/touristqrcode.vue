@@ -1,7 +1,8 @@
 <script></script>
 <template>
-  <QrcodeListTBS />
-  <TickOrderListTBS />
+  <!-- <QrcodeListTBS />
+  <TickOrderListTBS /> -->
+  <TicketQR/>
 </template>
 
 <style scoped lang="scss">

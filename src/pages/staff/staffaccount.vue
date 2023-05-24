@@ -1,15 +1,32 @@
-<script setup></script>
+<script setup>
+import axios from 'axios';
+// import { checkLoginStatus } from '@/utils/backstageCheck';
+let showmodal = ref(false);
+const router = useRouter();
+
+const openModal = () => {
+  showmodal.value = true;
+};
+</script>
 <template>
-  <el-checkbox-group v-model="checkList">
-    <el-checkbox label="高階主管" />
-    <el-checkbox label="主管" />
-    <el-checkbox label="員工" />
-    <el-button type="primary">新增帳號</el-button>
+  <modal-insert v-model="showmodal"></modal-insert>
+  <el-checkbox-group v-model="checkList" class="title-bar">
+    <div class="checkbox-wrap">
+      <el-checkbox label="園長" />
+      <el-checkbox label="高階主管" />
+      <el-checkbox label="一般員工" />
+    </div>
+    <el-button type="primary" style="" @click="openModal">新增帳號</el-button>
   </el-checkbox-group>
   <StaffAccountSFA />
 </template>
 
-<style scoped lang="scss"></style>
+<style scoped lang="scss">
+.title-bar {
+  display: flex;
+  justify-content: space-between;
+}
+</style>
 <route>
     {
         meta: {

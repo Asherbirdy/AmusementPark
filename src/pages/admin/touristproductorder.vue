@@ -1,6 +1,7 @@
 <script></script>
 <template>
-  <ProductOrderTBS />
+  <!-- <ProductOrderTBS /> -->
+  <OrderHistory/>
 </template>
 
 <style scoped lang="scss"></style>

@@ -11,14 +11,39 @@
             <frame-blue>
                 <img :src="imgURL(item.image)" alt="">
                 <p class="product_name"> {{ item.productName }}</p>
-                <Button>加入購物車</Button>
+                <Button class="button" @click="isopen = !isopen">加入購物車</Button>
             </frame-blue>
         </li>
     </ul>
+
+
+    <cartadd v-if="ridemodal" :class="{ modal: isopen }" @close-modal="closeModal" />
+    <!-- :class="{modal:ridemodal}"  -->
 </template>
 <script setup>
 import getImageUrl from '@/utils/imgPath';
+
+
+let isopen = ref(true);
+// 談窗開關
+let ridemodal = ref(true);
+const openModal = () => {
+    emit(ridemodal.value = true);
+    // console.log(ridemodal.value)
+};
+const closeModal = () => {
+    ridemodal.value = false;
+};
+// const emit = defineEmits(['openModal', 'closeModal']);
 const imgURL = name => getImageUrl(name);
+
+// const props = defineProps(['open']);
+
+
+
+
+
+
 const product = ref([
     {
         productName: '艾比怪獸上衣',
@@ -42,6 +67,7 @@ const product = ref([
     }
 
 ]);
+
 </script>
 <style lang="scss" scoped>
 .titleS1 {
@@ -57,15 +83,15 @@ const product = ref([
 }
 
 .s1 {
-    padding: 0 0 0 100px;
+    padding: 0px;
 }
 
 .frame_blue {
     display: flex;
     flex-wrap: wrap;
     text-align: center;
-    padding-left: 200px;
-   
+    padding-left: 30px;
+
 
     li {
         display: flex;
@@ -80,13 +106,24 @@ const product = ref([
 
 img {
     width: 70%;
-    margin: 90px 0 0 30px;
+    margin: 135px 0 0 50px;
 }
 
 .product_name {
-    font-size: 18px;
-    margin-top: 50px;
+    font-size: 24px;
+    margin-top: 80px;
     margin-bottom: 15px;
     color: $textcolor7;
+}
+
+Button {
+    font-size: 20px;
+    width: 140px;
+    height: 50px;
+    border-radius: 10px;
+}
+
+.modal {
+    visibility: hidden;
 }
 </style>
