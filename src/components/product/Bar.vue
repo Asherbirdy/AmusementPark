@@ -1,15 +1,15 @@
 <template>
     <div class="sidebar">
         <ul>
-            <li class="bar">所有商品</li>
+            <li class="bar" @click="scrollToPosition(0)">所有商品</li>
             <br>
-            <li class="bar">衣服</li>
+            <li class="bar" @click="scrollToPosition(200)">衣服</li>
             <br>
-            <li class="bar">帽子</li>
+            <li class="bar" @click="scrollToPosition(1620)">帽子</li>
             <br>
-            <li class="bar">帆布袋</li>
+            <li class="bar" @click="scrollToPosition(3050)">帆布袋</li>
             <br>
-            <li class="bar">手機殼</li>
+            <li class="bar" @click="scrollToPosition(4475)">手機殼</li>
             <br>
             <!-- <li class="bar">客製化商品</li>
             <br> -->
@@ -19,7 +19,7 @@
 <script setup>
 document.addEventListener('scroll', function () {
     var scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-    // console.log(scrollTop);
+    console.log(scrollTop);
 
     var sidebar = document.querySelector('.sidebar');
     if (scrollTop > 150) {
@@ -28,7 +28,9 @@ document.addEventListener('scroll', function () {
         sidebar.style.top = '';
     }
 });
-
+const scrollToPosition = (y) => {
+  window.scrollTo(window.pageXOffset, y);
+}
 let bar = { bar: 'bar' };
 </script>
 <style lang="scss" scoped>

@@ -81,6 +81,7 @@ main {
   .title {
     margin-bottom: 100px;
   }
+  
   .aboutrides {
     display: flex;
     flex-direction: row;
@@ -125,5 +126,4 @@ main {
     cursor: pointer;
     margin-left: 117px;
   }
-}
-</style>
+}</style>
