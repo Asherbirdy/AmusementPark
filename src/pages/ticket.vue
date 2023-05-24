@@ -1,28 +1,38 @@
 <script setup></script>
 
 <template>
-
-<!-- <side-menu id="side-menu"/> -->
 <main>
+  <!-- 日曆： -->
   <ticket-use-time id="orderdate"/>
+  <!-- 訂票頁面 -->
   <ticket-order id="ticketprice"/>
-  <!-- <ticketExpressPass id="ticketexpresspass"/> -->
-  <!-- <TicketExhibitionTOR2 id="ticketselect"/> -->
-  <!-- <ticket-express-pass/> -->
-  <!-- <TicketBookingTOR id="show"/> -->
-  <div class="btnbox">
-    <btn class="btn" button-text-color="white" button-color="#D1825B">
+  <!-- 訂票 Form -->
+  <!-- <div class="btnbox">
+    <btn
+      class="btn"
+      button-color="#D1825B"
+      button-text-color="white"
+    >
       <h3>清空</h3>
     </btn>
-    <btn :style="{ width: '150px'}" class="btn" button-text-color="white" button-color="#D1825B">
+   <btn
+      :style="{ width: '150px'}"
+      class="btn"
+      button-color="#D1825B"
+      button-text-color="white"
+    >
       <h3>加入購物車</h3>
     </btn>
     <router-link to="/cart">
-      <btn class="btn" button-text-color="white" button-color="#D1825B">
+     <btn
+        class="btn"
+        button-color="#D1825B"
+        button-text-color="white"
+      >
         <h3>立即購買</h3>
       </btn>
     </router-link>
-  </div>
+  </div> -->
 </main>
 
 </template>
@@ -48,17 +58,6 @@ main{
     margin: 0 auto;
   }
 }
-.btnbox {
-    // margin-top: 30px;
-    // display: flex;
-    // gap: 200px;
-    // margin-left: 23%;
-  width: 400px;
-  display: flex;
-  float: right;
-  justify-content: space-between;
-  margin-bottom: 100px ;
-  margin-right: 60px;
-}
+
 
 </style>
