@@ -21,6 +21,7 @@ declare module '@vue/runtime-core' {
     Body3: typeof import('./components/-UI Element/svg/monsterComponent/body3.vue')['default']
     Body4: typeof import('./components/-UI Element/svg/monsterComponent/body4.vue')['default']
     Body5: typeof import('./components/-UI Element/svg/monsterComponent/body5.vue')['default']
+    BookingInfoTIC: typeof import('./components/Ticket/BookingInfoTIC.vue')['default']
     Bookrides: typeof import('./components/-UI Element/modalframe/bookrides.vue')['default']
     Bookshow: typeof import('./components/-UI Element/modalframe/bookshow.vue')['default']
     Born: typeof import('./components/-UI Element/modalframe/born.vue')['default']
