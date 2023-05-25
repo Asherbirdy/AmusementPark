@@ -25,7 +25,23 @@
 <script setup>
 import axios from 'axios';
 //定義emit function
-const emit = defineEmits(['get-list'])
+const emit = defineEmits(['get-list']);
+
+//刪除api
+const deleteApi = async () => {
+  try {
+    const res = await axios.post(
+      '/api/PDO/staffAccount/staffAccountDelete.php',
+      {
+        deleteMemberData,
+      }
+    );
+    console.log(res);
+    alert('刪除成功');
+  } catch (err) {
+    console.log(err);
+  }
+};
 
 // 外部資料導入資訊
 const props = defineProps({
@@ -47,21 +63,6 @@ let deleteMemberData = reactive({
   permissions: '',
 });
 
-
-//刪除api
-const deleteApi = async () => {
-  try {
-    const res = await axios.post('/api/PDO/staffAccount/staffAccountDelete.php', {
-      deleteMemberData,
-    });
-    console.log(res);
-    alert('刪除成功');
-  } catch (err) {
-    console.log(err);
-  }
-};
-
-
 // 退票按鈕函式
 const deleteMember = async () => {
   deleteMemberData.id = props.id;
@@ -76,7 +77,6 @@ const deleteMember = async () => {
     emit('get-list');
   }
 };
-
 </script>
 <style scoped>
 .dialog-footer button:first-child {

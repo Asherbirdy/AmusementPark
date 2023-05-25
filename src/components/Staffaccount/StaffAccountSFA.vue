@@ -11,12 +11,17 @@
     v-model="showUpdateModal"
     :id="id"
     :account="account"
-    :password = "password"
+    :password="password"
     :permissions="permissions"
     @close-update-modal="closeUpdateModal"
     @get-list="getList"
   />
 
+  <ModalInsert
+          v-model="showInsertModal"
+          @close-modal="closeInsertModal"
+          @get-list="getList"
+        />
 
   <el-table :data="tableData" style="width: 100%">
     <el-table-column label="員工編號" prop="id" />
@@ -24,17 +29,18 @@
     <el-table-column label="權限" prop="permissions" />
     <el-table-column align="right">
       <template #header>
-        <el-input v-model="search" size="small" placeholder="Type to search" />
+        <el-button type="primary" style="" @click="openInsertModal">新增帳號</el-button>
       </template>
       <template #default="scope">
-        <el-button 
+        <el-button
           size="small"
           v-model="showUpdateModal"
           :id="id"
           :account="account"
           :permissions="permissions"
           @click="openUpdateModal(scope.row)"
-          >編輯</el-button>
+          >編輯</el-button
+        >
 
         <el-button
           size="small"
@@ -52,16 +58,17 @@
 </template>
 
 <script setup>
-import axios from "axios";
-import { computed, ref } from "vue";
+import axios from 'axios';
+import { computed, ref } from 'vue';
 let showmodal = ref(false);
+let showInsertModal = ref(false);
 let showUpdateModal = ref(false);
 let tableData = ref([]);
 
 //定義抓資料function
 const getList = async () => {
   try {
-    const res = await axios.get("/api/PDO/staffAccount/staffAccountSelect.php");
+    const res = await axios.get('/api/PDO/staffAccount/staffAccountSelect.php');
     // API 抓取到的資料：
     const data = res.data;
     // console.log(data);
@@ -71,13 +78,13 @@ const getList = async () => {
       const { PURVIEW_LEVEL_ID } = staff;
 
       if (PURVIEW_LEVEL_ID === 999) {
-        staff.permissions = "DBA";
+        staff.permissions = 'DBA';
       } else if (PURVIEW_LEVEL_ID === 9) {
-        staff.permissions = "園長";
+        staff.permissions = '園長';
       } else if (PURVIEW_LEVEL_ID === 1) {
-        staff.permissions = "高階主管";
+        staff.permissions = '高階主管';
       } else {
-        staff.permissions = "一般員工";
+        staff.permissions = '一般員工';
       }
       return staff;
     });
@@ -96,7 +103,6 @@ const getList = async () => {
   }
 };
 
-
 onMounted(() => {
   //呼叫抓資料function
   getList();
@@ -104,9 +110,9 @@ onMounted(() => {
 });
 
 let id = ref(0);
-const account = ref("");
-const password = ref("");
-const permissions = ref("");
+const account = ref('');
+const password = ref('');
+const permissions = ref('');
 
 // 打開彈窗
 const openModal = rowData => {
@@ -133,5 +139,12 @@ const openUpdateModal = rowData => {
 // 關閉彈窗
 const closeUpdateModal = () => {
   showUpdateModal.value = false;
+};
+
+const openInsertModal = () => {
+  showInsertModal.value = true;
+};
+const closeInsertModal = () => {
+  showInsertModal.value = false;
 };
 </script>

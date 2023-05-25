@@ -46,31 +46,33 @@ import axios from 'axios';
 import { reactive, ref } from 'vue';
 import type { FormInstance, FormRules } from 'element-plus';
 
+//定義emit function
+const emit = defineEmits(['get-list']);
 //定義新增function
-const addAccount = () => {
-  axios
-    .post('/api/PDO/staffAccount/staffSignup.php', {
+const addAccount = async () => { // 将addAccount函数声明为异步函数
+  try {
+    const res = await axios.post('/api/PDO/staffAccount/staffSignup.php', {
       account: staff.account,
       pwd: staff.pwd,
       permissions: staff.permissions,
-    })
-    .then(res => {
-      console.log(res.data.status);
-      const dataToJSON = JSON.stringify(res.data);
-
-      // 如果新增成功
-      if (res.data.status === 'true') {
-        alert('新增成功');
-        // router.push('/staff/parkstatus');
-      } else {
-        alert('新增失敗');
-      }
-    })
-    .catch(err => {
-      console.log(err);
-      alert('伺服器問題');
     });
+
+    console.log(res.data.status);
+    const dataToJSON = JSON.stringify(res.data);
+
+    // 如果新增成功
+    if (res.data.status === 'true') {
+      alert('新增成功');
+      
+    } else {
+      alert('新增失敗');
+    }
+  } catch (err) {
+    console.log(err);
+    alert('伺服器問題');
+  }
 };
+
 
 const router = useRouter();
 
@@ -102,16 +104,18 @@ const rules = reactive<FormRules>({
 
 const submitForm = async (formEl: FormInstance | undefined) => {
   if (!formEl) return;
-  await formEl.validate((valid, fields) => {
+  await formEl.validate(async (valid, fields) => { // 使用async关键字声明回调函数为异步函数
     if (valid) {
       console.log('submit!');
       //呼叫新增function
-      addAccount();
+      await addAccount(); // 在addAccount函数前面加上await
+      emit('get-list');
     } else {
       console.log('error submit!', fields);
     }
   });
 };
+
 
 const resetForm = (formEl: FormInstance | undefined) => {
   if (!formEl) return;
