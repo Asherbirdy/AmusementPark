@@ -55,61 +55,61 @@ const clearOut = () => {
 // 將資料訪到local函式：
 const addBookingDataToLocal = item =>
   localStorage.setItem('bookingData', JSON.stringify({ item }));
-const addTicketDateToLocal = item =>
-  localStorage.setItem('ticketDateData', JSON.stringify({ item }));
+// const addTicketDateToLocal = item =>
+//   localStorage.setItem('ticketDateData', JSON.stringify({ item }));
 
 // 訂票日期：
-let ticketDate = ref('');
+// let ticketDate = ref('');
 
 // 從 自組件 接收到日期
-const handleDateSelected = date => {
-  ticketDate = date;
-  return date;
-};
+// const handleDateSelected = date => {
+//   ticketDate = date;
+//   return date;
+// };
 
 // 時間的表達式
-const isValidDateFormat = dateString => {
-  const dateRegex = /^\d{4}-\d{2}-\d{2}$/;
-  return dateRegex.test(dateString);
-};
+// const isValidDateFormat = dateString => {
+//   const dateRegex = /^\d{4}-\d{2}-\d{2}$/;
+//   return dateRegex.test(dateString);
+// };
 
 // 加到購物車
-const addToCart = () => {
-  if (ticketDate !== '' && isValidDateFormat(ticketDate)) {
-    if (countTicket() !== 0) {
-      console.log(ticketDate, countTicket(), 'ticketDate 執行加入購物車');
-      addBookingDataToLocal(bookingData);
-      addTicketDateToLocal(ticketDate);
-      alert('已將票數加入到購物車');
-    } else {
-      alert('請加入票數');
-    }
-  } else {
-    alert('請輸入日期');
-  }
-};
+// const addToCart = () => {
+//   if (ticketDate !== '' && isValidDateFormat(ticketDate)) {
+//     if (countTicket() !== 0) {
+//       console.log(ticketDate, countTicket(), 'ticketDate 執行加入購物車');
+//       addBookingDataToLocal(bookingData);
+//       addTicketDateToLocal(ticketDate);
+//       alert('已將票數加入到購物車');
+//     } else {
+//       alert('請加入票數');
+//     }
+//   } else {
+//     alert('請輸入日期');
+//   }
+// };
 
 // 購買票券
-const buyTicket = () => {
-  if (ticketDate !== '' && isValidDateFormat(ticketDate)) {
-    if (countTicket() !== 0) {
-      console.log(ticketDate, countTicket(), 'ticketDate 執行加入購物車');
-      addBookingDataToLocal(bookingData);
-      addTicketDateToLocal(ticketDate);
-      router.push('/cart');
-      alert('已將票數加入到購物車');
-    } else {
-      alert('請加入票數');
-    }
-  } else {
-    alert('請輸入日期');
-  }
-};
+// const buyTicket = () => {
+//   if (ticketDate !== '' && isValidDateFormat(ticketDate)) {
+//     if (countTicket() !== 0) {
+//       console.log(ticketDate, countTicket(), 'ticketDate 執行加入購物車');
+//       addBookingDataToLocal(bookingData);
+//       addTicketDateToLocal(ticketDate);
+//       router.push('/cart');
+//       alert('已將票數加入到購物車');
+//     } else {
+//       alert('請加入票數');
+//     }
+//   } else {
+//     alert('請輸入日期');
+//   }
+// };
 </script>
 <template>
   <div>
     <div class="chooseDate">
-      <ChooseDateTIC @date-selected="handleDateSelected" />
+      <!-- <ChooseDateTIC @date-selected="handleDateSelected" /> -->
     </div>
 
     <table>
