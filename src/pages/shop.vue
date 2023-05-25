@@ -1,6 +1,7 @@
 <template>
-  <Bar />
   <main>
+    <Bar />
+    <!-- <cartadd /> -->
     <Clothes />
     <Cap />
     <Bag />

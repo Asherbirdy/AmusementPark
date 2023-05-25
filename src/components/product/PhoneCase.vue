@@ -91,4 +91,17 @@ Button{
     height: 50px;
     border-radius: 10px;
 }
+
+@media screen and (max-width: 1280px) {
+    main.s2{
+        padding-left: 80px;
+    }
+    .frame_green{
+        padding-left: 180px;
+    }
+    .frame{
+        width: 300px;
+        height: 400px;
+    }
+}
 </style>

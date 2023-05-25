@@ -89,4 +89,16 @@ Button{
     height: 50px;
     border-radius: 10px;
 }
+@media screen and (max-width: 1280px) {
+    main.s1{
+        padding-left: 80px;
+    }
+    .frame_pink{
+        padding-left: 180px;
+    }
+    .frame{
+        width: 300px;
+        height: 400px;
+    }
+}
 </style>
