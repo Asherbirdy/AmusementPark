@@ -3,7 +3,7 @@
 <template>
 <main>
   <!-- 訂票頁面 -->
-  <ticket-order id="ticketprice"/>
+  <ticket-order />
 </main>
 
 </template>

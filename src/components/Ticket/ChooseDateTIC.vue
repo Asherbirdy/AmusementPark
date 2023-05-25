@@ -1,7 +1,7 @@
 <template>
     <div class="demo-date-picker">
         <div class="block">
-            <el-date-picker v-model="date" type="date" placeholder="選擇訂票日期" :size="size" :disabled-date="disableDate"
+            <el-date-picker v-model="date" type="date" placeholder="選擇訂票日期" :disabled-date="disableDate"
                 @change="emitDate" />
         </div>
     </div>

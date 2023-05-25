@@ -24,11 +24,18 @@ let bookingData = reactive([
   },
   {
     concession: {
-      ticketNum: 0,
+      ticketNum: 1,
       fastForwad: false,
     },
   },
 ]);
+
+function countTicket() {
+  return bookingData.reduce((accumulator, current) => {
+    const ticketNum = Object.values(current)[0].ticketNum;
+    return accumulator + ticketNum;
+  }, 0);
+}
 
 
 // 清空按鈕
@@ -60,7 +67,6 @@ const handleDateSelected = date => {
 };
 
 const isValidDateFormat = dateString => {
-  // 使用正則表達式檢查日期格式
   const dateRegex = /^\d{4}-\d{2}-\d{2}$/;
   return dateRegex.test(dateString);
 };
@@ -68,8 +74,8 @@ const isValidDateFormat = dateString => {
 // 夾到購物車
 const addToCart = () => {
   if (ticketDate !== '' && isValidDateFormat(ticketDate)) {
-    if (totalTicketNum !== 0) {
-      console.log(ticketDate, 'ticketDate 執行加入購物車');
+    if (countTicket() !== 0) {
+      console.log(ticketDate, countTicket(), 'ticketDate 執行加入購物車');
       addBookingDataToLocal(bookingData);
       addTicketDateToLocal(ticketDate);
       alert('已將票數加入到購物車');
@@ -86,16 +92,6 @@ const buyTicket = () => {
   addTicketDateToLocal(ticketDate);
   router.push('/cart');
 };
-
-const totalTicketNum = computed(() => {
-  return bookingData.reduce((accumulator, item) => {
-    const ticketObj = Object.values(item)[0];
-    if (ticketObj && ticketObj.ticketNum) {
-      return accumulator + ticketObj.ticketNum;
-    }
-    return accumulator;
-  }, 0);
-});
 
 // 收集父層邏輯
 </script>
@@ -121,7 +117,12 @@ const totalTicketNum = computed(() => {
         <td class="ex">一般成人，身高110cm以上視為成人</td>
         <td>NT.500</td>
         <td>
-          <el-input-number v-model="bookingData[0].adult.ticketNum" :min="0" class="count" width:10px />
+          <el-input-number
+            v-model="bookingData[0].adult.ticketNum"
+            :min="0"
+            class="count"
+            width:10px
+          />
         </td>
         <td>
           <input v-model="bookingData[0].adult.fastForwad" type="checkbox" />
@@ -132,7 +133,12 @@ const totalTicketNum = computed(() => {
         <td class="ex">入園需持當學期註冊學生證之學生(限本人使用)</td>
         <td>NT.400</td>
         <td>
-          <el-input-number v-model="bookingData[1].student.ticketNum" :min="0" class="count" width:10px />
+          <el-input-number
+            v-model="bookingData[1].student.ticketNum"
+            :min="0"
+            class="count"
+            width:10px
+          />
         </td>
         <td>
           <input v-model="bookingData[1].student.fastForwad" type="checkbox" />
@@ -143,7 +149,12 @@ const totalTicketNum = computed(() => {
         <td class="ex">4歲~12歲，身高未滿110cm兒童</td>
         <td>NT.250</td>
         <td>
-          <el-input-number v-model="bookingData[2].children.ticketNum" :min="0" class="count" width:10px />
+          <el-input-number
+            v-model="bookingData[2].children.ticketNum"
+            :min="0"
+            class="count"
+            width:10px
+          />
         </td>
         <td>
           <input v-model="bookingData[2].children.fastForwad" type="checkbox" />
@@ -154,10 +165,18 @@ const totalTicketNum = computed(() => {
         <td class="ex">持有身心障礙證明者與1位陪同者、孕婦、65歲以上長者</td>
         <td>NT.200</td>
         <td>
-          <el-input-number v-model="bookingData[3].concession.ticketNum" :min="0" class="count" width:10px />
+          <el-input-number
+            v-model="bookingData[3].concession.ticketNum"
+            :min="0"
+            class="count"
+            width:10px
+          />
         </td>
         <td>
-          <input v-model="bookingData[3].concession.fastForwad" type="checkbox" />
+          <input
+            v-model="bookingData[3].concession.fastForwad"
+            type="checkbox"
+          />
         </td>
       </tr>
       <tr>
@@ -166,13 +185,29 @@ const totalTicketNum = computed(() => {
     </table>
   </div>
   <div class="btnbox">
-    <btn class="btn" button-color="#D1825B" button-text-color="white" @click="clearOut">
+    <btn
+      class="btn"
+      button-color="#D1825B"
+      button-text-color="white"
+      @click="clearOut"
+    >
       <h3>清空</h3>
     </btn>
-    <btn :style="{ width: '150px' }" class="btn" button-color="#D1825B" button-text-color="white" @click="addToCart">
+    <btn
+      :style="{ width: '150px' }"
+      class="btn"
+      button-color="#D1825B"
+      button-text-color="white"
+      @click="addToCart"
+    >
       <h3>加入購物車</h3>
     </btn>
-    <btn class="btn" button-color="#D1825B" button-text-color="white" @click="buyTicket">
+    <btn
+      class="btn"
+      button-color="#D1825B"
+      button-text-color="white"
+      @click="buyTicket"
+    >
       <h3>立即購買</h3>
     </btn>
   </div>
