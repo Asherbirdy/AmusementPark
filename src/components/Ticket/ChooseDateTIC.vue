@@ -35,10 +35,12 @@ const emit = defineEmits(['date-selected']);
 
 // 禁用日期邏輯：
 const disableDate = time => {
-  const today = dayjs().startOf('day');
-  const selectedDate = dayjs(time).startOf('day');
-  return selectedDate.isBefore(today); // 禁用今天以前的日期
+    const today = dayjs().startOf('day');
+    const selectedDate = dayjs(time).startOf('day');
+    const maxAllowedDate = today.add(31, 'day').startOf('day'); // 取得今天後7天的日期
+    return selectedDate.isBefore(today) || selectedDate.isAfter(maxAllowedDate);
 };
+
 </script>
 
 <style scoped>
