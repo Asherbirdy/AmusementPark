@@ -24,7 +24,7 @@ let bookingData = reactive([
   },
   {
     concession: {
-      ticketNum: 1,
+      ticketNum: 0,
       fastForwad: false,
     },
   },
@@ -88,9 +88,21 @@ const addToCart = () => {
 };
 
 const buyTicket = () => {
-  addBookingDataToLocal(bookingData);
-  addTicketDateToLocal(ticketDate);
-  router.push('/cart');
+  if (ticketDate !== '' && isValidDateFormat(ticketDate)) {
+    if (countTicket() !== 0) {
+      console.log(ticketDate, countTicket(), 'ticketDate 執行加入購物車');
+      addBookingDataToLocal(bookingData);
+      addTicketDateToLocal(ticketDate);
+      router.push('/cart');
+      alert('已將票數加入到購物車');
+    } else {
+      alert('請加入票數');
+    }
+  } else {
+    alert('請輸入日期');
+  }
+
+
 };
 
 // 收集父層邏輯
