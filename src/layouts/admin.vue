@@ -1,7 +1,39 @@
 <script setup>
 import axios from 'axios';
 const router = useRouter();
+const permissions = ref('');
+const account = ref('');
 
+// 用mapping table取代if else
+const permissionMap = {
+  999: 'DBA',
+  9: '園長',
+  1: '高階主管',
+};
+
+
+// 驗證是否已經登入
+// 寫在onMounted裡面是為了渲染登入者的資料
+onMounted(() => {
+  axios
+    .post('/api/PDO/staffAccount/staffLoginCheck.php')
+    .then(res => {
+      if (res.data === '') {
+        alert('請先登入');
+        router.push('/staff/login');
+      } else {
+        const [accountValue, permissionsValue] = res.data;
+        account.value = accountValue;
+        permissions.value = permissionMap[permissionsValue] || '一般員工';
+      }
+    })
+    .catch(err => {
+      console.log(err);
+      alert('登入狀態檢查出錯');
+    });
+});
+
+// 登出按鈕function
 const logout = () => {
   axios.post('/api/PDO/staffAccount/staffLogout.php').then(res => {
     console.log(res.data);
@@ -19,8 +51,8 @@ const logout = () => {
         </div>
 
         <div class="userbox" style="">
-          <p>ID:MP2313</p>
-          <p>等級:高階主管</p>
+          <p>ID:{{ account }}</p>
+          <p>等級:{{ permissions }}</p>
           <div class="logout" to="/staff/login" @click="logout">
             <el-button>登出</el-button>
           </div>

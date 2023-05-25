@@ -3,30 +3,17 @@ import axios from 'axios';
 // import { checkLoginStatus } from '@/utils/backstageCheck';
 let showmodal = ref(false);
 const router = useRouter();
-// checkLoginStatus();
-
-axios
-  .post('/api/PDO/staffAccount/staffLoginCheck.php')
-  .then(res => {
-    if(res.data ==="") {
-      // console.log("還沒登入");
-      alert('請先登入');
-      router.push('/staff/login');
-    }else {
-      // console.log("已經登入了");
-    }
-  })
-  .catch(err => {
-        console.log(err);
-        alert('登入狀態檢查出錯');
-      });
 
 const openModal = () => {
   showmodal.value = true;
 };
+
+const closeModal = () => {
+  showmodal.value = false;
+};
 </script>
 <template>
-  <modal-insert v-model="showmodal"></modal-insert>
+  <modal-insert v-model="showmodal" @close-modal="closeModal"></modal-insert>
   <el-checkbox-group v-model="checkList" class="title-bar">
     <div class="checkbox-wrap">
       <el-checkbox label="園長" />
