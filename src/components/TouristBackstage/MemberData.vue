@@ -1,4 +1,20 @@
-<script setup></script>
+<script setup>
+import axios from 'axios';
+
+let tableData = ref([]);
+
+// 將資料傳到畫面
+onMounted(() => {
+  axios.get('../../assets/json/memberInfo.json').then(res=>{
+    // API 抓取到的資料：
+    const data = res.data.memberInfo;
+  })
+}),
+
+
+
+
+</script>
 <template>
   <div class="member">
     <div class="title">會員資料</div>
