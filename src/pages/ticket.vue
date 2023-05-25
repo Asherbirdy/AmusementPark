@@ -2,6 +2,7 @@
 
 <template>
 <main>
+  <BookingInfoTIC/>
   <!-- 訂票頁面 -->
   <ticket-order />
 </main>
