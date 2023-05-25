@@ -30,9 +30,6 @@ let bookingData = reactive([
   },
 ]);
 
-const handleSelectDate = (chineseMonth) =>{
-  // console.log(chineseMonth);
-};
 
 // 清空按鈕
 const clearOut = () => {
@@ -55,7 +52,6 @@ const addDataToLocal = () =>{
   }));
 };
 
-
 // 夾到購物車
 const addToCart = () =>{
   addDataToLocal()
@@ -67,12 +63,22 @@ const buyTicket = () =>{
   
 };
 
+// 收集父層邏輯
+const handleDateSelected =(date) =>{
+   console.log(date);
+};
+
+
 </script>
 <template>
-    <!-- 日曆： -->
-    <!-- <ticket-use-time id="orderdate" @selectDate="handleSelectDate"/> -->
-    
+  <!-- 日曆： -->
+  <!-- <ticket-use-time id="orderdate" @selectDate="handleSelectDate"/> -->
+
   <div>
+    <div class="chooseDate" >
+      <ChooseDateTIC @date-selected="handleDateSelected" />
+    </div>
+
     <table>
       <tr>
         <th>票種</th>
@@ -86,12 +92,7 @@ const buyTicket = () =>{
         <td class="ex">一般成人，身高110cm以上視為成人</td>
         <td>NT.500</td>
         <td>
-          <el-input-number
-            v-model="bookingData[0].adult.ticketNum"
-            :min="0"
-            class="count"
-            width:10px
-          />
+          <el-input-number v-model="bookingData[0].adult.ticketNum" :min="0" class="count" width:10px />
         </td>
         <td>
           <input v-model="bookingData[0].adult.fastForwad" type="checkbox" />
@@ -102,12 +103,7 @@ const buyTicket = () =>{
         <td class="ex">入園需持當學期註冊學生證之學生(限本人使用)</td>
         <td>NT.400</td>
         <td>
-          <el-input-number
-            v-model="bookingData[1].student.ticketNum"
-            :min="0"
-            class="count"
-            width:10px
-          />
+          <el-input-number v-model="bookingData[1].student.ticketNum" :min="0" class="count" width:10px />
         </td>
         <td>
           <input v-model="bookingData[1].student.fastForwad" type="checkbox" />
@@ -118,18 +114,10 @@ const buyTicket = () =>{
         <td class="ex">4歲~12歲，身高未滿110cm兒童</td>
         <td>NT.250</td>
         <td>
-          <el-input-number
-            v-model="bookingData[2].children.ticketNum"
-            :min="0"
-            class="count"
-            width:10px
-          />
+          <el-input-number v-model="bookingData[2].children.ticketNum" :min="0" class="count" width:10px />
         </td>
         <td>
-          <input
-            v-model="bookingData[2].children.fastForwad"
-            type="checkbox"
-          />
+          <input v-model="bookingData[2].children.fastForwad" type="checkbox" />
         </td>
       </tr>
       <tr>
@@ -137,18 +125,10 @@ const buyTicket = () =>{
         <td class="ex">持有身心障礙證明者與1位陪同者、孕婦、65歲以上長者</td>
         <td>NT.200</td>
         <td>
-          <el-input-number
-            v-model="bookingData[3].concession.ticketNum"
-            :min="0"
-            class="count"
-            width:10px
-          />
+          <el-input-number v-model="bookingData[3].concession.ticketNum" :min="0" class="count" width:10px />
         </td>
         <td>
-          <input
-            v-model="bookingData[3].concession.fastForwad"
-            type="checkbox"
-          />
+          <input v-model="bookingData[3].concession.fastForwad" type="checkbox" />
         </td>
       </tr>
       <tr>
@@ -157,35 +137,28 @@ const buyTicket = () =>{
     </table>
   </div>
   <div class="btnbox">
-  <btn
-      class="btn"
-      button-color="#D1825B"
-      button-text-color="white"
-      @click="clearOut"
-    >
+    <btn class="btn" button-color="#D1825B" button-text-color="white" @click="clearOut">
       <h3>清空</h3>
     </btn>
-    <btn
-      :style="{ width: '150px' }"
-      class="btn"
-      button-color="#D1825B"
-      button-text-color="white"
-      @click="addToCart"
-    >
+    <btn :style="{ width: '150px' }" class="btn" button-color="#D1825B" button-text-color="white" @click="addToCart">
       <h3>加入購物車</h3>
     </btn>
-    <btn
-        class="btn"
-        button-color="#D1825B"
-        button-text-color="white"
-        @click="buyTicket"
-      >
-        <h3>立即購買</h3>
-      </btn>
+    <btn class="btn" button-color="#D1825B" button-text-color="white" @click="buyTicket">
+      <h3>立即購買</h3>
+    </btn>
   </div>
 </template>
 
 <style lang="scss" scoped>
+.chooseDate{
+display: flex;
+align-items: center;
+gap: 30px;
+margin-left:60px;
+margin-bottom: 20px;
+
+}
+
 table,
 th,
 td {
@@ -222,10 +195,7 @@ table {
 }
 
 .btnbox {
-  // margin-top: 30px;
-  // display: flex;
-  // gap: 200px;
-  // margin-left: 23%;
+ 
   width: 400px;
   display: flex;
   float: right;
