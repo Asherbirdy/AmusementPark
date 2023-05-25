@@ -30,6 +30,7 @@ declare module '@vue/runtime-core' {
     Cap: typeof import('./components/product/Cap.vue')['default']
     Cartadd: typeof import('./components/-UI Element/modalframe/cartadd.vue')['default']
     CartInside: typeof import('./components/-Global/CartInside.vue')['default']
+    ChooseDateTIC: typeof import('./components/Ticket/ChooseDateTIC.vue')['default']
     Clothes: typeof import('./components/product/Clothes.vue')['default']
     ColorPicker: typeof import('./components/-UI Element/ColorPicker/ColorPicker.vue')['default']
     Customization: typeof import('./components/product/Customization.vue')['default']
