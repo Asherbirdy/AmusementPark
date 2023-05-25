@@ -24,7 +24,15 @@
       </el-form-item>
   
       <el-form-item>
-        <el-button type="primary" @click="submitForm(staffRef)">
+        <el-button
+          type="primary" 
+          @click="
+            () => {
+              submitForm(staffRef);
+              $emit('close-modal');
+            }
+          "
+>
           Create
         </el-button>
         <el-button @click="resetForm(staffRef)"> Reset </el-button>
