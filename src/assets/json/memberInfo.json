@@ -4,25 +4,8 @@
         "name": "王大明",
         "birthDate": "1990/01/01",
         "phoneNum": "0912545896",
-        "emailAdd": "abc@gmail.com"
-      },
-      {
-        "name": "王中明",
-        "birthDate": "1991/02/01",
-        "phoneNum": "0912545446",
-        "emailAdd": "abc@gmail.com"
-      },
-      {
-        "name": "王小明",
-        "birthDate": "1992/03/01",
-        "phoneNum": "0912545883",
-        "emailAdd": "abc@gmail.com"
-      },
-      {
-        "name": "王高明",
-        "birthDate": "1993/04/01",
-        "phoneNum": "0912545886",
-        "emailAdd": "abc@gmail.com"
+        "emailAdd": "abc@gmail.com",
+        "address":"台北市中正區濟南路一段321號"
       }
     ]
   }
