@@ -1,7 +1,8 @@
 <script setup>
+import dayjs from 'dayjs';
 import { useRouter } from 'vue-router';
-
 const router = useRouter();
+
 // 資料
 let bookingData = reactive([
   {
@@ -30,13 +31,13 @@ let bookingData = reactive([
   },
 ]);
 
+// 計算所有票的數量
 function countTicket() {
   return bookingData.reduce((accumulator, current) => {
     const ticketNum = Object.values(current)[0].ticketNum;
     return accumulator + ticketNum;
   }, 0);
 }
-
 
 // 清空按鈕
 const clearOut = () => {
@@ -51,6 +52,9 @@ const clearOut = () => {
   // 清空localStorage
   localStorage?.removeItem('bookingData');
   localStorage?.removeItem('ticketDateData');
+  // 清空日期
+  date.value = ''
+  
 };
 
 // 將資料訪到local函式：
@@ -59,19 +63,22 @@ const addBookingDataToLocal = item =>
 const addTicketDateToLocal = item =>
   localStorage.setItem('ticketDateData', JSON.stringify({ item }));
 
+// 訂票日期：
 let ticketDate = ref('');
 
+// 從 自組件 接收到日期
 const handleDateSelected = date => {
   ticketDate = date;
   return date;
 };
 
+// 時間的表達式
 const isValidDateFormat = dateString => {
   const dateRegex = /^\d{4}-\d{2}-\d{2}$/;
   return dateRegex.test(dateString);
 };
 
-// 夾到購物車
+// 加到購物車
 const addToCart = () => {
   if (ticketDate !== '' && isValidDateFormat(ticketDate)) {
     if (countTicket() !== 0) {
@@ -87,6 +94,7 @@ const addToCart = () => {
   }
 };
 
+// 購買票券
 const buyTicket = () => {
   if (ticketDate !== '' && isValidDateFormat(ticketDate)) {
     if (countTicket() !== 0) {
@@ -101,19 +109,46 @@ const buyTicket = () => {
   } else {
     alert('請輸入日期');
   }
+ };
 
 
+// 原始時間：
+let date = ref('');
+
+// 原始時間轉格式
+const selectDate = () => {
+  const formattedDate = computed(() => {
+    if (date.value) {
+      return dayjs(date.value).format('YYYY-MM-DD');
+    }
+    return '';
+  });
+  return ticketDate = formattedDate.value
 };
 
-// 收集父層邏輯
+// 時間限制
+const disableDate = time => {
+  const today = dayjs().startOf('day');
+  const selectedDate = dayjs(time).startOf('day');
+  const maxAllowedDate = today.add(31, 'day').startOf('day'); // 取得今天後7天的日期
+  return selectedDate.isBefore(today) || selectedDate.isAfter(maxAllowedDate);
+};
+
 </script>
 <template>
-  <!-- 日曆： -->
-  <!-- <ticket-use-time id="orderdate" @selectDate="handleSelectDate"/> -->
-
   <div>
     <div class="chooseDate">
-      <ChooseDateTIC @date-selected="handleDateSelected" />
+      <div class="demo-date-picker">
+        <div class="block">
+          <el-date-picker
+            v-model="date"
+            type="date"
+            placeholder="選擇訂票日期"
+            :disabled-date="disableDate"
+            @change="selectDate"
+          />
+        </div>
+      </div>
     </div>
 
     <table>
@@ -124,6 +159,7 @@ const buyTicket = () => {
         <th>張數</th>
         <th>快速通關</th>
       </tr>
+
       <tr>
         <td>全票</td>
         <td class="ex">一般成人，身高110cm以上視為成人</td>
