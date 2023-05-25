@@ -7,9 +7,16 @@ const router = useRouter();
 const openModal = () => {
   showmodal.value = true;
 };
+const closeModal = () => {
+  showmodal.value = false;
+};
+
 </script>
 <template>
-  <modal-insert v-model="showmodal"></modal-insert>
+  <modal-insert
+    v-model="showmodal"
+    @close-modal="closeModal"
+    ></modal-insert>
   <el-checkbox-group v-model="checkList" class="title-bar">
     <div class="checkbox-wrap">
       <el-checkbox label="園長" />

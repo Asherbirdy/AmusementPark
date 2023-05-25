@@ -5,6 +5,7 @@
     :account="account"
     :permissions="permissions"
     @close-modal="closeModal"
+    @get-list="getList"
   />
   <ModalUpdate
     v-model="showUpdateModal"
@@ -13,6 +14,7 @@
     :password = "password"
     :permissions="permissions"
     @close-update-modal="closeUpdateModal"
+    @get-list="getList"
   />
 
 
@@ -56,8 +58,10 @@ let showmodal = ref(false);
 let showUpdateModal = ref(false);
 let tableData = ref([]);
 
-onMounted(() => {
-  axios.get("/api/PDO/staffAccount/staffAccountSelect.php").then(res => {
+//定義抓資料function
+const getList = async () => {
+  try {
+    const res = await axios.get("/api/PDO/staffAccount/staffAccountSelect.php");
     // API 抓取到的資料：
     const data = res.data;
     // console.log(data);
@@ -82,12 +86,21 @@ onMounted(() => {
     const staffData = data.map(staff => ({
       id: staff.BACKSTAGE_MEMBER_ID,
       account: staff.ACCOUNT,
-      password:staff.PASSWORD,
+      password: staff.PASSWORD,
       permissions: staff.permissions,
     }));
     tableData.value = staffData;
     // console.log(tableData);
-  });
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+
+onMounted(() => {
+  //呼叫抓資料function
+  getList();
+  console.log(tableData);
 });
 
 let id = ref(0);
