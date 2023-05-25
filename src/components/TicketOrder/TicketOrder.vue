@@ -1,30 +1,30 @@
 <script setup>
 import { useRouter } from 'vue-router';
 
-const router  = useRouter();
+const router = useRouter();
 // 資料
 let bookingData = reactive([
   {
     adult: {
-      ticketNum: 1,
+      ticketNum: 0,
       fastForwad: false,
     },
   },
   {
     student: {
-      ticketNum: 1,
+      ticketNum: 0,
       fastForwad: false,
     },
   },
   {
     children: {
-      ticketNum: 1,
+      ticketNum: 0,
       fastForwad: false,
     },
   },
   {
     concession: {
-      ticketNum: 1,
+      ticketNum: 0,
       fastForwad: false,
     },
   },
@@ -33,49 +33,78 @@ let bookingData = reactive([
 
 // 清空按鈕
 const clearOut = () => {
-  bookingData[0].adult.ticketNum = 1,
-  bookingData[0].adult.fastForwad = false,
-  bookingData[1].student.ticketNum = 1,
-  bookingData[1].student.fastForwad = false,
-  bookingData[2].children.ticketNum = 1;
+  bookingData[0].adult.ticketNum = 0;
+  bookingData[0].adult.fastForwad = false;
+  bookingData[1].student.ticketNum = 0;
+  bookingData[1].student.fastForwad = false;
+  bookingData[2].children.ticketNum = 0;
   bookingData[2].children.fastForwad = false;
-  bookingData[3].concession.ticketNum = 1;
+  bookingData[3].concession.ticketNum = 0;
   bookingData[3].concession.fastForwad = false;
   // 清空localStorage
   localStorage?.removeItem('bookingData');
+  localStorage?.removeItem('ticketDateData');
 };
 
 // 將資料訪到local函式：
-const addDataToLocal = () =>{
-  localStorage.setItem('bookingData', JSON.stringify({
-    bookingData
-  }));
+const addBookingDataToLocal = item =>
+  localStorage.setItem('bookingData', JSON.stringify({ item }));
+const addTicketDateToLocal = item =>
+  localStorage.setItem('ticketDateData', JSON.stringify({ item }));
+
+let ticketDate = ref('');
+
+const handleDateSelected = date => {
+  ticketDate = date;
+  return date;
+};
+
+const isValidDateFormat = dateString => {
+  // 使用正則表達式檢查日期格式
+  const dateRegex = /^\d{4}-\d{2}-\d{2}$/;
+  return dateRegex.test(dateString);
 };
 
 // 夾到購物車
-const addToCart = () =>{
-  addDataToLocal()
+const addToCart = () => {
+  if (ticketDate !== '' && isValidDateFormat(ticketDate)) {
+    if (totalTicketNum !== 0) {
+      console.log(ticketDate, 'ticketDate 執行加入購物車');
+      addBookingDataToLocal(bookingData);
+      addTicketDateToLocal(ticketDate);
+      alert('已將票數加入到購物車');
+    } else {
+      alert('請加入票數');
+    }
+  } else {
+    alert('請輸入日期');
+  }
 };
 
-const buyTicket = () =>{
-   addDataToLocal();
-   router.push('/cart');
-  
+const buyTicket = () => {
+  addBookingDataToLocal(bookingData);
+  addTicketDateToLocal(ticketDate);
+  router.push('/cart');
 };
+
+const totalTicketNum = computed(() => {
+  return bookingData.reduce((accumulator, item) => {
+    const ticketObj = Object.values(item)[0];
+    if (ticketObj && ticketObj.ticketNum) {
+      return accumulator + ticketObj.ticketNum;
+    }
+    return accumulator;
+  }, 0);
+});
 
 // 收集父層邏輯
-const handleDateSelected =(date) =>{
-   console.log(date);
-};
-
-
 </script>
 <template>
   <!-- 日曆： -->
   <!-- <ticket-use-time id="orderdate" @selectDate="handleSelectDate"/> -->
 
   <div>
-    <div class="chooseDate" >
+    <div class="chooseDate">
       <ChooseDateTIC @date-selected="handleDateSelected" />
     </div>
 
@@ -150,13 +179,12 @@ const handleDateSelected =(date) =>{
 </template>
 
 <style lang="scss" scoped>
-.chooseDate{
-display: flex;
-align-items: center;
-gap: 30px;
-margin-left:60px;
-margin-bottom: 20px;
-
+.chooseDate {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  margin-left: 60px;
+  margin-bottom: 20px;
 }
 
 table,
@@ -195,7 +223,6 @@ table {
 }
 
 .btnbox {
- 
   width: 400px;
   display: flex;
   float: right;
@@ -204,8 +231,4 @@ table {
   margin-right: 60px;
   margin-top: 20px;
 }
-
-
-
-
 </style>
