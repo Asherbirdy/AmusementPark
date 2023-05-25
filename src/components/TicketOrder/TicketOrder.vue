@@ -50,66 +50,102 @@ const clearOut = () => {
   // 清空localStorage
   localStorage?.removeItem('bookingData');
   localStorage?.removeItem('ticketDateData');
+  date.value = ''
+  
 };
 
 // 將資料訪到local函式：
 const addBookingDataToLocal = item =>
   localStorage.setItem('bookingData', JSON.stringify({ item }));
-// const addTicketDateToLocal = item =>
-//   localStorage.setItem('ticketDateData', JSON.stringify({ item }));
+const addTicketDateToLocal = item =>
+  localStorage.setItem('ticketDateData', JSON.stringify({ item }));
 
 // 訂票日期：
-// let ticketDate = ref('');
+let ticketDate = ref('');
 
 // 從 自組件 接收到日期
-// const handleDateSelected = date => {
-//   ticketDate = date;
-//   return date;
-// };
+const handleDateSelected = date => {
+  ticketDate = date;
+  return date;
+};
 
 // 時間的表達式
-// const isValidDateFormat = dateString => {
-//   const dateRegex = /^\d{4}-\d{2}-\d{2}$/;
-//   return dateRegex.test(dateString);
-// };
+const isValidDateFormat = dateString => {
+  const dateRegex = /^\d{4}-\d{2}-\d{2}$/;
+  return dateRegex.test(dateString);
+};
 
 // 加到購物車
-// const addToCart = () => {
-//   if (ticketDate !== '' && isValidDateFormat(ticketDate)) {
-//     if (countTicket() !== 0) {
-//       console.log(ticketDate, countTicket(), 'ticketDate 執行加入購物車');
-//       addBookingDataToLocal(bookingData);
-//       addTicketDateToLocal(ticketDate);
-//       alert('已將票數加入到購物車');
-//     } else {
-//       alert('請加入票數');
-//     }
-//   } else {
-//     alert('請輸入日期');
-//   }
-// };
+const addToCart = () => {
+  if (ticketDate !== '' && isValidDateFormat(ticketDate)) {
+    if (countTicket() !== 0) {
+      console.log(ticketDate, countTicket(), 'ticketDate 執行加入購物車');
+      addBookingDataToLocal(bookingData);
+      addTicketDateToLocal(ticketDate);
+      alert('已將票數加入到購物車');
+    } else {
+      alert('請加入票數');
+    }
+  } else {
+    alert('請輸入日期');
+  }
+};
 
 // 購買票券
-// const buyTicket = () => {
-//   if (ticketDate !== '' && isValidDateFormat(ticketDate)) {
-//     if (countTicket() !== 0) {
-//       console.log(ticketDate, countTicket(), 'ticketDate 執行加入購物車');
-//       addBookingDataToLocal(bookingData);
-//       addTicketDateToLocal(ticketDate);
-//       router.push('/cart');
-//       alert('已將票數加入到購物車');
-//     } else {
-//       alert('請加入票數');
-//     }
-//   } else {
-//     alert('請輸入日期');
-//   }
-// };
+const buyTicket = () => {
+  if (ticketDate !== '' && isValidDateFormat(ticketDate)) {
+    if (countTicket() !== 0) {
+      console.log(ticketDate, countTicket(), 'ticketDate 執行加入購物車');
+      addBookingDataToLocal(bookingData);
+      addTicketDateToLocal(ticketDate);
+      router.push('/cart');
+      alert('已將票數加入到購物車');
+    } else {
+      alert('請加入票數');
+    }
+  } else {
+    alert('請輸入日期');
+  }
+ };
+
+import dayjs from 'dayjs';
+
+// 時間：
+let date = ref('');
+
+const selectDate = () => {
+  console.log(date);
+  const formattedDate = computed(() => {
+    if (date.value) {
+      return dayjs(date.value).format('YYYY-MM-DD');
+    }
+    return '';
+  });
+  return ticketDate = formattedDate.value
+};
+
+const disableDate = time => {
+  const today = dayjs().startOf('day');
+  const selectedDate = dayjs(time).startOf('day');
+  const maxAllowedDate = today.add(31, 'day').startOf('day'); // 取得今天後7天的日期
+  return selectedDate.isBefore(today) || selectedDate.isAfter(maxAllowedDate);
+};
+
 </script>
 <template>
   <div>
     <div class="chooseDate">
-      <!-- <ChooseDateTIC @date-selected="handleDateSelected" /> -->
+      <div class="demo-date-picker">
+        <div class="block">
+          <el-date-picker
+            v-model="date"
+            type="date"
+            placeholder="選擇訂票日期"
+            :disabled-date="disableDate"
+            @change="selectDate"
+          />
+        </div>
+      </div>
     </div>
 
     <table>
@@ -120,6 +156,7 @@ const addBookingDataToLocal = item =>
         <th>張數</th>
         <th>快速通關</th>
       </tr>
+      
       <tr>
         <td>全票</td>
         <td class="ex">一般成人，身高110cm以上視為成人</td>
