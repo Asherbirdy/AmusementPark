@@ -1,4 +1,5 @@
 <script setup>
+import dayjs from 'dayjs';
 import { useRouter } from 'vue-router';
 const router = useRouter();
 
@@ -30,6 +31,7 @@ let bookingData = reactive([
   },
 ]);
 
+// 計算所有票的數量
 function countTicket() {
   return bookingData.reduce((accumulator, current) => {
     const ticketNum = Object.values(current)[0].ticketNum;
@@ -50,6 +52,7 @@ const clearOut = () => {
   // 清空localStorage
   localStorage?.removeItem('bookingData');
   localStorage?.removeItem('ticketDateData');
+  // 清空日期
   date.value = ''
   
 };
@@ -108,13 +111,12 @@ const buyTicket = () => {
   }
  };
 
-import dayjs from 'dayjs';
 
-// 時間：
+// 原始時間：
 let date = ref('');
 
+// 原始時間轉格式
 const selectDate = () => {
-  console.log(date);
   const formattedDate = computed(() => {
     if (date.value) {
       return dayjs(date.value).format('YYYY-MM-DD');
@@ -124,6 +126,7 @@ const selectDate = () => {
   return ticketDate = formattedDate.value
 };
 
+// 時間限制
 const disableDate = time => {
   const today = dayjs().startOf('day');
   const selectedDate = dayjs(time).startOf('day');
@@ -156,7 +159,7 @@ const disableDate = time => {
         <th>張數</th>
         <th>快速通關</th>
       </tr>
-      
+
       <tr>
         <td>全票</td>
         <td class="ex">一般成人，身高110cm以上視為成人</td>
