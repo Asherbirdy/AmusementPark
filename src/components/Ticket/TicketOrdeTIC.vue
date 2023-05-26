@@ -7,38 +7,50 @@ const router = useRouter();
 let bookingData = reactive([
   {
     ticketType: '全票',
-    ticketNum: 0,
+    ticketInfo:'一般成人，身高110cm以上視為成人',
+    ticketPrice:'NT.500',
+    ticketNum: 2,
     fastFoward: false,
   },
   {
     ticketType: '學生票',
-    ticketNum: 0,
+    ticketInfo: '入園需持當學期註冊學生證之學生(限本人使用)',
+    ticketPrice: 'NT.400',
+    ticketNum: 3,
     fastFoward: false,
   },
   {
     ticketType: '兒童票',
-    ticketNum: 0,
+    ticketInfo: '4歲~12歲，身高未滿110cm兒童',
+    ticketPrice: 'NT.250',
+    ticketNum: 3,
     fastFoward: false,
   },
   {
     ticketType: '優待票',
+    ticketInfo: '持有身心障礙證明者與1位陪同者、孕婦、65歲以上長者',
+    ticketPrice: 'NT.200',
     ticketNum: 0,
     fastFoward: false,
   },
 ]);
+
+// 計算所有票的數量
+function countTicket() {
+  return bookingData.reduce((acc, cur) => acc + cur.ticketNum, 0);
+};
+
+
+console.log(countTicket());
+
 </script>
 <template>
   <div>
     <div class="chooseDate">
       <div class="demo-date-picker">
         <div class="block">
-          <el-date-picker
-            v-model="date"
-            type="date"
-            placeholder="選擇訂票日期"
-            :disabled-date="disableDate"
-            @change="selectDate"
-          />
+          <el-date-picker v-model="date" type="date" placeholder="選擇訂票日期" :disabled-date="disableDate"
+            @change="selectDate" />
         </div>
       </div>
     </div>
@@ -53,22 +65,14 @@ let bookingData = reactive([
       </tr>
       <tr v-for="(ticket, idx) in bookingData" :key="ticket.ticketType">
         <td>{{ ticket.ticketType }}</td>
-        <td class="ex">一般成人，身高110cm以上視為成人</td>
-        <td>NT.500</td>
+        <td class="ex">{{ticket.ticketInfo}}</td>
+        <td>{{ticket.ticketPrice }}</td>
         <td>
-          <el-input-number
-            v-model="ticket.ticketNum"
-            :min="0"
-            class="count"
-            width:10px
-          />
+          <el-input-number v-model="ticket.ticketNum" :min="0" class="count" width:10px />
         </td>
         <td>
-          <input
-            type="checkbox"
-            :checked="ticket.ticketNum > 0 && ticket.fastFoward"
-            :disabled="ticket.ticketNum === 0"
-          />
+          <input type="checkbox" :checked="ticket.ticketNum > 0 && ticket.fastFoward"
+            :disabled="ticket.ticketNum === 0" />
         </td>
       </tr>
       <tr>
@@ -77,29 +81,13 @@ let bookingData = reactive([
     </table>
   </div>
   <div class="btnbox">
-    <btn
-      class="btn"
-      button-color="#D1825B"
-      button-text-color="white"
-      @click="clearOut"
-    >
+    <btn class="btn" button-color="#D1825B" button-text-color="white" @click="clearOut">
       <h3>清空</h3>
     </btn>
-    <btn
-      :style="{ width: '150px' }"
-      class="btn"
-      button-color="#D1825B"
-      button-text-color="white"
-      @click="addToCart"
-    >
+    <btn :style="{ width: '150px' }" class="btn" button-color="#D1825B" button-text-color="white" @click="addToCart">
       <h3>加入購物車</h3>
     </btn>
-    <btn
-      class="btn"
-      button-color="#D1825B"
-      button-text-color="white"
-      @click="buyTicket"
-    >
+    <btn class="btn" button-color="#D1825B" button-text-color="white" @click="buyTicket">
       <h3>立即購買</h3>
     </btn>
   </div>
