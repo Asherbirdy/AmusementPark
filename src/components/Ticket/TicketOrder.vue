@@ -8,25 +8,25 @@ let bookingData = reactive([
   {
     adult: {
       ticketNum: 0,
-      fastForwad: false,
+      fastFoward: false,
     },
   },
   {
     student: {
       ticketNum: 0,
-      fastForwad: false,
+      fastFoward: false,
     },
   },
   {
     children: {
       ticketNum: 0,
-      fastForwad: false,
+      fastFoward: false,
     },
   },
   {
     concession: {
       ticketNum: 0,
-      fastForwad: false,
+      fastFoward: false,
     },
   },
 ]);
@@ -42,35 +42,29 @@ function countTicket() {
 // 清空按鈕
 const clearOut = () => {
   bookingData[0].adult.ticketNum = 0;
-  bookingData[0].adult.fastForwad = false;
+  bookingData[0].adult.fastFoward = false;
   bookingData[1].student.ticketNum = 0;
-  bookingData[1].student.fastForwad = false;
+  bookingData[1].student.fastFoward = false;
   bookingData[2].children.ticketNum = 0;
-  bookingData[2].children.fastForwad = false;
+  bookingData[2].children.fastFoward = false;
   bookingData[3].concession.ticketNum = 0;
-  bookingData[3].concession.fastForwad = false;
+  bookingData[3].concession.fastFoward = false;
   // 清空localStorage
   localStorage?.removeItem('bookingData');
   localStorage?.removeItem('ticketDateData');
   // 清空日期
-  date.value = ''
-  
+  date.value = '';
 };
 
 // 將資料訪到local函式：
-const addBookingDataToLocal = item =>
-  localStorage.setItem('bookingData', JSON.stringify({ item }));
-const addTicketDateToLocal = item =>
-  localStorage.setItem('ticketDateData', JSON.stringify({ item }));
+const addBookingDataToLocal = () =>
+  localStorage.setItem('bookingData', JSON.stringify(bookingData));
+
+const addTicketDateToLocal = () =>
+  localStorage.setItem('ticketDateData', JSON.stringify(ticketDate));
 
 // 訂票日期：
 let ticketDate = ref('');
-
-// 從 自組件 接收到日期
-const handleDateSelected = date => {
-  ticketDate = date;
-  return date;
-};
 
 // 時間的表達式
 const isValidDateFormat = dateString => {
@@ -109,8 +103,7 @@ const buyTicket = () => {
   } else {
     alert('請輸入日期');
   }
- };
-
+};
 
 // 原始時間：
 let date = ref('');
@@ -123,7 +116,7 @@ const selectDate = () => {
     }
     return '';
   });
-  return ticketDate = formattedDate.value
+  return (ticketDate = formattedDate.value);
 };
 
 // 時間限制
@@ -133,7 +126,6 @@ const disableDate = time => {
   const maxAllowedDate = today.add(31, 'day').startOf('day'); // 取得今天後7天的日期
   return selectedDate.isBefore(today) || selectedDate.isAfter(maxAllowedDate);
 };
-
 </script>
 <template>
   <div>
@@ -173,7 +165,15 @@ const disableDate = time => {
           />
         </td>
         <td>
-          <input v-model="bookingData[0].adult.fastForwad" type="checkbox" />
+          <input
+            v-model="bookingData[0].adult.fastFoward"
+            type="checkbox"
+            :checked="
+              bookingData[0].adult.ticketNum > 0 &&
+              bookingData[0].adult.fastFoward
+            "
+            :disabled="bookingData[0].adult.ticketNum === 0"
+          />
         </td>
       </tr>
       <tr>
@@ -189,7 +189,15 @@ const disableDate = time => {
           />
         </td>
         <td>
-          <input v-model="bookingData[1].student.fastForwad" type="checkbox" />
+          <input
+            v-model="bookingData[1].student.fastFoward"
+            type="checkbox"
+            :checked="
+              bookingData[1].student.ticketNum > 0 &&
+              bookingData[1].student.fastFoward
+            "
+            :disabled="bookingData[1].student.ticketNum === 0"
+          />
         </td>
       </tr>
       <tr>
@@ -205,7 +213,12 @@ const disableDate = time => {
           />
         </td>
         <td>
-          <input v-model="bookingData[2].children.fastForwad" type="checkbox" />
+         <input
+            v-model="bookingData[2].children.fastFoward"
+               :checked="bookingData[2].children.ticketNum > 0 && bookingData[2].children.fastFoward"
+              :disabled="bookingData[2].children.ticketNum === 0"
+            type="checkbox"
+          />
         </td>
       </tr>
       <tr>
@@ -222,7 +235,9 @@ const disableDate = time => {
         </td>
         <td>
           <input
-            v-model="bookingData[3].concession.fastForwad"
+            v-model="bookingData[3].concession.fastFoward"
+             :checked="bookingData[3].concession.ticketNum > 0 && bookingData[3].concession.fastFoward"
+                :disabled="bookingData[3].concession.ticketNum === 0"
             type="checkbox"
           />
         </td>
