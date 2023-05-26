@@ -1,4 +1,6 @@
 <script setup>
+import axios from 'axios';
+
 // 帳號 + 密碼 的 input欄位
 const account = ''; // 用作v-model雙向數據綁定
 const password = ''; // 用作v-model雙向數據綁定
@@ -18,11 +20,30 @@ const inputInfos = ref([
     value: password,
   },
 ]);
+// 會員註冊 + 忘記密碼 的 a標籤
+const aLinks = ref([
+  {
+    id: '1',
+    url: '#',
+    text: '會員註冊',
+    icon: 'User',
+    url: '/register',
+  },
+  {
+    id: '2',
+    url: '#',
+    text: '忘記密碼',
+    icon: 'Unlock',
+    url: '/ForgetPassword',
+  },
+]);
+
+//功能-會員帳號驗證格式
 const emailRegex =
   /^([a-zA-Z0-9_\.\-\+])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
 const isInputFail = ref(false);
 
-const handleClick = () => {
+const handleSubmit = () => {
   if (isInputFail.value) return;
 };
 const blurCheck = inputType => {
@@ -42,23 +63,28 @@ const blurCheck = inputType => {
   const isEmail = emailRegex.test(inputAccount);
   isInputFail.value = !(isPhoneNumber || isEmail);
 };
-// 會員註冊 + 忘記密碼 的 a標籤
-const aLinks = ref([
-  {
-    id: '1',
-    url: '#',
-    text: '會員註冊',
-    icon: 'User',
-    url: '/register',
-  },
-  {
-    id: '2',
-    url: '#',
-    text: '忘記密碼',
-    icon: 'Unlock',
-    url: '/ForgetPassword',
-  },
-]);
+
+//抓頁面有無登入
+axios
+  .post('/api/PDO/frontEnd/memberLogin/memberLoginCheck.php')
+  .then(res => {
+    if (res.data === '') {
+      console.log('還沒登入');
+    } else {
+      router.push('../../../pages/cart');
+      console.log('已經登入了');
+    }
+  })
+  //
+  .catch(err => {
+    console.log(err);
+    alert('登入狀態檢查出錯');
+  });
+
+  //資料送出
+
+
+
 </script>
 
 <template>
@@ -80,8 +106,8 @@ const aLinks = ref([
           @blur="blurCheck(inputInfo.id)"
         />
         <span v-if="isInputFail && inputInfo.id === 'account'"
-          >請輸入正確帳號</span
-        >
+          >請輸入正確帳號
+        </span>
       </div>
 
       <!-- 會員註冊 + 忘記密碼 的 a標籤 -->
@@ -96,13 +122,6 @@ const aLinks = ref([
             ><component :is="aLink.icon"
           /></el-icon>
           <!-- 在 <el-icon> 组件内部動態渲染 aLink.icon 所代表的组件 -->
-<<<<<<< HEAD
-          <a class="middle__form--A">{{ aLink.text }}</a>
-        </div>
-      </div>
-
-      <button
-=======
           <!-- <a class="middle__form--A">{{ aLink.text }}</a> -->
           <router-link :to="aLink.url" class="middle__form--Link">{{
             aLink.text
@@ -111,18 +130,13 @@ const aLinks = ref([
       </div>
 
       <Button
->>>>>>> a7a8ce4d24b7dbd208664e27fc3ca7b1d2e4dfd8
         class="middle__form--Btn"
         type="submit"
         id="Submit"
-        @click="handleClick"
+        @click="handleSubmit"
       >
         登入
-<<<<<<< HEAD
-      </button>
-=======
       </Button>
->>>>>>> a7a8ce4d24b7dbd208664e27fc3ca7b1d2e4dfd8
     </div>
     <!-- <form action="middle__form">
     </form> -->
@@ -198,8 +212,4 @@ span {
   color: red;
   font-weight: bold;
 }
-<<<<<<< HEAD
 </style>
-=======
-</style>
->>>>>>> a7a8ce4d24b7dbd208664e27fc3ca7b1d2e4dfd8
