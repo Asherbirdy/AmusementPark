@@ -5,7 +5,7 @@
   <!-- 訂票須知 -->
   <BookingInfoTIC/>
   <!-- 訂票頁面 -->
-  <ticket-order />
+  <TicketOrdeTIC  />
 </main>
 
 </template>

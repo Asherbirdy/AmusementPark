@@ -184,6 +184,7 @@ declare module '@vue/runtime-core' {
     TicketOrder: typeof import('./components/Ticket/TicketOrder.vue')['default']
     TicketOrderCopy: typeof import('./components/Ticket/TicketOrder-copy.vue')['default']
     TicketOrderTIC: typeof import('./components/Ticket/TicketOrderTIC.vue')['default']
+    TicketOrdeTIC: typeof import('./components/Ticket/TicketOrdeTIC.vue')['default']
     TicketPriceTOR: typeof import('./components/TicketOrder/TicketPriceTOR.vue')['default']
     TicketQR: typeof import('./components/TouristBackstage/TicketQR.vue')['default']
     TicketUseTime: typeof import('./components/TicketOrder/TicketUseTime.vue')['default']
