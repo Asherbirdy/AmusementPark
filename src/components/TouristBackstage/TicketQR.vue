@@ -17,9 +17,7 @@ onMounted(() => {
       price: tickOrder.TICK_PRICE,
       num: tickOrder.TICK_NUM,
     }));
-    //
     tableData.value = fitData;
-    // console.log(tableData);
   });
 });
 </script>
@@ -29,24 +27,27 @@ onMounted(() => {
     <table class="form">
       <thead>
         <tr class="title">
+          <th class="QR">票卷QR</th>
           <th class="SN">序號</th>
           <th class="orderdate">購票日期</th>
           <th class="date">使用期限(一日票)</th>
           <th class="type">票種</th>
           <th class="express">快速通關</th>
-          <th class="QR">票卷QR</th>
+          <th class="cancel">退票</th>
         </tr>
         <tr class="detail">
-          <td class="SN">MS102304250001</td>
-          <td class="orderdate">2023/4/27</td>
-          <td class="date">2023/5/14 ~ 2023/5/21</td>
-          <td class="type">全票</td>
-          <td class="express">有</td>
-          <td class="QR">
+          <td class="QR">          
             <!-- <router-link to="/AmusementPark/src/assets/img/MS102304250001.png"> -->
               <img src="../../assets/img/MS102304250001.png" alt="">
             <!-- </router-link> -->
-          </td>
+          </td>          
+          <td class="SN">MS102304250001</td>
+          <td class="orderdate">2023/04/27</td>
+          <td class="date">2023/05/14 ~ 2023/05/21</td>
+          <td class="type">全票</td>
+          <td class="express">有</td>
+          <td class="cancel"><CloseBold style="width: 1em; height: 1em; margin-right: 8px" /></td>
+
         </tr>
         <tr v-for="tickOrder in tableData" :key="tickOrder.id">
           <!-- 補0補至9位數 -->
@@ -55,6 +56,7 @@ onMounted(() => {
           <td>{{ tickOrder.type }}</td>
           <td>{{ tickOrder.num }}</td>
           <td>{{ tickOrder.price }}</td>
+          <td></td>
         </tr>
       </thead>
       <tbody>
@@ -95,32 +97,10 @@ td{
         .title {
             color: #FFF;
             background-color: $maincolor3;
+            font-weight:bold;
         }
         .detail{
             width: 100%;
-            .SN {
-                // width: 220px;
-                width: 20%;
-            }
-            .oderdate{
-                // width: 300px;
-                width: 20%;
-            }
-            .date{
-                // width: 60px;
-                width: 30%;
-            }
-            .type{
-                // width: 120px;
-                width: 10%;
-            }
-            .express{
-                // width: 60px;
-                width: 10%;
-                #edit{
-                    cursor: pointer;
-                }
-            }
             .QR{
                 width: 10%;
                 position: relative;
@@ -130,6 +110,27 @@ td{
                   margin-left: 20%;  
                   cursor: pointer;
                 }        
+            }            
+            .SN {
+                width: 20%;
+            }
+            .oderdate{
+                width: 20%;
+            }
+            .date{
+                width: 20%;
+            }
+            .type{
+                width: 10%;
+            }
+            .express{
+                width: 10%;
+                #edit{
+                    cursor: pointer;
+                }
+            }
+            .cancel{
+              width: 10%;
             }
 
         }
