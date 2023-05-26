@@ -34,11 +34,8 @@ onMounted(() => {
         <tr>
           <th>訂單編號</th>
           <th>成立日期</th>
-          <!-- <th>商品名稱</th>
-          <th>數量</th> -->
-          <!-- <th>商品金額</th>
-          <th>折扣金額</th> -->
           <th>訂單總額</th>
+          <th>取消訂單</th>
           <th>訂單狀態</th>
         </tr>
       </thead>
@@ -46,11 +43,8 @@ onMounted(() => {
         <tr v-for="productOrder in tableData" :key="productOrder.id">
           <td>{{ productOrder.id }}</td>
           <td>{{ productOrder.date }}</td>
-          <!-- <td>{{ productOrder.name }}</td>
-          <td>{{ productOrder.num }}</td>
-          <td>{{ productOrder.price }}</td>
-          <td>{{ productOrder.discount }}</td> -->
           <td>{{ productOrder.total }}</td>
+          <td></td>
           <td>{{ productOrder.statuses }}</td>
         </tr>
       </tbody>

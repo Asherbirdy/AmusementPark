@@ -5,7 +5,7 @@
       <nav>
         <form>
           <section>
-            <label for="phone">卡號：</label>
+            <label for="phone">信用卡卡號：</label>
             <!-- <input type="text" class="card" maxlength="4"> -
             <input type="text" class="card" maxlength="4"> -
             <input type="text" class="card" maxlength="4"> -
@@ -23,17 +23,16 @@
           </section>
 
           <section>
-            <label for="password">安全碼：：</label>
+            <label for="password">安全碼：</label>
             <!-- <input type="text" class="card" maxlength="3"> -->
           </section>
         </form>
 
       </nav>
 
-        <section class="btn-wrap">
-          <btn  class="btn" :style="{ width: '200px'}" button-text-color="white"  button-color="#D1825B">取消</btn>
-          <btn class="btn" :style="{ width: '200px'}" button-text-color="white" button-color="#D1825B">儲存</btn>
-        </section>
+      <section class="btn-wrap">
+        <btn class="btn" :style="{ width: '200px'}" button-text-color="white" button-color="#D1825B">編輯</btn>
+      </section>
       
     </div>
 
@@ -69,6 +68,7 @@
         margin: 40px 20px;
         label {
           font-size: 20px;
+          
         }
       }
     }    
