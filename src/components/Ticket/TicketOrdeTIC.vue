@@ -48,7 +48,7 @@ const clearOut = () => {
     localStorage?.removeItem('bookingData');
     localStorage?.removeItem('ticketDateData');
     // 清空日期
-    // date.value = '';
+    date.value = '';
   });
 };
 
@@ -59,7 +59,7 @@ const addBookingDataToLocal = () =>
 const addTicketDateToLocal = () =>
   localStorage.setItem('ticketDateData', JSON.stringify(ticketDate));
 
-// 
+// 票卷時間：
 let ticketDate = ref('');
 const addToCart = () => {
   if (ticketDate !== '' && isValidDateFormat(ticketDate)) {
@@ -111,7 +111,7 @@ const isValidDateFormat = dateString => {
   return dateRegex.test(dateString);
 };
 
-// 時間限制
+// 時間限制：一個月以內
 const disableDate = time => {
   const today = dayjs().startOf('day');
   const selectedDate = dayjs(time).startOf('day');
