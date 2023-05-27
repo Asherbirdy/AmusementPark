@@ -18,9 +18,11 @@
               v-next-input="index < cardNumberInputs.length - 1 ? $refs[`cardInput${index + 1}`] : null"
               @input="handleCardInput(index)"
               @keydown.backspace="handleCardBackspace(index)"
+              @keypress="handleCardKeyPress"
               :ref="`cardInput${index}`"
             />
-            <!-- v-next-input 可以自動跳下一格 -->
+            <!-- v-next-input 可以自動跳下一格 cardNumberInputs.length - 1是否為最後一格
+            如果條件為假，也就是當前輸入框是最後一個輸入框，那麼執行結果為 null-->
             <span v-if="index < cardNumberInputs.length - 1">-</span>
           </template>
         </section>
@@ -34,16 +36,17 @@
           <label for="date">有效期：</label>
           <input
             v-model="expiration"
+            :ref="`expirationInput`"
             :placeholder="'MM/YY'"
             type="text"
             maxlength="5"
-            class="card"
+            class="card expiration-input"
             pattern="(0[1-9]|1[0-2])/(2[2-9]|[3-9][0-9])"
             required
             v-next-input="$refs.securityCodeInput"
             @input="handleExpirationInput"
             @keydown.backspace="handleExpirationBackspace"
-            ref="expirationInput"
+            @keypress="handleExpirationKeyPress"
           />
         </section>
 
@@ -58,6 +61,7 @@
             pattern="[0-9]{3}"
             required
             ref="securityCodeInput"
+            @keypress="handleSecurityCodeKeyPress"
           />
         </section>
       </form>
@@ -113,11 +117,22 @@ const handleCardBackspace = (index) => {
   }
 };
 
+const handleCardKeyPress = (event) => {
+  const keyCode = event.keyCode || event.which;
+  const keyValue = String.fromCharCode(keyCode);
+  const isValidKey = /^[0-9]+$/.test(keyValue);
+  if (!isValidKey) {
+    event.preventDefault();
+    alert('請輸入正確卡號');
+  }
+};
+
 const handleExpirationInput = () => {
-  if (expiration.value.length === 5) {
-    const securityCodeInput = document.querySelector('.card.securityCode');
-    if (securityCodeInput) {
-      securityCodeInput.focus();
+  if (expiration.value.length === 2) {
+    expiration.value += '/';
+    const expirationInput = document.querySelector('.expiration-input');
+    if (expirationInput) {
+      expirationInput.focus();
     }
   }
 };
@@ -125,6 +140,26 @@ const handleExpirationInput = () => {
 const handleExpirationBackspace = () => {
   if (expiration.value.length === 3 && expiration.value[2] === '/') {
     expiration.value = expiration.value.slice(0, 2);
+  }
+};
+
+const handleSecurityCodeKeyPress = (event) => {
+  const keyCode = event.keyCode || event.which;
+  const keyValue = String.fromCharCode(keyCode);
+  const isValidKey = /^[0-9]+$/.test(keyValue);
+  if (!isValidKey) {
+    event.preventDefault();
+    alert('請輸入正確安全碼');
+  }
+};
+
+const handleExpirationKeyPress = (event) => {
+  const keyCode = event.keyCode || event.which;
+  const keyValue = String.fromCharCode(keyCode);
+  const isValidKey = /^[0-9]+$/.test(keyValue);
+  if (!isValidKey) {
+    event.preventDefault();
+    alert('請輸入正確有效期');
   }
 };
 
@@ -136,10 +171,6 @@ onMounted(() => {
 });
 </script>
 
-
-<style lang="scss" scoped>
-/* 样式省略，保持原样 */
-</style>
 
 
 <style lang="scss" scoped>
