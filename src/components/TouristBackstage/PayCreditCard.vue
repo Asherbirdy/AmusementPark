@@ -15,14 +15,19 @@
               :maxlength="input.maxLength"
               :pattern="input.pattern"
               required
-              v-next-input="index < cardNumberInputs.length - 1 ? $refs[`cardInput${index + 1}`] : null"
+              v-next-input="
+                index < cardNumberInputs.length - 1
+                  ? $refs[`cardInput${index + 1}`]
+                  : null
+              "
               @input="handleCardInput(index)"
               @keydown.backspace="handleCardBackspace(index)"
               @keypress="handleCardKeyPress"
               :ref="`cardInput${index}`"
             />
             <!-- v-next-input 可以自動跳下一格 cardNumberInputs.length - 1是否為最後一格
-            如果條件為假，也就是當前輸入框是最後一個輸入框，那麼執行結果為 null-->
+            如果條件為假，也就是當前輸入框是最後一個輸入框，那麼執行結果為 null
+             "-"只會出現在index小於cardNumberInputs.length-1之間，因為有4個，但是"-"只會出現在4組號碼中間-->
             <span v-if="index < cardNumberInputs.length - 1">-</span>
           </template>
         </section>
@@ -48,6 +53,9 @@
             @keydown.backspace="handleExpirationBackspace"
             @keypress="handleExpirationKeyPress"
           />
+          <!--pattern限制使用者在輸入框中輸入的值必須符合指定的模式 [0-9]只能0~9 {4}為數字長度 
+          required用於指定輸入框是否為必填項目
+          -->
         </section>
 
         <section>
@@ -73,13 +81,15 @@
         :style="{ width: '200px' }"
         button-text-color="white"
         button-color="#D1825B"
-      >取消</btn>
+        >取消</btn
+      >
       <btn
         class="btn"
         :style="{ width: '200px' }"
         button-text-color="white"
         button-color="#D1825B"
-      >儲存</btn>
+        >儲存</btn
+      >
     </section>
   </div>
 </template>
@@ -97,27 +107,34 @@ const cardNumberInputs = [
 const expiration = ref('');
 const securityCode = ref('');
 
-const handleCardInput = (index) => {
+const handleCardInput = index => {
   const input = cardNumberInputs[index];
-  if (input.value.length === input.maxLength && index < cardNumberInputs.length - 1) {
-    const nextInput = document.querySelector(`.card.${cardNumberInputs[index + 1].className}`);
+  if (
+    input.value.length === input.maxLength &&
+    index < cardNumberInputs.length - 1
+  ) {
+    const nextInput = document.querySelector(
+      `.card.${cardNumberInputs[index + 1].className}`
+    );
     if (nextInput) {
       nextInput.focus();
     }
   }
 };
 
-const handleCardBackspace = (index) => {
+const handleCardBackspace = index => {
   const input = cardNumberInputs[index];
   if (input.value.length === 0 && index > 0) {
-    const previousInput = document.querySelector(`.card.${cardNumberInputs[index - 1].className}`);
+    const previousInput = document.querySelector(
+      `.card.${cardNumberInputs[index - 1].className}`
+    );
     if (previousInput) {
       previousInput.focus();
     }
   }
 };
 
-const handleCardKeyPress = (event) => {
+const handleCardKeyPress = event => {
   const keyCode = event.keyCode || event.which;
   const keyValue = String.fromCharCode(keyCode);
   const isValidKey = /^[0-9]+$/.test(keyValue);
@@ -143,7 +160,7 @@ const handleExpirationBackspace = () => {
   }
 };
 
-const handleSecurityCodeKeyPress = (event) => {
+const handleSecurityCodeKeyPress = event => {
   const keyCode = event.keyCode || event.which;
   const keyValue = String.fromCharCode(keyCode);
   const isValidKey = /^[0-9]+$/.test(keyValue);
@@ -153,7 +170,7 @@ const handleSecurityCodeKeyPress = (event) => {
   }
 };
 
-const handleExpirationKeyPress = (event) => {
+const handleExpirationKeyPress = event => {
   const keyCode = event.keyCode || event.which;
   const keyValue = String.fromCharCode(keyCode);
   const isValidKey = /^[0-9]+$/.test(keyValue);
@@ -171,11 +188,9 @@ onMounted(() => {
 });
 </script>
 
-
-
 <style lang="scss" scoped>
 input.card {
-  width: 42px;
+  width: 55px;
 }
 .btn-wrap {
   margin: 0 auto;
