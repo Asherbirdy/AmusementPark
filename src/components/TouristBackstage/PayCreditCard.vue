@@ -1,155 +1,149 @@
-<template lang="">
-  <!--付款方式-->
-    <div class="pay">
-      <h2>付款資訊</h2>
-      <nav>
-        <form>
-          <section>
-            <label for="phone">卡號：</label>
-            <input type="text" class="card" maxlength="4"> -
-            <input type="text" class="card" maxlength="4"> -
-            <input type="text" class="card" maxlength="4"> -
-            <input type="text" class="card" maxlength="4">
-          </section>
+<template>
+  <!-- 付款方式 -->
+  <div class="pay">
+    <h2>付款資訊</h2>
+    <nav>
+      <form>
+        <section>
+          <label for="phone">卡號：</label>
+          <template v-for="(input, index) in cardNumberInputs" :key="index">
+            <input
+              v-model="input.value"
+              :placeholder="'XXXX'"
+              type="text"
+              :class="`card ${input.className}`"
+              :maxlength="input.maxLength"
+              :pattern="input.pattern"
+              required
+              v-next-input="index < cardNumberInputs.length - 1 ? $refs[`cardInput${index + 1}`] : null"
+              @input="handleCardInput(index)"
+              @keydown.backspace="handleCardBackspace(index)"
+              :ref="`cardInput${index}`"
+            />
+            <!-- v-next-input 可以自動跳下一格 -->
+            <span v-if="index < cardNumberInputs.length - 1">-</span>
+          </template>
+        </section>
 
-          <section class="name">
-            <label for="name">持卡人姓名：</label>
-            <input class="inp_short" type="text" id="name" name="name" /><br />
-          </section>   
+        <section class="name">
+          <label for="name">持卡人姓名：</label>
+          <input class="inp_short" type="text" id="name" name="name" /><br />
+        </section>
 
-          <section>
-            <label for="date">有效期：</label>
-            <input type="text" class="card" maxlength="4">
-          </section>
-
-          <section>
-            <label for="password">安全碼：：</label>
-            <input type="text" class="card" maxlength="3">
-          </section>
-        </form>
-        <form>
-          <section>
-            <label for="phone">連結APPLE PAY</label>
-            <label for="phone">連結Line PAY</label>
-          </section>
-        </form>
-      </nav>
-      <!-- <form>
-        <label for="pay-method">付款方式：</label>
-        <select id="pay-method" v-model="payMethod">
-          <option value="" disabled selected>請選擇付款方式</option>
-          <option
-            v-for="(option, index) in payOption"
-            :value="option.value"
-            :key="index"
-            placeholder="請選擇付款方式"
-          >
-            {{ option.label }}
-          </option>
-        </select>
-        <label for="payData">付款資料：</label>
-        <div
-          v-for="(item, index) in payInput"
-          :key="index"
-          class="user-input-row"
-        >
+        <section>
+          <label for="date">有效期：</label>
           <input
-            :type="item.type"
-            :id="item.id"
-            v-model="item.value"
-            :placeholder="item.placeholder"
+            v-model="expiration"
+            :placeholder="'MM/YY'"
+            type="text"
+            maxlength="5"
+            class="card"
+            pattern="(0[1-9]|1[0-2])/(2[2-9]|[3-9][0-9])"
+            required
+            v-next-input="$refs.securityCodeInput"
+            @input="handleExpirationInput"
+            @keydown.backspace="handleExpirationBackspace"
+            ref="expirationInput"
           />
-        </div>
-      </form> -->
+        </section>
+
+        <section>
+          <label for="password">安全碼：</label>
+          <input
+            v-model="securityCode"
+            :placeholder="'XXX'"
+            type="text"
+            maxlength="3"
+            class="card"
+            pattern="[0-9]{3}"
+            required
+            ref="securityCodeInput"
+          />
+        </section>
+      </form>
+    </nav>
 
     <section class="btn-wrap">
-      <btn  class="btn" :style="{ width: '200px'}" button-text-color="white"  button-color="#D1825B">取消</btn>
-      <btn class="btn" :style="{ width: '200px'}" button-text-color="white" button-color="#D1825B">儲存</btn>
+      <btn
+        class="btn"
+        :style="{ width: '200px' }"
+        button-text-color="white"
+        button-color="#D1825B"
+      >取消</btn>
+      <btn
+        class="btn"
+        :style="{ width: '200px' }"
+        button-text-color="white"
+        button-color="#D1825B"
+      >儲存</btn>
     </section>
-      
-    </div>
-
+  </div>
 </template>
 
 <script setup>
-//FB帳號 id
-window.fbAsyncInit = function () {
-  FB.init({
-    appId: '105529122534808',
-    autoLogAppEvents: true,
-    xfbml: true,
-    version: 'v16.0',
-  });
+import { ref, onMounted, watch } from 'vue';
+
+const cardNumberInputs = [
+  { value: '', className: 'input1', maxLength: 4, pattern: '[0-9]{4}' },
+  { value: '', className: 'input2', maxLength: 4, pattern: '[0-9]{4}' },
+  { value: '', className: 'input3', maxLength: 4, pattern: '[0-9]{4}' },
+  { value: '', className: 'input4', maxLength: 4, pattern: '[0-9]{4}' },
+];
+
+const expiration = ref('');
+const securityCode = ref('');
+
+const handleCardInput = (index) => {
+  const input = cardNumberInputs[index];
+  if (input.value.length === input.maxLength && index < cardNumberInputs.length - 1) {
+    const nextInput = document.querySelector(`.card.${cardNumberInputs[index + 1].className}`);
+    if (nextInput) {
+      nextInput.focus();
+    }
+  }
 };
 
-const name = '';
-const phoneNumber = '';
-const email = '';
-// let payMethod = '';
-let cardNumber = '';
-let cardName = '';
-let date = '';
-let code = '';
+const handleCardBackspace = (index) => {
+  const input = cardNumberInputs[index];
+  if (input.value.length === 0 && index > 0) {
+    const previousInput = document.querySelector(`.card.${cardNumberInputs[index - 1].className}`);
+    if (previousInput) {
+      previousInput.focus();
+    }
+  }
+};
 
-const payOption = ref([
-  { label: '信用卡(支援國內外Visa,Master)', value: 'credit-card' },
-  { label: 'Line Pay', value: 'line-pay' },
-  { label: 'Apple Pay', value: 'apple-pay' },
-]);
+const handleExpirationInput = () => {
+  if (expiration.value.length === 5) {
+    const securityCodeInput = document.querySelector('.card.securityCode');
+    if (securityCodeInput) {
+      securityCodeInput.focus();
+    }
+  }
+};
 
-const payMethod = ref('credit-card'); // 設定預設值
-const payInput = ref([
-  {
-    label: '卡號',
-    type: 'text',
-    id: 'card-number',
-    value: cardNumber,
-    placeholder: '卡號',
-  },
-  {
-    label: '持卡人姓名',
-    type: 'text',
-    id: 'name',
-    value: cardName,
-    placeholder: '持卡人姓名',
-  },
-  {
-    label: '有效期(MM/YY)',
-    type: 'text',
-    id: 'date',
-    value: date,
-    placeholder: '有效期(MM/YY)',
-  },
-  {
-    label: '安全碼',
-    type: 'password',
-    id: 'code',
-    value: code,
-    placeholder: '安全碼',
-  },
-]);
-//fb-message sdk串接
+const handleExpirationBackspace = () => {
+  if (expiration.value.length === 3 && expiration.value[2] === '/') {
+    expiration.value = expiration.value.slice(0, 2);
+  }
+};
+
 onMounted(() => {
-  window.fbAsyncInit = function () {
-    FB.init({
-      xfbml: true,
-      version: 'v11.0',
-    });
-  };
-  (function (d, s, id) {
-    var js,
-      fjs = d.getElementsByTagName(s)[0];
-    if (d.getElementById(id)) return;
-    js = d.createElement(s);
-    js.id = id;
-    js.src = 'https://connect.facebook.net/en_US/sdk/xfbml.customerchat.js';
-    fjs.parentNode.insertBefore(js, fjs);
-  })(document, 'script', 'facebook-jssdk');
+  const firstInput = document.querySelector('.card.input1');
+  if (firstInput) {
+    firstInput.focus();
+  }
 });
 </script>
 
+
 <style lang="scss" scoped>
-input.card{
+/* 样式省略，保持原样 */
+</style>
+
+
+<style lang="scss" scoped>
+input.card {
   width: 42px;
 }
 .btn-wrap {
@@ -158,7 +152,7 @@ input.card{
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding-bottom: 40px;  
+  padding-bottom: 40px;
   .btn {
     // width: 150px;
     height: 55px;
@@ -166,7 +160,6 @@ input.card{
     // border-radius: 10px;
   }
 }
-
 
 h2 {
   color: #f9f3e4;
@@ -177,6 +170,7 @@ h2 {
 }
 
 input {
+  font-size: 16px;
   padding: 10px;
   border: 2px solid #000000;
   border-radius: 10px;
@@ -187,16 +181,17 @@ input {
   width: 75%;
   background-color: #f9f3e4;
   margin-left: 40px;
-  nav{
+  nav {
     margin: 40px;
     display: flex;
-    justify-content: space-between;}
+    justify-content: space-between;
+  }
   form {
     display: flex;
     flex-direction: column;
     align-items: stretch;
     padding: 40px 50px;
-    section{
+    section {
       label {
         display: block;
         width: 200px;
@@ -204,7 +199,7 @@ input {
         font-weight: bold;
         color: #90420a;
         margin-bottom: 10px;
-      }  
+      }
     }
 
     select {
