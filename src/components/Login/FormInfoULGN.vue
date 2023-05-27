@@ -3,7 +3,7 @@ import axios from 'axios';
 
 // 帳號 + 密碼 的 input欄位
 const account = ''; // 用作v-model雙向數據綁定
-const password = ''; // 用作v-model雙向數據綁定
+const pwd = ''; // 用作v-model雙向數據綁定
 const inputInfos = ref([
   {
     title: '帳號：',
@@ -15,9 +15,9 @@ const inputInfos = ref([
   {
     title: '密碼：',
     type: 'password',
-    id: 'password',
+    id: 'pwd',
     placeholder: '請輸入您的密碼',
-    value: password,
+    value: pwd,
   },
 ]);
 // 會員註冊 + 忘記密碼 的 a標籤
@@ -38,14 +38,13 @@ const aLinks = ref([
   },
 ]);
 
-//功能-會員帳號驗證格式
+//////功能-會員帳號驗證格式
+
+////email驗證
 const emailRegex =
   /^([a-zA-Z0-9_\.\-\+])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
 const isInputFail = ref(false);
 
-const handleSubmit = () => {
-  if (isInputFail.value) return;
-};
 const blurCheck = inputType => {
   if (inputType !== 'account') return;
   const inputAccount = inputInfos.value[0].value;
@@ -64,7 +63,7 @@ const blurCheck = inputType => {
   isInputFail.value = !(isPhoneNumber || isEmail);
 };
 
-//抓頁面有無登入
+////確認頁面有無登入
 axios
   .post('/api/PDO/frontEnd/memberLogin/memberLoginCheck.php')
   .then(res => {
@@ -81,10 +80,38 @@ axios
     alert('登入狀態檢查出錯');
   });
 
-  //資料送出
+////資料送出
+const handleSubmit = () => {
+  //檢查是否輸入失敗
+  if (isInputFail.value) {
+    return;}
+    //檢查是否空值
 
+    // username 和 pwd
+    axios
+      .post('/api/PDO/frontEnd/memberLogin/memberLogin.php', {
+        account: account,
+        pwd: pwd,
+      })
+      .then(res => {
+        console.log(res.data);
+        // const dataToJSON = JSON.stringify(res.data);
 
+        // 如果登入成功:
+        if (res.data === true) {
+          alert('登入成功');
 
+          // sessionStorage.setItem('UserData', dataToJSON);
+          router.push('/staff/parkstatus');
+        } else {
+          alert('錯誤帳號密碼');
+        }
+      })
+      .catch(err => {
+        console.log(err);
+        alert('伺服器問題');
+      });
+  };
 </script>
 
 <template>
