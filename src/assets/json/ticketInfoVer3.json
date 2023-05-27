@@ -1,0 +1,36 @@
+{
+  "ticketBooking": [
+    {
+      "TICK_ORDER_ID": 46,
+      "MEMBER_ID": 1,
+      "TICK_ID": 1,
+      "TICK_DATE": "2023-05-28 00:00:00",
+      "TICK_NUM": 4,
+      "FAST_PASS": 1
+    },
+    {
+      "TICK_ORDER_ID": 47,
+      "MEMBER_ID": 1,
+      "TICK_ID": 2,
+      "TICK_DATE": "2023-05-28 00:00:00",
+      "TICK_NUM": 1,
+      "FAST_PASS": 0
+    },
+    {
+      "TICK_ORDER_ID": 48,
+      "MEMBER_ID": 1,
+      "TICK_ID": 3,
+      "TICK_DATE": "2023-05-28 00:00:00",
+      "TICK_NUM": 3,
+      "FAST_PASS": 1
+    },
+    {
+      "TICK_ORDER_ID": 49,
+      "MEMBER_ID": 1,
+      "TICK_ID": 4,
+      "TICK_DATE": "2023-06-16 00:00:00",
+      "TICK_NUM": 1,
+      "FAST_PASS": 1
+    }
+  ]
+}
