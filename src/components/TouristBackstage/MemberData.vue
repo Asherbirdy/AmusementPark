@@ -25,43 +25,52 @@ onMounted(async () => {
 });
 
 const handleSaveData = () => {
-  // 检查表单字段是否为空白
+  // 檢查表單是否為空白
   for (const field of formFields) {
-    if (!tableData.value[field.name] || tableData.value[field.name].trim() === "") {
+    if (
+      !tableData.value[field.name] ||
+      tableData.value[field.name].trim() === ''
+    ) {
       alert('請輸入所有資訊！');
       return;
     }
   }
 
   if (validateInputs()) {
-    dialogVisible.value = false; // 关闭对话框
-    saveData(); // 保存数据
+    dialogVisible.value = false; // 關閉彈窗
+    saveData(); // 保存數據
   } else {
     alert('輸入的電話號碼、電子郵件或日期格式不正確！');
   }
 };
 
+// 電話號碼、電子郵件、日期日否部正確
 const validateInputs = () => {
+  // 電話號碼格式
   const phoneRegex = /^[0-9]{10}$/;
+  // 電子郵件格式
   const emailRegex =
     /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
-    const dateRegex = /^(\d{4})\/(\d{2})\/(\d{2})$/;
+  // 出生年月日格式: YYYY/MM/DD
+  const dateRegex = /^(\d{4})\/(\d{2})\/(\d{2})$/;
 
+  // 從資料庫抓原有電話、電子郵件、日期
   const phoneNum = tableData.value.phoneNum;
   const emailAdd = tableData.value.emailAdd;
   const birthDate = tableData.value.birthDate;
 
-  if (phoneNum && !phoneRegex.test(phoneNum) && phoneNum.trim() === "") {
-  isInputFail.value = true;
-  return false;
-}
-
-  if (emailAdd && !emailRegex.test(emailAdd) && emailAdd.trim()===" ") {
+  // 電話 判斷式
+  if (phoneNum && !phoneRegex.test(phoneNum) && phoneNum.trim() === '') {
     isInputFail.value = true;
     return false;
   }
-
-  if (birthDate && !dateRegex.test(birthDate) && birthDate.trim()===" ") {
+  // 電子郵件 判斷式
+  if (emailAdd && !emailRegex.test(emailAdd) && emailAdd.trim() === ' ') {
+    isInputFail.value = true;
+    return false;
+  }
+  // 日期 判斷式
+  if (birthDate && !dateRegex.test(birthDate) && birthDate.trim() === ' ') {
     isInputFail.value = true;
     return false;
   }
@@ -69,7 +78,6 @@ const validateInputs = () => {
   isInputFail.value = false;
   return true;
 };
-
 </script>
 
 <template>
@@ -134,6 +142,8 @@ const validateInputs = () => {
         "
         >{{ field.label }}</label
       >
+      <!-- 從原有的for迴圈裡挑出來日期單獨寫 -->
+      <!-- 用 if else if else -->
       <template v-if="field.type === 'date'">
         <input
           v-model="tableData[field.name]"
@@ -149,6 +159,7 @@ const validateInputs = () => {
           "
         />
       </template>
+      <!-- 從原有的for迴圈裡挑出來email單獨寫 -->
       <template v-else-if="field.type === 'email'">
         <input
           v-model="tableData[field.name]"
@@ -165,6 +176,7 @@ const validateInputs = () => {
         />
       </template>
       <template v-else>
+        <!-- 剩下照樣for迴圈 -->
         <input
           :value="tableData[field.name]"
           @input="tableData[field.name] = $event.target.value"
@@ -243,24 +255,11 @@ const validateInputs = () => {
         label {
           font-size: 20px;
         }
-        // .inp_short {
-        //   width: 200px;
-        //   height: 40px;
-        //   border-radius: 10px;
-        // }
-        // .inp_long {
-        //   width: 300px;
-        //   height: 40px;
-        //   border-radius: 10px;
-        // }
       }
     }
     .monstar {
-      // width: 400px;
-      // height: 400px;
       background: #fff;
       border-radius: 2rem;
-      // margin: 40px;
       #divo {
         width: 400px;
         height: 400px;
