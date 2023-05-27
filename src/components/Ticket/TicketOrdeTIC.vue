@@ -7,23 +7,23 @@ const router = useRouter();
 let bookingData = reactive([
   {
     ticketType: '全票',
-    ticketInfo:'一般成人，身高110cm以上視為成人',
-    ticketPrice:'NT.500',
-    ticketNum: 2,
+    ticketInfo: '一般成人，身高110cm以上視為成人',
+    ticketPrice: 'NT.500',
+    ticketNum: 0,
     fastFoward: false,
   },
   {
     ticketType: '學生票',
     ticketInfo: '入園需持當學期註冊學生證之學生(限本人使用)',
     ticketPrice: 'NT.400',
-    ticketNum: 3,
+    ticketNum: 0,
     fastFoward: false,
   },
   {
     ticketType: '兒童票',
     ticketInfo: '4歲~12歲，身高未滿110cm兒童',
     ticketPrice: 'NT.250',
-    ticketNum: 3,
+    ticketNum: 0,
     fastFoward: false,
   },
   {
@@ -38,10 +38,87 @@ let bookingData = reactive([
 // 計算所有票的數量
 function countTicket() {
   return bookingData.reduce((acc, cur) => acc + cur.ticketNum, 0);
+}
+
+const clearOut = () => {
+  bookingData.forEach(ticket => {
+    ticket.ticketNum = 0;
+    ticket.fastFoward = false;
+    // 清空localStorage
+    localStorage?.removeItem('bookingData');
+    localStorage?.removeItem('ticketDateData');
+    // 清空日期
+    // date.value = '';
+  });
 };
 
+// 將資料訪到local函式：
+const addBookingDataToLocal = () =>
+  localStorage.setItem('bookingData', JSON.stringify(bookingData));
 
-console.log(countTicket());
+const addTicketDateToLocal = () =>
+  localStorage.setItem('ticketDateData', JSON.stringify(ticketDate));
+
+// 
+let ticketDate = ref('');
+const addToCart = () => {
+  if (ticketDate !== '' && isValidDateFormat(ticketDate)) {
+    if (countTicket() !== 0) {
+      addBookingDataToLocal(bookingData);
+      addTicketDateToLocal(ticketDate);
+      alert('已將票數加入到購物車');
+    } else {
+      alert('請加入票數');
+    }
+  } else {
+    alert('請輸入日期');
+  }
+};
+
+// 購買票券
+const buyTicket = () => {
+  if (ticketDate !== '' && isValidDateFormat(ticketDate)) {
+    if (countTicket() !== 0) {
+      addBookingDataToLocal(bookingData);
+      addTicketDateToLocal(ticketDate);
+      router.push('/cart');
+      alert('已將票數加入到購物車');
+    } else {
+      alert('請加入票數');
+    }
+  } else {
+    alert('請輸入日期');
+  }
+};
+
+// 原始時間：
+let date = ref('');
+
+// 原始時間轉格式
+const selectDate = () => {
+  const formattedDate = computed(() => {
+    if (date.value) {
+      return dayjs(date.value).format('YYYY-MM-DD');
+    }
+    return '';
+  });
+  return (ticketDate = formattedDate.value);
+};
+
+// 時間的表達式
+const isValidDateFormat = dateString => {
+  const dateRegex = /^\d{4}-\d{2}-\d{2}$/;
+  return dateRegex.test(dateString);
+};
+
+// 時間限制
+const disableDate = time => {
+  const today = dayjs().startOf('day');
+  const selectedDate = dayjs(time).startOf('day');
+  const maxAllowedDate = today.add(31, 'day').startOf('day'); // 取得今天後7天的日期
+  return selectedDate.isBefore(today) || selectedDate.isAfter(maxAllowedDate);
+};
+
 
 </script>
 <template>
@@ -49,8 +126,13 @@ console.log(countTicket());
     <div class="chooseDate">
       <div class="demo-date-picker">
         <div class="block">
-          <el-date-picker v-model="date" type="date" placeholder="選擇訂票日期" :disabled-date="disableDate"
-            @change="selectDate" />
+          <el-date-picker
+            v-model="date"
+            type="date"
+            placeholder="選擇訂票日期"
+            :disabled-date="disableDate"
+            @change="selectDate"
+          />
         </div>
       </div>
     </div>
@@ -63,16 +145,25 @@ console.log(countTicket());
         <th>張數</th>
         <th>快速通關</th>
       </tr>
-      <tr v-for="(ticket, idx) in bookingData" :key="ticket.ticketType">
+      <tr v-for="ticket in bookingData" :key="ticket.ticketType">
         <td>{{ ticket.ticketType }}</td>
-        <td class="ex">{{ticket.ticketInfo}}</td>
-        <td>{{ticket.ticketPrice }}</td>
+        <td class="ex">{{ ticket.ticketInfo }}</td>
+        <td>{{ ticket.ticketPrice }}</td>
         <td>
-          <el-input-number v-model="ticket.ticketNum" :min="0" class="count" width:10px />
+          <el-input-number
+            v-model="ticket.ticketNum"
+            :min="0"
+            class="count"
+            width:10px
+          />
         </td>
         <td>
-          <input type="checkbox" :checked="ticket.ticketNum > 0 && ticket.fastFoward"
-            :disabled="ticket.ticketNum === 0" />
+          <input
+            v-model="ticket.fastFoward"
+            :checked="ticket.ticketNum > 0 && ticket.fastFoward"
+            :disabled="ticket.ticketNum === 0"
+            type="checkbox"
+          />
         </td>
       </tr>
       <tr>
@@ -81,13 +172,29 @@ console.log(countTicket());
     </table>
   </div>
   <div class="btnbox">
-    <btn class="btn" button-color="#D1825B" button-text-color="white" @click="clearOut">
+    <btn
+      class="btn"
+      button-color="#D1825B"
+      button-text-color="white"
+      @click="clearOut"
+    >
       <h3>清空</h3>
     </btn>
-    <btn :style="{ width: '150px' }" class="btn" button-color="#D1825B" button-text-color="white" @click="addToCart">
+    <btn
+      :style="{ width: '150px' }"
+      class="btn"
+      button-color="#D1825B"
+      button-text-color="white"
+      @click="addToCart"
+    >
       <h3>加入購物車</h3>
     </btn>
-    <btn class="btn" button-color="#D1825B" button-text-color="white" @click="buyTicket">
+    <btn
+      class="btn"
+      button-color="#D1825B"
+      button-text-color="white"
+      @click="buyTicket"
+    >
       <h3>立即購買</h3>
     </btn>
   </div>
