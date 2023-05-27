@@ -2,22 +2,22 @@
 import axios from 'axios';
 
 // 帳號 + 密碼 的 input欄位
-const account = ''; // 用作v-model雙向數據綁定
-const pwd = ''; // 用作v-model雙向數據綁定
+const account = ref(''); // 用作v-model雙向數據綁定
+const pwd = ref(''); // 用作v-model雙向數據綁定
 const inputInfos = ref([
   {
     title: '帳號：',
     type: 'text',
     id: 'account',
     placeholder: '請輸入您的Email或手機',
-    value: account,
+    value: account.value,
   },
   {
     title: '密碼：',
     type: 'password',
     id: 'pwd',
     placeholder: '請輸入您的密碼',
-    value: pwd,
+    value: pwd.value,
   },
 ]);
 // 會員註冊 + 忘記密碼 的 a標籤
@@ -64,13 +64,16 @@ const blurCheck = inputType => {
 };
 
 ////確認頁面有無登入
+
+const router = useRouter();
+
 axios
   .post('/api/PDO/frontEnd/memberLogin/memberLoginCheck.php')
   .then(res => {
     if (res.data === '') {
       console.log('還沒登入');
     } else {
-      router.push('../../../pages/cart');
+      router.push('../../pages/cart');
       console.log('已經登入了');
     }
   })
@@ -84,34 +87,55 @@ axios
 const handleSubmit = () => {
   //檢查是否輸入失敗
   if (isInputFail.value) {
-    return;}
-    //檢查是否空值
+    return;
+  }
+  //檢查是否空值
+  // if (inputInfos.some(input => input.value === '')) {
+  //   alert('請輸入帳號和密碼');
+  //   return;
+  // }
 
-    // username 和 pwd
-    axios
-      .post('/api/PDO/frontEnd/memberLogin/memberLogin.php', {
-        account: account,
-        pwd: pwd,
-      })
-      .then(res => {
-        console.log(res.data);
-        // const dataToJSON = JSON.stringify(res.data);
+  // username 和 pwd
+  axios
+    .post('/api/PDO/frontEnd/memberLogin/memberLogin.php', {
+      account: inputInfos.value[0].value,
+      pwd: inputInfos.value[1].value,
+    })
+    .then(res => {
+      console.log(res.data);
+      // const dataToJSON = JSON.stringify(res.data);
 
-        // 如果登入成功:
-        if (res.data === true) {
-          alert('登入成功');
+      // 如果登入成功:
+      if (res.data === true) {
+        alert('登入成功');
+        // 將登入狀態存儲到 sessionStorage
+        sessionStorage.setItem('isLoggedIn', true);
 
-          // sessionStorage.setItem('UserData', dataToJSON);
-          router.push('/staff/parkstatus');
-        } else {
-          alert('錯誤帳號密碼');
-        }
-      })
-      .catch(err => {
-        console.log(err);
-        alert('伺服器問題');
-      });
-  };
+        router.push('/');
+      } else {
+        alert('錯誤帳號密碼');
+      }
+    });
+  // .catch(err => {
+  //   console.log(err);
+  //   alert('伺服器問題');
+  // });
+};
+
+//////維持登入狀態
+onMounted(() => {
+  // 檢查登入狀態
+  const isLoggedIn = sessionStorage.getItem('isLoggedIn');
+
+  if (isLoggedIn) {
+    // 已登入
+    console.log('已經登入了');
+    router.push('/');
+  } else {
+    // 未登入
+    console.log('還沒登入');
+  }
+});
 </script>
 
 <template>
