@@ -27,7 +27,9 @@
             />
             <!-- v-next-input 可以自動跳下一格 cardNumberInputs.length - 1是否為最後一格
             如果條件為假，也就是當前輸入框是最後一個輸入框，那麼執行結果為 null
-             "-"只會出現在index小於cardNumberInputs.length-1之間，因為有4個，但是"-"只會出現在4組號碼中間-->
+             "-"只會出現在index小於cardNumberInputs.length-1之間，因為有4個，但是"-"只會出現在4組號碼中間。
+            handleCardBackspace 事件監聽按下退格鍵觸發該事件。handleCardKeyPress檢查使用者輸入的按鍵值，
+            並確定該按鍵是否為有效的卡號輸入-->
             <span v-if="index < cardNumberInputs.length - 1">-</span>
           </template>
         </section>
@@ -55,6 +57,8 @@
           />
           <!--pattern限制使用者在輸入框中輸入的值必須符合指定的模式 [0-9]只能0~9 {4}為數字長度 
           required用於指定輸入框是否為必填項目
+          handleExpirationInput 事件監聽器，監聽日期輸入完2碼後加"/"並將焦點跳轉到下一個輸入框。
+          是在安全碼輸入框中使用 $refs.securityCodeInput 作為儲存點，以便在特定條件下跳到下一個輸入框。
           -->
         </section>
 
@@ -73,6 +77,10 @@
           />
         </section>
       </form>
+      <section class="connect">
+        <h1>連接LINEPAY</h1>
+        <h1>連接APPLEPAY</h1>
+      </section>
     </nav>
 
     <section class="btn-wrap">
@@ -104,29 +112,34 @@ const cardNumberInputs = [
   { value: '', className: 'input4', maxLength: 4, pattern: '[0-9]{4}' },
 ];
 
-const expiration = ref('');
+const expiration = ref(''); //預設值為空字串
 const securityCode = ref('');
 
+// 信用卡號輸入
 const handleCardInput = index => {
   const input = cardNumberInputs[index];
+  // index進入陣列取值執行迴圈
   if (
     input.value.length === input.maxLength &&
     index < cardNumberInputs.length - 1
   ) {
     const nextInput = document.querySelector(
       `.card.${cardNumberInputs[index + 1].className}`
+      // 打完一組卡號找下一個輸入框
     );
     if (nextInput) {
       nextInput.focus();
     }
   }
 };
-
+// 信用卡號退格鍵
 const handleCardBackspace = index => {
   const input = cardNumberInputs[index];
+  // index進入陣列取值執行迴圈
   if (input.value.length === 0 && index > 0) {
     const previousInput = document.querySelector(
       `.card.${cardNumberInputs[index - 1].className}`
+      // 退格完一組卡號找上一個輸入框
     );
     if (previousInput) {
       previousInput.focus();
@@ -138,14 +151,16 @@ const handleCardKeyPress = event => {
   const keyCode = event.keyCode || event.which;
   const keyValue = String.fromCharCode(keyCode);
   const isValidKey = /^[0-9]+$/.test(keyValue);
+  // 防止輸入非數字
   if (!isValidKey) {
     event.preventDefault();
     alert('請輸入正確卡號');
   }
 };
-
+// 信用有效期
 const handleExpirationInput = () => {
   if (expiration.value.length === 2) {
+// 信用有效期寫完2格自動加"/"
     expiration.value += '/';
     const expirationInput = document.querySelector('.expiration-input');
     if (expirationInput) {
@@ -153,13 +168,14 @@ const handleExpirationInput = () => {
     }
   }
 };
-
+// 信用有效期退格鍵
 const handleExpirationBackspace = () => {
   if (expiration.value.length === 3 && expiration.value[2] === '/') {
+    // 陣列 0、1、2，固定2寫"/"
     expiration.value = expiration.value.slice(0, 2);
   }
 };
-
+// 信用安全碼
 const handleSecurityCodeKeyPress = event => {
   const keyCode = event.keyCode || event.which;
   const keyValue = String.fromCharCode(keyCode);
@@ -169,7 +185,7 @@ const handleSecurityCodeKeyPress = event => {
     alert('請輸入正確安全碼');
   }
 };
-
+// 信用安全碼退格鍵
 const handleExpirationKeyPress = event => {
   const keyCode = event.keyCode || event.which;
   const keyValue = String.fromCharCode(keyCode);
@@ -191,6 +207,10 @@ onMounted(() => {
 <style lang="scss" scoped>
 input.card {
   width: 55px;
+}
+.connect h1{
+  font-size: 26px;
+  color: #9c3401;
 }
 .btn-wrap {
   margin: 0 auto;
@@ -248,12 +268,6 @@ input {
       }
     }
 
-    select {
-      padding: 10px;
-      border: 2px solid #000000;
-      border-radius: 10px;
-    }
-
     input {
       margin-bottom: 23px;
     }
@@ -265,64 +279,7 @@ input {
     background-color: #d1825b;
     border: none;
     border-radius: 10px;
-
     margin: 30px auto;
-  }
-}
-
-//訂購人資料
-.user {
-  width: 550px;
-  background-color: #f9f3e4;
-  margin: 15px;
-  margin-top: 100px;
-  form {
-    display: flex;
-    flex-direction: column;
-    align-items: stretch;
-    padding: 40px 50px;
-    .user-input-row {
-      display: flex;
-      flex-direction: column;
-      width: 100%;
-      margin-bottom: 20px;
-      font-size: 16px;
-      font-weight: bold;
-      color: #90420a;
-      label {
-        margin-bottom: 10px;
-      }
-      // input {
-      //   width: -webkit-fill-available;
-      // }
-    }
-    .checkbox {
-      padding-left: 10px;
-      margin-bottom: 20px;
-      cursor: pointer;
-    }
-    input[type='checkbox'] {
-      display: none;
-    }
-    input[type='checkbox'] + span {
-      display: inline-block;
-      padding-left: 26px;
-      line-height: 20px;
-      background: url(https://i.imgur.com/bZM5Itd.png) no-repeat left top;
-      user-select: none;
-    }
-    input[type='checkbox']:checked + span {
-      background: url(https://i.imgur.com/JWm4WKA.png) no-repeat left top;
-    }
-    #address {
-      margin-bottom: 20px;
-    }
-    #comment {
-      resize: none;
-      padding: 10px;
-      border: 2px solid #000000;
-      border-radius: 10px;
-    }
   }
 }
 </style>
