@@ -73,7 +73,7 @@ axios
     if (res.data === '') {
       console.log('還沒登入');
     } else {
-      router.push('../../pages/cart');
+      router.push('../../admin/touristproductorder');
       console.log('已經登入了');
     }
   })
@@ -89,12 +89,6 @@ const handleSubmit = () => {
   if (isInputFail.value) {
     return;
   }
-  //檢查是否空值
-  // if (inputInfos.some(input => input.value === '')) {
-  //   alert('請輸入帳號和密碼');
-  //   return;
-  // }
-
   // username 和 pwd
   axios
     .post('/api/PDO/frontEnd/memberLogin/memberLogin.php', {
@@ -103,39 +97,21 @@ const handleSubmit = () => {
     })
     .then(res => {
       console.log(res.data);
-      // const dataToJSON = JSON.stringify(res.data);
 
       // 如果登入成功:
       if (res.data === true) {
         alert('登入成功');
-        // 將登入狀態存儲到 sessionStorage
-        sessionStorage.setItem('isLoggedIn', true);
-
         router.push('/');
       } else {
         alert('錯誤帳號密碼');
       }
+      
+    })
+    .catch(err => {
+      console.log(err);
+      alert('伺服器問題');
     });
-  // .catch(err => {
-  //   console.log(err);
-  //   alert('伺服器問題');
-  // });
-};
-
-//////維持登入狀態
-onMounted(() => {
-  // 檢查登入狀態
-  const isLoggedIn = sessionStorage.getItem('isLoggedIn');
-
-  if (isLoggedIn) {
-    // 已登入
-    console.log('已經登入了');
-    router.push('/');
-  } else {
-    // 未登入
-    console.log('還沒登入');
-  }
-});
+  };
 </script>
 
 <template>
