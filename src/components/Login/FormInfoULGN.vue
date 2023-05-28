@@ -63,18 +63,18 @@ const blurCheck = inputType => {
   isInputFail.value = !(isPhoneNumber || isEmail);
 };
 
-////確認頁面有無登入
+////確認資料
 
 const router = useRouter();
 
 axios
-  .post('/api/PDO/frontEnd/memberLogin/memberLoginCheck.php')
+  .post('/api/PDO/frontEnd/memberLogin/memberLogin.php')
   .then(res => {
     if (res.data === '') {
       console.log('還沒登入');
     } else {
-      router.push('../../admin/touristproductorder');
       console.log('已經登入了');
+      router.push('../../admin/touristproductorder');
     }
   })
   //
@@ -91,7 +91,7 @@ const handleSubmit = () => {
   }
   // username 和 pwd
   axios
-    .post('/api/PDO/frontEnd/memberLogin/memberLogin.php', {
+    .post('/api/PDO/frontEnd/memberLogin/memberLoginCheck.php', {
       account: inputInfos.value[0].value,
       pwd: inputInfos.value[1].value,
     })
