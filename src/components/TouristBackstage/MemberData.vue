@@ -5,14 +5,15 @@ import axios from 'axios';
 // 定義表單欄位的資訊
 const formFields = [
   { id: 'name', label: '會員姓名：', name: 'name' },
-  { id: 'birthdate', label: '出生日期：', name: 'birthDate' },
+  { id: 'birthdate', label: '出生日期：', name: 'birthDate', type: 'date' },
   { id: 'phone', label: '手機號碼：', name: 'phoneNum' },
-  { id: 'email', label: '電子郵件：', name: 'emailAdd' },
+  { id: 'email', label: '電子郵件：', name: 'emailAdd', type: 'email' },
   { id: 'place', label: '通訊地址：', name: 'address' },
 ];
 
 const dialogVisible = ref(false);
 const tableData = ref({});
+const originalData = ref({});
 const isInputFail = ref(false);
 
 // 在組件掛載完成後執行的函式
@@ -20,8 +21,9 @@ onMounted(async () => {
   // 從 JSON 檔案獲取會員資料
   const res = await axios.get('../../src/assets/json/memberInfo.json');
   const data = res.data.memberInfo;
-  // 將第一筆會員資料存入 tableData
+  // 將第一筆會員資料存入 tableData 和 originalData
   tableData.value = data[0];
+  originalData.value = { ...tableData.value };
 });
 
 const handleSaveData = () => {
@@ -31,20 +33,26 @@ const handleSaveData = () => {
       !tableData.value[field.name] ||
       tableData.value[field.name].trim() === ''
     ) {
-      alert('請輸入所有資訊！');
+      alert('請正確輸入所有資訊！');
       return;
     }
   }
 
   if (validateInputs()) {
-    dialogVisible.value = false; // 關閉彈窗
-    saveData(); // 保存數據
+    dialogVisible.value = false;
+    saveData();
   } else {
     alert('輸入的電話號碼、電子郵件或日期格式不正確！');
   }
 };
 
-// 電話號碼、電子郵件、日期日否部正確
+const handleCancelEdit = () => {
+  // 將 tableData 恢復為原始數據
+  tableData.value = { ...originalData.value };
+  dialogVisible.value = false; // 關閉彈窗
+};
+
+// 電話號碼、電子郵件、日期是否不正確
 const validateInputs = () => {
   // 電話號碼格式
   const phoneRegex = /^[0-9]{10}$/;
@@ -65,12 +73,12 @@ const validateInputs = () => {
     return false;
   }
   // 電子郵件 判斷式
-  if (emailAdd && !emailRegex.test(emailAdd) && emailAdd.trim() === ' ') {
+  if (emailAdd && !emailRegex.test(emailAdd) && emailAdd.trim() === '') {
     isInputFail.value = true;
     return false;
   }
   // 日期 判斷式
-  if (birthDate && !dateRegex.test(birthDate) && birthDate.trim() === ' ') {
+  if (birthDate && !dateRegex.test(birthDate) && birthDate.trim() === '') {
     isInputFail.value = true;
     return false;
   }
@@ -203,9 +211,10 @@ const validateInputs = () => {
             border-radius: 10px;
             font-family: '微軟正黑體';
           "
-          @click="dialogVisible = false"
-          >取消</el-button
+          @click="handleCancelEdit"
         >
+          取消
+        </el-button>
         <el-button
           style="
             margin: 15px;
