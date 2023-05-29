@@ -6,83 +6,74 @@ const router = useRouter();
 // 資料
 let bookingData = reactive([
   {
-    adult: {
-      ticketNum: 0,
-      fastForwad: false,
-    },
+    ticketType: '全票',
+    ticketInfo: '一般成人，身高110cm以上視為成人',
+    ticketPrice: 500,
+    ticketNum: 0,
+    fastFoward: false,
   },
   {
-    student: {
-      ticketNum: 0,
-      fastForwad: false,
-    },
+    ticketType: '學生票',
+    ticketInfo: '入園需持當學期註冊學生證之學生(限本人使用)',
+    ticketPrice: 400,
+    ticketNum: 0,
+    fastFoward: false,
   },
   {
-    children: {
-      ticketNum: 0,
-      fastForwad: false,
-    },
+    ticketType: '兒童票',
+    ticketInfo: '4歲~12歲，身高未滿110cm兒童',
+    ticketPrice: 250,
+    ticketNum: 0,
+    fastFoward: false,
   },
   {
-    concession: {
-      ticketNum: 0,
-      fastForwad: false,
-    },
+    ticketType: '優待票',
+    ticketInfo: '持有身心障礙證明者與1位陪同者、孕婦、65歲以上長者',
+    ticketPrice: 200,
+    ticketNum: 0,
+    fastFoward: false,
   },
 ]);
 
 // 計算所有票的數量
 function countTicket() {
-  return bookingData.reduce((accumulator, current) => {
-    const ticketNum = Object.values(current)[0].ticketNum;
-    return accumulator + ticketNum;
-  }, 0);
+  return bookingData.reduce((acc, cur) => acc + cur.ticketNum, 0);
 }
 
-// 清空按鈕
 const clearOut = () => {
-  bookingData[0].adult.ticketNum = 0;
-  bookingData[0].adult.fastForwad = false;
-  bookingData[1].student.ticketNum = 0;
-  bookingData[1].student.fastForwad = false;
-  bookingData[2].children.ticketNum = 0;
-  bookingData[2].children.fastForwad = false;
-  bookingData[3].concession.ticketNum = 0;
-  bookingData[3].concession.fastForwad = false;
-  // 清空localStorage
-  localStorage?.removeItem('bookingData');
-  localStorage?.removeItem('ticketDateData');
-  // 清空日期
-  date.value = ''
-  
+  bookingData.forEach(ticket => {
+    ticket.ticketNum = 0;
+    ticket.fastFoward = false;
+    // 清空localStorage
+    localStorage?.removeItem('bookingData');
+    localStorage?.removeItem('ticketDateData');
+    // 清空日期
+    date.value = '';
+  });
 };
 
 // 將資料訪到local函式：
-const addBookingDataToLocal = item =>
-  localStorage.setItem('bookingData', JSON.stringify({ item }));
-const addTicketDateToLocal = item =>
-  localStorage.setItem('ticketDateData', JSON.stringify({ item }));
+const addBookingDataToLocal = () => {
+  const simplifiedData = bookingData
+    .filter(item => item.ticketNum !== 0)
+    .map(item => ({
+      ticketType: item.ticketType,
+      ticketPrice: item.ticketPrice,
+      ticketNum: item.ticketNum,
+      fastFoward: item.fastFoward,
+      ticketData: ticketDate,
+    }));
+  return localStorage.setItem('bookingData', JSON.stringify(simplifiedData));
+};
 
-// 訂票日期：
+const addTicketDateToLocal = () =>
+  localStorage.setItem('ticketDateData', JSON.stringify(ticketDate));
+
+// 票卷時間：
 let ticketDate = ref('');
-
-// 從 自組件 接收到日期
-const handleDateSelected = date => {
-  ticketDate = date;
-  return date;
-};
-
-// 時間的表達式
-const isValidDateFormat = dateString => {
-  const dateRegex = /^\d{4}-\d{2}-\d{2}$/;
-  return dateRegex.test(dateString);
-};
-
-// 加到購物車
 const addToCart = () => {
   if (ticketDate !== '' && isValidDateFormat(ticketDate)) {
     if (countTicket() !== 0) {
-      console.log(ticketDate, countTicket(), 'ticketDate 執行加入購物車');
       addBookingDataToLocal(bookingData);
       addTicketDateToLocal(ticketDate);
       alert('已將票數加入到購物車');
@@ -98,7 +89,6 @@ const addToCart = () => {
 const buyTicket = () => {
   if (ticketDate !== '' && isValidDateFormat(ticketDate)) {
     if (countTicket() !== 0) {
-      console.log(ticketDate, countTicket(), 'ticketDate 執行加入購物車');
       addBookingDataToLocal(bookingData);
       addTicketDateToLocal(ticketDate);
       router.push('/cart');
@@ -109,8 +99,7 @@ const buyTicket = () => {
   } else {
     alert('請輸入日期');
   }
- };
-
+};
 
 // 原始時間：
 let date = ref('');
@@ -123,17 +112,22 @@ const selectDate = () => {
     }
     return '';
   });
-  return ticketDate = formattedDate.value
+  return (ticketDate = formattedDate.value);
 };
 
-// 時間限制
+// 時間的表達式
+const isValidDateFormat = dateString => {
+  const dateRegex = /^\d{4}-\d{2}-\d{2}$/;
+  return dateRegex.test(dateString);
+};
+
+// 時間限制：一個月以內
 const disableDate = time => {
   const today = dayjs().startOf('day');
   const selectedDate = dayjs(time).startOf('day');
   const maxAllowedDate = today.add(31, 'day').startOf('day'); // 取得今天後7天的日期
   return selectedDate.isBefore(today) || selectedDate.isAfter(maxAllowedDate);
 };
-
 </script>
 <template>
   <div>
@@ -159,62 +153,13 @@ const disableDate = time => {
         <th>張數</th>
         <th>快速通關</th>
       </tr>
-
-      <tr>
-        <td>全票</td>
-        <td class="ex">一般成人，身高110cm以上視為成人</td>
-        <td>NT.500</td>
+      <tr v-for="ticket in bookingData" :key="ticket.ticketType">
+        <td>{{ ticket.ticketType }}</td>
+        <td class="ex">{{ ticket.ticketInfo }}</td>
+        <td>{{ ticket.ticketPrice }}元</td>
         <td>
           <el-input-number
-            v-model="bookingData[0].adult.ticketNum"
-            :min="0"
-            class="count"
-            width:10px
-          />
-        </td>
-        <td>
-          <input v-model="bookingData[0].adult.fastForwad" type="checkbox" />
-        </td>
-      </tr>
-      <tr>
-        <td>學生票</td>
-        <td class="ex">入園需持當學期註冊學生證之學生(限本人使用)</td>
-        <td>NT.400</td>
-        <td>
-          <el-input-number
-            v-model="bookingData[1].student.ticketNum"
-            :min="0"
-            class="count"
-            width:10px
-          />
-        </td>
-        <td>
-          <input v-model="bookingData[1].student.fastForwad" type="checkbox" />
-        </td>
-      </tr>
-      <tr>
-        <td>兒童票</td>
-        <td class="ex">4歲~12歲，身高未滿110cm兒童</td>
-        <td>NT.250</td>
-        <td>
-          <el-input-number
-            v-model="bookingData[2].children.ticketNum"
-            :min="0"
-            class="count"
-            width:10px
-          />
-        </td>
-        <td>
-          <input v-model="bookingData[2].children.fastForwad" type="checkbox" />
-        </td>
-      </tr>
-      <tr>
-        <td>優待票</td>
-        <td class="ex">持有身心障礙證明者與1位陪同者、孕婦、65歲以上長者</td>
-        <td>NT.200</td>
-        <td>
-          <el-input-number
-            v-model="bookingData[3].concession.ticketNum"
+            v-model="ticket.ticketNum"
             :min="0"
             class="count"
             width:10px
@@ -222,7 +167,9 @@ const disableDate = time => {
         </td>
         <td>
           <input
-            v-model="bookingData[3].concession.fastForwad"
+            v-model="ticket.fastFoward"
+            :checked="ticket.ticketNum > 0 && ticket.fastFoward"
+            :disabled="ticket.ticketNum === 0"
             type="checkbox"
           />
         </td>

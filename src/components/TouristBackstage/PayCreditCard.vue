@@ -244,8 +244,9 @@ input {
 
 //付款方式
 .pay {
+  background-color: $maincolor1;
   width: 75%;
-  background-color: #f9f3e4;
+  font-size: 20px;
   margin-left: 40px;
   nav {
     margin: 40px;

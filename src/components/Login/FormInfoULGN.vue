@@ -1,47 +1,25 @@
 <script setup>
+import axios from 'axios';
+
 // 帳號 + 密碼 的 input欄位
-const account = ''; // 用作v-model雙向數據綁定
-const password = ''; // 用作v-model雙向數據綁定
+const account = ref(''); // 用作v-model雙向數據綁定
+const pwd = ref(''); // 用作v-model雙向數據綁定
 const inputInfos = ref([
   {
     title: '帳號：',
     type: 'text',
     id: 'account',
     placeholder: '請輸入您的Email或手機',
-    value: account,
+    value: account.value,
   },
   {
     title: '密碼：',
     type: 'password',
-    id: 'password',
+    id: 'pwd',
     placeholder: '請輸入您的密碼',
-    value: password,
+    value: pwd.value,
   },
 ]);
-const emailRegex =
-  /^([a-zA-Z0-9_\.\-\+])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
-const isInputFail = ref(false);
-
-const handleClick = () => {
-  if (isInputFail.value) return;
-};
-const blurCheck = inputType => {
-  if (inputType !== 'account') return;
-  const inputAccount = inputInfos.value[0].value;
-  if (inputAccount === '') {
-    isInputFail.value = false;
-    return;
-  }
-  const isPhoneNumber =
-    !isNaN(inputAccount) &&
-    inputAccount.length === 10 &&
-    inputAccount.trim().length > 0 &&
-    inputAccount[0] === '0' &&
-    inputAccount[1] === '9';
-
-  const isEmail = emailRegex.test(inputAccount);
-  isInputFail.value = !(isPhoneNumber || isEmail);
-};
 // 會員註冊 + 忘記密碼 的 a標籤
 const aLinks = ref([
   {
@@ -59,6 +37,81 @@ const aLinks = ref([
     url: '/ForgetPassword',
   },
 ]);
+
+//////功能-會員帳號驗證格式
+
+////email驗證
+const emailRegex =
+  /^([a-zA-Z0-9_\.\-\+])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+const isInputFail = ref(false);
+
+const blurCheck = inputType => {
+  if (inputType !== 'account') return;
+  const inputAccount = inputInfos.value[0].value;
+  if (inputAccount === '') {
+    isInputFail.value = false;
+    return;
+  }
+  const isPhoneNumber =
+    !isNaN(inputAccount) &&
+    inputAccount.length === 10 &&
+    inputAccount.trim().length > 0 &&
+    inputAccount[0] === '0' &&
+    inputAccount[1] === '9';
+
+  const isEmail = emailRegex.test(inputAccount);
+  isInputFail.value = !(isPhoneNumber || isEmail);
+};
+
+////確認資料
+
+const router = useRouter();
+
+axios
+  .post('/api/PDO/frontEnd/memberLogin/memberLoginCheck.php')
+  .then(res => {
+    if (res.data === '') {
+      console.log('還沒登入');
+    } else {
+      console.log('已經登入了');
+      router.push('../../admin/touristproductorder');
+    }
+  })
+  //
+  .catch(err => {
+    console.log(err);
+    alert('登入狀態檢查出錯');
+  });
+
+////資料送出
+const handleSubmit = () => {
+  //檢查是否輸入失敗
+  if (isInputFail.value) {
+    return;
+  }
+  // username 和 pwd
+  axios
+    .post('/api/PDO/frontEnd/memberLogin/memberLogin.php', {
+      account: inputInfos.value[0].value,
+      pwd: inputInfos.value[1].value,
+    })
+    .then(res => {
+      console.log(res.data);
+
+      // 如果登入成功:
+      if (res.data === true) {
+        alert('登入成功');
+        router.push('/');
+      } else {
+        alert('錯誤帳號密碼');
+      }
+      
+    })
+    .catch(err => {
+      console.log(err);
+      alert('伺服器問題');
+    });
+  };
 </script>
 
 <template>
@@ -80,8 +133,8 @@ const aLinks = ref([
           @blur="blurCheck(inputInfo.id)"
         />
         <span v-if="isInputFail && inputInfo.id === 'account'"
-          >請輸入正確帳號</span
-        >
+          >請輸入正確帳號
+        </span>
       </div>
 
       <!-- 會員註冊 + 忘記密碼 的 a標籤 -->
@@ -107,7 +160,7 @@ const aLinks = ref([
         class="middle__form--Btn"
         type="submit"
         id="Submit"
-        @click="handleClick"
+        @click="handleSubmit"
       >
         登入
       </Button>

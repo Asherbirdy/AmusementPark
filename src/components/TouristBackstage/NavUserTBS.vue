@@ -1,11 +1,15 @@
 <script setup></script>
 
 <template>
+  
   <div class="nav">
     <ul>
       <li>
         <router-link to="/admin/touristmember">
-          <memberInfo class="icon"/>
+          <!-- <memberInfo class="icon"/> -->
+          <!-- <el-icon class="icon"> -->
+            <UserFilled style="width: 4em; height: 4em; margin: 8px" />
+          <!-- </el-icon> -->
           <h3>
             會員資料
           </h3>
@@ -13,7 +17,8 @@
       </li>
       <li>
         <router-link to="/admin/pay">
-          <tickOrder class="icon" />
+          <!-- <tickOrder class="icon" /> -->
+          <CreditCard style="width: 4em; height: 4em; margin: 8px" />
           <h3>
             付款資訊
           </h3>
@@ -21,7 +26,8 @@
       </li>
       <li>
         <router-link to="/admin/touristqrcode">
-          <QRcode class="icon" />
+          <!-- <QRcode class="icon" /> -->
+          <Ticket style="width: 4em; height: 4em; margin: 8px" />
           <h3>
             現有票卷
           </h3>
@@ -29,7 +35,8 @@
       </li>
       <li>
         <router-link to="/admin/touristproductorder">
-          <myOrder class="icon" />
+          <!-- <myOrder class="icon" /> -->        
+          <Memo style="width: 4em; height: 4em; margin: 8px" />
           <h3>
             歷史訂單
           </h3>
@@ -40,23 +47,32 @@
 </template>
 
 <style lang="scss" scoped>
+.nav{
+  width: 20%;
+}
 ul {
-  font-family: Arial, Helvetica, sans-serif;
-  background-color: #f9f3e4;
-  width: 360px;
+  width: 100%;
   line-height: 1.2;
   color: #5b5b5b;
 
   li {
-
-    .icon {
-      color: #5b5b5b;
-      margin-bottom: 20px;
+    width: 100%;
+    background-color: #f9f3e4;
+    h3{
+      margin-top: -10px;
     }
+    // .icon {
+    //   color: #5b5b5b;
+    //   margin-bottom: 20px;
+      // .el-icon svg{
+      //   width: 80px;
+      //   height: 80px;
+      // }
+    // }
 
     a {
       color: #5b5b5b;
-      height: 200px;
+      height: 140px;
       text-decoration: none;
       display: flex;
       flex-direction: column;
