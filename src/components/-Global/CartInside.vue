@@ -80,33 +80,31 @@
 import { ref } from 'vue';
 import getImageUrl from '@/utils/imgPath';
 
-const imgURL = name => getImageUrl(name);
-
 // 商品數據
-const products = ref([
-  {
-    id: 'product1',
-    name: '全票',
-    type: '一般票',
-    count: 1,
-    price: 600,
-  },
-  {
-    id: 'product2',
-    name: 'MONSTAR上衣',
-    type: 'L',
-    count: 1,
-    price: 600,
-  },
-  {
-    id: 'product2',
-    name: 'MONSTAR上衣',
-    type: 'L',
-    count: 1,
-    price: 600,
-  },
-]);
+const products = ref([]);
 
+// 抓local 票券的資料：
+const ticketDataFromLocal = JSON.parse(localStorage.getItem('bookingData'));
+console.log(ticketDataFromLocal);
+// 從資料庫抓資料 並轉為 購物車的資料格式
+const ticketMapData = ticketDataFromLocal.map(item => {
+  const fastforwardPrice = 50;
+  return {
+    name: `${item.ticketData} ${item.ticketType} `,
+    type: item.fastFoward ? '快速通關' : '一般票',
+    count: item.ticketNum,
+    price: item.ticketPrice,
+  };
+});
+
+// 將票券和商品都推到一個陣列中：
+let sortArr = [];
+sortArr.push(...ticketMapData);
+
+products.value.push(...sortArr);
+console.log(products);
+
+console.log(sortArr);
 // 函數：移除商品
 const removeFromCart = product => {
   const index = products.value.findIndex(item => item.id === product.id);
