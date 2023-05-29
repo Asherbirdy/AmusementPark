@@ -10,7 +10,7 @@
           <th class="edit">修改</th>
           <th class="delet">移除</th>
         </tr>
-        <tr class="detail" v-for="item in products" :key="item.id">
+        <tr v-for="(item,index) in products" :key="item.id" class="detail">
           <td class="itemname">{{ item.name }}</td>
           <td class="itemstyle">{{ item.type }}</td>
           <td class="count">{{ item.count }}</td>
@@ -22,7 +22,7 @@
           </td>
           <td class="delet">
             <el-icon>
-              <Close id="delet" @click="removeFromCart()" />
+              <Close id="delet" @click="removeFromCart(index)" />
             </el-icon>
           </td>
         </tr>
@@ -77,7 +77,7 @@
 </template>
 
 <script setup>
-// 商品數據
+// 商品數據(負責顯示)
 const products = ref([]);
 
 // 抓local 票券的資料：
@@ -109,8 +109,14 @@ console.log(products.value);
 
 // ---------------------------- Functions --------------------------------//
 
-const removeFromCart = () => {
-  console.log('test');
+const removeFromCart = (index) => {
+ console.log(products.value[index]); 
+//  從頁面刪掉：
+ products.value.splice(index, 1);
+ // 轉換格式 再去localStoarage刪掉：
+
+//  console.log(products.value);
+//  localStorage.setItem("bookingData", JSON.stringify(products.value));
 };
 
 // // 函數：移除商品
