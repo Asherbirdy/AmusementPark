@@ -28,28 +28,28 @@ let bookingData = reactive([
   {
     ticketType: '全票',
     ticketInfo: '一般成人，身高110cm以上視為成人',
-    ticketPrice: 'NT.500',
+    ticketPrice: 500,
     ticketNum: 0,
     fastFoward: false,
   },
   {
     ticketType: '學生票',
     ticketInfo: '入園需持當學期註冊學生證之學生(限本人使用)',
-    ticketPrice: 'NT.400',
+    ticketPrice: 400,
     ticketNum: 0,
     fastFoward: false,
   },
   {
     ticketType: '兒童票',
     ticketInfo: '4歲~12歲，身高未滿110cm兒童',
-    ticketPrice: 'NT.250',
+    ticketPrice: 250,
     ticketNum: 0,
     fastFoward: false,
   },
   {
     ticketType: '優待票',
     ticketInfo: '持有身心障礙證明者與1位陪同者、孕婦、65歲以上長者',
-    ticketPrice: 'NT.200',
+    ticketPrice: 200,
     ticketNum: 0,
     fastFoward: false,
   },
@@ -73,8 +73,18 @@ const clearOut = () => {
 };
 
 // 將資料訪到local函式：
-const addBookingDataToLocal = () =>
-  localStorage.setItem('bookingData', JSON.stringify(bookingData));
+const addBookingDataToLocal = () => {
+  const simplifiedData = bookingData
+    .filter(item => item.ticketNum !== 0)
+    .map(item => ({
+      ticketType: item.ticketType,
+      ticketPrice: item.ticketPrice,
+      ticketNum: item.ticketNum,
+      fastFoward: item.fastFoward,
+      ticketData: ticketDate,
+    }));
+  return localStorage.setItem('bookingData', JSON.stringify(simplifiedData));
+};
 
 const addTicketDateToLocal = () =>
   localStorage.setItem('ticketDateData', JSON.stringify(ticketDate));
@@ -143,8 +153,6 @@ const disableDate = time => {
   const maxAllowedDate = today.add(31, 'day').startOf('day'); // 取得今天後7天的日期
   return selectedDate.isBefore(today) || selectedDate.isAfter(maxAllowedDate);
 };
-
-
 </script>
 <template>
   <div>
@@ -173,7 +181,7 @@ const disableDate = time => {
       <tr v-for="ticket in bookingData" :key="ticket.ticketType">
         <td>{{ ticket.ticketType }}</td>
         <td class="ex">{{ ticket.ticketInfo }}</td>
-        <td>{{ ticket.ticketPrice }}</td>
+        <td>{{ ticket.ticketPrice }}元</td>
         <td>
           <el-input-number
             v-model="ticket.ticketNum"
