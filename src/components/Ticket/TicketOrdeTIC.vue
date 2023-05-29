@@ -52,8 +52,13 @@ const clearOut = () => {
   });
 };
 
-// 將資料訪到local函式：
+// 將資料加入到local的函式：
 const addBookingDataToLocal = () => {
+  let allTicketData = [];
+  // 先抓local的東西下來並存到一個變數
+  const getLocalData = JSON.parse(localStorage?.getItem('bookingData'));
+  getLocalData ? allTicketData.push(...getLocalData) : '';
+
   const simplifiedData = bookingData
     .filter(item => item.ticketNum !== 0)
     .map(item => ({
@@ -63,7 +68,33 @@ const addBookingDataToLocal = () => {
       fastFoward: item.fastFoward,
       ticketData: ticketDate,
     }));
-  return localStorage.setItem('bookingData', JSON.stringify(simplifiedData));
+
+  // 如果時間 / 票種 / 快速通關的值 都一樣 ，放進同一個，沒有的話在allTicket放進去一個物件：
+  simplifiedData.forEach(item => {
+    const index = allTicketData.findIndex(
+      data =>
+        data.ticketType === item.ticketType &&
+        data.fastFoward === item.fastFoward &&
+        data.ticketData === item.ticketData
+    );
+    console.log(index);
+    if (index !== -1) {
+      // If a group exists, add the current data to that group
+      allTicketData[index].tickets =
+        allTicketData[index].tickets + item.ticketNum;
+    } else {
+      // If a group doesn't exist, create a new group
+      allTicketData.push({
+        ticketType: item.ticketType,
+        ticketPrice: item.ticketPrice,
+        fastFoward: item.fastFoward,
+        ticketData: item.ticketData,
+        tickets: item.ticketNum,
+      });
+    }
+  });
+
+  return localStorage.setItem('bookingData', JSON.stringify(allTicketData));
 };
 
 const addTicketDateToLocal = () =>
