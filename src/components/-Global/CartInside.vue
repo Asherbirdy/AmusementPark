@@ -77,23 +77,22 @@
 </template>
 
 <script setup>
-import { ref } from 'vue';
-import getImageUrl from '@/utils/imgPath';
-
 // 商品數據
 const products = ref([]);
 
 // 抓local 票券的資料：
 const ticketDataFromLocal = JSON.parse(localStorage.getItem('bookingData'));
-console.log(ticketDataFromLocal);
+
 // 從資料庫抓資料 並轉為 購物車的資料格式
 const ticketMapData = ticketDataFromLocal.map(item => {
-  const fastforwardPrice = 50;
+  const fastforwardPrice = 100;
   return {
     name: `${item.ticketData} ${item.ticketType} `,
-    type: item.fastFoward ? '快速通關' : '一般票',
-    count: item.ticketNum,
-    price: item.ticketPrice,
+    type: item.fastFoward ? '快速通關+100元' : '一般票',
+    count: item.tickets,
+    price: item.fastFoward
+      ? item.ticketPrice + fastforwardPrice
+      : item.ticketPrice,
   };
 });
 

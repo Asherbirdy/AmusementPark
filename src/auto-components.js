@@ -40,7 +40,6 @@ declare module '@vue/runtime-core' {
     E4: typeof import('./components/-UI Element/svg/monsterComponent/e4.vue')['default']
     E5: typeof import('./components/-UI Element/svg/monsterComponent/e5.vue')['default']
     E6: typeof import('./components/-UI Element/svg/monsterComponent/e6.vue')['default']
-<<<<<<< HEAD
     ElAside: typeof import('element-plus/es')['ElAside']
     ElButton: typeof import('element-plus/es')['ElButton']
     ElButtonGroup: typeof import('element-plus/es')['ElButtonGroup']
@@ -49,17 +48,9 @@ declare module '@vue/runtime-core' {
     ElCarouselItem: typeof import('element-plus/es')['ElCarouselItem']
     ElCol: typeof import('element-plus/es')['ElCol']
     ElContainer: typeof import('element-plus/es')['ElContainer']
-=======
-    ElButton: typeof import('element-plus/es')['ElButton']
-    ElButtonGroup: typeof import('element-plus/es')['ElButtonGroup']
-    ElCalendar: typeof import('element-plus/es')['ElCalendar']
-    ElCarousel: typeof import('element-plus/es')['ElCarousel']
-    ElCarouselItem: typeof import('element-plus/es')['ElCarouselItem']
->>>>>>> b346e40caeb1c46fb615f5d3006c23720b390804
     ElDatePicker: typeof import('element-plus/es')['ElDatePicker']
     ElDialog: typeof import('element-plus/es')['ElDialog']
     ElIcon: typeof import('element-plus/es')['ElIcon']
-<<<<<<< HEAD
     ElInput: typeof import('element-plus/es')['ElInput']
     ElInputNumber: typeof import('element-plus/es')['ElInputNumber']
     ElMain: typeof import('element-plus/es')['ElMain']
@@ -73,9 +64,6 @@ declare module '@vue/runtime-core' {
     ElTableColumn: typeof import('element-plus/es')['ElTableColumn']
     ElTag: typeof import('element-plus/es')['ElTag']
     ElText: typeof import('element-plus/es')['ElText']
-=======
-    ElInputNumber: typeof import('element-plus/es')['ElInputNumber']
->>>>>>> b346e40caeb1c46fb615f5d3006c23720b390804
     ExhibitionNotice: typeof import('./components/Notice/ExhibitionNotice.vue')['default']
     FbCustomerChat: typeof import('./components/-UI Element/QA/FbCustomerChat.vue')['default']
     Footer: typeof import('./components/-Global/Footer.vue')['default']
