@@ -72,7 +72,7 @@ const inputInfos = ref([
 //////資料送出
 // const handleSubmit =() =>{
 
-//   axios 
+//   axios
 //   .post('/api/PDO/frontEnd/memberSignup/memberSignup.php'){}
 // }
 </script>
