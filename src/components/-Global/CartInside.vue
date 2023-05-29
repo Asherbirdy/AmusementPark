@@ -35,7 +35,7 @@
         </tr>
       </table>
     </nav>
-
+    <!-- 訂單資訊： -->
     <ul class="final">
       <li>
         <div class="coupon">
@@ -83,7 +83,10 @@ const products = ref([]);
 // 抓local 票券的資料：
 const ticketDataFromLocal = JSON.parse(localStorage.getItem('bookingData'));
 
-// 從資料庫抓資料 並轉為 購物車的資料格式
+/*
+  從Local抓資料 並轉為 購物車的資料格式
+*/
+
 const ticketMapData = ticketDataFromLocal.map(item => {
   const fastforwardPrice = 100;
   return {
@@ -100,17 +103,43 @@ const ticketMapData = ticketDataFromLocal.map(item => {
 let sortArr = [];
 sortArr.push(...ticketMapData);
 
+//全部加總
 products.value.push(...sortArr);
-console.log(products);
+console.log(products.value);
 
-console.log(sortArr);
-// 函數：移除商品
-const removeFromCart = product => {
-  const index = products.value.findIndex(item => item.id === product.id);
-  if (index > -1) {
-    products.value.splice(index, 1);
-  }
+// ---------------------------- Functions --------------------------------//
+
+const removeFromCart = () => {
+  console.log('test');
 };
+
+// // 函數：移除商品
+// const removeFromCart = product => {
+//   const index = products.value.findIndex(item => item.id === product.id);
+//   if (index > -1) {
+//     products.value.splice(index, 1);
+//   }
+// };
+
+/*
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+*/
 
 // 計算商品總額
 const calculateTotalPrice = () => {
