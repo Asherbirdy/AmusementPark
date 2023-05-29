@@ -35,7 +35,7 @@ onMounted(() => {
 
 // 登出按鈕function
 const logout = () => {
-  axios.post('/api/PDO/staffAccount/staffLogout.php').then(res => {
+  axios.post('/api/PDO/backEnd/staffAccount/staffLogout.php').then(res => {
     console.log(res.data);
     router.push('/staff/login');
   });
