@@ -68,7 +68,7 @@ const blurCheck = inputType => {
 const router = useRouter();
 
 axios
-  .post('/api/PDO/frontEnd/memberLogin/memberLogin.php')
+  .post('/api/PDO/frontEnd/memberLogin/memberLoginCheck.php')
   .then(res => {
     if (res.data === '') {
       console.log('還沒登入');
@@ -91,7 +91,7 @@ const handleSubmit = () => {
   }
   // username 和 pwd
   axios
-    .post('/api/PDO/frontEnd/memberLogin/memberLoginCheck.php', {
+    .post('/api/PDO/frontEnd/memberLogin/memberLogin.php', {
       account: inputInfos.value[0].value,
       pwd: inputInfos.value[1].value,
     })
