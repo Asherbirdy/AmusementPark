@@ -1,32 +1,16 @@
 <script setup></script>
 
 <template>
-
-<!-- <side-menu id="side-menu"/> -->
 <main>
-  <ticket-use-time id="orderdate"/>
-  <ticket-order id="ticketprice"/>
-  <!-- <ticketExpressPass id="ticketexpresspass"/> -->
-  <!-- <TicketExhibitionTOR2 id="ticketselect"/> -->
-  <!-- <ticket-express-pass/> -->
-  <!-- <TicketBookingTOR id="show"/> -->
-  <div class="btnbox">
-    <btn class="btn" button-text-color="white" button-color="#D1825B">
-      <h3>清空</h3>
-    </btn>
-    <btn :style="{ width: '150px'}" class="btn" button-text-color="white" button-color="#D1825B">
-      <h3>加入購物車</h3>
-    </btn>
-    <router-link to="/cart">
-      <btn class="btn" button-text-color="white" button-color="#D1825B">
-        <h3>立即購買</h3>
-      </btn>
-    </router-link>
-  </div>
+  <!-- 訂票須知 -->
+  <BookingInfoTIC/>
+  <!-- 訂票頁面 -->
+  <TicketOrdeTIC  />
 </main>
 
 </template>
 
+<<<<<<< HEAD
 <style scoped lang="scss">
 // #side-menu{
 //   display: none;
@@ -62,3 +46,5 @@ main{
 }
 
 </style>
+=======
+>>>>>>> a99392e1516181ecd195565cd5d009ead6b127d0

@@ -1,4 +1,16 @@
-<script setup></script>
+<script setup>
+import axios from 'axios';
+
+const router = useRouter();
+
+// 登出按鈕function
+const logout = () => {
+  axios.post('/api/PDO/frontEnd/memberLogin/memberLogout.php').then(res => {
+    console.log(res.data);
+    router.push('../../shop');
+  });
+};
+</script>
 <template>
   
   <header :class="{ openMenu: isOpen }">
@@ -64,6 +76,9 @@
           <router-link to="/login">
             <icon-small-login />
           </router-link>
+          <div class="logout" to="/" @click="logout">
+            <el-button>登出</el-button>
+          </div>
         </div>
       </div>
     </nav>

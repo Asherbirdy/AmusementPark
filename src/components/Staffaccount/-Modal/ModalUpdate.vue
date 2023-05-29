@@ -55,6 +55,19 @@
 <script setup>
 import axios from 'axios';
 import { Search } from '@element-plus/icons-vue';
+const emit = defineEmits(['get-list']);
+
+const updateApi = async () => {
+  try {
+    const response = await axios.post('/api/PDO/staffAccount/staffAccountUpdate.php', {
+      changeMemberData,
+    });
+    console.log(response);
+    alert('更新成功');
+  } catch (error) {
+    console.log(error);
+  }
+};
 
 // 外部資料導入資訊
 const props = defineProps({
@@ -87,7 +100,7 @@ let changeMemberData = reactive({
 });
 
 // 退票按鈕函式
-const changeMember = () => {
+const changeMember =async () => {
   changeMemberData.id = props.id;
   //判斷是否輸入空值
   changeMemberData.account = changeAccount.value === '' ? props.account : changeAccount.value;
@@ -102,25 +115,11 @@ const changeMember = () => {
     changeMemberData.permissions = 0;
   }
 
-  console.log(changeMemberData.id);
-  console.log(changeMemberData.account);
-  console.log(changeMemberData.password);
-  console.log(changeMemberData.permissions);
-
     if (changeMemberData.permissions === 'DBA') {
       alert('冷靜 你想幹嘛');
     } else {
-      axios
-        .post('/api/PDO/staffAccount/staffAccountUpdate.php', {
-            changeMemberData,
-        })
-        .then(res => {
-          console.log(res);
-          alert('更新成功');
-        })
-        .catch(err => {
-          console.log(err);
-        });
+      await updateApi();
+      emit('get-list');
     }
 };
 </script>

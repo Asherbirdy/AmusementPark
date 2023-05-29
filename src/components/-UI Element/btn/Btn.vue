@@ -16,7 +16,8 @@ export default {
     },
     buttonColor: {
       type: String,
-      default: '#FF7B51',
+      // default: '#FF7B51',
+      default: '#D1825B',
     },
     buttonHoverColor: {
       type: String,
