@@ -1,7 +1,27 @@
 <script setup>
+import axios from 'axios';
 import dayjs from 'dayjs';
 import { useRouter } from 'vue-router';
 const router = useRouter();
+
+// 定義api
+async function insertOrder() {
+  try {
+    const response = await axios.post('/api/PDO/tickOrder/tickOrderInsert.php', {
+      params: {
+        bookingData: bookingData,
+        ticketDate: ticketDate
+      }
+    });
+
+    // 成功處理回應的程式碼
+    console.log(response.data);
+  } catch (error) {
+    // 處理錯誤的程式碼
+    console.error(error);
+  }
+}
+
 
 // 資料
 let bookingData = reactive([
@@ -64,9 +84,14 @@ let ticketDate = ref('');
 const addToCart = () => {
   if (ticketDate !== '' && isValidDateFormat(ticketDate)) {
     if (countTicket() !== 0) {
+      // 
+      insertOrder();
+
       addBookingDataToLocal(bookingData);
       addTicketDateToLocal(ticketDate);
       alert('已將票數加入到購物車');
+      console.log(bookingData);
+      console.log(ticketDate);
     } else {
       alert('請加入票數');
     }
