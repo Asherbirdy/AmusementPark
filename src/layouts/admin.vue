@@ -16,7 +16,7 @@ const permissionMap = {
 // 寫在onMounted裡面是為了渲染登入者的資料
 onMounted(() => {
   axios
-    .post('/api/PDO/staffAccount/staffLoginCheck.php')
+    .post('/api/PDO/backEnd/staffAccount/staffLoginCheck.php')
     .then(res => {
       if (res.data === '') {
         alert('請先登入');
