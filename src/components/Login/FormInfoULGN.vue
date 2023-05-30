@@ -86,87 +86,77 @@ axios
   });
 
 ////資料送出
-const handleSubmit = () => {
-  //檢查是否輸入失敗
+const handleSubmit = async () => {
+  // Check for input failure
   if (isInputFail.value) {
     return;
   }
-  // username 和 pwd
-  axios
-    .post('/api/PDO/frontEnd/memberLogin/memberLogin.php', {
+  try {
+    // Make a POST request to login
+    const response = await axios.post('/api/PDO/frontEnd/memberLogin/memberLogin.php', {
       account: inputInfos.value[0].value,
       pwd: inputInfos.value[1].value,
-    })
-    .then(res => {
-      console.log(res.data);
-      if (res.data === '登入成功') {
-        alert('登入成功');
-
-        let dbData = ref();
-        /*
-        將登入前購物車的資料 和 資料庫的資料放在一起：
-        */
-        axios.get('/api/PDO/frontEnd/cart/cartSelect.php')
-          .then(response => {
-            dbData = response.data;
-            console.log(dbData)
-            /*
-              將從資料庫抓到的 票券資料 和 商品資料 拆分到不同變數陣列
-            */
-            // 資料庫 票券陣列：
-            const ticketArr = ref([]);
-            // 資料庫 商品陣列：
-            const productArr = ref([]);
-            // 將 訂票 和 商品 推到不同的陣列
-            dbData.forEach((item, i) => {
-              if (item.hasOwnProperty('FAST_PASS')) {
-                // 將分類的票券退到 ticketArr 
-                ticketArr.value.push(item)
-              } else {
-                // 將剩下的的商品退到 productArr
-                productArr.value.push(item);
-              }
-            });
-            console.log(ticketArr.value, productArr.value);
-            /*
-              將 ticketArr 資料庫的格式 轉換為 顯示頁面的格式：
-            */
-            const displayTicketData = ticketArr.value.map(item => {
-              return {
-                fastFoward: item.FAST_PASS ? true : false,
-                ticketData: item.START_DATE.split(' ')[0],
-                ticketNum: item.TICK_NUM,
-                ticketPrice: getTicketPrice(item.TICK_ID),
-                ticketType: getTicketType(item.TICK_ID),
-              }
-            });
-            console.log(displayTicketData);
-
-          })
-          .catch(error => {
-            console.error(error);
-          });
-
-        router.push('/');
-      } else {
-        alert('錯誤帳號密碼');
-      }
-
-
-      // 如果登入成功:
-      // if (res.data === 'true') {
-      //   alert('登入成功');
-      //   router.push('/');
-      // } else {
-      //   alert('錯誤帳號密碼');
-      // }
-
-    })
-    .catch(err => {
-      console.log(err);
-      alert('伺服器問題');
     });
+
+    console.log(response.data);
+
+    if (response.data === '登入成功') {
+      alert('登入成功');
+
+      let dbData = ref();
+
+      // 取得ＤＢ資料
+      const cartResponse = await axios.get('/api/PDO/frontEnd/cart/cartSelect.php');
+      dbData = cartResponse.data;
+      console.log(dbData);
+
+      /*
+       將從資料庫抓到的 票券資料 和 商品資料 拆分到不同變數陣列
+      */
+
+      const ticketArr = ref([]);
+      const productArr = ref([]);
+
+      dbData.forEach((item, i) => {
+        if (item.hasOwnProperty('FAST_PASS')) {
+          ticketArr.value.push(item);
+        } else {
+          productArr.value.push(item);
+        }
+      });
+
+      console.log(ticketArr.value, productArr.value);
+
+      /*
+       將 ticketArr 資料庫的格式 轉換為 顯示頁面的格式：
+      */
+
+      const displayTicketData = ticketArr.value.map(item => {
+        return {
+          fastFoward: item.FAST_PASS ? true : false,
+          ticketData: item.START_DATE.split(' ')[0],
+          tickets: item.TICK_NUM,
+          ticketPrice: getTicketPrice(item.TICK_ID),
+          ticketType: getTicketType(item.TICK_ID),
+        };
+      });
+      console.log('畫面顯示的資料', displayTicketData);
+      // 抓取local的資料：(會員登入前的購物車)
+
+
+
+
+      // 跳到首頁
+      router.push('/');
+    } else {
+      alert('錯誤帳號密碼');
+    }
+  } catch (error) {
+    console.error(error);
+    alert('伺服器問題');
+  }
 };
+
 </script>
 
 <template>
