@@ -30,7 +30,7 @@ const handleSaveData = () => {
   let isAllFieldsEmpty = true;
   isInputFail.value = false;
 
-  const validateField = (field) => {
+  const validateField = field => {
     const value = tableData.value[field.name];
 
     if (field.name === 'phoneNum') {
@@ -41,7 +41,8 @@ const handleSaveData = () => {
 
     if (field.name === 'emailAdd') {
       // 電子郵件格式
-      const emailRegex = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+      const emailRegex =
+        /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
       return !value || emailRegex.test(value.trim());
     }
 
@@ -50,7 +51,6 @@ const handleSaveData = () => {
       const dateRegex = /^(\d{4})\/(\d{2})\/(\d{2})$/;
       return !value || dateRegex.test(value.trim());
     }
-
     return true;
   };
 
@@ -58,7 +58,8 @@ const handleSaveData = () => {
   for (const field of formFields) {
     if (
       field.name !== 'name' &&
-      (!tableData.value[field.name] || tableData.value[field.name].trim() === '')
+      (!tableData.value[field.name] ||
+        tableData.value[field.name].trim() === '')
     ) {
       isAllFieldsEmpty = false;
     }
@@ -88,12 +89,21 @@ const handleCancelEdit = () => {
   dialogVisible.value = false; // 關閉彈窗
 };
 
-axios.post('/api/PDO/frontEnd/memberLogin/memberLoginCheck.php').then(res => {
-  // 請在這裡處理回應的資料
-}).catch(error => {
-  // 請在這裡處理錯誤
-});
+axios
+  .post('/api/PDO/frontEnd/memberModify.php')
+  .then(res => {
+    // 在這裡處理回傳的資料
+    const data = res.data; // 回傳的 JSON 資料
 
+    // 在這裡使用取得的資料進行後續處理，例如更新前端的資料或顯示在介面上
+    console.log(data); // 在瀏覽器的開發者工具中輸出資料
+
+    // 更新前端資料或其他操作...
+  })
+  .catch(error => {
+    // 在這裡處理錯誤
+    console.error(error);
+  });
 </script>
 
 <template>
@@ -163,12 +173,12 @@ axios.post('/api/PDO/frontEnd/memberLogin/memberLoginCheck.php').then(res => {
       <template v-if="field.type === 'date'">
         <input
           v-model="tableData[field.name]"
-          type="date"
           placeholder="YYYY/MM/DD"
           style="
             margin: 20px auto;
-            height: 50px;
-            font-size: 30px;
+            height: 45px;
+            width: 366px;
+            font-size: 20px;
             color: black;
             border-radius: 5px;
             padding-left: 5px;
@@ -199,6 +209,7 @@ axios.post('/api/PDO/frontEnd/memberLogin/memberLoginCheck.php').then(res => {
           style="
             margin: 20px auto;
             height: 45px;
+            width: 366px;
             font-size: 20px;
             color: black;
             border-radius: 5px;
