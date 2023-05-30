@@ -23,7 +23,7 @@
 <script setup>
 import axios from 'axios';
 
-axios.get('/api/PDO/frontEnd/cart/cartSelect.php')
+axios.get('/PDO/frontEnd/cart/cartSelect.php')
   .then(response => {
 
     console.log(response.data);

@@ -5,7 +5,7 @@ const router = useRouter();
 
 // 登出按鈕function
 const logout = () => {
-  axios.post('/api/PDO/frontEnd/memberLogin/memberLogout.php').then(res => {
+  axios.post('/PDO/frontEnd/memberLogin/memberLogout.php').then(res => {
     console.log(res.data);
     router.push('../../shop');
   });
