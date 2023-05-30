@@ -70,7 +70,7 @@ const blurCheck = inputType => {
 const router = useRouter();
 
 axios
-  .post('/api/PDO/frontEnd/memberLogin/memberLoginCheck.php')
+  .post('/PDO/frontEnd/memberLogin/memberLoginCheck.php')
   .then(res => {
     if (res.data === '') {
       console.log('還沒登入');
@@ -91,11 +91,20 @@ const handleSubmit = async () => {
   if (isInputFail.value) {
     return;
   }
+  // username 和 pwd
+  axios
+    .post('/PDO/frontEnd/memberLogin/memberLogin.php', {
   try {
     // Make a POST request to login
     const response = await axios.post('/api/PDO/frontEnd/memberLogin/memberLogin.php', {
       account: inputInfos.value[0].value,
       pwd: inputInfos.value[1].value,
+    })
+    .then(res => {
+      console.log(res.data);
+      if(res.data === '登入成功'){
+        alert('登入成功');
+        router.push('/admin/touristmember');
     });
 
     if (response.data === '登入成功') {
@@ -207,6 +216,13 @@ const handleSubmit = async () => {
       } else {
         console.log('Local無資料')
       }
+    
+    })
+    .catch(err => {
+      console.log(err);
+      alert('伺服器問題');
+    });
+  };
       // 跳到首頁
       router.push('/');
     } else {

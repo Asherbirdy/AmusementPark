@@ -4,7 +4,8 @@
     <Header></Header>
     <section class="container">
         <!-- <aside class="aside"> -->
-            <NavUserTBS />
+            <!-- <NavUserTBS /> -->
+            <SideMenu />
         <!-- </aside> -->
         <div class="content">
             <RouterView />
