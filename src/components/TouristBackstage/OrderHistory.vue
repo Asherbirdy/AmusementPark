@@ -44,7 +44,7 @@ onMounted(() => {
           <td>{{ productOrder.id }}</td>
           <td>{{ productOrder.date }}</td>
           <td>{{ productOrder.total }}</td>
-          <td></td>
+          <td class="cancel"><CloseBold style="width: 1em; height: 1em; margin-right: 8px" /></td>
           <td>{{ productOrder.statuses }}</td>
         </tr>
       </tbody>

@@ -1,16 +1,3 @@
-<script setup>
-import axios from 'axios';
-
-const router = useRouter();
-
-// 登出按鈕function
-const logout = () => {
-  axios.post('/api/PDO/frontEnd/memberLogin/memberLogout.php').then(res => {
-    console.log(res.data);
-    router.push('../../shop');
-  });
-};
-</script>
 <template>
   
   <header :class="{ openMenu: isOpen }">
@@ -65,27 +52,110 @@ const logout = () => {
       <!-- <a id="moblie_menu" @click="handMenuOpen" href="javascript:;"></a> -->
       <div>
         <div class="rsite">
-          <router-link to="#">
-            <icon-small-bell />
-          </router-link>
+          <template v-if="isLoggedIn === true">
+            <router-link to="#">
+              <icon-small-bell />
+            </router-link>            
+          </template>
+
           
           <router-link to="/cart">
             <icon-small-basket />
           </router-link>
 
-          <router-link to="/login">
-            <icon-small-login />
-          </router-link>
-          <div class="logout" to="/" @click="logout">
-            <el-button>登出</el-button>
-          </div>
+          <template v-if="isLoggedIn === false">
+            <router-link to="/login" id="login1">
+              <icon-small-login />
+            </router-link>
+          </template>
+
+          <template v-if="isLoggedIn === true">
+            <details id="login2">
+              <summary>
+                <icon-small-login />
+              </summary>
+              <div class="YYY">
+                <div class="YYY-content">
+                  <ul>
+                    <li>
+                      <router-link to="/admin/touristmember">
+                          <UserFilled style="width: 20px; height: 20px; margin: 0px" />會員資料
+                      </router-link>
+                    </li>
+                    <li>
+                      <router-link to="/admin/pay">
+                        <CreditCard style="width: 20px; height: 20px; margin: 0px" />付款資訊
+                      </router-link>
+                    </li>
+                    <li>
+                      <router-link to="/admin/touristqrcode">
+                        <Ticket style="width: 20px; height: 20px; margin: 0px" />現有票卷
+                      </router-link>
+                    </li>
+                    <li>
+                      <router-link to="/admin/touristproductorder">
+                        <Memo style="width: 20px; height: 20px; margin: 0px" />歷史訂單
+                      </router-link>
+                    </li>
+                  </ul>
+                  <div class="logout" to="/" @click="logout">
+                    <el-button>登出</el-button>
+                  </div>
+                </div>
+              </div>
+            </details>            
+          </template>
         </div>
       </div>
     </nav>
   </header>
   <div id="space"></div>
 </template>
+<script setup>
+import { ref, nextTick  } from 'vue';
+import axios from 'axios';
+import { useRouter } from 'vue-router';
 
+const router = useRouter();
+const isLoggedIn = ref(false);
+
+const checkLoginStatus = () => {
+  axios
+    .post('/api/PDO/frontEnd/memberLogin/memberLoginCheck.php')
+    .then(res => {
+      if (res.data === '') {
+        console.log('還沒登入');
+        isLoggedIn.value = false;
+      } else {
+        console.log('已經登入了');
+        isLoggedIn.value = true;
+      }
+      forceUpdate(); // 強制重新渲染
+    })
+    .catch(err => {
+      console.log(err);
+      alert('登入狀態檢查出錯');
+    });
+};
+
+const forceUpdate = () => {
+  // 透過引用的方式強制觸發組件的重新渲染
+  const dummy = ref(null);
+  nextTick(() => {
+    dummy.value = {};
+  });
+};
+
+const logout = () => {
+  axios.post('/api/PDO/frontEnd/memberLogin/memberLogout.php').then(res => {
+    console.log(res.data);
+    isLoggedIn.value = false;
+    router.push('/');
+  });
+};
+
+checkLoginStatus(); // 檢查登入狀態
+</script>
 <style scoped lang="scss">
 #headerbg {
   // display: none;
@@ -166,6 +236,34 @@ header {
       padding: 4px;
       color: #5b5b5b;
     }
+
+    .YYY {
+      background: $maincolor2;
+      // width: 100px;
+      border-radius: 0.5em;
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+      right:  0%;
+      margin-top: 10px;
+      // pointer-events: none;
+      position: absolute;
+      top: 100%;
+      transform: translate(-50%, -50%);
+      text-align: left;
+      // display: flex;
+      // flex-direction: column;
+    }
+
+    details{
+      summary {
+        list-style: none;
+      }
+      summary:focus {
+        outline: none;
+      }
+      summary::-webkit-details-marker {
+        display: none;
+      }
+    }
   }
 }
 
@@ -175,6 +273,15 @@ header {
   // height: 200px;
 }
 a#moblie_menu {
+  display: none;
+}
+summary {
+  list-style: none;
+}
+summary:focus {
+  outline: none;
+}
+summary::-webkit-details-marker {
   display: none;
 }
 </style>
