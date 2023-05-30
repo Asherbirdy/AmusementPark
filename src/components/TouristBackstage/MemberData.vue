@@ -27,23 +27,59 @@ onMounted(async () => {
 });
 
 const handleSaveData = () => {
-  // 檢查表單是否為空白
+  let isAllFieldsEmpty = true;
+  isInputFail.value = false;
+
+  const validateField = (field) => {
+    const value = tableData.value[field.name];
+
+    if (field.name === 'phoneNum') {
+      // 電話號碼格式
+      const phoneRegex = /^[0-9]{10}$/;
+      return !value || phoneRegex.test(value.trim());
+    }
+
+    if (field.name === 'emailAdd') {
+      // 電子郵件格式
+      const emailRegex = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+      return !value || emailRegex.test(value.trim());
+    }
+
+    if (field.name === 'birthDate') {
+      // 日期格式: YYYY/MM/DD
+      const dateRegex = /^(\d{4})\/(\d{2})\/(\d{2})$/;
+      return !value || dateRegex.test(value.trim());
+    }
+
+    return true;
+  };
+
+  // 檢查表單是否為空白並檢查欄位格式
   for (const field of formFields) {
     if (
-      !tableData.value[field.name] ||
-      tableData.value[field.name].trim() === ''
+      field.name !== 'name' &&
+      (!tableData.value[field.name] || tableData.value[field.name].trim() === '')
     ) {
-      alert('請正確輸入所有資訊！');
-      return;
+      isAllFieldsEmpty = false;
+    }
+
+    if (!validateField(field)) {
+      isInputFail.value = true;
     }
   }
 
-  if (validateInputs()) {
-    dialogVisible.value = false;
-    saveData();
-  } else {
-    alert('輸入的電話號碼、電子郵件或日期格式不正確！');
+  if (isAllFieldsEmpty) {
+    alert('請正確輸入所有資訊！');
+    return;
   }
+
+  if (isInputFail.value) {
+    alert('輸入的電話號碼、電子郵件或日期格式不正確！');
+    return;
+  }
+
+  dialogVisible.value = false;
+  saveData();
 };
 
 const handleCancelEdit = () => {
@@ -52,40 +88,12 @@ const handleCancelEdit = () => {
   dialogVisible.value = false; // 關閉彈窗
 };
 
-// 電話號碼、電子郵件、日期是否不正確
-const validateInputs = () => {
-  // 電話號碼格式
-  const phoneRegex = /^[0-9]{10}$/;
-  // 電子郵件格式
-  const emailRegex =
-    /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
-  // 出生年月日格式: YYYY/MM/DD
-  const dateRegex = /^(\d{4})\/(\d{2})\/(\d{2})$/;
+axios.post('/api/PDO/frontEnd/memberLogin/memberLoginCheck.php').then(res => {
+  // 請在這裡處理回應的資料
+}).catch(error => {
+  // 請在這裡處理錯誤
+});
 
-  // 從資料庫抓原有電話、電子郵件、日期
-  const phoneNum = tableData.value.phoneNum;
-  const emailAdd = tableData.value.emailAdd;
-  const birthDate = tableData.value.birthDate;
-
-  // 電話 判斷式
-  if (phoneNum && !phoneRegex.test(phoneNum) && phoneNum.trim() === '') {
-    isInputFail.value = true;
-    return false;
-  }
-  // 電子郵件 判斷式
-  if (emailAdd && !emailRegex.test(emailAdd) && emailAdd.trim() === '') {
-    isInputFail.value = true;
-    return false;
-  }
-  // 日期 判斷式
-  if (birthDate && !dateRegex.test(birthDate) && birthDate.trim() === '') {
-    isInputFail.value = true;
-    return false;
-  }
-
-  isInputFail.value = false;
-  return true;
-};
 </script>
 
 <template>
