@@ -51,7 +51,7 @@ const emit = defineEmits(['get-list']);
 //定義新增function
 const addAccount = async () => { // 将addAccount函数声明为异步函数
   try {
-    const res = await axios.post('/api/PDO/staffAccount/staffSignup.php', {
+    const res = await axios.post('/api/PDO/backEnd/staffAccount/staffSignup.php', {
       account: staff.account,
       pwd: staff.pwd,
       permissions: staff.permissions,
