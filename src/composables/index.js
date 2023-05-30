@@ -1,6 +1,7 @@
 import { test } from './test';
 import { TicketType } from './getTicketTypeByNum';
 import { ticketPrice } from './getTicketPriceByTicketTypeNum';
+import { localBookingData } from './getLocalBookingData';
 
 /*
 重複使用的工具：
@@ -12,6 +13,9 @@ export const useTest = test;
 /*
 訂票系統
 */
+
+// 獲得目前 Local 目前的票數
+export const getLocalBookingData = localBookingData;
 
 // 輸入 票型數字 1 , 2 , 3 , 4  會轉換成 全票 / 學生票 / 兒童票 / 優待票
 export const getTicketType = TicketType;

@@ -1,6 +1,6 @@
 <script setup>
 import axios from 'axios';
-import { useTest, getTicketType, getTicketPrice } from "../../composables";
+import { useTest, getTicketType, getTicketPrice, getLocalBookingData } from "../../composables";
 console.log(getTicketType(4))
 
 ////// 帳號 + 密碼 的 input欄位
@@ -98,7 +98,7 @@ const handleSubmit = async () => {
       pwd: inputInfos.value[1].value,
     });
 
-    console.log(response.data);
+
 
     if (response.data === '登入成功') {
       alert('登入成功');
@@ -108,14 +108,13 @@ const handleSubmit = async () => {
       // 取得ＤＢ資料
       const cartResponse = await axios.get('/api/PDO/frontEnd/cart/cartSelect.php');
       dbData = cartResponse.data;
-      console.log(dbData);
 
       /*
        將從資料庫抓到的 票券資料 和 商品資料 拆分到不同變數陣列
       */
 
-      const ticketArr = ref([]);
-      const productArr = ref([]);
+      const ticketArr = ref([]); //票券資料庫原始陣列
+      const productArr = ref([]); //商品資料庫原始陣列
 
       dbData.forEach((item, i) => {
         if (item.hasOwnProperty('FAST_PASS')) {
@@ -125,7 +124,6 @@ const handleSubmit = async () => {
         }
       });
 
-      console.log(ticketArr.value, productArr.value);
 
       /*
        將 ticketArr 資料庫的格式 轉換為 顯示頁面的格式：
@@ -141,11 +139,41 @@ const handleSubmit = async () => {
         };
       });
       console.log('畫面顯示的資料', displayTicketData);
+
       // 抓取local的資料：(會員登入前的購物車)
+      const localBookingData = ref(getLocalBookingData());
+      console.log(localBookingData.value);
+      console.log(ticketArr.value);
+      // 將Local 的資料推進 ticketArr
+
+      // 兩票卷陣列加在一起並整理, arr1 放進  arr2
+      localBookingData.value.forEach((localTicket, i) => {
+        const index = displayTicketData.findIndex(
+          data =>
+            data.ticketType === localTicket.ticketType &&
+            data.fastFoward === localTicket.fastFoward &&
+            data.ticketData === localTicket.ticketData
+        );
+        if (index !== -1) {
+          // If a group exists, add the current data to that group
+          displayTicketData[index].tickets =
+            displayTicketData[index].tickets + localTicket.tickets;
+        } else {
+          // If a group doesn't exist, create a new group
+          displayTicketData.push({
+            ticketType: localTicket.ticketType,
+            ticketPrice: localTicket.ticketPrice,
+            fastFoward: localTicket.fastFoward,
+            ticketData: localTicket.ticketData,
+            tickets: localTicket.tickets,
+          });
+          console.log(localTicket.ticketNum);
+        }
+        console.log(index);
+      })
 
 
-
-
+      console.log('加總陣列', displayTicketData);
       // 跳到首頁
       router.push('/');
     } else {
