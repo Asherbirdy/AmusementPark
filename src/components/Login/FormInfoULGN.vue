@@ -1,7 +1,7 @@
 <script setup>
 import axios from 'axios';
-import { useTest } from "../../composables";
-
+import { useTest, getTicketType } from "../../composables";
+console.log(getTicketType(4))
 
 ////// 帳號 + 密碼 的 input欄位
 const account = ref('0912345678'); // 用作v-model雙向數據綁定

@@ -1,4 +1,4 @@
-export function getTicketType(ticket) {
+export const TicketType = function (ticket) {
   switch (ticket) {
     case 1:
       console.log('是全票');
@@ -17,4 +17,4 @@ export function getTicketType(ticket) {
       return '全票4';
       break;
   }
-}
+};
