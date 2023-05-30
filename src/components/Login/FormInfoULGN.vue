@@ -93,7 +93,7 @@ const handleSubmit = async () => {
   }
   try {
     // Make a POST request to login
-    const response = await axios.post('/api/PDO/frontEnd/memberLogin/memberLogin.php', {
+    const response = await axios.post('/PDO/frontEnd/memberLogin/memberLogin.php', {
       account: inputInfos.value[0].value,
       pwd: inputInfos.value[1].value,
     });
@@ -102,7 +102,7 @@ const handleSubmit = async () => {
       alert('登入成功');
       let dbData = ref();
       // 取得ＤＢ資料
-      const cartResponse = await axios.get('/api/PDO/frontEnd/cart/cartSelect.php');
+      const cartResponse = await axios.get('/PDO/frontEnd/cart/cartSelect.php');
       dbData = cartResponse.data;
       console.log('從資料庫抓到的原始資料=>', dbData);
       /*
