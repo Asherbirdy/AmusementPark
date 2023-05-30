@@ -1,6 +1,6 @@
 <script setup>
 import axios from 'axios';
-import { useTest, getTicketType, getTicketPrice, getLocalBookingData } from "../../composables";
+import { useTest, getTicketType, getTicketPrice, getLocalBookingData, getTicketTypeFromNum } from "../../composables";
 console.log(getTicketType(4))
 
 ////// 帳號 + 密碼 的 input欄位
@@ -104,7 +104,7 @@ const handleSubmit = async () => {
       // 取得ＤＢ資料
       const cartResponse = await axios.get('/api/PDO/frontEnd/cart/cartSelect.php');
       dbData = cartResponse.data;
-
+      console.log('從資料庫抓到的原始資料=>', dbData);
       /*
       將從資料庫抓到的 票券資料 和 商品資料 拆分到不同變數陣列
       */
@@ -118,6 +118,7 @@ const handleSubmit = async () => {
           productArr.value.push(item);
         }
       });
+      console.log('將原始資料分為兩個不同的陣列(票券/商品)=>', ticketArr.value, productArr.value);
 
       /*
        將 ticketArr 資料庫的格式 轉換為 顯示頁面的格式：
@@ -132,40 +133,80 @@ const handleSubmit = async () => {
           ticketType: getTicketType(item.TICK_ID),
         };
       });
-      console.log('畫面顯示的資料', displayTicketData);
+      console.log('轉換ticketArr為使用者顯示的資料=>', displayTicketData);
 
       /*
       將 Local 的資料推進 原本只放資料庫的資料 ticketArr
+      如果Local沒資料就不執行合併
       */
 
-      const localBookingData = ref(getLocalBookingData());
-      localBookingData.value.forEach((localTicket, i) => {
-        // 抓到一樣的陣列：
-        const index = displayTicketData.findIndex(
-          data =>
-            data.ticketType === localTicket.ticketType &&
-            data.fastFoward === localTicket.fastFoward &&
-            data.ticketData === localTicket.ticketData
-        );
-        if (index !== -1) {
-          // If a group exists, add the current data to that group
-          displayTicketData[index].tickets =
-            displayTicketData[index].tickets + localTicket.tickets;
-        } else {
-          // If a group doesn't exist, create a new group
-          displayTicketData.push({
-            ticketType: localTicket.ticketType,
-            ticketPrice: localTicket.ticketPrice,
-            fastFoward: localTicket.fastFoward,
-            ticketData: localTicket.ticketData,
-            tickets: localTicket.tickets,
-          });
-          console.log(localTicket.ticketNum);
-        }
-      })
+      if (localStorage.getItem("bookingData") !== null) {
+        console.log('發現Local有資料所以執行合併整理(Local+Database)')
+
+        const localBookingData = ref(getLocalBookingData());
+
+        localBookingData.value.forEach((localTicket, i) => {
+          // 抓到一樣的陣列：
+          const index = displayTicketData.findIndex(
+            data =>
+              data.ticketType === localTicket.ticketType &&
+              data.fastFoward === localTicket.fastFoward &&
+              data.ticketData === localTicket.ticketData
+          );
+          if (index !== -1) {
+            // If a group exists, add the current data to that group
+            displayTicketData[index].tickets =
+              displayTicketData[index].tickets + localTicket.tickets;
+          } else {
+            // If a group doesn't exist, create a new group
+            displayTicketData.push({
+              ticketType: localTicket.ticketType,
+              ticketPrice: localTicket.ticketPrice,
+              fastFoward: localTicket.fastFoward,
+              ticketData: localTicket.ticketData,
+              tickets: localTicket.tickets,
+            });
+          }
+        });
+
+        console.log('Local的資料+資料庫的資料=>', displayTicketData);
+
+        /*
+        1.將最新的資料放進localStorage
+        2.將資料轉成資料庫的形式
+        */
+
+        localStorage.setItem('bookingData', JSON.stringify(displayTicketData));
+
+        const currentLocal = getLocalBookingData();
+
+        //要給資料庫的格式：
+        const postToDBData = (currentLocal.map((ticketData => {
+          return {
+            END_DATE: null,
+            FAST_PASS: ticketData.fastFoward ? 0 : 1,
+            ORDER_ID: null,
+            START_DATE: ticketData.ticketData,
+            TICK_DATE: ticketData.ticketData,
+            TICK_ID: getTicketTypeFromNum(ticketData.ticketType),
+            TICK_NUM: ticketData.tickets,
+            TICK_ORDER_ID: null,
+          };
+        })))
+        console.log('傳給資料庫的資料', postToDBData);
+        // 傳給後端
+        axios.post('php路徑', postToDBData).then(res => {
+          console.log(res)
+        }).catch(err => { console.log(err) });
 
 
-      console.log('加總陣列', displayTicketData);
+
+
+
+
+      } else {
+        console.log('Local無資料')
+      }
       // 跳到首頁
       router.push('/');
     } else {
