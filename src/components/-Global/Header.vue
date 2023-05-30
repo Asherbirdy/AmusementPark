@@ -310,6 +310,7 @@ header {
 a#moblie_menu {
   display: none;
 }
+
 summary {
   list-style: none;
   &:focus {
