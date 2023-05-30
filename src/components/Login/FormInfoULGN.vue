@@ -103,16 +103,7 @@ const handleSubmit = () => {
       } else {
         alert('錯誤帳號密碼');
       }
-      
-
-      // 如果登入成功:
-      // if (res.data === 'true') {
-      //   alert('登入成功');
-      //   router.push('/');
-      // } else {
-      //   alert('錯誤帳號密碼');
-      // }
-      
+    
     })
     .catch(err => {
       console.log(err);
