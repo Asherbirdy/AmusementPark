@@ -11,19 +11,24 @@
             <frame-yellow>
                 <img :src="imgURL(item.image)" alt="">
                 <p class="product_name"> {{ item.productName }}</p>
-                <Button>加入購物車</Button>
+                <Button class="button" @click="closeModal">加入購物車</Button>
             </frame-yellow>
         </li>
     </ul>
+    <cartadd :class="{ modal: isopen }" @close-modal="closeModal" />
 </template>
 <script setup>
 import getImageUrl from '@/utils/imgPath';
+let isopen = ref(true);
+// 彈窗開關
+const openModal = () => {
+    emit(ridemodal.value = true);
+    // console.log(ridemodal.value)
+};
+const closeModal = () => {
+    isopen.value = !isopen.value;
+};
 const imgURL = name => getImageUrl(name);
-document.addEventListener('mousedown', function(event) {
-  var x = event.clientX;
-  var y = event.clientY;
-  console.log('点击的坐标位置：', x, y);
-});
 
 const product = ref([
     {
@@ -90,22 +95,27 @@ img {
     color: $textcolor7;
 }
 
-Button{
+Button {
     font-size: 20px;
     width: 140px;
     height: 50px;
     border-radius: 10px;
 }
+.modal {
+    visibility: hidden;
+}
+
 @media screen and (max-width: 1280px) {
-    main.s2{
+    main.s2 {
         padding-left: 80px;
     }
-    .frame_yellow{
+
+    .frame_yellow {
         padding-left: 180px;
     }
-    .frame{
+
+    .frame {
         width: 300px;
         height: 400px;
     }
-}
-</style>
+}</style>

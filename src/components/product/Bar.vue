@@ -17,9 +17,14 @@
     </div>
 </template>
 <script setup>
+document.addEventListener('mousedown', function (event) {
+    var x = event.clientX;
+    var y = event.clientY;
+    //   console.log('點擊的座標位置：', x, y);
+});
 document.addEventListener('scroll', function () {
     var scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-    console.log(scrollTop);
+    // console.log(scrollTop);
 
     var sidebar = document.querySelector('.sidebar');
     if (scrollTop > 150) {

@@ -11,13 +11,23 @@
             <frame-pink>
                 <img :src="imgURL(item.image)" alt="">
                 <p class="product_name"> {{ item.productName }}</p>
-                <Button>加入購物車</Button>
+                <Button class="button" @click="closeModal">加入購物車</Button>
             </frame-pink>
         </li>
     </ul>
+    <cartadd :class="{ modal: isopen }" @close-modal="closeModal" />
 </template>
 <script setup>
 import getImageUrl from '@/utils/imgPath';
+let isopen = ref(true);
+// 彈窗開關
+const openModal = () => {
+    emit(ridemodal.value = true);
+    // console.log(ridemodal.value)
+};
+const closeModal = () => {
+    isopen.value = !isopen.value;
+};
 const imgURL = name => getImageUrl(name);
 const product = ref([
     {
@@ -83,22 +93,28 @@ img {
     color: $textcolor7;
 }
 
-Button{
+Button {
     font-size: 20px;
     width: 140px;
     height: 50px;
     border-radius: 10px;
 }
+
+.modal {
+    visibility: hidden;
+}
+
 @media screen and (max-width: 1280px) {
-    main.s1{
+    main.s1 {
         padding-left: 80px;
     }
-    .frame_pink{
+
+    .frame_pink {
         padding-left: 180px;
     }
-    .frame{
+
+    .frame {
         width: 300px;
         height: 400px;
     }
-}
-</style>
+}</style>

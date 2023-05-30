@@ -1,72 +1,62 @@
 <template>
     <div class="titleS1">
         <title-s1 class="s1">
-            <h3 id="clothes">衣服</h3>
+            <h3>衣服</h3>
         </title-s1>
 
     </div>
     <ul class="frame_blue">
-        <li v-for="(item, index) in product" :key="item.productName">
-
+        <li v-for="(item, index) in  clothes" :key="item.id">
             <frame-blue>
-                <img :src="imgURL(item.image)" alt="">
-                <p class="product_name"> {{ item.productName }}</p>
-                <Button class="button" @click="isopen = !isopen">加入購物車</Button>
+                <img :src="imgURL(item.url)" alt="">
+                <p class="product_name"> {{ item.name }}</p>
+                <Button class="button" @click="closeModal">加入購物車</Button>
             </frame-blue>
         </li>
     </ul>
 
-
-    <cartadd v-if="ridemodal" :class="{ modal: isopen }" @close-modal="closeModal" />
+    <cartadd :class="{ modal: isopen }" @close-modal="closeModal" />
     <!-- :class="{modal:ridemodal}"  -->
 </template>
 <script setup>
 import getImageUrl from '@/utils/imgPath';
-
+import { reactive, ref } from 'vue';
+const imgURL = name => getImageUrl(name);
 
 let isopen = ref(true);
-// 談窗開關
-let ridemodal = ref(true);
+// 彈窗開關
 const openModal = () => {
     emit(ridemodal.value = true);
     // console.log(ridemodal.value)
 };
 const closeModal = () => {
-    ridemodal.value = false;
+    isopen.value = !isopen.value;
 };
-// const emit = defineEmits(['openModal', 'closeModal']);
-const imgURL = name => getImageUrl(name);
-
-// const props = defineProps(['open']);
 
 
-
-
-
-
-const product = ref([
-    {
-        productName: '艾比怪獸上衣',
-        image: 'Tshirt1.png',
-    },
-    {
-        productName: 'Q摸怪獸上衣',
-        image: "Tshirt2.png",
-    },
-    {
-        productName: '奇樂怪獸上衣',
-        image: "Tshirt3.png",
-    },
-    {
-        productName: 'MONSTAR上衣',
-        image: "Tshirt4.png",
-    },
-    {
-        productName: '戴蒙怪獸上衣',
-        image: "Tshirt5.png",
+const props = defineProps({
+    clothes: {
+        type: Array,
+        required: true
     }
+});
 
-]);
+
+
+const keyword = '手機殼'; // 要搜尋的關鍵字
+onMounted(() => {
+
+    // props.productData.forEach(product => {
+
+    // if (product.name.includes(keyword) && !products.some(item => item.name === product.name)) {
+    //     products.push(product);
+    // }
+    // products.arr.push(product);
+    // console.log(product);
+
+    // });
+    // console.log(products);
+});
 
 </script>
 <style lang="scss" scoped>
