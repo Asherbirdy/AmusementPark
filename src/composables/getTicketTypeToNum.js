@@ -9,7 +9,7 @@ export const ticketTypeToNum = function (ticketTypeNum) {
     case '兒童票':
       return 3;
       break;
-    case '優待票':
+    case '優惠票':
       return 4;
       break;
   }

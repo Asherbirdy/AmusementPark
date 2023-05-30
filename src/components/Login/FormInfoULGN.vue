@@ -1,7 +1,13 @@
 <script setup>
 import axios from 'axios';
-import { useTest, getTicketType, getTicketPrice, getLocalBookingData, getTicketTypeFromNum } from "../../composables";
-console.log(getTicketType(4))
+import {
+  useTest,
+  getTicketType,
+  getTicketPrice,
+  getLocalBookingData,
+  getTicketTypeFromNum,
+} from '../../composables';
+console.log(getTicketType(4));
 
 ////// 帳號 + 密碼 的 input欄位
 const account = ref('0912345678'); // 用作v-model雙向數據綁定
@@ -93,10 +99,13 @@ const handleSubmit = async () => {
   }
   try {
     // Make a POST request to login
-    const response = await axios.post('/PDO/frontEnd/memberLogin/memberLogin.php', {
-      account: inputInfos.value[0].value,
-      pwd: inputInfos.value[1].value,
-    });
+    const response = await axios.post(
+      '/PDO/frontEnd/memberLogin/memberLogin.php',
+      {
+        account: inputInfos.value[0].value,
+        pwd: inputInfos.value[1].value,
+      }
+    );
 
     if (response.data === '登入成功') {
       alert('登入成功');
@@ -118,7 +127,11 @@ const handleSubmit = async () => {
           productArr.value.push(item);
         }
       });
-      console.log('將原始資料分為兩個不同的陣列(票券/商品)=>', ticketArr.value, productArr.value);
+      console.log(
+        '將原始資料分為兩個不同的陣列(票券/商品)=>',
+        ticketArr.value,
+        productArr.value
+      );
 
       /*
        將 ticketArr 資料庫的格式 轉換為 顯示頁面的格式：
@@ -131,6 +144,8 @@ const handleSubmit = async () => {
           tickets: item.TICK_NUM,
           ticketPrice: getTicketPrice(item.TICK_ID),
           ticketType: getTicketType(item.TICK_ID),
+          ticketID: item.TICK_ORDER_ID,
+          ticketOrderID: item.TICK_ORDER_ID,
         };
       });
       console.log('轉換ticketArr為使用者顯示的資料=>', displayTicketData);
@@ -140,8 +155,8 @@ const handleSubmit = async () => {
       如果Local沒資料就不執行合併
       */
 
-      if (localStorage.getItem("bookingData") !== null) {
-        console.log('發現Local有資料所以執行合併整理(Local+Database)')
+      if (localStorage.getItem('bookingData') !== null) {
+        console.log('發現Local有資料所以執行合併整理(Local+Database)');
 
         const localBookingData = ref(getLocalBookingData());
 
@@ -165,6 +180,8 @@ const handleSubmit = async () => {
               fastFoward: localTicket.fastFoward,
               ticketData: localTicket.ticketData,
               tickets: localTicket.tickets,
+              ticketID: null,
+              ticketOrderID: null,
             });
           }
         });
@@ -181,31 +198,32 @@ const handleSubmit = async () => {
         const currentLocal = getLocalBookingData();
 
         //要給資料庫的格式：
-        const postToDBData = (currentLocal.map((ticketData => {
+        const postToDBData = currentLocal.map(ticketData => {
           return {
             END_DATE: null,
             FAST_PASS: ticketData.fastFoward ? 0 : 1,
-            ORDER_ID: null,
+            ORDER_ID: ticketData.ticketOrderID
+              ? ticketData.ticketOrderID
+              : null,
             START_DATE: ticketData.ticketData,
             TICK_DATE: ticketData.ticketData,
             TICK_ID: getTicketTypeFromNum(ticketData.ticketType),
             TICK_NUM: ticketData.tickets,
-            TICK_ORDER_ID: null,
+            TICK_ORDER_ID: ticketData.ticketID ? ticketData.ticketID : null,
           };
-        })))
+        });
         console.log('傳給資料庫的資料', postToDBData);
         // 傳給後端
-        axios.post('php路徑', postToDBData).then(res => {
-          console.log(res)
-        }).catch(err => { console.log(err) });
-
-
-
-
-
-
+        axios
+          .post('php路徑', postToDBData)
+          .then(res => {
+            console.log(res);
+          })
+          .catch(err => {
+            console.log(err);
+          });
       } else {
-        console.log('Local無資料')
+        console.log('Local無資料');
       }
       // 跳到首頁
       router.push('/');
@@ -217,25 +235,39 @@ const handleSubmit = async () => {
     alert('伺服器問題');
   }
 };
-
 </script>
 
 <template>
   <section class="middle">
     <!-- 帳號 + 密碼 的 input欄位 -->
     <div class="middle__form">
-      <div class="middle__form--wrapOfLabelInput" v-for="(inputInfo, index) in inputInfos" v-bind:key="inputInfo.id">
+      <div
+        class="middle__form--wrapOfLabelInput"
+        v-for="(inputInfo, index) in inputInfos"
+        v-bind:key="inputInfo.id"
+      >
         <label class="middle__form--label">{{ inputInfo.title }}</label>
-        <input class="middle__form--input" v-bind:type="inputInfo.type" v-bind:id="inputInfo.id"
-          v-bind:placeholder="inputInfo.placeholder" v-model="inputInfo.value" @blur="blurCheck(inputInfo.id)" />
-        <span v-if="isInputFail && inputInfo.id === 'account'">請輸入正確帳號
+        <input
+          class="middle__form--input"
+          v-bind:type="inputInfo.type"
+          v-bind:id="inputInfo.id"
+          v-bind:placeholder="inputInfo.placeholder"
+          v-model="inputInfo.value"
+          @blur="blurCheck(inputInfo.id)"
+        />
+        <span v-if="isInputFail && inputInfo.id === 'account'"
+          >請輸入正確帳號
         </span>
       </div>
 
       <!-- 會員註冊 + 忘記密碼 的 a標籤 -->
       <div class="middle__form--bigWrapOfIconA">
-        <div class="middle__form--wrapOfIconA" v-for="(aLink, index) in aLinks" v-bind:key="aLink.id"
-          v-bind:href="aLink.url">
+        <div
+          class="middle__form--wrapOfIconA"
+          v-for="(aLink, index) in aLinks"
+          v-bind:key="aLink.id"
+          v-bind:href="aLink.url"
+        >
           <el-icon class="middle__form--Icon">
             <component :is="aLink.icon" />
           </el-icon>
@@ -245,7 +277,12 @@ const handleSubmit = async () => {
         </div>
       </div>
 
-      <Button class="middle__form--Btn" type="submit" id="Submit" @click="handleSubmit">
+      <Button
+        class="middle__form--Btn"
+        type="submit"
+        id="Submit"
+        @click="handleSubmit"
+      >
         登入
       </Button>
     </div>
