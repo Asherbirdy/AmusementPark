@@ -98,24 +98,19 @@ const handleSubmit = async () => {
       pwd: inputInfos.value[1].value,
     });
 
-
-
     if (response.data === '登入成功') {
       alert('登入成功');
-
       let dbData = ref();
-
       // 取得ＤＢ資料
       const cartResponse = await axios.get('/api/PDO/frontEnd/cart/cartSelect.php');
       dbData = cartResponse.data;
 
       /*
-       將從資料庫抓到的 票券資料 和 商品資料 拆分到不同變數陣列
+      將從資料庫抓到的 票券資料 和 商品資料 拆分到不同變數陣列
       */
 
       const ticketArr = ref([]); //票券資料庫原始陣列
       const productArr = ref([]); //商品資料庫原始陣列
-
       dbData.forEach((item, i) => {
         if (item.hasOwnProperty('FAST_PASS')) {
           ticketArr.value.push(item);
@@ -123,7 +118,6 @@ const handleSubmit = async () => {
           productArr.value.push(item);
         }
       });
-
 
       /*
        將 ticketArr 資料庫的格式 轉換為 顯示頁面的格式：
@@ -140,14 +134,13 @@ const handleSubmit = async () => {
       });
       console.log('畫面顯示的資料', displayTicketData);
 
-      // 抓取local的資料：(會員登入前的購物車)
-      const localBookingData = ref(getLocalBookingData());
-      console.log(localBookingData.value);
-      console.log(ticketArr.value);
-      // 將Local 的資料推進 ticketArr
+      /*
+      將 Local 的資料推進 原本只放資料庫的資料 ticketArr
+      */
 
-      // 兩票卷陣列加在一起並整理, arr1 放進  arr2
+      const localBookingData = ref(getLocalBookingData());
       localBookingData.value.forEach((localTicket, i) => {
+        // 抓到一樣的陣列：
         const index = displayTicketData.findIndex(
           data =>
             data.ticketType === localTicket.ticketType &&
@@ -169,7 +162,6 @@ const handleSubmit = async () => {
           });
           console.log(localTicket.ticketNum);
         }
-        console.log(index);
       })
 
 
@@ -206,8 +198,6 @@ const handleSubmit = async () => {
           <el-icon class="middle__form--Icon">
             <component :is="aLink.icon" />
           </el-icon>
-          <!-- 在 <el-icon> 组件内部動態渲染 aLink.icon 所代表的组件 -->
-          <!-- <a class="middle__form--A">{{ aLink.text }}</a> -->
           <router-link :to="aLink.url" class="middle__form--Link">{{
             aLink.text
           }}</router-link>
@@ -218,8 +208,6 @@ const handleSubmit = async () => {
         登入
       </Button>
     </div>
-    <!-- <form action="middle__form">
-    </form> -->
   </section>
 </template>
 
