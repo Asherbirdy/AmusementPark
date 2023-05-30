@@ -109,7 +109,7 @@ onMounted(() => {
           <td>{{ tickOrder.sevenDate }}</td>
           <td>{{ tickOrder.type }}</td>
           <td>{{ tickOrder.fastPass }}</td>
-          <td class="cancel"><CloseBold style="width: 1em; height: 1em; margin-right: 8px" /></td>
+          <!-- <td class="cancel"><CloseBold style="width: 1em; height: 1em; margin-right: 8px" /></td> -->
         </tr>
       </tbody>
     </table>

@@ -72,35 +72,43 @@
           <template v-if="isLoggedIn === true">
             <details id="login2">
               <summary>
-                <icon-small-login />
+                <icon-small-member />
+                <div class="AAA-shadow"></div>
               </summary>
               <div class="YYY">
                 <div class="YYY-content">
                   <ul>
-                    <li>
-                      <router-link to="/admin/touristmember">
-                          <UserFilled style="width: 20px; height: 20px; margin: 0px" />會員資料
-                      </router-link>
-                    </li>
-                    <li>
-                      <router-link to="/admin/pay">
-                        <CreditCard style="width: 20px; height: 20px; margin: 0px" />付款資訊
-                      </router-link>
-                    </li>
-                    <li>
-                      <router-link to="/admin/touristqrcode">
-                        <Ticket style="width: 20px; height: 20px; margin: 0px" />現有票卷
-                      </router-link>
-                    </li>
-                    <li>
-                      <router-link to="/admin/touristproductorder">
-                        <Memo style="width: 20px; height: 20px; margin: 0px" />歷史訂單
-                      </router-link>
-                    </li>
+                    <router-link to="/admin/touristmember"> 
+                      <li>
+                          <UserFilled style="width: 20px; height: 20px; margin: 5px" class="member-s-icon"/>
+                          <h3>會員資料</h3>
+                      </li>
+                    </router-link>  
+                    <router-link to="/admin/pay">
+                      <li>
+                          <CreditCard style="width: 20px; height: 20px; margin: 5px" class="member-s-icon"/>
+                          <h3>付款資訊</h3>
+                      </li>
+                    </router-link> 
+                    <router-link to="/admin/touristqrcode">
+                      <li>
+                          <Ticket style="width: 20px; height: 20px; margin: 5px" class="member-s-icon"/>
+                          <h3>現有票卷</h3>
+                      </li>
+                    </router-link>
+                    <router-link to="/admin/touristproductorder">
+                      <li>
+                          <Memo style="width: 20px; height: 20px; margin: 5px" class="member-s-icon"/>
+                          <h3>歷史訂單</h3>
+                      </li>
+                    </router-link>
+                    <router-link class="logout" to="/" @click="logout">
+                      <li>
+                          <WarningFilled style="width: 20px; height: 20px; margin: 5px" class="member-s-icon"/>
+                          <h3>登出</h3>
+                      </li>
+                    </router-link>
                   </ul>
-                  <div class="logout" to="/" @click="logout">
-                    <el-button>登出</el-button>
-                  </div>
                 </div>
               </div>
             </details>            
@@ -228,7 +236,7 @@ header {
     padding: 4px;
     margin: 10px;
     align-items: center;
-    a {
+    a, #login2 {
       text-decoration: none;
       margin: auto 8px;
     }
@@ -239,29 +247,56 @@ header {
 
     .YYY {
       background: $maincolor2;
-      // width: 100px;
       border-radius: 0.5em;
       box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-      right:  0%;
-      margin-top: 10px;
-      // pointer-events: none;
+      right:  -5%;
+      margin-top: 30px;
+      width: 140px;
       position: absolute;
       top: 100%;
       transform: translate(-50%, -50%);
       text-align: left;
-      // display: flex;
-      // flex-direction: column;
+      a{
+        margin: 0;
+      }
+      li{
+        display: flex;
+        width: 100%;
+        cursor: pointer;
+        &:hover{
+          background-color: #fff;
+          border-radius: 0.5em;
+        }
+        h3{
+          color: #5b5b5b;
+          line-height: 40px;
+        }
+      }
+    }
+    .AAA-shadow {
+      transition: opacity 0.2s ease-out;
+      pointer-events: none;
+      background: rgba(15, 23, 42, 0.8);
+      position: fixed;
+      opacity: 0;
+      bottom: 0;
+      right: 0;
+      left: 0;
+      top: 0;
+    }
+    details[open] .AAA-shadow {
+      pointer-events: all;
+      opacity: 0;
     }
 
     details{
       summary {
         list-style: none;
-      }
-      summary:focus {
-        outline: none;
-      }
-      summary::-webkit-details-marker {
-        display: none;
+        &:focus {
+          outline: none;
+        }
+        &::-webkit-details-marker {
+          display: none;}
       }
     }
   }
@@ -277,11 +312,10 @@ a#moblie_menu {
 }
 summary {
   list-style: none;
-}
-summary:focus {
-  outline: none;
-}
-summary::-webkit-details-marker {
-  display: none;
+  &:focus {
+    outline: none;
+  }
+  &::-webkit-details-marker {
+    display: none;}
 }
 </style>
