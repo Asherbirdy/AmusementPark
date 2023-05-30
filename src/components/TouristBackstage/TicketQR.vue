@@ -83,7 +83,7 @@ onMounted(() => {
           <th class="date">使用期限(一日票)</th>
           <th class="type">票種</th>
           <th class="express">快速通關</th>
-          <th class="cancel">退票</th>
+          <!-- <th class="cancel">退票</th> -->
         </tr>
         <tr class="detail">
           <td class="QR">          
@@ -96,7 +96,7 @@ onMounted(() => {
           <td class="date">2023/05/14 ~ 2023/05/21</td>
           <td class="type">全票</td>
           <td class="express">有</td>
-          <td class="cancel"><CloseBold style="width: 1em; height: 1em; margin-right: 8px" /></td>
+          <!-- <td class="cancel"><CloseBold style="width: 1em; height: 1em; margin-right: 8px" /></td> -->
         </tr>
       </thead>
       <tbody>
@@ -109,7 +109,7 @@ onMounted(() => {
           <td>{{ tickOrder.sevenDate }}</td>
           <td>{{ tickOrder.type }}</td>
           <td>{{ tickOrder.fastPass }}</td>
-          <td class="cancel"><CloseBold style="width: 1em; height: 1em; margin-right: 8px" /></td>
+          <!-- <td class="cancel"><CloseBold style="width: 1em; height: 1em; margin-right: 8px" /></td> -->
         </tr>
       </tbody>
     </table>
@@ -161,7 +161,7 @@ td{
                 width: 20%;
             }
             .date{
-                width: 20%;
+                width: 30%;
             }
             .type{
                 width: 10%;
@@ -172,9 +172,9 @@ td{
                     cursor: pointer;
                 }
             }
-            .cancel{
-              width: 10%;
-            }
+            // .cancel{
+            //   width: 10%;
+            // }
 
         }
     }

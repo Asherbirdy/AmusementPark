@@ -1,69 +1,74 @@
+<script setup></script>
+
 <template>
-  <el-radio-group v-model="isCollapse" style="margin-bottom: 20px">
-    <el-radio-button :label="false">expand</el-radio-button>
-    <el-radio-button :label="true">collapse</el-radio-button>
-  </el-radio-group>
-  <el-menu
-    default-active="2"
-    class="el-menu-vertical-demo"
-    :collapse="isCollapse"
-    @open="handleOpen"
-    @close="handleClose"
-  >
-    <el-sub-menu index="1">
-      <template #title>
-        <el-icon><setting /></el-icon>
-        <span>會員資料</span>
-      </template>
-      <el-menu-item-group>
-        <template #title><span>Group One</span></template>
-        <el-menu-item index="1-1">item one</el-menu-item>
-        <el-menu-item index="1-2">item two</el-menu-item>
-      </el-menu-item-group>
-      <el-menu-item-group title="Group Two">
-        <el-menu-item index="1-3">item three</el-menu-item>
-      </el-menu-item-group>
-      <el-sub-menu index="1-4">
-        <template #title><span>item four</span></template>
-        <el-menu-item index="1-4-1">item one</el-menu-item>
-      </el-sub-menu>
-    </el-sub-menu>
-    <el-menu-item index="2">
-      <el-icon><icon-menu /></el-icon>
-      <template #title>購票紀錄</template>
-    </el-menu-item>
-    <el-menu-item index="3" disabled>
-      <el-icon><document /></el-icon>
-      <template #title>購票紀錄</template>
-    </el-menu-item>
-    <el-menu-item index="4">
-      <el-icon><location /></el-icon>
-      <template #title>歷史訂單</template>
-    </el-menu-item>
-  </el-menu>
+  
+  <div class="nav">
+    <ul>
+      <li>
+        <router-link to="/admin/touristmember">
+            <UserFilled style="width: 4em; height: 4em; margin: 8px" />
+          <h3>
+            會員資料
+          </h3>
+        </router-link>
+      </li>
+      <li>
+        <router-link to="/admin/pay">
+          <!-- <tickOrder class="icon" /> -->
+          <CreditCard style="width: 4em; height: 4em; margin: 8px" />
+          <h3>
+            付款資訊
+          </h3>
+        </router-link>
+      </li>
+      <li>
+        <router-link to="/admin/touristqrcode">
+          <Ticket style="width: 4em; height: 4em; margin: 8px" />
+          <h3>
+            現有票卷
+          </h3>
+        </router-link>
+      </li>
+      <li>
+        <router-link to="/admin/touristproductorder">     
+          <Memo style="width: 4em; height: 4em; margin: 8px" />
+          <h3>
+            歷史訂單
+          </h3>
+        </router-link>
+      </li>
+    </ul>
+  </div>
 </template>
 
-<script lang="ts" setup>
-import { ref } from 'vue';
-import {
-  Document,
-  Menu as IconMenu,
-  Location,
-  Setting,
-} from '@element-plus/icons-vue';
+<style lang="scss" scoped>
+.nav{
+  width: 20%;
+}
+ul {
+  width: 100%;
+  line-height: 1.2;
+  color: #5b5b5b;
 
-const isCollapse = ref(true);
-const handleOpen = (key: string, keyPath: string[]) => {
-  console.log(key, keyPath);
-};
-const handleClose = (key: string, keyPath: string[]) => {
-  console.log(key, keyPath);
-};
-</script>
-
-<style scoped>
-.el-menu-vertical-demo:not(.el-menu--collapse) {
-  width: 200px;
-  min-height: 400px;
+  li {
+    width: 100%;
+    background-color: #f9f3e4;
+    h3{
+      margin-top: -10px;
+    }
+    a {
+      color: #5b5b5b;
+      height: 140px;
+      text-decoration: none;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;   
+      &:hover {
+        background-color: #A5C4E1;
+      }
+    }
+  }
 }
 </style>
