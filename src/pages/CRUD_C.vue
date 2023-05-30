@@ -37,7 +37,7 @@ const ticketBooking = reactive({
 
 function submit() {
 
-  axios.post('/api/PDO/tickOrder/tickOrderInsert.php',{
+  axios.post('/PDO/tickOrder/tickOrderInsert.php',{
       ticketBooking
   }).
   then(res => {

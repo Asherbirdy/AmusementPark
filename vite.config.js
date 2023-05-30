@@ -48,10 +48,10 @@ export default defineConfig({
   server: {
     port: '5173',
     proxy: {
-      '/api': {
+      '/PDO': {
         target: 'http://localhost:80/',
         changeOrigin: true,
-        rewrite: path => path.replace(/^\/api/, ''), // 不可以省略rewrite
+        rewrite: path => path.replace(/^\//, ''), // 修改 rewrite 規則
       },
     },
   },
