@@ -13,7 +13,7 @@ import { ElementPlusResolver } from 'unplugin-vue-components/resolvers';
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  base: '/AmusementPark/',
+  base: '/thd101/g4/',
   plugins: [
     vue(),
     AutoImport({
@@ -49,7 +49,7 @@ export default defineConfig({
     port: '5173',
     proxy: {
       '/PDO': {
-        target: 'http://localhost:80/',
+        target: 'https://tibamef2e.com/',
         changeOrigin: true,
         rewrite: path => path.replace(/^\//, ''), // 修改 rewrite 規則
       },
