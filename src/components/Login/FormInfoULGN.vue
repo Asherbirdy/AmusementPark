@@ -89,6 +89,7 @@ const handleSubmit = () => {
   if (isInputFail.value) {
     return;
   }
+
   // username 和 pwd
   axios
     .post('/PDO/frontEnd/memberLogin/memberLogin.php', {
@@ -97,55 +98,40 @@ const handleSubmit = () => {
     })
     .then(res => {
       console.log(res.data);
-      if(res.data === '登入成功'){
+      if (res.data === '登入成功') {
         alert('登入成功');
         router.push('/admin/touristmember');
       } else {
         alert('錯誤帳號密碼');
       }
-    
+
     })
     .catch(err => {
       console.log(err);
       alert('伺服器問題');
     });
-  };
+};
 </script>
 
 <template>
   <section class="middle">
     <!-- 帳號 + 密碼 的 input欄位 -->
     <div class="middle__form">
-      <div
-        class="middle__form--wrapOfLabelInput"
-        v-for="(inputInfo, index) in inputInfos"
-        v-bind:key="inputInfo.id"
-      >
+      <div class="middle__form--wrapOfLabelInput" v-for="(inputInfo, index) in inputInfos" v-bind:key="inputInfo.id">
         <label class="middle__form--label">{{ inputInfo.title }}</label>
-        <input
-          class="middle__form--input"
-          v-bind:type="inputInfo.type"
-          v-bind:id="inputInfo.id"
-          v-bind:placeholder="inputInfo.placeholder"
-          v-model="inputInfo.value"
-          @blur="blurCheck(inputInfo.id)"
-        />
-        <span v-if="isInputFail && inputInfo.id === 'account'"
-          >請輸入正確帳號
+        <input class="middle__form--input" v-bind:type="inputInfo.type" v-bind:id="inputInfo.id"
+          v-bind:placeholder="inputInfo.placeholder" v-model="inputInfo.value" @blur="blurCheck(inputInfo.id)" />
+        <span v-if="isInputFail && inputInfo.id === 'account'">請輸入正確帳號
         </span>
       </div>
 
       <!-- 會員註冊 + 忘記密碼 的 a標籤 -->
       <div class="middle__form--bigWrapOfIconA">
-        <div
-          class="middle__form--wrapOfIconA"
-          v-for="(aLink, index) in aLinks"
-          v-bind:key="aLink.id"
-          v-bind:href="aLink.url"
-        >
-          <el-icon class="middle__form--Icon"
-            ><component :is="aLink.icon"
-          /></el-icon>
+        <div class="middle__form--wrapOfIconA" v-for="(aLink, index) in aLinks" v-bind:key="aLink.id"
+          v-bind:href="aLink.url">
+          <el-icon class="middle__form--Icon">
+            <component :is="aLink.icon" />
+          </el-icon>
           <!-- 在 <el-icon> 组件内部動態渲染 aLink.icon 所代表的组件 -->
           <!-- <a class="middle__form--A">{{ aLink.text }}</a> -->
           <router-link :to="aLink.url" class="middle__form--Link">{{
@@ -154,12 +140,7 @@ const handleSubmit = () => {
         </div>
       </div>
 
-      <Button
-        class="middle__form--Btn"
-        type="submit"
-        id="Submit"
-        @click="handleSubmit"
-      >
+      <Button class="middle__form--Btn" type="submit" id="Submit" @click="handleSubmit">
         登入
       </Button>
     </div>
@@ -177,10 +158,12 @@ const handleSubmit = () => {
     &--wrapOfLabelInput {
       margin-bottom: 36px;
     }
+
     &--label {
       font-size: 20px;
       margin-right: 19px;
     }
+
     &--input {
       width: 300px;
       height: 60px;
@@ -189,6 +172,7 @@ const handleSubmit = () => {
       border-radius: 10px;
       padding-left: 9px;
     }
+
     &--input::placeholder {
       font-size: 18px;
     }
@@ -200,14 +184,17 @@ const handleSubmit = () => {
       width: 228px;
       margin: 0 auto;
     }
+
     &--wrapOfIconA {
       display: inline-block;
       margin-bottom: 39px;
       // color: ;
     }
+
     &--Icon {
       margin-right: 9px;
     }
+
     &--Link {
       font-weight: 400;
       font-size: 16px;
