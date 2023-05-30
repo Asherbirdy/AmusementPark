@@ -1,6 +1,6 @@
 <script setup>
 import axios from 'axios';
-import { useTest, getTicketType } from "../../composables";
+import { useTest, getTicketType, getTicketPrice } from "../../composables";
 console.log(getTicketType(4))
 
 ////// 帳號 + 密碼 的 input欄位
@@ -120,10 +120,10 @@ const handleSubmit = () => {
             // 將 訂票 和 商品 推到不同的陣列
             dbData.forEach((item, i) => {
               if (item.hasOwnProperty('FAST_PASS')) {
-                console.log("他是票券");
+                // 將分類的票券退到 ticketArr 
                 ticketArr.value.push(item)
               } else {
-                console.log('他是商品');
+                // 將剩下的的商品退到 productArr
                 productArr.value.push(item);
               }
             });
@@ -132,58 +132,20 @@ const handleSubmit = () => {
               將 ticketArr 資料庫的格式 轉換為 顯示頁面的格式：
             */
             const displayTicketData = ticketArr.value.map(item => {
-              // 使用 switch case 抓到
-              function getTicketType(ticket) {
-                switch (ticket) {
-                  case 1:
-                    console.log('是全票');
-                    return '全票'
-                    break;
-                  case 2:
-                    console.log('是學生票');
-                    return '學生票'
-                    break;
-                  case 3:
-                    console.log('是兒童票');
-                    return '兒童票'
-                    break;
-                  case 4:
-                    console.log('是優惠票');
-                    return '優惠票'
-                    break;
-                }
-
-              }
-
               return {
                 fastFoward: item.FAST_PASS ? true : false,
                 ticketData: item.START_DATE.split(' ')[0],
                 ticketNum: item.TICK_NUM,
-                ticketPrice: '44',
+                ticketPrice: getTicketPrice(item.TICK_ID),
                 ticketType: getTicketType(item.TICK_ID),
               }
-
             });
             console.log(displayTicketData);
-
-
-
-
-
-
-
-
-
-
 
           })
           .catch(error => {
             console.error(error);
           });
-
-
-
-
 
         router.push('/');
       } else {

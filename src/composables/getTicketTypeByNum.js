@@ -1,20 +1,16 @@
 export const TicketType = function (ticket) {
   switch (ticket) {
     case 1:
-      console.log('是全票');
       return '全票';
       break;
     case 2:
-      console.log('是學生票');
-      return '全票2';
+      return '學生票';
       break;
     case 3:
-      console.log('是兒童票');
-      return '全票3';
+      return '兒童票';
       break;
     case 4:
-      console.log('是優惠票');
-      return '全票4';
+      return '優惠票';
       break;
   }
 };
