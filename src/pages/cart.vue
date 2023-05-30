@@ -23,15 +23,15 @@
 <script setup>
 import axios from 'axios';
 
-axios.get('/PDO/frontEnd/cart/cartSelect.php')
-  .then(response => {
+// axios.get('/api/PDO/frontEnd/cart/cartSelect.php')
+//   .then(response => {
 
-    console.log(response.data);
-  })
-  .catch(error => {
+//     console.log(response.data);
+//   })
+//   .catch(error => {
   
-    console.error(error);
-  });
+//     console.error(error);
+//   });
 
 </script>
 
