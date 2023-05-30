@@ -99,7 +99,7 @@ const handleSubmit = () => {
       console.log(res.data);
       if(res.data === '登入成功'){
         alert('登入成功');
-        router.push('/');
+        router.push('/admin/touristmember');
       } else {
         alert('錯誤帳號密碼');
       }
