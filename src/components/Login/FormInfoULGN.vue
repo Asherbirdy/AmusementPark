@@ -2,8 +2,8 @@
 import axios from 'axios';
 
 ////// 帳號 + 密碼 的 input欄位
-const account = ref(''); // 用作v-model雙向數據綁定
-const pwd = ref(''); // 用作v-model雙向數據綁定
+const account = ref('0912345678'); // 用作v-model雙向數據綁定
+const pwd = ref('password'); // 用作v-model雙向數據綁定
 const inputInfos = ref([
   {
     title: '帳號：',
@@ -97,13 +97,97 @@ const handleSubmit = () => {
     })
     .then(res => {
       console.log(res.data);
-      if(res.data === '登入成功'){
+      if (res.data === '登入成功') {
         alert('登入成功');
+
+        let dbData = ref();
+        /*
+        將登入前購物車的資料 和 資料庫的資料放在一起：
+        */
+        axios.get('/api/PDO/frontEnd/cart/cartSelect.php')
+          .then(response => {
+            dbData = response.data;
+            console.log(dbData)
+            /*
+              將從資料庫抓到的 票券資料 和 商品資料 拆分到不同變數陣列
+            */
+            // 資料庫 票券陣列：
+            const ticketArr = ref([]);
+            // 資料庫 商品陣列：
+            const productArr = ref([]);
+            // 將 訂票 和 商品 推到不同的陣列
+            dbData.forEach((item, i) => {
+              if (item.hasOwnProperty('FAST_PASS')) {
+                console.log("他是票券");
+                ticketArr.value.push(item)
+              } else {
+                console.log('他是商品');
+                productArr.value.push(item);
+              }
+            });
+            console.log(ticketArr.value, productArr.value);
+            /*
+              將 ticketArr 資料庫的格式 轉換為 顯示頁面的格式：
+            */
+            const displayTicketData = ticketArr.value.map(item => {
+              // 使用 switch case 抓到
+              function getTicketType(ticket) {
+                switch (ticket) {
+                  case 1:
+                    console.log('是全票');
+                    return '全票'
+                    break;
+                  case 2:
+                    console.log('是學生票');
+                    return '學生票'
+                    break;
+                  case 3:
+                    console.log('是兒童票');
+                    return '兒童票'
+                    break;
+                  case 4:
+                    console.log('是優惠票');
+                    return '優惠票'
+                    break;
+                }
+
+              }
+
+              return {
+                fastFoward: item.FAST_PASS ? true : false,
+                ticketData: item.START_DATE.split(' ')[0],
+                ticketNum: item.TICK_NUM,
+                ticketPrice: '44',
+                ticketType: getTicketType(item.TICK_ID),
+              }
+
+            });
+            console.log(displayTicketData);
+
+
+
+
+
+
+
+
+
+
+
+          })
+          .catch(error => {
+            console.error(error);
+          });
+
+
+
+
+
         router.push('/');
       } else {
         alert('錯誤帳號密碼');
       }
-      
+
 
       // 如果登入成功:
       // if (res.data === 'true') {
@@ -112,49 +196,34 @@ const handleSubmit = () => {
       // } else {
       //   alert('錯誤帳號密碼');
       // }
-      
+
     })
     .catch(err => {
       console.log(err);
       alert('伺服器問題');
     });
-  };
+};
 </script>
 
 <template>
   <section class="middle">
     <!-- 帳號 + 密碼 的 input欄位 -->
     <div class="middle__form">
-      <div
-        class="middle__form--wrapOfLabelInput"
-        v-for="(inputInfo, index) in inputInfos"
-        v-bind:key="inputInfo.id"
-      >
+      <div class="middle__form--wrapOfLabelInput" v-for="(inputInfo, index) in inputInfos" v-bind:key="inputInfo.id">
         <label class="middle__form--label">{{ inputInfo.title }}</label>
-        <input
-          class="middle__form--input"
-          v-bind:type="inputInfo.type"
-          v-bind:id="inputInfo.id"
-          v-bind:placeholder="inputInfo.placeholder"
-          v-model="inputInfo.value"
-          @blur="blurCheck(inputInfo.id)"
-        />
-        <span v-if="isInputFail && inputInfo.id === 'account'"
-          >請輸入正確帳號
+        <input class="middle__form--input" v-bind:type="inputInfo.type" v-bind:id="inputInfo.id"
+          v-bind:placeholder="inputInfo.placeholder" v-model="inputInfo.value" @blur="blurCheck(inputInfo.id)" />
+        <span v-if="isInputFail && inputInfo.id === 'account'">請輸入正確帳號
         </span>
       </div>
 
       <!-- 會員註冊 + 忘記密碼 的 a標籤 -->
       <div class="middle__form--bigWrapOfIconA">
-        <div
-          class="middle__form--wrapOfIconA"
-          v-for="(aLink, index) in aLinks"
-          v-bind:key="aLink.id"
-          v-bind:href="aLink.url"
-        >
-          <el-icon class="middle__form--Icon"
-            ><component :is="aLink.icon"
-          /></el-icon>
+        <div class="middle__form--wrapOfIconA" v-for="(aLink, index) in aLinks" v-bind:key="aLink.id"
+          v-bind:href="aLink.url">
+          <el-icon class="middle__form--Icon">
+            <component :is="aLink.icon" />
+          </el-icon>
           <!-- 在 <el-icon> 组件内部動態渲染 aLink.icon 所代表的组件 -->
           <!-- <a class="middle__form--A">{{ aLink.text }}</a> -->
           <router-link :to="aLink.url" class="middle__form--Link">{{
@@ -163,12 +232,7 @@ const handleSubmit = () => {
         </div>
       </div>
 
-      <Button
-        class="middle__form--Btn"
-        type="submit"
-        id="Submit"
-        @click="handleSubmit"
-      >
+      <Button class="middle__form--Btn" type="submit" id="Submit" @click="handleSubmit">
         登入
       </Button>
     </div>
@@ -186,10 +250,12 @@ const handleSubmit = () => {
     &--wrapOfLabelInput {
       margin-bottom: 36px;
     }
+
     &--label {
       font-size: 20px;
       margin-right: 19px;
     }
+
     &--input {
       width: 300px;
       height: 60px;
@@ -198,6 +264,7 @@ const handleSubmit = () => {
       border-radius: 10px;
       padding-left: 9px;
     }
+
     &--input::placeholder {
       font-size: 18px;
     }
@@ -209,14 +276,17 @@ const handleSubmit = () => {
       width: 228px;
       margin: 0 auto;
     }
+
     &--wrapOfIconA {
       display: inline-block;
       margin-bottom: 39px;
       // color: ;
     }
+
     &--Icon {
       margin-right: 9px;
     }
+
     &--Link {
       font-weight: 400;
       font-size: 16px;
