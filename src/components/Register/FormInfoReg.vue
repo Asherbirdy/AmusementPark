@@ -1,19 +1,23 @@
 <script setup>
-const account = ''; // 用作v-model雙向數據綁定
+import axios from 'axios';
+
+//////input 欄位
+
+const name = ''; // 用作v-model雙向數據綁定
 const gender = ''; // 用作v-model雙向數據綁定
-const birthda = ''; // 用作v-model雙向數據綁定
+const birthday = ''; // 用作v-model雙向數據綁定
 const phone = ''; // 用作v-model雙向數據綁定
+const pwd = ''; // 用作v-model雙向數據綁定
 const email = ''; // 用作v-model雙向數據綁定
-const password = ''; // 用作v-model雙向數據綁定
-const repassword = ''; // 用作v-model雙向數據綁定
+const rePassword = ''; // 用作v-model雙向數據綁定
 
 const inputInfos = ref([
   {
     title: '姓名：',
     type: 'text',
-    id: 'account',
+    id: 'name',
     placeholder: '請輸入您的姓名',
-    value: account,
+    value: name,
   },
   {
     title: '性別：',
@@ -31,9 +35,9 @@ const inputInfos = ref([
   {
     title: '出生日期：',
     type: 'date',
-    id: 'birthda',
+    id: 'birthday',
     placeholder: '請輸入您的出生日期',
-    value: birthda,
+    value: birthday,
   },
   {
     title: '手機號碼：',
@@ -54,16 +58,23 @@ const inputInfos = ref([
     type: 'tel',
     id: 'password',
     placeholder: '請輸入您的密碼',
-    value: password,
+    value: pwd,
   },
   {
     title: '確認密碼：',
     type: 'tel',
-    id: 'repassword',
+    id: 'rePassword',
     placeholder: '再次輸入您的密碼',
-    value: repassword,
+    value: rePassword,
   },
 ]);
+
+//////資料送出
+// const handleSubmit =() =>{
+
+//   axios
+//   .post('/api/PDO/frontEnd/memberSignup/memberSignup.php'){}
+// }
 </script>
 
 <template>
@@ -102,7 +113,13 @@ const inputInfos = ref([
           </option>
         </select>
       </div>
-      <Button class="middle__form--Btn" type="submit" id="Submit">確認</Button>
+      <Button
+        class="middle__form--Btn"
+        type="submit"
+        id="Submit"
+        @click="handleSubmit"
+        >立即註冊</Button
+      >
     </form>
   </section>
 </template>
