@@ -31,7 +31,7 @@ const emit = defineEmits(['get-list']);
 const deleteApi = async () => {
   try {
     const res = await axios.post(
-      '/api/PDO/backEnd/staffAccount/staffAccountDelete.php',
+      '/PDO/backEnd/staffAccount/staffAccountDelete.php',
       {
         deleteMemberData,
       }

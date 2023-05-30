@@ -1,3 +1,4 @@
+
 <template>
   
   <header :class="{ openMenu: isOpen }">
@@ -129,7 +130,7 @@ const isLoggedIn = ref(false);
 
 const checkLoginStatus = () => {
   axios
-    .post('/api/PDO/frontEnd/memberLogin/memberLoginCheck.php')
+    .post('/PDO/frontEnd/memberLogin/memberLoginCheck.php')
     .then(res => {
       if (res.data === '') {
         console.log('還沒登入');
@@ -155,10 +156,10 @@ const forceUpdate = () => {
 };
 
 const logout = () => {
-  axios.post('/api/PDO/frontEnd/memberLogin/memberLogout.php').then(res => {
+  axios.post('/PDO/frontEnd/memberLogin/memberLogout.php').then(res => {
     console.log(res.data);
     isLoggedIn.value = false;
-    router.push('/');
+    router.push('../../shop');
   });
 };
 
