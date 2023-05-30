@@ -1,9 +1,11 @@
 <script setup>
 import axios from 'axios';
+import { useTest, getTicketType, getTicketPrice, getLocalBookingData, getTicketTypeFromNum } from "../../composables";
+console.log(getTicketType(4))
 
 ////// 帳號 + 密碼 的 input欄位
-const account = ref(''); // 用作v-model雙向數據綁定
-const pwd = ref(''); // 用作v-model雙向數據綁定
+const account = ref('0912345678'); // 用作v-model雙向數據綁定
+const pwd = ref('password'); // 用作v-model雙向數據綁定
 const inputInfos = ref([
   {
     title: '帳號：',
@@ -84,8 +86,8 @@ axios
   });
 
 ////資料送出
-const handleSubmit = () => {
-  //檢查是否輸入失敗
+const handleSubmit = async () => {
+  // Check for input failure
   if (isInputFail.value) {
     return;
   }
@@ -93,6 +95,9 @@ const handleSubmit = () => {
   // username 和 pwd
   axios
     .post('/PDO/frontEnd/memberLogin/memberLogin.php', {
+  try {
+    // Make a POST request to login
+    const response = await axios.post('/api/PDO/frontEnd/memberLogin/memberLogin.php', {
       account: inputInfos.value[0].value,
       pwd: inputInfos.value[1].value,
     })
@@ -101,8 +106,116 @@ const handleSubmit = () => {
       if (res.data === '登入成功') {
         alert('登入成功');
         router.push('/admin/touristmember');
+    });
+
+    if (response.data === '登入成功') {
+      alert('登入成功');
+      let dbData = ref();
+      // 取得ＤＢ資料
+      const cartResponse = await axios.get('/api/PDO/frontEnd/cart/cartSelect.php');
+      dbData = cartResponse.data;
+      console.log('從資料庫抓到的原始資料=>', dbData);
+      /*
+      將從資料庫抓到的 票券資料 和 商品資料 拆分到不同變數陣列
+      */
+
+      const ticketArr = ref([]); //票券資料庫原始陣列
+      const productArr = ref([]); //商品資料庫原始陣列
+      dbData.forEach((item, i) => {
+        if (item.hasOwnProperty('FAST_PASS')) {
+          ticketArr.value.push(item);
+        } else {
+          productArr.value.push(item);
+        }
+      });
+      console.log('將原始資料分為兩個不同的陣列(票券/商品)=>', ticketArr.value, productArr.value);
+
+      /*
+       將 ticketArr 資料庫的格式 轉換為 顯示頁面的格式：
+      */
+
+      const displayTicketData = ticketArr.value.map(item => {
+        return {
+          fastFoward: item.FAST_PASS ? true : false,
+          ticketData: item.START_DATE.split(' ')[0],
+          tickets: item.TICK_NUM,
+          ticketPrice: getTicketPrice(item.TICK_ID),
+          ticketType: getTicketType(item.TICK_ID),
+        };
+      });
+      console.log('轉換ticketArr為使用者顯示的資料=>', displayTicketData);
+
+      /*
+      將 Local 的資料推進 原本只放資料庫的資料 ticketArr
+      如果Local沒資料就不執行合併
+      */
+
+      if (localStorage.getItem("bookingData") !== null) {
+        console.log('發現Local有資料所以執行合併整理(Local+Database)')
+
+        const localBookingData = ref(getLocalBookingData());
+
+        localBookingData.value.forEach((localTicket, i) => {
+          // 抓到一樣的陣列：
+          const index = displayTicketData.findIndex(
+            data =>
+              data.ticketType === localTicket.ticketType &&
+              data.fastFoward === localTicket.fastFoward &&
+              data.ticketData === localTicket.ticketData
+          );
+          if (index !== -1) {
+            // If a group exists, add the current data to that group
+            displayTicketData[index].tickets =
+              displayTicketData[index].tickets + localTicket.tickets;
+          } else {
+            // If a group doesn't exist, create a new group
+            displayTicketData.push({
+              ticketType: localTicket.ticketType,
+              ticketPrice: localTicket.ticketPrice,
+              fastFoward: localTicket.fastFoward,
+              ticketData: localTicket.ticketData,
+              tickets: localTicket.tickets,
+            });
+          }
+        });
+
+        console.log('Local的資料+資料庫的資料=>', displayTicketData);
+
+        /*
+        1.將最新的資料放進localStorage
+        2.將資料轉成資料庫的形式
+        */
+
+        localStorage.setItem('bookingData', JSON.stringify(displayTicketData));
+
+        const currentLocal = getLocalBookingData();
+
+        //要給資料庫的格式：
+        const postToDBData = (currentLocal.map((ticketData => {
+          return {
+            END_DATE: null,
+            FAST_PASS: ticketData.fastFoward ? 0 : 1,
+            ORDER_ID: null,
+            START_DATE: ticketData.ticketData,
+            TICK_DATE: ticketData.ticketData,
+            TICK_ID: getTicketTypeFromNum(ticketData.ticketType),
+            TICK_NUM: ticketData.tickets,
+            TICK_ORDER_ID: null,
+          };
+        })))
+        console.log('傳給資料庫的資料', postToDBData);
+        // 傳給後端
+        axios.post('php路徑', postToDBData).then(res => {
+          console.log(res)
+        }).catch(err => { console.log(err) });
+
+
+
+
+
+
       } else {
-        alert('錯誤帳號密碼');
+        console.log('Local無資料')
       }
 
     })
@@ -144,8 +257,6 @@ const handleSubmit = () => {
         登入
       </Button>
     </div>
-    <!-- <form action="middle__form">
-    </form> -->
   </section>
 </template>
 
