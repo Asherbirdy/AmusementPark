@@ -12,7 +12,7 @@ let tableData = ref([]);
 // 定義取資料的api function
 const getTick = async () => {
   try {
-    const res = await axios.get('/api/PDO/touristBackStage/tickOrderSelect.php');
+    const res = await axios.get('/api/PDO/frontEnd/tickOrder/tickOrderSelect.php');
     // API 抓取到的資料：
     const data = res.data;
 

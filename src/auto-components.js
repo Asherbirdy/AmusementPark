@@ -74,7 +74,6 @@ declare module '@vue/runtime-core' {
     InformationIDX: typeof import('./components/Index/InformationIDX.vue')['default']
     Input: typeof import('./components/-UI Element/form/Input.vue')['default']
     InputLimitTenPS: typeof import('./components/ParkStatus/Element/InputLimitTenPS.vue')['default']
-    Loginw: typeof import('./components/-Global/loginw.vue')['default']
     Logo: typeof import('./components/-UI Element/svg/header/Logo.vue')['default']
     M1: typeof import('./components/-UI Element/svg/monsterComponent/m1.vue')['default']
     M2: typeof import('./components/-UI Element/svg/monsterComponent/m2.vue')['default']

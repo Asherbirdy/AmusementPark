@@ -1,7 +1,7 @@
 <script setup>
 import axios from 'axios';
 
-// 帳號 + 密碼 的 input欄位
+////// 帳號 + 密碼 的 input欄位
 const account = ref(''); // 用作v-model雙向數據綁定
 const pwd = ref(''); // 用作v-model雙向數據綁定
 const inputInfos = ref([
@@ -97,14 +97,21 @@ const handleSubmit = () => {
     })
     .then(res => {
       console.log(res.data);
-
-      // 如果登入成功:
-      if (res.data === true) {
+      if(res.data === '登入成功'){
         alert('登入成功');
         router.push('/');
       } else {
         alert('錯誤帳號密碼');
       }
+      
+
+      // 如果登入成功:
+      // if (res.data === 'true') {
+      //   alert('登入成功');
+      //   router.push('/');
+      // } else {
+      //   alert('錯誤帳號密碼');
+      // }
       
     })
     .catch(err => {
