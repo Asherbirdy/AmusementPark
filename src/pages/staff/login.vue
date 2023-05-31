@@ -14,7 +14,7 @@ let isUsernameEmpty = ref(false);
 let isPasswordEmpty = ref(false);
 
 axios
-  .post('/api/PDO/staffAccount/staffLoginCheck.php')
+  .post('/PDO/backEnd/staffAccount/staffLoginCheck.php')
   .then(res => {
     if(res.data ==="") {
       console.log("還沒登入");
@@ -37,7 +37,7 @@ const handleSubmit = () => {
 
     // username 和 password
     axios
-      .post('/api/PDO/staffAccount/staffLogin.php', {
+      .post('/PDO/backEnd/staffAccount/staffLogin.php', {
         account: formInput.account,
         pwd: formInput.pwd,
       })

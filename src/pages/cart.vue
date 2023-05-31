@@ -21,6 +21,18 @@
 </template>
 
 <script setup>
+import axios from 'axios';
+
+// axios.get('/api/PDO/frontEnd/cart/cartSelect.php')
+//   .then(response => {
+
+//     console.log(response.data);
+//   })
+//   .catch(error => {
+  
+//     console.error(error);
+//   });
+
 </script>
 
 <style lang="scss" scoped>

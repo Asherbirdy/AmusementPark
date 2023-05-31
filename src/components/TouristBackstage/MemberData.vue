@@ -1,5 +1,4 @@
 <script setup>
-const dialogVisible = ref(false);
 import { ref, onMounted } from 'vue';
 import axios from 'axios';
 
@@ -12,8 +11,9 @@ const formFields = [
   { id: 'place', label: '通訊地址：', name: 'address' },
 ];
 
-// 建立 tableData 的 ref 變數
+const dialogVisible = ref(false);
 const tableData = ref({});
+const isInputFail = ref(false);
 
 // 在組件掛載完成後執行的函式
 onMounted(async () => {
@@ -23,6 +23,61 @@ onMounted(async () => {
   // 將第一筆會員資料存入 tableData
   tableData.value = data[0];
 });
+
+const handleSaveData = () => {
+  // 檢查表單是否為空白
+  for (const field of formFields) {
+    if (
+      !tableData.value[field.name] ||
+      tableData.value[field.name].trim() === ''
+    ) {
+      alert('請輸入所有資訊！');
+      return;
+    }
+  }
+
+  if (validateInputs()) {
+    dialogVisible.value = false; // 關閉彈窗
+    saveData(); // 保存數據
+  } else {
+    alert('輸入的電話號碼、電子郵件或日期格式不正確！');
+  }
+};
+
+// 電話號碼、電子郵件、日期日否部正確
+const validateInputs = () => {
+  // 電話號碼格式
+  const phoneRegex = /^[0-9]{10}$/;
+  // 電子郵件格式
+  const emailRegex =
+    /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+  // 出生年月日格式: YYYY/MM/DD
+  const dateRegex = /^(\d{4})\/(\d{2})\/(\d{2})$/;
+
+  // 從資料庫抓原有電話、電子郵件、日期
+  const phoneNum = tableData.value.phoneNum;
+  const emailAdd = tableData.value.emailAdd;
+  const birthDate = tableData.value.birthDate;
+
+  // 電話 判斷式
+  if (phoneNum && !phoneRegex.test(phoneNum) && phoneNum.trim() === '') {
+    isInputFail.value = true;
+    return false;
+  }
+  // 電子郵件 判斷式
+  if (emailAdd && !emailRegex.test(emailAdd) && emailAdd.trim() === ' ') {
+    isInputFail.value = true;
+    return false;
+  }
+  // 日期 判斷式
+  if (birthDate && !dateRegex.test(birthDate) && birthDate.trim() === ' ') {
+    isInputFail.value = true;
+    return false;
+  }
+
+  isInputFail.value = false;
+  return true;
+};
 </script>
 
 <template>
@@ -42,33 +97,129 @@ onMounted(async () => {
     </nav>
     <!-- 彈窗 -->
     <section class="btn-wrap">
-      <el-button text @click="dialogVisible = true" class="el-button">
+      <el-button
+        text
+        @click="dialogVisible = true"
+        style="
+          height: 55px;
+          font-size: 20px;
+          background-color: #d1825b;
+          color: white;
+          width: 200px;
+          border-radius: 10px;
+        "
+      >
         編輯
       </el-button>
     </section>
   </div>
-
   <el-dialog
     v-model="dialogVisible"
-    title="編輯會員資料"
     width="50%"
-    height="400px"
-    font-size="26px"
     draggable
+    style="height: 730px; background-color: #f9f3e4; border-radius: 10px"
   >
-    <div>
-      <section class="name" v-for="field in formFields" :key="field.id">
-        <label :for="field.id">{{ field.label }}</label>
+    <h1
+      style="
+        font-size: 35px;
+        color: black;
+        margin-left: 10px;
+        margin-bottom: 5px;
+        font-family: '微軟正黑體';
+      "
+    >
+      編輯會員資料
+    </h1>
+    <section class="name" v-for="field in formFields" :key="field.id">
+      <label
+        class="label"
+        :for="field.id"
+        style="
+          font-size: 26px;
+          color: black;
+          padding-left: 30px;
+          font-family: '微軟正黑體';
+        "
+        >{{ field.label }}</label
+      >
+      <!-- 從原有的for迴圈裡挑出來日期單獨寫 -->
+      <!-- 用 if else if else -->
+      <template v-if="field.type === 'date'">
+        <input
+          v-model="tableData[field.name]"
+          type="date"
+          placeholder="YYYY/MM/DD"
+          style="
+            margin: 20px auto;
+            height: 50px;
+            font-size: 30px;
+            color: black;
+            border-radius: 5px;
+            padding-left: 5px;
+          "
+        />
+      </template>
+      <!-- 從原有的for迴圈裡挑出來email單獨寫 -->
+      <template v-else-if="field.type === 'email'">
+        <input
+          v-model="tableData[field.name]"
+          type="email"
+          style="
+            margin: 20px auto;
+            height: 45px;
+            width: 366px;
+            font-size: 20px;
+            color: black;
+            border-radius: 5px;
+            padding-left: 5px;
+          "
+        />
+      </template>
+      <template v-else>
+        <!-- 剩下照樣for迴圈 -->
         <input
           :value="tableData[field.name]"
           @input="tableData[field.name] = $event.target.value"
+          style="
+            margin: 20px auto;
+            height: 45px;
+            font-size: 20px;
+            color: black;
+            border-radius: 5px;
+            padding-left: 5px;
+          "
         />
-      </section>
-    </div>
+      </template>
+    </section>
     <template #footer>
       <span class="dialog-footer">
-        <el-button @click="dialogVisible = false">取消</el-button>
-        <el-button type="primary" @click="dialogVisible = false">
+        <el-button
+          style="
+            margin: 15px;
+            font-size: 20px;
+            height: 45px;
+            color: #fff;
+            background-color: #d1825b;
+            border-radius: 10px;
+            font-family: '微軟正黑體';
+          "
+          @click="dialogVisible = false"
+          >取消</el-button
+        >
+        <el-button
+          style="
+            margin: 15px;
+            font-size: 20px;
+            color: #fff;
+            height: 45px;
+            background-color: #d1825b;
+            border-radius: 10px;
+            font-family: '微軟正黑体';
+          "
+          @mouseenter="hover = true"
+          @mouseleave="hover = false"
+          @click="handleSaveData"
+        >
           確認儲存
         </el-button>
       </span>
@@ -104,33 +255,11 @@ onMounted(async () => {
         label {
           font-size: 20px;
         }
-        .dialog-footer button:first-child {
-          margin-right: 10px;
-        }
-
-        // input {
-        //   font-size: 20px;
-        //   padding: 0 10px;
-        //   box-sizing: border-box;
-        // }
-        // .inp_short {
-        //   width: 200px;
-        //   height: 40px;
-        //   border-radius: 10px;
-        // }
-        // .inp_long {
-        //   width: 300px;
-        //   height: 40px;
-        //   border-radius: 10px;
-        // }
       }
     }
     .monstar {
-      // width: 400px;
-      // height: 400px;
       background: #fff;
       border-radius: 2rem;
-      // margin: 40px;
       #divo {
         width: 400px;
         height: 400px;
@@ -142,19 +271,9 @@ onMounted(async () => {
     margin: 0 auto;
     width: 60%;
     display: flex;
-    // justify-content: space-between;
     justify-content: flex-end;
     align-items: center;
     padding-bottom: 40px;
-    .el-button {
-      // width: 150px;
-      height: 55px;
-      font-size: 20px;
-      background-color: #d1825b;
-      color: white;
-      width: 200px;
-      border-radius: 10px;
-    }
   }
 }
 </style>

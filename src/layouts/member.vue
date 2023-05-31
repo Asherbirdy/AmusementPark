@@ -3,9 +3,10 @@
 <template>
     <Header></Header>
     <section class="container">
-        <aside>
-            <NavUserTBS />
-        </aside>
+        <!-- <aside class="aside"> -->
+            <!-- <NavUserTBS /> -->
+            <SideMenu />
+        <!-- </aside> -->
         <div class="content">
             <RouterView />
         </div>
@@ -18,6 +19,9 @@
     display: flex;
     margin-top: 5%;
     margin-bottom: 15%;
+    // .aside{
+    //     width: 25%;
+    // }
 }
 .content {
     width: 100%;

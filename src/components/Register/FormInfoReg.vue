@@ -1,19 +1,23 @@
 <script setup>
-const account = ''; // 用作v-model雙向數據綁定
+import axios from 'axios';
+
+//////input 欄位
+
+const name = ''; // 用作v-model雙向數據綁定
 const gender = ''; // 用作v-model雙向數據綁定
-const birthda = ''; // 用作v-model雙向數據綁定
+const birthday = ''; // 用作v-model雙向數據綁定
 const phone = ''; // 用作v-model雙向數據綁定
+const pwd = ''; // 用作v-model雙向數據綁定
 const email = ''; // 用作v-model雙向數據綁定
-const password = ''; // 用作v-model雙向數據綁定
-const repassword = ''; // 用作v-model雙向數據綁定
+const rePassword = ''; // 用作v-model雙向數據綁定
 
 const inputInfos = ref([
   {
     title: '姓名：',
     type: 'text',
-    id: 'account',
+    id: 'name',
     placeholder: '請輸入您的姓名',
-    value: account,
+    value: name,
   },
   {
     title: '性別：',
@@ -31,9 +35,9 @@ const inputInfos = ref([
   {
     title: '出生日期：',
     type: 'date',
-    id: 'birthda',
+    id: 'birthday',
     placeholder: '請輸入您的出生日期',
-    value: birthda,
+    value: birthday,
   },
   {
     title: '手機號碼：',
@@ -51,24 +55,60 @@ const inputInfos = ref([
   },
   {
     title: '密碼：',
-    type: 'tel',
+    type: 'password',
     id: 'password',
     placeholder: '請輸入您的密碼',
-    value: password,
+    value: pwd,
   },
   {
     title: '確認密碼：',
-    type: 'tel',
-    id: 'repassword',
+    type: 'password',
+    id: 'rePassword',
     placeholder: '再次輸入您的密碼',
-    value: repassword,
+    value: rePassword,
   },
 ]);
+
+const router = useRouter();
+
+
+//////資料送出
+const handleSubmit = () => {
+  console.log(typeof(inputInfos.value));
+  if (inputInfos.length !== '') {
+    axios
+    .post('/api/PDO/frontEnd/memberSignup/memberSignup.php', {
+      name: inputInfos.value[0].value,
+      gender: inputInfos.value[1].value,
+      birthday: inputInfos.value[2].value,
+      phone: inputInfos.value[3].value,
+      email: inputInfos.value[4].value,
+      pwd: inputInfos.value[5].value,
+    })
+    .then(res => {
+      console.log(res.data);
+      if (res.data === '註冊成功') {
+        alert('註冊成功');
+        router.push('/');
+      } else {
+        alert('請重新輸入資料');
+      }
+    })
+    .catch(err => {
+      console.log(err);
+      alert('伺服器問題');
+    });
+  }else{
+    alert('請輸入完整資料')
+  }
+
+};
 </script>
 
 <template>
   <section class="middle">
-    <form action="middle__form">
+    <div class="middle__form">
+    <!-- <form action="middle__form"> -->
       <div
         class="middle__form--wrapOfLabelInput"
         v-for="(inputInfo, index) in inputInfos"
@@ -78,7 +118,7 @@ const inputInfos = ref([
         <input
           v-if="
             inputInfo.type === 'text' ||
-            inputInfo.type === 'tel' ||
+            inputInfo.type === 'password' ||
             inputInfo.type === 'date'
           "
           class="middle__form--input"
@@ -102,8 +142,15 @@ const inputInfos = ref([
           </option>
         </select>
       </div>
-      <Button class="middle__form--Btn" type="submit" id="Submit">確認</Button>
-    </form>
+      <Button
+        class="middle__form--Btn"
+        type="submit"
+        id="Submit"
+        @click="handleSubmit"
+        >立即註冊</Button
+      >
+    </div>
+    <!-- </form> -->
   </section>
 </template>
 

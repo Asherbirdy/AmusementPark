@@ -47,7 +47,7 @@
     deleteTicketsData.refundTicketsAmount = tickets.value;
     console.log(deleteTicketsData);
     axios
-      .post('/api/PDO/tickOrder/tickOrderDelete.php', { deleteTicketsData })
+      .post('/PDO/tickOrder/tickOrderDelete.php', { deleteTicketsData })
       .then(res => {
         console.log(res);
       })

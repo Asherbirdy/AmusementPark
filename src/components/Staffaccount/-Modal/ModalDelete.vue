@@ -24,7 +24,24 @@
 </template>
 <script setup>
 import axios from 'axios';
+//定義emit function
+const emit = defineEmits(['get-list']);
 
+//刪除api
+const deleteApi = async () => {
+  try {
+    const res = await axios.post(
+      '/PDO/backEnd/staffAccount/staffAccountDelete.php',
+      {
+        deleteMemberData,
+      }
+    );
+    console.log(res);
+    alert('刪除成功');
+  } catch (err) {
+    console.log(err);
+  }
+};
 
 // 外部資料導入資訊
 const props = defineProps({
@@ -47,7 +64,7 @@ let deleteMemberData = reactive({
 });
 
 // 退票按鈕函式
-const deleteMember = () => {
+const deleteMember = async () => {
   deleteMemberData.id = props.id;
   deleteMemberData.account = props.account;
   deleteMemberData.permissions = props.permissions;
@@ -56,19 +73,9 @@ const deleteMember = () => {
   if (deleteMemberData.permissions === 'DBA') {
     alert('冷靜 你想幹嘛');
   } else {
-    axios
-      .post('/api/PDO/staffAccount/staffAccountDelete.php', {
-        deleteMemberData,
-      })
-      .then(res => {
-        console.log(res);
-        alert('刪除成功');
-      })
-      .catch(err => {
-        console.log(err);
-      });
+    await deleteApi();
+    emit('get-list');
   }
-
 };
 </script>
 <style scoped>

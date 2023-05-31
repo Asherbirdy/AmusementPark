@@ -16,7 +16,7 @@ const permissionMap = {
 // 寫在onMounted裡面是為了渲染登入者的資料
 onMounted(() => {
   axios
-    .post('/api/PDO/staffAccount/staffLoginCheck.php')
+    .post('/PDO/backEnd/staffAccount/staffLoginCheck.php')
     .then(res => {
       if (res.data === '') {
         alert('請先登入');
@@ -35,7 +35,7 @@ onMounted(() => {
 
 // 登出按鈕function
 const logout = () => {
-  axios.post('/api/PDO/staffAccount/staffLogout.php').then(res => {
+  axios.post('/PDO/backEnd/staffAccount/staffLogout.php').then(res => {
     console.log(res.data);
     router.push('/staff/login');
   });
