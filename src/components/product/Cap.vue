@@ -6,11 +6,12 @@
 
     </div>
     <ul class="frame_yellow">
-        <li v-for="(item, index) in product" :key="item.productName">
+        <li v-for="item in cap" :key="item.id">
 
             <frame-yellow>
-                <img :src="imgURL(item.image)" alt="">
-                <p class="product_name"> {{ item.productName }}</p>
+                <img :src="imgURL(item.url)" alt="">
+                <p class="product_name"> {{ item.name }}</p>
+                <p class="product_price"> NT.{{ item.price }}</p>
                 <Button class="button" @click="closeModal">加入購物車</Button>
             </frame-yellow>
         </li>
@@ -30,35 +31,36 @@ const closeModal = () => {
 };
 const imgURL = name => getImageUrl(name);
 
-const product = ref([
-    {
-        productName: '火寶怪獸帽子',
-        image: 'cap1.png',
-    },
-    {
-        productName: 'MONSTAR帽子',
-        image: "cap2.png",
-    },
-    {
-        productName: 'Q呆怪獸帽子',
-        image: "cap3.png",
-    },
-    {
-        productName: '水寶怪獸帽子',
-        image: "cap4.png",
-    },
-    {
-        productName: '奇樂怪獸帽子',
-        image: "cap5.png",
+const props = defineProps({
+    productData: {
+        type: Array,
+        required: true
     }
+});
+const cap = reactive([]);
 
-]);
+const keyword = '帽子'; // 要搜尋的關鍵字
+
+onMounted(() => {
+    setTimeout(() => {
+        props.productData.forEach(product => {
+            if (product.name.includes(keyword) && !cap.some(item => item.name === product.name)) {
+                cap.push(product);
+            }
+        });
+    }, 50)
+
+});
+
 </script>
 <style lang="scss" scoped>
+.s2{
+    padding-top: 50px;
+}
 .titleS1 {
     display: inline-block;
     position: relative;
-    padding: 20px 0 0 35px;
+    padding-top: 20px;
 
     h3 {
         margin: 8px 18px 0 0;
@@ -79,7 +81,7 @@ const product = ref([
         flex-wrap: wrap;
         flex-basis: 0;
         padding: 20px;
-        margin-bottom: 110px;
+        margin-bottom: 180px;
     }
 }
 
@@ -91,9 +93,15 @@ img {
 .product_name {
     font-size: 24px;
     margin-top: 110px;
-    margin-bottom: 15px;
     color: $textcolor7;
 }
+
+.product_price {
+    font-size: 24px;
+    margin: 15px 0;
+    color: $textcolor7;
+}
+
 
 Button {
     font-size: 20px;
@@ -101,6 +109,7 @@ Button {
     height: 50px;
     border-radius: 10px;
 }
+
 .modal {
     visibility: hidden;
 }
@@ -118,4 +127,5 @@ Button {
         width: 300px;
         height: 400px;
     }
-}</style>
+}
+</style>

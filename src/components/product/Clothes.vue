@@ -6,10 +6,12 @@
 
     </div>
     <ul class="frame_blue">
-        <li v-for="(item, index) in  clothes" :key="item.id">
+        <li v-for="item in clothes" :key="item.id">
             <frame-blue>
                 <img :src="imgURL(item.url)" alt="">
+
                 <p class="product_name"> {{ item.name }}</p>
+                <p class="product_price"> NT.{{ item.price }}</p>
                 <Button class="button" @click="closeModal">加入購物車</Button>
             </frame-blue>
         </li>
@@ -20,10 +22,10 @@
 </template>
 <script setup>
 import getImageUrl from '@/utils/imgPath';
-import { reactive, ref } from 'vue';
+import { reactive, ref, watch } from 'vue';
 const imgURL = name => getImageUrl(name);
 
-let isopen = ref(true);
+const isopen = ref(true);
 // 彈窗開關
 const openModal = () => {
     emit(ridemodal.value = true);
@@ -32,38 +34,34 @@ const openModal = () => {
 const closeModal = () => {
     isopen.value = !isopen.value;
 };
-
-
 const props = defineProps({
-    clothes: {
+    productData: {
         type: Array,
         required: true
     }
 });
+const clothes = reactive([]);
 
+const keyword = '上衣'; // 要搜尋的關鍵字
 
-
-const keyword = '手機殼'; // 要搜尋的關鍵字
 onMounted(() => {
+    setTimeout(() => {
+        props.productData.forEach(product => {
+            if (product.name.includes(keyword) && !clothes.some(item => item.name === product.name)) {
+                clothes.push(product);
+            }
+        });
+    }, 50)
 
-    // props.productData.forEach(product => {
-
-    // if (product.name.includes(keyword) && !products.some(item => item.name === product.name)) {
-    //     products.push(product);
-    // }
-    // products.arr.push(product);
-    // console.log(product);
-
-    // });
-    // console.log(products);
 });
+
 
 </script>
 <style lang="scss" scoped>
 .titleS1 {
     display: inline-block;
     position: relative;
-    padding: 20px 0 0 35px;
+    padding-top: 20px;
 
     h3 {
         margin: 10px 0 0 20px;
@@ -87,8 +85,8 @@ onMounted(() => {
         display: flex;
         flex-wrap: wrap;
         flex-basis: 0;
-        padding: 20px;
-        margin-bottom: 110px;
+        padding:20px;
+        margin-bottom: 180px;
     }
 }
 
@@ -102,7 +100,12 @@ img {
 .product_name {
     font-size: 24px;
     margin-top: 80px;
-    margin-bottom: 15px;
+    color: $textcolor7;
+}
+
+.product_price {
+    font-size: 24px;
+    margin: 15px 0;
     color: $textcolor7;
 }
 

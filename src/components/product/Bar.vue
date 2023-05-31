@@ -5,11 +5,11 @@
             <br>
             <li class="bar" @click="scrollToPosition(200)">衣服</li>
             <br>
-            <li class="bar" @click="scrollToPosition(1620)">帽子</li>
+            <li class="bar" @click="scrollToPosition(1720)">帽子</li>
             <br>
-            <li class="bar" @click="scrollToPosition(3050)">帆布袋</li>
+            <li class="bar" @click="scrollToPosition(3235)">帆布袋</li>
             <br>
-            <li class="bar" @click="scrollToPosition(4475)">手機殼</li>
+            <li class="bar" @click="scrollToPosition(4750)">手機殼</li>
             <br>
             <!-- <li class="bar">客製化商品</li>
             <br> -->
