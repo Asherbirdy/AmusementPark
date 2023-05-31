@@ -107,21 +107,6 @@ const handleCancelEdit = () => {
   dialogVisible.value = false;
 };
 
-// axios
-//   .post('/api/PDO/frontEnd/memberModify.php')
-//   .then(res => {
-//     // 在這裡處理回傳的資料
-//     const data = res.data; // 回傳的 JSON 資料
-
-//     // 在這裡使用取得的資料進行後續處理，例如更新前端的資料或顯示在介面上
-//     console.log(data); // 在瀏覽器的開發者工具中輸出資料
-
-//     // 更新前端資料或其他操作...
-//   })
-//   .catch(error => {
-//     // 在這裡處理錯誤
-//     console.error(error);
-//   });
 </script>
 
 <template>
