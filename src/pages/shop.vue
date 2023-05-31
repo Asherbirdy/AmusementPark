@@ -4,7 +4,7 @@ import { reactive, ref } from 'vue';
 const productData = reactive([]);
 onMounted(() => {
   axios
-    .get("/api/PDO/product/product.php")
+    .get("/PDO/frontEnd/product/product.php")
     .then((res) => {
       // API 抓取到的資料：
       res.data.forEach((product) => {
