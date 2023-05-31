@@ -5,11 +5,11 @@
             <br>
             <li class="bar" @click="scrollToPosition(200)">衣服</li>
             <br>
-            <li class="bar" @click="scrollToPosition(1620)">帽子</li>
+            <li class="bar" @click="scrollToPosition(1720)">帽子</li>
             <br>
-            <li class="bar" @click="scrollToPosition(3050)">帆布袋</li>
+            <li class="bar" @click="scrollToPosition(3235)">帆布袋</li>
             <br>
-            <li class="bar" @click="scrollToPosition(4475)">手機殼</li>
+            <li class="bar" @click="scrollToPosition(4750)">手機殼</li>
             <br>
             <!-- <li class="bar">客製化商品</li>
             <br> -->
@@ -19,18 +19,23 @@
 <script setup>
 document.addEventListener('scroll', function () {
     var scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-    console.log(scrollTop);
+    // console.log(scrollTop);
 
     var sidebar = document.querySelector('.sidebar');
     if (scrollTop > 150) {
+        sidebar.style.transition = 'top 0.3s ease';
         sidebar.style.top = '50px';
     } else {
         sidebar.style.top = '';
     }
 });
 const scrollToPosition = (y) => {
-  window.scrollTo(window.pageXOffset, y);
+    window.scrollTo({
+        top: y,
+        behavior: 'smooth'
+    });
 }
+
 let bar = { bar: 'bar' };
 </script>
 <style lang="scss" scoped>
@@ -55,8 +60,15 @@ li {
     font-size: 24px;
     cursor: pointer;
 }
-li:hover{
+
+li:hover {
     color: #172944;
     font-weight: bold;
+}
+
+@media screen and (max-width: 1280px) {
+    .sidebar {
+        padding-left: 20px;
+    }
 }
 </style>
