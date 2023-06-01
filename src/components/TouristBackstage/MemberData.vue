@@ -2,81 +2,147 @@
 import { ref, onMounted } from 'vue';
 import axios from 'axios';
 
-// 定義表單欄位的資訊
 const formFields = [
   { id: 'name', label: '會員姓名：', name: 'name' },
-  { id: 'birthdate', label: '出生日期：', name: 'birthDate' },
+  { id: 'birthdate', label: '出生日期：', name: 'birthDate', type: 'date' },
   { id: 'phone', label: '手機號碼：', name: 'phoneNum' },
-  { id: 'email', label: '電子郵件：', name: 'emailAdd' },
+  { id: 'email', label: '電子郵件：', name: 'emailAdd', type: 'email' },
   { id: 'place', label: '通訊地址：', name: 'address' },
 ];
 
 const dialogVisible = ref(false);
 const tableData = ref({});
+const originalData = ref({});
 const isInputFail = ref(false);
 
-// 在組件掛載完成後執行的函式
 onMounted(async () => {
-  // 從 JSON 檔案獲取會員資料
-  const res = await axios.get('../../src/assets/json/memberInfo.json');
-  const data = res.data.memberInfo;
-  // 將第一筆會員資料存入 tableData
-  tableData.value = data[0];
+  try {
+    const response = await axios.get(
+      '/PDO/frontEnd/memberModify/memberModify.php'
+    );
+    const data = response.data;
+    // console.log(data);
+
+    if (data.length > 0) {
+      const MEMBER = data[0]; // 獲取當前登入會員數據
+
+      const fitData = {
+        id: MEMBER.ACCOUNT,
+        name: MEMBER.NAME,
+        birthDate: MEMBER.BIRTHDAY ? MEMBER.BIRTHDAY.substring(0, 10) : '',
+        // 先一定要有 MEMBER.BIRTHDAY，才判斷
+        phoneNum: MEMBER.PHONE,
+        emailAdd: MEMBER.EMAIL,
+        address: MEMBER.ADDRESS,
+      };
+
+      tableData.value = fitData;
+      originalData.value = { ...tableData.value };
+
+      console.log(tableData.value);
+    } else {
+      console.log('沒有找到相關數據');
+    }
+  } catch (error) {
+    console.error(error);
+  }
 });
 
-const handleSaveData = () => {
-  // 檢查表單是否為空白
-  for (const field of formFields) {
-    if (
-      !tableData.value[field.name] ||
-      tableData.value[field.name].trim() === ''
-    ) {
-      alert('請輸入所有資訊！');
-      return;
-    }
-  }
+const handleDateInput = event => {
+  const input = event.target;
+  const value = input.value;
+  const isValidDate = /^\d{4}\d{2}\d{2}$/.test(value);
 
-  if (validateInputs()) {
-    dialogVisible.value = false; // 關閉彈窗
-    saveData(); // 保存數據
-  } else {
-    alert('輸入的電話號碼、電子郵件或日期格式不正確！');
+  if (isValidDate && value.length === 8) {
+    const formattedDate = value.replace(/(\d{4})(\d{2})(\d{2})/, '$1-$2-$3');
+    input.value = formattedDate;
   }
 };
 
-// 電話號碼、電子郵件、日期日否部正確
-const validateInputs = () => {
-  // 電話號碼格式
-  const phoneRegex = /^[0-9]{10}$/;
-  // 電子郵件格式
-  const emailRegex =
-    /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
-  // 出生年月日格式: YYYY/MM/DD
-  const dateRegex = /^(\d{4})\/(\d{2})\/(\d{2})$/;
-
-  // 從資料庫抓原有電話、電子郵件、日期
-  const phoneNum = tableData.value.phoneNum;
-  const emailAdd = tableData.value.emailAdd;
-  const birthDate = tableData.value.birthDate;
-
-  // 電話 判斷式
-  if (phoneNum && !phoneRegex.test(phoneNum) && phoneNum.trim() === '') {
-    isInputFail.value = true;
-    return false;
+const saveData = async () => {
+  try {
+    // 发送修改后的数据到后端API
+    const response = await axios.post(
+      '/PDO/frontEnd/memberModify/updateMember.php',
+      tableData.value
+    );
+    console.log('資料已儲存:', response.data);
+  } catch (error) {
+    console.error(error);
   }
-  // 電子郵件 判斷式
-  if (emailAdd && !emailRegex.test(emailAdd) && emailAdd.trim() === ' ') {
-    isInputFail.value = true;
-    return false;
-  }
-  // 日期 判斷式
-  if (birthDate && !dateRegex.test(birthDate) && birthDate.trim() === ' ') {
-    isInputFail.value = true;
-    return false;
-  }
+};
 
+const handleSaveData = async () => {
+  let isAllFieldsEmpty = true;
   isInputFail.value = false;
-  return true;
+
+  const validateField = field => {
+    const value = tableData.value[field.name];
+
+    if (field.name === 'address') {
+      return value && value.trim() !== '';
+    }
+
+    if (field.name === 'phoneNum') {
+      const phoneRegex = /^[0-9]{10}$/;
+      return !value || phoneRegex.test(value.trim());
+    }
+
+    if (field.name === 'emailAdd') {
+      const emailRegex =
+        /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+      return !value || emailRegex.test(value.trim());
+    }
+
+    if (field.name === 'birthDate') {
+      const dateRegex = /^(\d{4})(\d{2})(\d{2})$/;
+      const isValidDate = !value || dateRegex.test(value.trim());
+
+      if (isValidDate && value && value.length === 8) {
+        tableData.value[field.name] = value.replace(
+          /(\d{4})(\d{2})(\d{2})/,
+          '$1-$2-$3'
+        );
+      }
+
+      return isValidDate;
+    }
+
+    return true;
+  };
+
+  for (const field of formFields) {
+    if (
+      field.name !== 'name' &&
+      (!tableData.value[field.name] ||
+        tableData.value[field.name].trim() === '')
+    ) {
+      isAllFieldsEmpty = false;
+    }
+
+    if (!validateField(field)) {
+      isInputFail.value = true;
+    }
+  }
+
+  if (!isAllFieldsEmpty) {
+    dialogVisible.value = false;
+    await saveData();
+    return;
+  }
+
+  if (isInputFail.value) {
+    dialogVisible.value = false;
+    saveData();
+    return;
+  }
+
+  dialogVisible.value = false;
+};
+
+const handleCancelEdit = () => {
+  tableData.value = { ...originalData.value };
+  dialogVisible.value = false;
 };
 </script>
 
@@ -86,6 +152,11 @@ const validateInputs = () => {
     <nav>
       <form>
         <!-- 使用 v-for 迴圈來顯示表單欄位 -->
+        <input
+          type="hidden"
+          name="memberId"
+          value="<?php echo $_SESSION['member_id']; ?>"
+        />
         <section class="name" v-for="field in formFields" :key="field.id">
           <label :for="field.id">{{ field.label }}</label>
           <span>{{ tableData[field.name] }}</span>
@@ -147,16 +218,17 @@ const validateInputs = () => {
       <template v-if="field.type === 'date'">
         <input
           v-model="tableData[field.name]"
-          type="date"
           placeholder="YYYY/MM/DD"
           style="
             margin: 20px auto;
-            height: 50px;
-            font-size: 30px;
+            height: 45px;
+            width: 366px;
+            font-size: 20px;
             color: black;
             border-radius: 5px;
             padding-left: 5px;
           "
+          @input="handleDateInput"
         />
       </template>
       <!-- 從原有的for迴圈裡挑出來email單獨寫 -->
@@ -183,6 +255,7 @@ const validateInputs = () => {
           style="
             margin: 20px auto;
             height: 45px;
+            width: 366px;
             font-size: 20px;
             color: black;
             border-radius: 5px;
@@ -203,12 +276,14 @@ const validateInputs = () => {
             border-radius: 10px;
             font-family: '微軟正黑體';
           "
-          @click="dialogVisible = false"
-          >取消</el-button
+          @click="handleCancelEdit"
         >
+          取消
+        </el-button>
         <el-button
           style="
             margin: 15px;
+            padding-top: 11px;
             font-size: 20px;
             color: #fff;
             height: 45px;
