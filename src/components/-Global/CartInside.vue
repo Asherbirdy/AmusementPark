@@ -124,6 +124,38 @@ const removeFromCart = (index) => {
   }
   console.log('transferData', transferData)
 
+  let session = ref(getSessionBookingData());
+
+  session.value.forEach((sessionTicket, i) => {
+    console.log(sessionTicket);
+    // 检查是否有相同的数据：
+    const isMatch = (
+      transferData.ticketType === sessionTicket.ticketType &&
+      transferData.fastFoward === sessionTicket.fastFoward &&
+      transferData.ticketData === sessionTicket.ticketData
+    );
+    if (isMatch) {
+      console.log('需要去掉', sessionTicket)
+
+      session.value.splice(i, 1)
+
+
+      sessionStorage.setItem("bookingData", JSON.stringify(session.value));
+
+    } else {
+      console.log('不要要刪掉');
+    }
+
+
+  });
+
+  console.log(session.value);
+
+
+
+
+
+
 
   // sessionStorage.setItem("bookingData", JSON.stringify(ticketData.value));
   // //  從頁面刪掉：
