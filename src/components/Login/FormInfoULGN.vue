@@ -215,12 +215,17 @@ const handleSubmit = async () => {
           .post('/PDO/frontEnd/memberLogin/orderInsert.php', { postToDBData, total })
           .then(res => {
             console.log(res);
+            sessionStorage.removeItem('bookingData');
+            const login = true;
+            sessionStorage.setItem("token", JSON.stringify(login));
           })
           .catch(err => {
             console.log(err);
           });
       } else {
-        console.log('Local無資料');
+        console.log('Session無資料');
+        const login = true;
+        sessionStorage.setItem("token", JSON.stringify(login));
       }
       // 跳到首頁
       router.push('/');

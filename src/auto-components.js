@@ -40,16 +40,10 @@ declare module '@vue/runtime-core' {
     E4: typeof import('./components/-UI Element/svg/monsterComponent/e4.vue')['default']
     E5: typeof import('./components/-UI Element/svg/monsterComponent/e5.vue')['default']
     E6: typeof import('./components/-UI Element/svg/monsterComponent/e6.vue')['default']
-<<<<<<< HEAD
-<<<<<<< HEAD
+    ElAside: typeof import('element-plus/es')['ElAside']
     ElButton: typeof import('element-plus/es')['ElButton']
     ElButtonGroup: typeof import('element-plus/es')['ElButtonGroup']
     ElCalendar: typeof import('element-plus/es')['ElCalendar']
-    ElDatePicker: typeof import('element-plus/es')['ElDatePicker']
-    ElDialog: typeof import('element-plus/es')['ElDialog']
-=======
-    ElAside: typeof import('element-plus/es')['ElAside']
-    ElButton: typeof import('element-plus/es')['ElButton']
     ElCarousel: typeof import('element-plus/es')['ElCarousel']
     ElCarouselItem: typeof import('element-plus/es')['ElCarouselItem']
     ElCheckbox: typeof import('element-plus/es')['ElCheckbox']
@@ -57,19 +51,12 @@ declare module '@vue/runtime-core' {
     ElCol: typeof import('element-plus/es')['ElCol']
     ElContainer: typeof import('element-plus/es')['ElContainer']
     ElDatePicker: typeof import('element-plus/es')['ElDatePicker']
-=======
-    ElButton: typeof import('element-plus/es')['ElButton']
-    ElButtonGroup: typeof import('element-plus/es')['ElButtonGroup']
-    ElCalendar: typeof import('element-plus/es')['ElCalendar']
->>>>>>> 會員資料
     ElDialog: typeof import('element-plus/es')['ElDialog']
     ElFooter: typeof import('element-plus/es')['ElFooter']
     ElForm: typeof import('element-plus/es')['ElForm']
     ElFormItem: typeof import('element-plus/es')['ElFormItem']
     ElHeader: typeof import('element-plus/es')['ElHeader']
->>>>>>> 164f7b402edee9650762880fed15bea504a992c6
     ElIcon: typeof import('element-plus/es')['ElIcon']
-<<<<<<< HEAD
     ElInput: typeof import('element-plus/es')['ElInput']
     ElInputNumber: typeof import('element-plus/es')['ElInputNumber']
     ElMain: typeof import('element-plus/es')['ElMain']
@@ -81,9 +68,6 @@ declare module '@vue/runtime-core' {
     ElTable: typeof import('element-plus/es')['ElTable']
     ElTableColumn: typeof import('element-plus/es')['ElTableColumn']
     ElText: typeof import('element-plus/es')['ElText']
-=======
-    ElInputNumber: typeof import('element-plus/es')['ElInputNumber']
->>>>>>> 會員資料
     ExhibitionNotice: typeof import('./components/Notice/ExhibitionNotice.vue')['default']
     FbCustomerChat: typeof import('./components/-UI Element/QA/FbCustomerChat.vue')['default']
     Footer: typeof import('./components/-Global/Footer.vue')['default']
