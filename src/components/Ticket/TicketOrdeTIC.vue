@@ -110,7 +110,15 @@ const addToCart = () => {
   if (ticketDate !== '' && isValidDateFormat(ticketDate)) {
     if (countTicket() !== 0) {
       // 
-
+      // axios
+      //     .post('/PDO/frontEnd/tickOrder/tickOrderInsert.php', { postToDBData, total })
+      //     .then(res => {
+      //       console.log(res);
+      //     })
+      //     .catch(err => {
+      //       console.log(err);
+      //     });
+      
       addBookingDataToLocal(bookingData);
       addTicketDateToLocal(ticketDate);
       alert('已將票數加入到購物車');
