@@ -99,7 +99,6 @@ let displayTicketData = ref();
 onMounted(async () => {
   try {
     const res = await axios.get('/PDO/frontEnd/cart/cartSelect.php');
-    console.log(res.data);
     const displayTicket = res.data.map(item => {
       const fastforwardPrice = 100;
       return {
@@ -114,6 +113,7 @@ onMounted(async () => {
       }
 
     });
+
     displayTicketData.value = displayTicket
 
   } catch (err) {
@@ -122,15 +122,10 @@ onMounted(async () => {
 });
 
 
-
-
-
-
-
 // ---------------------------- Functions --------------------------------//
 const removeFromCart = (index) => {
 
-  const ticketID = ticketData.value[index].ticketID;
+  const ticketID = displayTicketData.value[index].ticketID;
   console.log(ticketID);
 
   // ----------------這邊
