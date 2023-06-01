@@ -10,7 +10,7 @@
           <th class="edit">修改</th>
           <th class="delet">移除</th>
         </tr>
-        <tr v-for="(item, index) in products" :key="item.id" class="detail">
+        <tr v-for="(item, index) in ticketData" :key="item.id" class="detail">
           <td class="itemname">{{ item.name }}</td>
           <td class="itemstyle">{{ item.type }}</td>
           <td class="count">{{ item.count }}</td>
@@ -42,6 +42,7 @@
           <h2>使用優惠碼</h2>
           <div class="code">
             <input type="text" class="sn" v-model="discountCode" />
+
             <button type="submit" id="Submit">折抵</button>
           </div>
         </div>
@@ -52,11 +53,11 @@
           <table id="totallist">
             <tr>
               <td>商品總額</td>
-              <td class="money">{{ calculateTotalPrice() }}</td>
+              <!-- <td class="money">{{ calculateTotalPrice() }}</td> -->
             </tr>
             <tr>
               <td>折扣額</td>
-              <td class="money">-{{ calculateTotalCoupon() }}</td>
+              <!-- <td class="money">-{{ calculateTotalCoupon() }}</td> -->
             </tr>
             <tr>
               <td>運費</td>
@@ -64,7 +65,7 @@
             </tr>
             <tr id="totalprice">
               <td>訂單總額</td>
-              <td class="money">{{ calculateOrderTotal() }}</td>
+              <!-- <td class="money">{{ calculateOrderTotal() }}</td> -->
             </tr>
           </table>
           <router-link to="/admin/cartfill">
@@ -81,17 +82,17 @@ import {
   useTest,
   getSessionBookingData,
 } from '../../composables';
-// 商品數據(負責顯示)
-const products = ref([]);
 
-// 抓local 票券的資料：
-const ticketDataFromLocal = JSON.parse(sessionStorage.getItem('bookingData'));
 
 /*
   從Local抓資料 並轉為 購物車的資料格式
 */
 
-const ticketMapData = ticketDataFromLocal.map(item => {
+// 抓local 票券的資料：
+let ticketData = ref();
+
+// 轉換成票券模式：
+const ticketMapData = getSessionBookingData().map(item => {
   const fastforwardPrice = 100;
   return {
     name: `${item.ticketData} ${item.ticketType} `,
@@ -103,57 +104,64 @@ const ticketMapData = ticketDataFromLocal.map(item => {
   };
 });
 
-// 將票券和商品都推到一個陣列中：
-let sortArr = [];
-sortArr.push(...ticketMapData);
+ticketData.value = ticketMapData;
+console.log(ticketData.value);
 
-//全部加總
-products.value.push(...sortArr);
-console.log(products.value);
+
 
 // ---------------------------- Functions --------------------------------//
-
-// 刪除物品功能：
 const removeFromCart = (index) => {
-  console.log(products.value[index]);
-  //  從頁面刪掉：
-  products.value.splice(index, 1);
-  console.log(products.value);
+  // 從畫面上刪除：
+  ticketData.value.splice(index, 1);
+  // 刪掉的值：
+  const clickData = ticketData.value[index];
+  // 轉換刪掉的值：
+  const transferData = {
+    ticketData: clickData.name.split(' ')[0],
+    fastFoward: clickData.type === "快速通關+100元" ? true : false,
+    ticketType: clickData.name.split(' ')[1]
 
-
-
-
-};
-
-
-
-// 計算商品總額
-const calculateTotalPrice = () => {
-  let totalPrice = 0;
-  products.value.forEach(product => {
-    totalPrice += product.price * product.count;
-  });
-  return totalPrice;
-};
-
-const discountCode = ref('');
-const calculateTotalCoupon = () => {
-  if (discountCode.value === 'MONSTAR') {
-    return 50;
   }
-  if (discountCode.value === 'BESTPARK') {
-    return 500;
-  }
-  return 0;
+  console.log('transferData', transferData)
+
+
+  // sessionStorage.setItem("bookingData", JSON.stringify(ticketData.value));
+  // //  從頁面刪掉：
+
+  // 在刪除項目後重新整理頁面
+
 };
 
-// 計算訂單總額
-const calculateOrderTotal = () => {
-  const totalPrice = calculateTotalPrice();
-  const discount = calculateTotalCoupon(); //折扣金額
-  const shippingFee = 60; //運費
-  return totalPrice - discount + shippingFee;
-};
+
+
+// // 計算商品總額
+// const calculateTotalPrice = () => {
+//   let totalPrice = 0;
+//   products.value.forEach(product => {
+//     totalPrice += product.price * product.count;
+//   });
+//   return totalPrice;
+// };
+
+// const discountCode = ref('');
+// const calculateTotalCoupon = () => {
+//   if (discountCode.value === 'MONSTAR') {
+//     return 50;
+//   }
+//   if (discountCode.value === 'BESTPARK') {
+//     return 500;
+//   }
+//   return 0;
+// };
+
+// // 計算訂單總額
+// const calculateOrderTotal = () => {
+//   const totalPrice = calculateTotalPrice();
+//   const discount = calculateTotalCoupon(); //折扣金額
+//   const shippingFee = 60; //運費
+//   return totalPrice - discount + shippingFee;
+// };
+
 </script>
 
 <style lang="scss" scoped>
