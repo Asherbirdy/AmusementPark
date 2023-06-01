@@ -1,7 +1,7 @@
 <template>
   <el-dialog title="退票資訊" width="30%" center>
     <span>
-      <p>訂票編號:{{id}}</p>
+      <p>訂票編號:{{ id }}</p>
       <p>票型：{{ ticketType }}</p>
       <p>日期：{{ ticketDate }}</p>
       <p>票數：{{ ticketAmount }}</p>
@@ -31,12 +31,14 @@
 </template>
 <script setup>
 import axios from 'axios';
+import getPHPUrl from '@/utils/phpPath';
+const phpURL = name => getPHPUrl(name);
 // 監聽目前退票數量：
 const tickets = ref(0);
 
 // 帳號名稱 / 票型  / 時間  / 快速通關  / 退票數量：
 let refundTicketsData = reactive({
-  id:0,
+  id: 0,
   username: 'asher',
   ticketType: '',
   ticketDate: '',
@@ -53,7 +55,7 @@ const refundTickets = () => {
   refundTicketsData.refundTicketsAmount = tickets.value;
   // console.log(refundTicketsData);
   axios
-    .post('/PDO/tickOrder/tickOrderUpdate.php', { refundTicketsData })
+    .post(`${phpURL(test.php)}`, { refundTicketsData })
     .then(res => {
       console.log(res);
     })
@@ -64,11 +66,11 @@ const refundTickets = () => {
 
 // 外部資料導入資訊
 const props = defineProps({
-  id:Number,
+  id: Number,
   ticketType: String,
   ticketDate: String,
   ticketAmount: Number,
-  fast_pass1:Boolean,
+  fast_pass1: Boolean,
   fastPassFacility: Array,
 });
 </script>
