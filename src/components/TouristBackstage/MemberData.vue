@@ -16,33 +16,55 @@ const originalData = ref({});
 const isInputFail = ref(false);
 
 onMounted(async () => {
-  const res = await axios.get('../../src/assets/json/memberInfo.json');
-  const data = res.data.memberInfo;
-  tableData.value = data[0];
-  originalData.value = { ...tableData.value };
+  try {
+    const response = await axios.get(
+      '/PDO/frontEnd/memberModify/memberModify.php'
+    );
+    const data = response.data;
+    const fitData = data.map(MEMBER => ({
+      name: MEMBER.NAME,
+      birthDate: MEMBER.BIRTHDAY.substring(0, 10),
+      phoneNum: MEMBER.PHONE,
+      emailAdd: MEMBER.EMAIL,
+      address: MEMBER.ADDRESS,
+    }));
+    tableData.value = fitData[0];
+    originalData.value = { ...tableData.value };
+    console.log(tableData.value);
+  } catch (error) {
+    console.error(error);
+  }
 });
 
-const handleDateInput = (event) => {
+const handleDateInput = event => {
   const input = event.target;
   const value = input.value;
-  const isValidDate = /^\d{4}\/\d{2}\/\d{2}$/.test(value);
+  const isValidDate = /^\d{4}\d{2}\d{2}$/.test(value);
 
   if (isValidDate && value.length === 8) {
-    const formattedDate = value.replace(/(\d{4})(\d{2})(\d{2})/, '$1/$2/$3');
+    const formattedDate = value.replace(/(\d{4})(\d{2})(\d{2})/, '$1-$2-$3');
     input.value = formattedDate;
   }
 };
 
-const saveData = () => {
-  // 實現儲存資料的邏輯，例如將資料發送到後端API
-  console.log('資料已儲存:', tableData.value);
+const saveData = async () => {
+  try {
+    // 发送修改后的数据到后端API
+    const response = await axios.post(
+      '/PDO/frontEnd/memberModify/updateMember.php',
+      tableData.value
+    );
+    console.log('資料已儲存:', response.data);
+  } catch (error) {
+    console.error(error);
+  }
 };
 
-const handleSaveData = () => {
+const handleSaveData = async () => {
   let isAllFieldsEmpty = true;
   isInputFail.value = false;
 
-  const validateField = (field) => {
+  const validateField = field => {
     const value = tableData.value[field.name];
 
     if (field.name === 'address') {
@@ -65,7 +87,10 @@ const handleSaveData = () => {
       const isValidDate = !value || dateRegex.test(value.trim());
 
       if (isValidDate && value && value.length === 8) {
-        tableData.value[field.name] = value.replace(/(\d{4})(\d{2})(\d{2})/, '$1/$2/$3');
+        tableData.value[field.name] = value.replace(
+          /(\d{4})(\d{2})(\d{2})/,
+          '$1-$2-$3'
+        );
       }
 
       return isValidDate;
@@ -77,7 +102,8 @@ const handleSaveData = () => {
   for (const field of formFields) {
     if (
       field.name !== 'name' &&
-      (!tableData.value[field.name] || tableData.value[field.name].trim() === '')
+      (!tableData.value[field.name] ||
+        tableData.value[field.name].trim() === '')
     ) {
       isAllFieldsEmpty = false;
     }
@@ -89,7 +115,7 @@ const handleSaveData = () => {
 
   if (!isAllFieldsEmpty) {
     dialogVisible.value = false;
-    saveData();
+    await saveData();
     return;
   }
 
@@ -106,7 +132,6 @@ const handleCancelEdit = () => {
   tableData.value = { ...originalData.value };
   dialogVisible.value = false;
 };
-
 </script>
 
 <template>
@@ -174,21 +199,21 @@ const handleCancelEdit = () => {
       <!-- 從原有的for迴圈裡挑出來日期單獨寫 -->
       <!-- 用 if else if else -->
       <template v-if="field.type === 'date'">
-  <input
-    v-model="tableData[field.name]"
-    placeholder="YYYY/MM/DD"
-    style="
-      margin: 20px auto;
-      height: 45px;
-      width: 366px;
-      font-size: 20px;
-      color: black;
-      border-radius: 5px;
-      padding-left: 5px;
-    "
-    @input="handleDateInput"
-  />
-</template>
+        <input
+          v-model="tableData[field.name]"
+          placeholder="YYYY/MM/DD"
+          style="
+            margin: 20px auto;
+            height: 45px;
+            width: 366px;
+            font-size: 20px;
+            color: black;
+            border-radius: 5px;
+            padding-left: 5px;
+          "
+          @input="handleDateInput"
+        />
+      </template>
       <!-- 從原有的for迴圈裡挑出來email單獨寫 -->
       <template v-else-if="field.type === 'email'">
         <input

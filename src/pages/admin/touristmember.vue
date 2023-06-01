@@ -1,14 +1,5 @@
 <script setup>
 
-onMounted(() => {
-  axios
-  .get("/PDO/frontEnd/memberLogin/memberModify.php")
-  .then((res)=>{
-
-  })
-}),
-
-
 
 </script>
 <template>
