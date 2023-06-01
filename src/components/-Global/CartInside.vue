@@ -137,32 +137,14 @@ const removeFromCart = (index) => {
     );
     if (isMatch) {
       console.log('需要去掉', sessionTicket)
-
       session.value.splice(i, 1)
       sessionStorage.setItem("bookingData", JSON.stringify(session.value));
-
     }
-
-
   });
   // 將session 轉為 資料庫 格式：
   const postToDBData = getTransTickSessionToDB(session.value);
   console.log(session.value);
   console.log(postToDBData);
-
-
-  // 將session資料轉為總金額
-
-
-
-
-
-
-
-  // sessionStorage.setItem("bookingData", JSON.stringify(ticketData.value));
-  // //  從頁面刪掉：
-
-  // 在刪除項目後重新整理頁面
 
 };
 

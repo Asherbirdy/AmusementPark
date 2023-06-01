@@ -1,6 +1,6 @@
 export function ticketTotalPrice(ticketPriceArr) {
   const total = ticketPriceArr
-    .map(ticket => {
+    ?.map(ticket => {
       const fastPassPrice = 100;
       const isfastPassPrice = ticket.fastFoward
         ? ticket.ticketPrice + fastPassPrice
