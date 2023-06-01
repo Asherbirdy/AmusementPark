@@ -6,7 +6,8 @@ import {
   getTicketPrice,
   getSessionBookingData,
   getTicketTypeFromNum,
-  getTransTickSessionToDB
+  getTransTickSessionToDB,
+  getTicketTotalPrice
 } from '../../composables';
 console.log(getTicketType(4));
 
@@ -202,19 +203,9 @@ const handleSubmit = async () => {
         const postToDBData = getTransTickSessionToDB(currentLocal);
         console.log('傳給資料庫的資料', postToDBData);
 
-        // 算出目前總金額：
-        const total = displayTicketData
-          .map(ticket => {
-            const fastPassPrice = 100;
-            const isfastPassPrice = ticket.fastFoward ? ticket.ticketPrice + fastPassPrice : ticket.ticketPrice;
-            return {
-              ticketType: `${ticket.ticketType}${ticket.ticketPrice} ${ticket.tickets} 快速通關:${ticket.fastFoward}`,
-              ticketPrice: isfastPassPrice,
-              ticketPriceSUM: isfastPassPrice * ticket.tickets
-            }
-          })
-          .reduce((acc, cur) => acc + cur.ticketPriceSUM, 0);
 
+        // 算出目前總金額：
+        const total = getTicketTotalPrice(displayTicketData);
 
 
         console.log('總金額', total)
