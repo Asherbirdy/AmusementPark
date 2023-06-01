@@ -40,6 +40,7 @@ declare module '@vue/runtime-core' {
     E4: typeof import('./components/-UI Element/svg/monsterComponent/e4.vue')['default']
     E5: typeof import('./components/-UI Element/svg/monsterComponent/e5.vue')['default']
     E6: typeof import('./components/-UI Element/svg/monsterComponent/e6.vue')['default']
+    ElDatePicker: typeof import('element-plus/es')['ElDatePicker']
     ElIcon: typeof import('element-plus/es')['ElIcon']
     ElInputNumber: typeof import('element-plus/es')['ElInputNumber']
     ExhibitionNotice: typeof import('./components/Notice/ExhibitionNotice.vue')['default']
