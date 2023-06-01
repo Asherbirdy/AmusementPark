@@ -214,10 +214,26 @@ const handleSubmit = async () => {
         });
         console.log('傳給資料庫的資料', postToDBData);
 
-        
+        // 算出目前總金額：
+        const total = displayTicketData
+          .map(ticket => {
+            const fastPassPrice = 100;
+            const isfastPassPrice = ticket.fastFoward ? ticket.ticketPrice + fastPassPrice : ticket.ticketPrice;
+            return {
+              ticketType: `${ticket.ticketType}${ticket.ticketPrice} ${ticket.tickets} 快速通關:${ticket.fastFoward}`,
+              ticketPrice: isfastPassPrice,
+              ticketPriceSUM: isfastPassPrice * ticket.tickets
+            }
+          })
+          .reduce((acc, cur) => acc + cur.ticketPriceSUM, 0);
+
+
+
+        console.log('總金額', total)
+
         // 傳給後端
         axios
-          .post('/PDO/frontEnd/memberLogin/orderInsert.php', postToDBData)
+          .post('/PDO/frontEnd/memberLogin/orderInsert.php', { postToDBData, total })
           .then(res => {
             console.log(res);
           })
