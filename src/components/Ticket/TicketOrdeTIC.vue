@@ -39,6 +39,14 @@ let bookingData = reactive([
   },
 ]);
 
+// 依照Token做判斷
+if (sessionStorage.getItem('token')) {
+  console.log('sessionStorage 中有 token。 ');
+} else {
+  console.log('sessionStorage 中沒有 token ');
+}
+
+
 // 計算所有票的數量
 function countTicket() {
   return bookingData.reduce((acc, cur) => acc + cur.ticketNum, 0);
@@ -107,37 +115,34 @@ const addTicketDateToLocal = () =>
 // 票卷時間：
 let ticketDate = ref('');
 const addToCart = () => {
-  if (ticketDate !== '' && isValidDateFormat(ticketDate)) {
-    if (countTicket() !== 0) {
-      // 
-
-      addBookingDataToLocal(bookingData);
-      addTicketDateToLocal(ticketDate);
-      alert('已將票數加入到購物車');
-      console.log(bookingData);
-      console.log(ticketDate);
-    } else {
-      alert('請加入票數');
-    }
+  if (sessionStorage.getItem('token')) {
+    console.log('sessionStorage 中有 token。 ');
   } else {
-    alert('請輸入日期');
+    console.log('sessionStorage 中沒有 token ');
+    if (ticketDate !== '' && isValidDateFormat(ticketDate)) {
+      if (countTicket() !== 0) {
+        // 
+        addBookingDataToLocal(bookingData);
+        addTicketDateToLocal(ticketDate);
+        alert('已將票數加入到購物車');
+        console.log(bookingData);
+        console.log(ticketDate);
+      } else {
+        alert('請加入票數');
+      }
+    } else {
+      alert('請輸入日期');
+    }
   }
+
+
+
+
 };
 
 // 購買票券
 const buyTicket = () => {
-  if (ticketDate !== '' && isValidDateFormat(ticketDate)) {
-    if (countTicket() !== 0) {
-      addBookingDataToLocal(bookingData);
-      addTicketDateToLocal(ticketDate);
-      router.push('/cart');
-      alert('已將票數加入到購物車');
-    } else {
-      alert('請加入票數');
-    }
-  } else {
-    alert('請輸入日期');
-  }
+  router.push('/cart');
 };
 
 // 原始時間：
@@ -205,14 +210,14 @@ const disableDate = time => {
     </table>
   </div>
   <div class="btnbox">
-    <btn class="btn" button-color="#D1825B" button-text-color="white" @click="clearOut">
+    <!-- <btn class="btn" button-color="#D1825B" button-text-color="white" @click="clearOut">
       <h3>清空</h3>
-    </btn>
+    </btn> -->
     <btn :style="{ width: '150px' }" class="btn" button-color="#D1825B" button-text-color="white" @click="addToCart">
       <h3>加入購物車</h3>
     </btn>
-    <btn class="btn" button-color="#D1825B" button-text-color="white" @click="buyTicket">
-      <h3>立即購買</h3>
+    <btn class="btn" :style="{ width: '150px' }" button-color="#D1825B" button-text-color="white" @click="buyTicket">
+      <h3>前往購物車</h3>
     </btn>
   </div>
 </template>
