@@ -77,6 +77,10 @@
 </template>
 
 <script setup>
+import {
+  useTest,
+  getSessionBookingData,
+} from '../../composables';
 // 商品數據(負責顯示)
 const products = ref([]);
 
@@ -109,43 +113,19 @@ console.log(products.value);
 
 // ---------------------------- Functions --------------------------------//
 
+// 刪除物品功能：
 const removeFromCart = (index) => {
   console.log(products.value[index]);
   //  從頁面刪掉：
   products.value.splice(index, 1);
-  // 轉換格式 再去localStoarage刪掉：
+  console.log(products.value);
 
-  //  console.log(products.value);
-  //  sessionStorage.setItem("bookingData", JSON.stringify(products.value));
+
+
+
 };
 
-// // 函數：移除商品
-// const removeFromCart = product => {
-//   const index = products.value.findIndex(item => item.id === product.id);
-//   if (index > -1) {
-//     products.value.splice(index, 1);
-//   }
-// };
 
-/*
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-*/
 
 // 計算商品總額
 const calculateTotalPrice = () => {
