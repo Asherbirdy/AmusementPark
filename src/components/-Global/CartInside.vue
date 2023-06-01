@@ -10,7 +10,7 @@
           <th class="edit">修改</th>
           <th class="delet">移除</th>
         </tr>
-        <tr v-for="(item, index) in ticketData" :key="item.id" class="detail">
+        <tr v-for="(item, index) in displayTicketData" :key="item.id" class="detail">
           <td class="itemname">{{ item.name }}</td>
           <td class="itemstyle">{{ item.type }}</td>
           <td class="count">{{ item.count }}</td>
@@ -80,41 +80,77 @@
 <script setup>
 import {
   useTest,
-  getSessionBookingData,
-  getTransTickSessionToDB
+  getTicketPrice,
+  getTicketType
 } from '../../composables';
 
+import axios from 'axios';
 
 /*
   從Local抓資料 並轉為 購物車的資料格式
 */
 
-// 抓local 票券的資料：
+// 放 票券的原始資料：
 let ticketData = ref();
 
-// 轉換成票券模式：
-const ticketMapData = getSessionBookingData().map(item => {
-  const fastforwardPrice = 100;
-  return {
-    name: `${item.ticketData} ${item.ticketType} `,
-    type: item.fastFoward ? '快速通關+100元' : '一般票',
-    count: item.tickets,
-    price: item.fastFoward
-      ? item.ticketPrice + fastforwardPrice
-      : item.ticketPrice,
-  };
+let displayTicketData = ref();
+
+
+onMounted(async () => {
+  try {
+    const res = await axios.get('/PDO/frontEnd/cart/cartSelect.php');
+    console.log(res.data);
+    const displayTicket = res.data.map(item => {
+      const fastforwardPrice = 100;
+      return {
+        name: `${item.TICK_DATE.split(' ')[0]
+          } ${getTicketType(item.TICK_ID)}`,
+        type: item.FAST_PASS === 0 ? '快速通關+100元' : '一般票',
+        count: item.TICK_NUM,
+        price: item.FAST_PASS === 0
+          ? getTicketPrice(item.TICK_ID) + fastforwardPrice
+          : getTicketPrice(item.TICK_ID),
+        ticketID: item.TICK_ORDER_ID
+      }
+
+    });
+    displayTicketData.value = displayTicket
+
+  } catch (err) {
+    console.log(err);
+  }
 });
 
-ticketData.value = ticketMapData;
-console.log(ticketData.value);
+
+
+
 
 
 
 // ---------------------------- Functions --------------------------------//
 const removeFromCart = (index) => {
-  console.log(ticketData.value[index]);
+
+  const ticketID = ticketData.value[index].ticketID;
+  console.log(ticketID);
+
+  // ----------------這邊
+
+  axios.post('PHP路徑', ticketID).then((res) => {
+    console.log(res.data)
+  })
 
 
+  // // 從畫面上刪除：
+  // ticketData.value.splice(index, 1);
+  // // 刪掉的值：
+  // const clickData = ticketData.value[index];
+  // // 轉換刪掉的值：
+  // const transferData = {
+  //   ticketData: clickData.name.split(' ')[0],
+  //   fastFoward: clickData.type === "快速通關+100元" ? true : false,
+  //   ticketType: clickData.name.split(' ')[1]
+
+  // }
 
 
 
