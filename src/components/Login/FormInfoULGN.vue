@@ -4,7 +4,7 @@ import {
   useTest,
   getTicketType,
   getTicketPrice,
-  getLocalBookingData,
+  getSessionBookingData,
   getTicketTypeFromNum,
 } from '../../composables';
 console.log(getTicketType(4));
@@ -145,7 +145,7 @@ const handleSubmit = async () => {
           ticketPrice: getTicketPrice(item.TICK_ID),
           ticketType: getTicketType(item.TICK_ID),
           ticketID: item.TICK_ORDER_ID,
-          ticketOrderID: item.TICK_ORDER_ID,
+          ticketOrderID: item.ORDER_ID,
         };
       });
       console.log('轉換ticketArr為使用者顯示的資料=>', displayTicketData);
@@ -155,10 +155,10 @@ const handleSubmit = async () => {
       如果Local沒資料就不執行合併
       */
 
-      if (localStorage.getItem('bookingData') !== null) {
+      if (sessionStorage.getItem('bookingData') !== null) {
         console.log('發現Local有資料所以執行合併整理(Local+Database)');
 
-        const localBookingData = ref(getLocalBookingData());
+        const localBookingData = ref(getSessionBookingData());
 
         localBookingData.value.forEach((localTicket, i) => {
           // 抓到一樣的陣列：
@@ -189,13 +189,13 @@ const handleSubmit = async () => {
         console.log('Local的資料+資料庫的資料=>', displayTicketData);
 
         /*
-        1.將最新的資料放進localStorage
+        1.將最新的資料放進sessionStorage
         2.將資料轉成資料庫的形式
         */
 
-        localStorage.setItem('bookingData', JSON.stringify(displayTicketData));
+        sessionStorage.setItem('bookingData', JSON.stringify(displayTicketData));
 
-        const currentLocal = getLocalBookingData();
+        const currentLocal = getSessionBookingData();
 
         //要給資料庫的格式：
         const postToDBData = currentLocal.map(ticketData => {
@@ -213,9 +213,27 @@ const handleSubmit = async () => {
           };
         });
         console.log('傳給資料庫的資料', postToDBData);
+
+        // 算出目前總金額：
+        const total = displayTicketData
+          .map(ticket => {
+            const fastPassPrice = 100;
+            const isfastPassPrice = ticket.fastFoward ? ticket.ticketPrice + fastPassPrice : ticket.ticketPrice;
+            return {
+              ticketType: `${ticket.ticketType}${ticket.ticketPrice} ${ticket.tickets} 快速通關:${ticket.fastFoward}`,
+              ticketPrice: isfastPassPrice,
+              ticketPriceSUM: isfastPassPrice * ticket.tickets
+            }
+          })
+          .reduce((acc, cur) => acc + cur.ticketPriceSUM, 0);
+
+
+
+        console.log('總金額', total)
+
         // 傳給後端
         axios
-          .post('php路徑', postToDBData)
+          .post('/PDO/frontEnd/memberLogin/orderInsert.php', { postToDBData, total })
           .then(res => {
             console.log(res);
           })
@@ -241,33 +259,18 @@ const handleSubmit = async () => {
   <section class="middle">
     <!-- 帳號 + 密碼 的 input欄位 -->
     <div class="middle__form">
-      <div
-        class="middle__form--wrapOfLabelInput"
-        v-for="(inputInfo, index) in inputInfos"
-        v-bind:key="inputInfo.id"
-      >
+      <div class="middle__form--wrapOfLabelInput" v-for="(inputInfo, index) in inputInfos" v-bind:key="inputInfo.id">
         <label class="middle__form--label">{{ inputInfo.title }}</label>
-        <input
-          class="middle__form--input"
-          v-bind:type="inputInfo.type"
-          v-bind:id="inputInfo.id"
-          v-bind:placeholder="inputInfo.placeholder"
-          v-model="inputInfo.value"
-          @blur="blurCheck(inputInfo.id)"
-        />
-        <span v-if="isInputFail && inputInfo.id === 'account'"
-          >請輸入正確帳號
+        <input class="middle__form--input" v-bind:type="inputInfo.type" v-bind:id="inputInfo.id"
+          v-bind:placeholder="inputInfo.placeholder" v-model="inputInfo.value" @blur="blurCheck(inputInfo.id)" />
+        <span v-if="isInputFail && inputInfo.id === 'account'">請輸入正確帳號
         </span>
       </div>
 
       <!-- 會員註冊 + 忘記密碼 的 a標籤 -->
       <div class="middle__form--bigWrapOfIconA">
-        <div
-          class="middle__form--wrapOfIconA"
-          v-for="(aLink, index) in aLinks"
-          v-bind:key="aLink.id"
-          v-bind:href="aLink.url"
-        >
+        <div class="middle__form--wrapOfIconA" v-for="(aLink, index) in aLinks" v-bind:key="aLink.id"
+          v-bind:href="aLink.url">
           <el-icon class="middle__form--Icon">
             <component :is="aLink.icon" />
           </el-icon>
@@ -277,12 +280,7 @@ const handleSubmit = async () => {
         </div>
       </div>
 
-      <Button
-        class="middle__form--Btn"
-        type="submit"
-        id="Submit"
-        @click="handleSubmit"
-      >
+      <Button class="middle__form--Btn" type="submit" id="Submit" @click="handleSubmit">
         登入
       </Button>
     </div>

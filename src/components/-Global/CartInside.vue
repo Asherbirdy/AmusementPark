@@ -10,7 +10,7 @@
           <th class="edit">修改</th>
           <th class="delet">移除</th>
         </tr>
-        <tr v-for="(item,index) in products" :key="item.id" class="detail">
+        <tr v-for="(item, index) in products" :key="item.id" class="detail">
           <td class="itemname">{{ item.name }}</td>
           <td class="itemstyle">{{ item.type }}</td>
           <td class="count">{{ item.count }}</td>
@@ -77,11 +77,15 @@
 </template>
 
 <script setup>
+import {
+  useTest,
+  getSessionBookingData,
+} from '../../composables';
 // 商品數據(負責顯示)
 const products = ref([]);
 
 // 抓local 票券的資料：
-const ticketDataFromLocal = JSON.parse(localStorage.getItem('bookingData'));
+const ticketDataFromLocal = JSON.parse(sessionStorage.getItem('bookingData'));
 
 /*
   從Local抓資料 並轉為 購物車的資料格式
@@ -109,43 +113,19 @@ console.log(products.value);
 
 // ---------------------------- Functions --------------------------------//
 
+// 刪除物品功能：
 const removeFromCart = (index) => {
- console.log(products.value[index]); 
-//  從頁面刪掉：
- products.value.splice(index, 1);
- // 轉換格式 再去localStoarage刪掉：
+  console.log(products.value[index]);
+  //  從頁面刪掉：
+  products.value.splice(index, 1);
+  console.log(products.value);
 
-//  console.log(products.value);
-//  localStorage.setItem("bookingData", JSON.stringify(products.value));
+
+
+
 };
 
-// // 函數：移除商品
-// const removeFromCart = product => {
-//   const index = products.value.findIndex(item => item.id === product.id);
-//   if (index > -1) {
-//     products.value.splice(index, 1);
-//   }
-// };
 
-/*
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-*/
 
 // 計算商品總額
 const calculateTotalPrice = () => {
