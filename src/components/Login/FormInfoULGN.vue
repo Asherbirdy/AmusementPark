@@ -145,7 +145,7 @@ const handleSubmit = async () => {
           ticketPrice: getTicketPrice(item.TICK_ID),
           ticketType: getTicketType(item.TICK_ID),
           ticketID: item.TICK_ORDER_ID,
-          ticketOrderID: item.TICK_ORDER_ID,
+          ticketOrderID: item.ORDER_ID,
         };
       });
       console.log('轉換ticketArr為使用者顯示的資料=>', displayTicketData);
@@ -213,9 +213,11 @@ const handleSubmit = async () => {
           };
         });
         console.log('傳給資料庫的資料', postToDBData);
+
+        
         // 傳給後端
         axios
-          .post('php路徑', postToDBData)
+          .post('/PDO/frontEnd/memberLogin/orderInsert.php', postToDBData)
           .then(res => {
             console.log(res);
           })
