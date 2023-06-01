@@ -112,39 +112,54 @@ console.log(ticketData.value);
 
 // ---------------------------- Functions --------------------------------//
 const removeFromCart = (index) => {
-  // 從畫面上刪除：
-  ticketData.value.splice(index, 1);
-  // 刪掉的值：
-  const clickData = ticketData.value[index];
-  // 轉換刪掉的值：
-  const transferData = {
-    ticketData: clickData.name.split(' ')[0],
-    fastFoward: clickData.type === "快速通關+100元" ? true : false,
-    ticketType: clickData.name.split(' ')[1]
+  console.log(ticketData.value[index]);
 
-  }
-  console.log('transferData', transferData)
 
-  let session = ref(getSessionBookingData());
 
-  session.value.forEach((sessionTicket, i) => {
-    console.log(sessionTicket);
-    // 检查是否有相同的数据：
-    const isMatch = (
-      transferData.ticketType === sessionTicket.ticketType &&
-      transferData.fastFoward === sessionTicket.fastFoward &&
-      transferData.ticketData === sessionTicket.ticketData
-    );
-    if (isMatch) {
-      console.log('需要去掉', sessionTicket)
-      session.value.splice(i, 1)
-      sessionStorage.setItem("bookingData", JSON.stringify(session.value));
-    }
-  });
-  // 將session 轉為 資料庫 格式：
-  const postToDBData = getTransTickSessionToDB(session.value);
-  console.log(session.value);
-  console.log(postToDBData);
+
+
+
+
+
+
+
+  // －－－－－－－－－－－－－－－－－－上一版本的code
+  // let session = ref(getSessionBookingData());
+  // console.log(session);
+
+  // // 從畫面上刪除：
+  // ticketData.value.splice(index, 1);
+  // // 刪掉的值：
+  // const clickData = ticketData.value[index];
+  // // 轉換刪掉的值：
+  // const transferData = {
+  //   ticketData: clickData.name.split(' ')[0],
+  //   fastFoward: clickData.type === "快速通關+100元" ? true : false,
+  //   ticketType: clickData.name.split(' ')[1]
+
+  // }
+  // console.log('transferData', transferData)
+
+
+
+  // session.value.forEach((sessionTicket, i) => {
+  //   console.log(sessionTicket);
+  //   // 检查是否有相同的数据：
+  //   const isMatch = (
+  //     transferData.ticketType === sessionTicket.ticketType &&
+  //     transferData.fastFoward === sessionTicket.fastFoward &&
+  //     transferData.ticketData === sessionTicket.ticketData
+  //   );
+  //   if (isMatch) {
+  //     console.log('需要去掉', sessionTicket)
+  //     session.value.splice(i, 1)
+  //     sessionStorage.setItem("bookingData", JSON.stringify(session.value));
+  //   }
+  // });
+  // // 將session 轉為 資料庫 格式：
+  // const postToDBData = getTransTickSessionToDB(session.value);
+  // console.log(session.value);
+  // console.log(postToDBData);
 
 };
 
