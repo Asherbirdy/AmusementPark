@@ -10,7 +10,7 @@
           <th class="edit">修改</th>
           <th class="delet">移除</th>
         </tr>
-        <tr v-for="(item, index) in products" :key="item.id" class="detail">
+        <tr v-for="(item, index) in displayTicketData" :key="item.id" class="detail">
           <td class="itemname">{{ item.name }}</td>
           <td class="itemstyle">{{ item.type }}</td>
           <td class="count">{{ item.count }}</td>
@@ -42,6 +42,7 @@
           <h2>使用優惠碼</h2>
           <div class="code">
             <input type="text" class="sn" v-model="discountCode" />
+
             <button type="submit" id="Submit">折抵</button>
           </div>
         </div>
@@ -52,11 +53,11 @@
           <table id="totallist">
             <tr>
               <td>商品總額</td>
-              <td class="money">{{ calculateTotalPrice() }}</td>
+              <!-- <td class="money">{{ calculateTotalPrice() }}</td> -->
             </tr>
             <tr>
               <td>折扣額</td>
-              <td class="money">-{{ calculateTotalCoupon() }}</td>
+              <!-- <td class="money">-{{ calculateTotalCoupon() }}</td> -->
             </tr>
             <tr>
               <td>運費</td>
@@ -64,7 +65,7 @@
             </tr>
             <tr id="totalprice">
               <td>訂單總額</td>
-              <td class="money">{{ calculateOrderTotal() }}</td>
+              <!-- <td class="money">{{ calculateOrderTotal() }}</td> -->
             </tr>
           </table>
           <router-link to="/admin/cartfill">
@@ -79,81 +80,150 @@
 <script setup>
 import {
   useTest,
-  getSessionBookingData,
+  getTicketPrice,
+  getTicketType
 } from '../../composables';
-// 商品數據(負責顯示)
-const products = ref([]);
 
-// 抓local 票券的資料：
-const ticketDataFromLocal = JSON.parse(sessionStorage.getItem('bookingData'));
+import axios from 'axios';
 
 /*
   從Local抓資料 並轉為 購物車的資料格式
 */
 
-const ticketMapData = ticketDataFromLocal.map(item => {
-  const fastforwardPrice = 100;
-  return {
-    name: `${item.ticketData} ${item.ticketType} `,
-    type: item.fastFoward ? '快速通關+100元' : '一般票',
-    count: item.tickets,
-    price: item.fastFoward
-      ? item.ticketPrice + fastforwardPrice
-      : item.ticketPrice,
-  };
+// 放 票券的原始資料：
+let ticketData = ref();
+
+let displayTicketData = ref();
+
+
+onMounted(async () => {
+  try {
+    const res = await axios.get('/PDO/frontEnd/cart/cartSelect.php');
+    const displayTicket = res.data.map(item => {
+      const fastforwardPrice = 100;
+      return {
+        name: `${item.TICK_DATE.split(' ')[0]
+          } ${getTicketType(item.TICK_ID)}`,
+        type: item.FAST_PASS === 0 ? '快速通關+100元' : '一般票',
+        count: item.TICK_NUM,
+        price: item.FAST_PASS === 0
+          ? getTicketPrice(item.TICK_ID) + fastforwardPrice
+          : getTicketPrice(item.TICK_ID),
+        ticketID: item.TICK_ORDER_ID
+      }
+
+    });
+
+    displayTicketData.value = displayTicket
+
+  } catch (err) {
+    console.log(err);
+  }
 });
 
-// 將票券和商品都推到一個陣列中：
-let sortArr = [];
-sortArr.push(...ticketMapData);
-
-//全部加總
-products.value.push(...sortArr);
-console.log(products.value);
 
 // ---------------------------- Functions --------------------------------//
-
-// 刪除物品功能：
 const removeFromCart = (index) => {
-  console.log(products.value[index]);
-  //  從頁面刪掉：
-  products.value.splice(index, 1);
-  console.log(products.value);
+
+  const ticketID = displayTicketData.value[index].ticketID;
+  console.log(ticketID);
+
+  // ----------------這邊
+
+  axios.post('PHP路徑', ticketID).then((res) => {
+    console.log(res.data)
+  })
+
+
+  // // 從畫面上刪除：
+  // ticketData.value.splice(index, 1);
+  // // 刪掉的值：
+  // const clickData = ticketData.value[index];
+  // // 轉換刪掉的值：
+  // const transferData = {
+  //   ticketData: clickData.name.split(' ')[0],
+  //   fastFoward: clickData.type === "快速通關+100元" ? true : false,
+  //   ticketType: clickData.name.split(' ')[1]
+
+  // }
 
 
 
+
+
+
+
+
+  // －－－－－－－－－－－－－－－－－－上一版本的code
+  // let session = ref(getSessionBookingData());
+  // console.log(session);
+
+  // // 從畫面上刪除：
+  // ticketData.value.splice(index, 1);
+  // // 刪掉的值：
+  // const clickData = ticketData.value[index];
+  // // 轉換刪掉的值：
+  // const transferData = {
+  //   ticketData: clickData.name.split(' ')[0],
+  //   fastFoward: clickData.type === "快速通關+100元" ? true : false,
+  //   ticketType: clickData.name.split(' ')[1]
+
+  // }
+  // console.log('transferData', transferData)
+
+
+
+  // session.value.forEach((sessionTicket, i) => {
+  //   console.log(sessionTicket);
+  //   // 检查是否有相同的数据：
+  //   const isMatch = (
+  //     transferData.ticketType === sessionTicket.ticketType &&
+  //     transferData.fastFoward === sessionTicket.fastFoward &&
+  //     transferData.ticketData === sessionTicket.ticketData
+  //   );
+  //   if (isMatch) {
+  //     console.log('需要去掉', sessionTicket)
+  //     session.value.splice(i, 1)
+  //     sessionStorage.setItem("bookingData", JSON.stringify(session.value));
+  //   }
+  // });
+  // // 將session 轉為 資料庫 格式：
+  // const postToDBData = getTransTickSessionToDB(session.value);
+  // console.log(session.value);
+  // console.log(postToDBData);
 
 };
 
 
 
-// 計算商品總額
-const calculateTotalPrice = () => {
-  let totalPrice = 0;
-  products.value.forEach(product => {
-    totalPrice += product.price * product.count;
-  });
-  return totalPrice;
-};
+// // 計算商品總額
+// const calculateTotalPrice = () => {
+//   let totalPrice = 0;
+//   products.value.forEach(product => {
+//     totalPrice += product.price * product.count;
+//   });
+//   return totalPrice;
+// };
 
-const discountCode = ref('');
-const calculateTotalCoupon = () => {
-  if (discountCode.value === 'MONSTAR') {
-    return 50;
-  }
-  if (discountCode.value === 'BESTPARK') {
-    return 500;
-  }
-  return 0;
-};
+// const discountCode = ref('');
+// const calculateTotalCoupon = () => {
+//   if (discountCode.value === 'MONSTAR') {
+//     return 50;
+//   }
+//   if (discountCode.value === 'BESTPARK') {
+//     return 500;
+//   }
+//   return 0;
+// };
 
-// 計算訂單總額
-const calculateOrderTotal = () => {
-  const totalPrice = calculateTotalPrice();
-  const discount = calculateTotalCoupon(); //折扣金額
-  const shippingFee = 60; //運費
-  return totalPrice - discount + shippingFee;
-};
+// // 計算訂單總額
+// const calculateOrderTotal = () => {
+//   const totalPrice = calculateTotalPrice();
+//   const discount = calculateTotalCoupon(); //折扣金額
+//   const shippingFee = 60; //運費
+//   return totalPrice - discount + shippingFee;
+// };
+
 </script>
 
 <style lang="scss" scoped>
