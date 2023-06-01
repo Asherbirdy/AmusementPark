@@ -48,9 +48,9 @@ const clearOut = () => {
   bookingData.forEach(ticket => {
     ticket.ticketNum = 0;
     ticket.fastFoward = false;
-    // 清空localStorage
-    localStorage?.removeItem('bookingData');
-    localStorage?.removeItem('ticketDateData');
+    // 清空sessionStorage
+    sessionStorage?.removeItem('bookingData');
+    sessionStorage?.removeItem('ticketDateData');
     // 清空日期
     date.value = '';
   });
@@ -60,7 +60,7 @@ const clearOut = () => {
 const addBookingDataToLocal = () => {
   let allTicketData = [];
   // 先抓local的東西下來並存到一個變數
-  const getLocalData = JSON.parse(localStorage?.getItem('bookingData'));
+  const getLocalData = JSON.parse(sessionStorage?.getItem('bookingData'));
   getLocalData ? allTicketData.push(...getLocalData) : '';
 
   const simplifiedData = bookingData
@@ -98,11 +98,11 @@ const addBookingDataToLocal = () => {
     }
   });
 
-  return localStorage.setItem('bookingData', JSON.stringify(allTicketData));
+  return sessionStorage.setItem('bookingData', JSON.stringify(allTicketData));
 };
 
 const addTicketDateToLocal = () =>
-  localStorage.setItem('ticketDateData', JSON.stringify(ticketDate));
+  sessionStorage.setItem('ticketDateData', JSON.stringify(ticketDate));
 
 // 票卷時間：
 let ticketDate = ref('');
@@ -173,13 +173,8 @@ const disableDate = time => {
     <div class="chooseDate">
       <div class="demo-date-picker">
         <div class="block">
-          <el-date-picker
-            v-model="date"
-            type="date"
-            placeholder="選擇訂票日期"
-            :disabled-date="disableDate"
-            @change="selectDate"
-          />
+          <el-date-picker v-model="date" type="date" placeholder="選擇訂票日期" :disabled-date="disableDate"
+            @change="selectDate" />
         </div>
       </div>
     </div>
@@ -197,20 +192,11 @@ const disableDate = time => {
         <td class="ex">{{ ticket.ticketInfo }}</td>
         <td>{{ ticket.ticketPrice }}元</td>
         <td>
-          <el-input-number
-            v-model="ticket.ticketNum"
-            :min="0"
-            class="count"
-            width:10px
-          />
+          <el-input-number v-model="ticket.ticketNum" :min="0" class="count" width:10px />
         </td>
         <td>
-          <input
-            v-model="ticket.fastFoward"
-            :checked="ticket.ticketNum > 0 && ticket.fastFoward"
-            :disabled="ticket.ticketNum === 0"
-            type="checkbox"
-          />
+          <input v-model="ticket.fastFoward" :checked="ticket.ticketNum > 0 && ticket.fastFoward"
+            :disabled="ticket.ticketNum === 0" type="checkbox" />
         </td>
       </tr>
       <tr>
@@ -219,29 +205,13 @@ const disableDate = time => {
     </table>
   </div>
   <div class="btnbox">
-    <btn
-      class="btn"
-      button-color="#D1825B"
-      button-text-color="white"
-      @click="clearOut"
-    >
+    <btn class="btn" button-color="#D1825B" button-text-color="white" @click="clearOut">
       <h3>清空</h3>
     </btn>
-    <btn
-      :style="{ width: '150px' }"
-      class="btn"
-      button-color="#D1825B"
-      button-text-color="white"
-      @click="addToCart"
-    >
+    <btn :style="{ width: '150px' }" class="btn" button-color="#D1825B" button-text-color="white" @click="addToCart">
       <h3>加入購物車</h3>
     </btn>
-    <btn
-      class="btn"
-      button-color="#D1825B"
-      button-text-color="white"
-      @click="buyTicket"
-    >
+    <btn class="btn" button-color="#D1825B" button-text-color="white" @click="buyTicket">
       <h3>立即購買</h3>
     </btn>
   </div>
