@@ -21,16 +21,28 @@ onMounted(async () => {
       '/PDO/frontEnd/memberModify/memberModify.php'
     );
     const data = response.data;
-    const fitData = data.map(MEMBER => ({
-      name: MEMBER.NAME,
-      birthDate: MEMBER.BIRTHDAY.substring(0, 10),
-      phoneNum: MEMBER.PHONE,
-      emailAdd: MEMBER.EMAIL,
-      address: MEMBER.ADDRESS,
-    }));
-    tableData.value = fitData[0];
-    originalData.value = { ...tableData.value };
-    console.log(tableData.value);
+    // console.log(data);
+
+    if (data.length > 0) {
+      const MEMBER = data[0]; // 獲取當前登入會員數據
+
+      const fitData = {
+        id: MEMBER.ACCOUNT,
+        name: MEMBER.NAME,
+        birthDate: MEMBER.BIRTHDAY ? MEMBER.BIRTHDAY.substring(0, 10) : '',
+        // 先一定要有 MEMBER.BIRTHDAY，才判斷
+        phoneNum: MEMBER.PHONE,
+        emailAdd: MEMBER.EMAIL,
+        address: MEMBER.ADDRESS,
+      };
+
+      tableData.value = fitData;
+      originalData.value = { ...tableData.value };
+
+      console.log(tableData.value);
+    } else {
+      console.log('沒有找到相關數據');
+    }
   } catch (error) {
     console.error(error);
   }
@@ -140,6 +152,11 @@ const handleCancelEdit = () => {
     <nav>
       <form>
         <!-- 使用 v-for 迴圈來顯示表單欄位 -->
+        <input
+          type="hidden"
+          name="memberId"
+          value="<?php echo $_SESSION['member_id']; ?>"
+        />
         <section class="name" v-for="field in formFields" :key="field.id">
           <label :for="field.id">{{ field.label }}</label>
           <span>{{ tableData[field.name] }}</span>
