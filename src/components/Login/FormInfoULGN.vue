@@ -213,9 +213,11 @@ const handleSubmit = async () => {
           };
         });
         console.log('傳給資料庫的資料', postToDBData);
+
+        
         // 傳給後端
         axios
-          .post('php路徑', postToDBData)
+          .post('/PDO/frontEnd/memberLogin/orderInsert.php', postToDBData)
           .then(res => {
             console.log(res);
           })
