@@ -4,7 +4,7 @@ import {
   useTest,
   getTicketType,
   getTicketPrice,
-  getLocalBookingData,
+  getSessionBookingData,
   getTicketTypeFromNum,
 } from '../../composables';
 console.log(getTicketType(4));
@@ -158,7 +158,7 @@ const handleSubmit = async () => {
       if (sessionStorage.getItem('bookingData') !== null) {
         console.log('發現Local有資料所以執行合併整理(Local+Database)');
 
-        const localBookingData = ref(getLocalBookingData());
+        const localBookingData = ref(getSessionBookingData());
 
         localBookingData.value.forEach((localTicket, i) => {
           // 抓到一樣的陣列：
@@ -195,7 +195,7 @@ const handleSubmit = async () => {
 
         sessionStorage.setItem('bookingData', JSON.stringify(displayTicketData));
 
-        const currentLocal = getLocalBookingData();
+        const currentLocal = getSessionBookingData();
 
         //要給資料庫的格式：
         const postToDBData = currentLocal.map(ticketData => {
