@@ -49,7 +49,7 @@ export default defineConfig({
     port: '5173',
     proxy: {
       '/PDO': {
-        target: 'https://tibamef2e.com/',
+        target: 'https://tibamef2e.com/thd101/g4',
         changeOrigin: true,
         rewrite: path => path.replace(/^\//, ''), // 修改 rewrite 規則
       },
