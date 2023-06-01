@@ -6,6 +6,7 @@ import {
   getTicketPrice,
   getSessionBookingData,
   getTicketTypeFromNum,
+  getTransTickSessionToDB
 } from '../../composables';
 console.log(getTicketType(4));
 
@@ -198,20 +199,7 @@ const handleSubmit = async () => {
         const currentLocal = getSessionBookingData();
 
         //要給資料庫的格式：
-        const postToDBData = currentLocal.map(ticketData => {
-          return {
-            END_DATE: null,
-            FAST_PASS: ticketData.fastFoward ? 0 : 1,
-            ORDER_ID: ticketData.ticketOrderID
-              ? ticketData.ticketOrderID
-              : null,
-            START_DATE: ticketData.ticketData,
-            TICK_DATE: ticketData.ticketData,
-            TICK_ID: getTicketTypeFromNum(ticketData.ticketType),
-            TICK_NUM: ticketData.tickets,
-            TICK_ORDER_ID: ticketData.ticketID ? ticketData.ticketID : null,
-          };
-        });
+        const postToDBData = getTransTickSessionToDB(currentLocal);
         console.log('傳給資料庫的資料', postToDBData);
 
         // 算出目前總金額：
