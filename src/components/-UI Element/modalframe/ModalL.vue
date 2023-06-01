@@ -3,15 +3,12 @@
 <template>
   <div class="bgc">
     <div class="layout">
-      <el-icon
-        class="iconClose"
-        @click="
-          () => {
-            $emit('close-modal');
-          }
-        "
-        ><CircleClose
-      /></el-icon>
+      <el-icon class="iconClose" @click="() => {
+          $emit('close-modal');
+        }
+        ">
+        <CircleClose />
+      </el-icon>
       <slot> </slot>
     </div>
   </div>
@@ -28,6 +25,7 @@
   height: 100%;
   background: rgba(217, 217, 217, 0.8);
 }
+
 .iconClose {
   margin-top: 10px;
   font-size: 50px;

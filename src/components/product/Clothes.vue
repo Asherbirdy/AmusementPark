@@ -1,79 +1,67 @@
 <template>
     <div class="titleS1">
         <title-s1 class="s1">
-            <h3 id="clothes">衣服</h3>
+            <h3>衣服</h3>
         </title-s1>
 
     </div>
     <ul class="frame_blue">
-        <li v-for="(item, index) in product" :key="item.productName">
-
+        <li v-for="item in clothes" :key="item.id">
             <frame-blue>
-                <img :src="imgURL(item.image)" alt="">
-                <p class="product_name"> {{ item.productName }}</p>
-                <Button class="button" @click="isopen = !isopen">加入購物車</Button>
+                <img :src="imgURL(item.url)" alt="">
+
+                <p class="product_name"> {{ item.name }}</p>
+                <p class="product_price"> NT.{{ item.price }}</p>
+                <Button class="button" @click="closeModal">加入購物車</Button>
             </frame-blue>
         </li>
     </ul>
 
-
-    <cartadd v-if="ridemodal" :class="{ modal: isopen }" @close-modal="closeModal" />
+    <cartadd :class="{ modal: isopen }" @close-modal="closeModal" />
     <!-- :class="{modal:ridemodal}"  -->
 </template>
 <script setup>
 import getImageUrl from '@/utils/imgPath';
+import { reactive, ref, watch } from 'vue';
+const imgURL = name => getImageUrl(name);
 
-
-let isopen = ref(true);
-// 談窗開關
-let ridemodal = ref(true);
+const isopen = ref(true);
+// 彈窗開關
 const openModal = () => {
     emit(ridemodal.value = true);
     // console.log(ridemodal.value)
 };
 const closeModal = () => {
-    ridemodal.value = false;
+    isopen.value = !isopen.value;
 };
-// const emit = defineEmits(['openModal', 'closeModal']);
-const imgURL = name => getImageUrl(name);
-
-// const props = defineProps(['open']);
-
-
-
-
-
-
-const product = ref([
-    {
-        productName: '艾比怪獸上衣',
-        image: 'Tshirt1.png',
-    },
-    {
-        productName: 'Q摸怪獸上衣',
-        image: "Tshirt2.png",
-    },
-    {
-        productName: '奇樂怪獸上衣',
-        image: "Tshirt3.png",
-    },
-    {
-        productName: 'MONSTAR上衣',
-        image: "Tshirt4.png",
-    },
-    {
-        productName: '戴蒙怪獸上衣',
-        image: "Tshirt5.png",
+const props = defineProps({
+    productData: {
+        type: Array,
+        required: true
     }
+});
+const clothes = reactive([]);
 
-]);
+const keyword = '上衣'; // 要搜尋的關鍵字
+
+onMounted(() => {
+    setTimeout(() => {
+        props.productData.forEach(product => {
+            if (product.name.includes(keyword) && !clothes.some(item => item.name === product.name)) {
+                clothes.push(product);
+            }
+        });
+    }, 50)
+
+});
+
 
 </script>
 <style lang="scss" scoped>
 .titleS1 {
     display: inline-block;
     position: relative;
-    padding: 20px 0 0 35px;
+    padding-top: 20px;
 
     h3 {
         margin: 10px 0 0 20px;
@@ -97,8 +85,8 @@ const product = ref([
         display: flex;
         flex-wrap: wrap;
         flex-basis: 0;
-        padding: 20px;
-        margin-bottom: 110px;
+        padding:20px;
+        margin-bottom: 180px;
     }
 }
 
@@ -112,7 +100,12 @@ img {
 .product_name {
     font-size: 24px;
     margin-top: 80px;
-    margin-bottom: 15px;
+    color: $textcolor7;
+}
+
+.product_price {
+    font-size: 24px;
+    margin: 15px 0;
     color: $textcolor7;
 }
 
@@ -125,5 +118,20 @@ Button {
 
 .modal {
     visibility: hidden;
+}
+
+@media screen and (max-width: 1280px) {
+    main.s1 {
+        padding-left: 80px;
+    }
+
+    .frame_blue {
+        padding-left: 180px;
+    }
+
+    .frame {
+        width: 300px;
+        height: 400px;
+    }
 }
 </style>
