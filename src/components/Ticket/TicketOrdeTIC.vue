@@ -9,6 +9,7 @@ import {
   getTransTickSessionToDB,
   getTicketTotalPrice,
 } from '../../composables';
+import { nextTick } from 'vue';
 
 // 資料
 let bookingData = reactive([
@@ -53,6 +54,11 @@ let bookingData = reactive([
 function countTicket() {
   return bookingData.reduce((acc, cur) => acc + cur.ticketNum, 0);
 }
+
+nextTick(() => {
+  countTicket();
+})
+
 
 // 將資料加入到local的函式：
 const addBookingDataToLocal = () => {
@@ -312,7 +318,7 @@ const disableDate = time => {
       <h3>預設</h3>
     </btn>
 
-    <div v-if="date !== ''">
+    <div v-if="date !== '' && countTicket() !== 0">
       <btn :style="{ width: '150px' }" class="btn" button-color="#D1825B" button-text-color="white" @click="addToCart"
         :disabled="!isDateSelected || countTicket() === 0">
         <h3>加入購物車</h3>
