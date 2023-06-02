@@ -10,7 +10,7 @@ export function transTickSessionToDB(sessionArr) {
       case '兒童票':
         return 3;
         break;
-      case '優惠票':
+      case '優待票':
         return 4;
         break;
     }
