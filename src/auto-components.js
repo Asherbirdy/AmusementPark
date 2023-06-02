@@ -110,6 +110,7 @@ declare module '@vue/runtime-core' {
     ModalCRUD: typeof import('./components/CRUDTest/ModalCRUD.vue')['default']
     ModalD: typeof import('./components/CRUDTest/ModalD.vue')['default']
     ModalDelete: typeof import('./components/Staffaccount/-Modal/ModalDelete.vue')['default']
+    ModalEditCRT: typeof import('./components/Cart/ModalEditCRT.vue')['default']
     ModalInsert: typeof import('./components/Staffaccount/-Modal/ModalInsert.vue')['default']
     ModalL: typeof import('./components/-UI Element/modalframe/ModalL.vue')['default']
     ModalLogin: typeof import('./components/-UI Element/modalframe/ModalLogin.vue')['default']

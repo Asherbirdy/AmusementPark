@@ -17,7 +17,8 @@
           <td class="price">{{ item.price }}</td>
           <td class="edit">
             <el-icon>
-              <EditPen id="edit" />
+              <ModalEditCRT id="edit" @click="editFromCart(index)" />
+              <!-- <EditPen id="edit" @click="editFromCart(index)" /> -->
             </el-icon>
           </td>
           <td class="delet">
@@ -75,6 +76,8 @@
       </li>
     </ul>
   </main>
+  <!-- 編輯彈窗 -->
+  <ModalEditCRT />
 </template>
 
 <script setup>
@@ -83,7 +86,6 @@ import {
   getTicketPrice,
   getTicketType
 } from '../../composables';
-
 import axios from 'axios';
 
 /*
@@ -99,6 +101,7 @@ let displayTicketData = ref();
 onMounted(async () => {
   try {
     const res = await axios.get('/PDO/frontEnd/cart/cartSelect.php');
+    console.log('DB抓下來的資料', res.data);
     const displayTicket = res.data.map(item => {
       const fastforwardPrice = 100;
       return {
@@ -111,11 +114,10 @@ onMounted(async () => {
           : getTicketPrice(item.TICK_ID),
         ticketID: item.TICK_ORDER_ID
       }
-
     });
 
     displayTicketData.value = displayTicket
-
+    console.log('轉換使用者顯示資料：', displayTicketData.value);
   } catch (err) {
     console.log(err);
   }
@@ -194,6 +196,11 @@ const removeFromCart = (index) => {
 
 };
 
+
+
+const editFromCart = (index) => {
+  console.log(displayTicketData.value[index]);
+};
 
 
 // // 計算商品總額
