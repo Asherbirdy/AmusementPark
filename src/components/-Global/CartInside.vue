@@ -121,8 +121,7 @@ let ticketData = ref();
 
 let displayTicketData = ref();
 
-
-onMounted(async () => {
+const showOrder = async () => {
   try {
     const res = await axios.get('/PDO/frontEnd/cart/cartSelect.php');
     console.log('DB抓下來的資料', res.data);
@@ -140,11 +139,16 @@ onMounted(async () => {
       }
     });
 
+    displayTicketData.value = displayTicket;
     displayTicketData.value = displayTicket
     console.log('轉換使用者顯示資料：', displayTicketData.value);
   } catch (err) {
     console.log(err);
   }
+};
+
+onMounted(async () => {
+  await showOrder();
 });
 
 
@@ -156,9 +160,19 @@ const removeFromCart = (index) => {
 
   // ----------------這邊
 
-  axios.post('PHP路徑', ticketID).then((res) => {
-    console.log(res.data)
-  })
+  async function deleteCartItem(ticketID) {
+  try {
+    const response = await axios.post('/PDO/frontEnd/cart/cartDelete.php', ticketID);
+    console.log(response.data);
+    await showOrder();
+    // 在這裡處理回傳的結果
+  } catch (error) {
+    console.error(error);
+    // 在這裡處理錯誤
+  }
+}
+
+deleteCartItem(ticketID);
 
 
   // // 從畫面上刪除：
