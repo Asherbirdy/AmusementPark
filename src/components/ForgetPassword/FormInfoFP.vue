@@ -1,12 +1,28 @@
 <template>
   <section class="middle">
-    <form action="">
+    <div action="">
       <div class="method">
-        <label>認證方式：</label>
-        <input type="radio" />
-        <p>E-mail</p>
-        <input type="radio" />
-        <p>手機號碼</p>
+        認證方式：
+        <input
+          type="radio"
+          name="method"
+          value="email"
+          v-model="selectedMethod"
+          id="email"
+        />
+        <label for="email">
+          <p>E-mail</p>
+        </label>
+        <input
+          type="radio"
+          name="method"
+          value="phone"
+          v-model="selectedMethod"
+          id="phone"
+        />
+        <label for="phone">
+          <p>手機號碼</p>
+          </label>
       </div>
       <div v-for="(item, index) in passInf" :key="item.id" class="user-input">
         <label>{{ item.title }}</label>
@@ -17,39 +33,39 @@
           :placeholder="item.placeholder"
         />
       </div>
-      <router-link to="/" class="routerlink">
       <div class="btn">
+        <router-link to="/" class="routerlink">
+          <Button class="middle__form--Btn" type="submit" id="Submit">
+            取消
+          </Button>
+        </router-link>
+
         <Button
           class="middle__form--Btn"
           type="submit"
           id="Submit"
-        >
-          取消
-        </Button>
-        
-        <Button
-          class="middle__form--Btn"
-          type="submit"
-          id="Submit"
+          @click="handleSubmit"
         >
           確認送出
         </Button>
       </div>
-      </router-link>
-    </form>
+    </div>
   </section>
 </template>
 
 <script setup>
-const email = '';
-const name = '';
+import axios from 'axios';
+
+const account = ref('');
+const name = ref('');
+const selectedMethod = ref('');
 
 const passInf = ref([
   {
     title: '帳號：',
     type: 'text',
-    id: 'email',
-    value: email,
+    id: 'account',
+    value: account,
     placeholder: '請輸入您的帳號或手機',
   },
   {
@@ -60,6 +76,40 @@ const passInf = ref([
     placeholder: '請輸入您的姓名',
   },
 ]);
+
+//////資料送出確認有無此帳密
+const router = useRouter();
+
+
+
+const handleSubmit = () => {
+  if (passInf.value[0].value === '' || passInf.value[1].value === '') {
+    console.log('帳號密碼空值');
+    alert('請輸入帳號和姓名');
+    return;
+  } else if (!selectedMethod.value) {
+    console.log('驗證方式未選');
+    alert('請選擇驗證方式');
+    return;
+  }
+
+  axios
+    .post('/PDO/frontEnd/MemberForgetPassword/memberAccountCheck.php', {
+      account: passInf.value[0].value,
+      name: passInf.value[1].value,
+    })
+    .then(res => {
+      console.log(res.data);
+      //如果有資料;
+      if (res.data === '確認已有資料') {
+        alert('已將驗證信件寄送至email');
+        router.push('../../login');
+      } else {
+        console.log('無此帳號密碼');
+        alert('此帳號尚未註冊');
+      }
+    });
+};
 </script>
 
 <style lang="scss" scoped>
@@ -70,13 +120,16 @@ const passInf = ref([
   .method {
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    p {
-      margin: 0 30px 0 0;
+    justify-content: flex-start;
+    input[type='radio'] {
+      margin: 0px 10px 0px 25px;
     }
   }
   label {
     font-size: 20px;
+    .method {
+      font-size: 16px;
+    }
   }
   .user-input input {
     width: 300px;
@@ -103,11 +156,12 @@ const passInf = ref([
     font-size: 24px;
     margin-top: 80px;
   }
-  .btn{
+  .btn {
     display: flex;
   }
   .routerlink {
     text-decoration-line: none;
-}
+    margin-right: 40px;
+  }
 }
 </style>
