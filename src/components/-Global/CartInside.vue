@@ -108,6 +108,7 @@ const showOrderFromDB = async () => {
             ? getTicketPrice(item.TICK_ID) + fastforwardPrice
             : getTicketPrice(item.TICK_ID),
         ticketID: item.TICK_ORDER_ID,
+        tickPrice:item.TOTAL_PRICE,
       };
     });
 
@@ -145,10 +146,12 @@ onMounted(async () => {
 // ---------------------------- Functions --------------------------------//
 const removeFromCart = index => {
   const ticketID = displayTicketData.value[index].ticketID;
+  const totalTickPrice = displayTicketData.value[index].tickPrice;
+  console.log(totalTickPrice);
   console.log(ticketID);
   async function deleteCartItem(ticketID) {
     try {
-      const response = await axios.post('/PDO/frontEnd/cart/cartDelete.php', ticketID);
+      const response = await axios.post('/PDO/frontEnd/cart/cartDelete.php', {ticketID,totalTickPrice});
       console.log(response.data);
       await showOrderFromDB();
       // 在這裡處理回傳的結果
