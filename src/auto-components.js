@@ -114,6 +114,7 @@ declare module '@vue/runtime-core' {
     Password: typeof import('./components/-UI Element/modalframe/password.vue')['default']
     PayCreditCard: typeof import('./components/TouristBackstage/PayCreditCard.vue')['default']
     PhoneCase: typeof import('./components/product/PhoneCase.vue')['default']
+    Product: typeof import('./components/product/Product.vue')['default']
     ProductListPDS: typeof import('./components/Productstatus/ProductListPDS.vue')['default']
     ProductOrderTBS: typeof import('./components/TouristBackstage/ProductOrderTBS.vue')['default']
     ProductSelectPDM: typeof import('./components/ProductManage/ProductSelectPDM.vue')['default']

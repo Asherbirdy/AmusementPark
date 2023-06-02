@@ -2,7 +2,7 @@
 import getImageUrl from '@/utils/imgPath';
 const imgURL = name => getImageUrl(name);
 
-const options = ref([{ size: 'S' }, { size: 'M' }, { size: 'L' }]);
+// const options = ref([{ size: 'S' }, { size: 'M' }, { size: 'L' }]);
 
 const num = ref(1);
 function handleChange(value) {
@@ -10,16 +10,39 @@ function handleChange(value) {
 }
 
 const btns = ref([{ action: '加入購物車' }, { action: '立即購買' }]);
+
+const props = defineProps({
+  item: {
+    type: Object,
+    required: true
+  },
+  productData: {
+    type: Array,
+    required: true
+  }
+});
+
+// 解決size問題
+const options = computed(() => {
+  const clothes_blank = [];
+  const keyword = props.item.name;
+  props.productData.forEach(product => {
+    if (product.name.includes(keyword)) {
+      clothes_blank.push(product);
+    }
+  });
+  return clothes_blank
+});
 </script>
 
 <template>
   <modal-l>
     <div class="wrap">
-      <img class="wrap__leftImg" :src="imgURL('Tshirt1.png')" />
+      <img class="wrap__leftImg" :src="imgURL(item.url)" />
       <div class="wrap__rightDiv">
-        <h1 class="wrap__rightDiv--h1">MONSTAR上衣</h1>
+        <h1 class="wrap__rightDiv--h1">{{ item.name }}</h1>
         <p class="wrap__rightDiv--p">
-          MONSTAR純棉短袖上衣<br />消費滿$1000免運費<br />NT$600
+          MONSTAR純棉短袖上衣<br />消費滿$1000免運費<br />NT.{{ item.price }}
         </p>
         <form class="wrap__rightDiv--from" action="">
           <label class="wrap__rightDiv--formLabel" for="">尺寸</label>
@@ -30,13 +53,7 @@ const btns = ref([{ action: '加入購物車' }, { action: '立即購買' }]);
             </option>
           </select>
           <label class="wrap__rightDiv--formLabel">數量</label>
-          <el-input-number
-            v-model="num"
-            :min="1"
-            :max="10"
-            @change="handleChange"
-            class="wrap__rightDiv--formCount"
-          />
+          <el-input-number v-model="num" :min="1" :max="10" @change="handleChange" class="wrap__rightDiv--formCount" />
 
           <Button class="wrap__rightDiv--formBtn" v-for="(btn, index) in btns">
             {{ btn.action }}
@@ -71,10 +88,12 @@ const btns = ref([{ action: '加入購物車' }, { action: '立即購買' }]);
       margin-top: 37px;
       margin-bottom: 30px;
     }
+
     &--p {
       font-size: 20px;
       line-height: 40px;
     }
+
     // &--from {
     // }
     &--formLabel {
@@ -83,6 +102,7 @@ const btns = ref([{ action: '加入購物車' }, { action: '立即購買' }]);
       margin-top: 30px;
       margin-bottom: 10px;
     }
+
     &--formSelect,
     &--formCount {
       width: 335px;
@@ -90,6 +110,7 @@ const btns = ref([{ action: '加入購物車' }, { action: '立即購買' }]);
       font-size: 20px;
       text-align: center;
     }
+
     &--formBtn {
       width: 150px;
       height: 50px;

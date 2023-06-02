@@ -25,6 +25,8 @@ import getImageUrl from '@/utils/imgPath';
 import { reactive, ref, watch } from 'vue';
 const imgURL = name => getImageUrl(name);
 
+
+
 const isopen = ref(true);
 // 彈窗開關
 const openModal = () => {
@@ -40,20 +42,41 @@ const props = defineProps({
         required: true
     }
 });
-const clothes = reactive([]);
+// const clothes_blank = reactive([]);
 
 const keyword = '上衣'; // 要搜尋的關鍵字
 
-onMounted(() => {
-    setTimeout(() => {
-        props.productData.forEach(product => {
-            if (product.name.includes(keyword) && !clothes.some(item => item.name === product.name)) {
-                clothes.push(product);
-            }
-        });
-    }, 50)
+const clothes = computed(() => {
 
-});
+    // if (product.name.includes(keyword) && !clothes.some(item => item.name === product.name)) {
+    //     clothes_blank.push(product);
+    // }
+    const clothes_blank = []
+
+    props.productData.forEach(product => {
+        if (product.name.includes(keyword) && !clothes_blank.some(item => item.name === product.name)) {
+            clothes_blank.push(product);
+        }
+    });
+
+
+    //  const new_array = props.productData.filter((item) =>{
+    //     return product.name.includes(keyword) && !clothes.some(item => item.name === product.name)
+    // })
+
+    return clothes_blank
+})
+
+// onMounted(() => {
+//     setTimeout(() => {
+//         props.productData.forEach(product => {
+//             if (product.name.includes(keyword) && !clothes.some(item => item.name === product.name)) {
+//                 clothes.push(product);
+//             }
+//         });
+//     }, 50)
+
+// });
 
 
 </script>
@@ -85,7 +108,7 @@ onMounted(() => {
         display: flex;
         flex-wrap: wrap;
         flex-basis: 0;
-        padding:20px;
+        padding: 20px;
         margin-bottom: 180px;
     }
 }

@@ -12,22 +12,28 @@
                 <img :src="imgURL(item.url)" alt="">
                 <p class="product_name"> {{ item.name }}</p>
                 <p class="product_price"> NT.{{ item.price }}</p>
-                <Button class="button" @click="closeModal">加入購物車</Button>
+                <Button class="button" @click="open_Modal(item)">加入購物車</Button>
             </frame-yellow>
         </li>
     </ul>
-    <cartadd :class="{ modal: isopen }" @close-modal="closeModal" />
+
+    <cartadd @close-modal="closeModal" v-if="isopen" :item="isopen" />
 </template>
 <script setup>
 import getImageUrl from '@/utils/imgPath';
-let isopen = ref(true);
+let isopen = ref(false);
+// let popup_data = ref(null)
 // 彈窗開關
 const openModal = () => {
     emit(ridemodal.value = true);
     // console.log(ridemodal.value)
 };
-const closeModal = () => {
-    isopen.value = !isopen.value;
+const closeModal = (item) => {
+    isopen.value = false
+};
+
+const open_Modal = (item) => {
+    isopen.value = item
 };
 const imgURL = name => getImageUrl(name);
 
@@ -54,9 +60,10 @@ onMounted(() => {
 
 </script>
 <style lang="scss" scoped>
-.s2{
+.s2 {
     padding-top: 50px;
 }
+
 .titleS1 {
     display: inline-block;
     position: relative;
