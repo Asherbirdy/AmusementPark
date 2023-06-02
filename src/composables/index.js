@@ -20,7 +20,7 @@ export const useTest = test;
 // 獲得目前 Local 目前的票數
 export const getLocalBookingData = localBookingData;
 
-// 獲得目前 Session 目前的票數
+// 獲得目前 Session 目前的票券資料
 export const getSessionBookingData = sessionBookingData;
 
 // 輸入 票型數字 1 , 2 , 3 , 4  會轉換成 全票 / 學生票 / 兒童票 / 優待票

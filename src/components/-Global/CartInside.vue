@@ -82,22 +82,24 @@
 </template>
 
 <script setup>
-import { useTest, getTicketPrice, getTicketType } from '../../composables';
+import { useTest, getTicketPrice, getTicketType, getSessionBookingData } from '../../composables';
 import axios from 'axios';
 
 /*
-  從Local抓資料 並轉為 購物車的資料格式
+ 抓資料 並轉為 購物車的資料格式
 */
 let displayTicketData = ref();
 
-const showOrder = async () => {
+const showOrderFromDB = async () => {
   try {
     const res = await axios.get('/PDO/frontEnd/cart/cartSelect.php');
     console.log('DB抓下來的資料', res.data);
     const displayTicket = res.data.map(item => {
       const fastforwardPrice = 100;
       return {
-        name: `${item.TICK_DATE.split(' ')[0]} ${getTicketType(item.TICK_ID)}`,
+        name: `${item.TICK_DATE.split(' ')[0]} ${getTicketType(
+          item.TICK_ID
+        )}`,
         type: item.FAST_PASS === 0 ? '快速通關+100元' : '一般票',
         count: item.TICK_NUM,
         price:
@@ -110,13 +112,35 @@ const showOrder = async () => {
 
     displayTicketData.value = displayTicket;
     console.log('轉換使用者顯示資料：', displayTicketData.value);
+
+
   } catch (err) {
     console.log(err);
   }
 };
 
+
+// 從Session顯示資料：
+const showOrderFromSession = async () => {
+  try {
+    const getSession = getSessionBookingData();
+    console.log(getSession);
+
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+
+
+
 onMounted(async () => {
-  await showOrder();
+  // 如果是登入狀態
+  if (sessionStorage.getItem('token')) {
+    await showOrderFromDB();
+  } else {
+    await showOrderFromSession();
+  }
 });
 
 // ---------------------------- Functions --------------------------------//
@@ -130,7 +154,7 @@ const removeFromCart = index => {
         ticketID
       );
       console.log(response.data);
-      await showOrder();
+      await showOrderFromDB();
       // 在這裡處理回傳的結果
     } catch (error) {
       console.error(error);
@@ -140,9 +164,7 @@ const removeFromCart = index => {
   deleteCartItem(ticketID);
 };
 
-
 //--------------- 修改票券：------------------
-
 
 const showmodal = ref(false);
 const closeModal = () => {
@@ -154,24 +176,13 @@ const ticketDate = ref('');
 let ticketAmount = ref(0);
 const fastPassFacility = ref([]);
 
-
 const editFromCart = index => {
-
-
-  const editData = displayTicketData.value[index];// 點選edit出現edit資料
+  const editData = displayTicketData.value[index]; // 點選edit出現edit資料
   console.log('要修改的資料', editData);
   showmodal.value = true;
   ticketType.value = editData.name;
   ticketAmount.value = editData.count;
 };
-
-
-
-
-
-
-
-
 
 // // 計算商品總額
 // const calculateTotalPrice = () => {
