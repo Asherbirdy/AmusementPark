@@ -243,6 +243,9 @@ let date = ref('');
 
 // 原始時間轉格式
 const selectDate = () => {
+
+
+
   const formattedDate = computed(() => {
     if (date.value) {
       return dayjs(date.value).format('YYYY-MM-DD');
@@ -252,6 +255,8 @@ const selectDate = () => {
   return (ticketDate = formattedDate.value);
 };
 
+
+const isDateSelected = computed(() => date.value !== '');
 // 時間的表達式
 const isValidDateFormat = dateString => {
   const dateRegex = /^\d{4}-\d{2}-\d{2}$/;
@@ -271,13 +276,8 @@ const disableDate = time => {
     <div class="chooseDate">
       <div class="demo-date-picker">
         <div class="block">
-          <el-date-picker
-            v-model="date"
-            type="date"
-            placeholder="選擇訂票日期"
-            :disabled-date="disableDate"
-            @change="selectDate"
-          />
+          <el-date-picker v-model="date" type="date" placeholder="選擇訂票日期" :disabled-date="disableDate"
+            @change="selectDate" :clearable="false" />
         </div>
       </div>
     </div>
@@ -295,20 +295,11 @@ const disableDate = time => {
         <td class="ex">{{ ticket.ticketInfo }}</td>
         <td>{{ ticket.ticketPrice }}元</td>
         <td>
-          <el-input-number
-            v-model="ticket.ticketNum"
-            :min="0"
-            class="count"
-            width:10px
-          />
+          <el-input-number v-model="ticket.ticketNum" :min="0" class="count" width:10px />
         </td>
         <td>
-          <input
-            v-model="ticket.fastFoward"
-            :checked="ticket.ticketNum > 0 && ticket.fastFoward"
-            :disabled="ticket.ticketNum === 0"
-            type="checkbox"
-          />
+          <input v-model="ticket.fastFoward" :checked="ticket.ticketNum > 0 && ticket.fastFoward"
+            :disabled="ticket.ticketNum === 0" type="checkbox" />
         </td>
       </tr>
       <tr>
@@ -317,30 +308,24 @@ const disableDate = time => {
     </table>
   </div>
   <div class="btnbox">
-    <btn
-      class="btn"
-      button-color="#D1825B"
-      button-text-color="white"
-      @click="clearOut"
-    >
+    <btn class="btn" button-color="#D1825B" button-text-color="white" @click="clearOut">
       <h3>預設</h3>
     </btn>
-    <btn
-      :style="{ width: '150px' }"
-      class="btn"
-      button-color="#D1825B"
-      button-text-color="white"
-      @click="addToCart"
-    >
-      <h3>加入購物車</h3>
-    </btn>
-    <btn
-      class="btn"
-      :style="{ width: '150px' }"
-      button-color="#D1825B"
-      button-text-color="white"
-      @click="buyTicket"
-    >
+
+    <div v-if="date !== ''">
+      <btn :style="{ width: '150px' }" class="btn" button-color="#D1825B" button-text-color="white" @click="addToCart"
+        :disabled="!isDateSelected || countTicket() === 0">
+        <h3>加入購物車</h3>
+      </btn>
+    </div>
+    <div v-else>
+      <btn :style="{ width: '150px', background: 'gray', color: 'white' }" class="btn" disabled>
+        <h3>請填時間/票數</h3>
+      </btn>
+    </div>
+
+
+    <btn class="btn" :style="{ width: '150px' }" button-color="#D1825B" button-text-color="white" @click="buyTicket">
       <h3>前往購物車</h3>
     </btn>
   </div>
