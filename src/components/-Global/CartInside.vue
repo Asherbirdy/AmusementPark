@@ -10,7 +10,7 @@
           <th class="edit">修改</th>
           <th class="delet">移除</th>
         </tr>
-        <tr v-for="(item, index) in  displayTicketData " :key="item.id" class="detail">
+        <tr v-for="(item, index) in displayTicketData" :key="item.id" class="detail">
           <td class="itemname">{{ item.name }}</td>
           <td class="itemstyle">{{ item.type }}</td>
           <td class="count">{{ item.count }}</td>
@@ -77,11 +77,8 @@
     </ul>
   </main>
   <!--  ----- ----- ----- ----- 彈窗 -----  ----- ----- ------->
-  <el-icon>
-    <EditPen id="edit" @click="dialogFormVisible = true" />
-  </el-icon>
 
-  <el-dialog v-model="dialogFormVisible" :title="ticketDateType">
+  <el-dialog v-model="dialogFormVisible" :title="form.name">
     <el-form :model="form">
       <el-form-item label="Promotion name" :label-width="formLabelWidth">
         <el-input v-model="form.name" autocomplete="off" />
@@ -105,20 +102,12 @@
 </template>
 
 <script setup>
-import {
-  useTest,
-  getTicketPrice,
-  getTicketType
-} from '../../composables';
+import { useTest, getTicketPrice, getTicketType } from '../../composables';
 import axios from 'axios';
 
 /*
   從Local抓資料 並轉為 購物車的資料格式
 */
-
-// 放 票券的原始資料：
-let ticketData = ref();
-
 let displayTicketData = ref();
 
 const showOrder = async () => {
@@ -128,19 +117,18 @@ const showOrder = async () => {
     const displayTicket = res.data.map(item => {
       const fastforwardPrice = 100;
       return {
-        name: `${item.TICK_DATE.split(' ')[0]
-          } ${getTicketType(item.TICK_ID)}`,
+        name: `${item.TICK_DATE.split(' ')[0]} ${getTicketType(item.TICK_ID)}`,
         type: item.FAST_PASS === 0 ? '快速通關+100元' : '一般票',
         count: item.TICK_NUM,
-        price: item.FAST_PASS === 0
-          ? getTicketPrice(item.TICK_ID) + fastforwardPrice
-          : getTicketPrice(item.TICK_ID),
-        ticketID: item.TICK_ORDER_ID
-      }
+        price:
+          item.FAST_PASS === 0
+            ? getTicketPrice(item.TICK_ID) + fastforwardPrice
+            : getTicketPrice(item.TICK_ID),
+        ticketID: item.TICK_ORDER_ID,
+      };
     });
 
     displayTicketData.value = displayTicket;
-    displayTicketData.value = displayTicket
     console.log('轉換使用者顯示資料：', displayTicketData.value);
   } catch (err) {
     console.log(err);
@@ -151,123 +139,60 @@ onMounted(async () => {
   await showOrder();
 });
 
-
 // ---------------------------- Functions --------------------------------//
-const removeFromCart = (index) => {
-
+const removeFromCart = index => {
   const ticketID = displayTicketData.value[index].ticketID;
   console.log(ticketID);
-
-  // ----------------這邊
-
   async function deleteCartItem(ticketID) {
-  try {
-    const response = await axios.post('/PDO/frontEnd/cart/cartDelete.php', ticketID);
-    console.log(response.data);
-    await showOrder();
-    // 在這裡處理回傳的結果
-  } catch (error) {
-    console.error(error);
-    // 在這裡處理錯誤
+    try {
+      const response = await axios.post(
+        '/PDO/frontEnd/cart/cartDelete.php',
+        ticketID
+      );
+      console.log(response.data);
+      await showOrder();
+      // 在這裡處理回傳的結果
+    } catch (error) {
+      console.error(error);
+      // 在這裡處理錯誤
+    }
   }
-}
-
-deleteCartItem(ticketID);
-
-
-  // // 從畫面上刪除：
-  // ticketData.value.splice(index, 1);
-  // // 刪掉的值：
-  // const clickData = ticketData.value[index];
-  // // 轉換刪掉的值：
-  // const transferData = {
-  //   ticketData: clickData.name.split(' ')[0],
-  //   fastFoward: clickData.type === "快速通關+100元" ? true : false,
-  //   ticketType: clickData.name.split(' ')[1]
-
-  // }
-
-
-
-
-
-
-
-
-  // －－－－－－－－－－－－－－－－－－上一版本的code
-  // let session = ref(getSessionBookingData());
-  // console.log(session);
-
-  // // 從畫面上刪除：
-  // ticketData.value.splice(index, 1);
-  // // 刪掉的值：
-  // const clickData = ticketData.value[index];
-  // // 轉換刪掉的值：
-  // const transferData = {
-  //   ticketData: clickData.name.split(' ')[0],
-  //   fastFoward: clickData.type === "快速通關+100元" ? true : false,
-  //   ticketType: clickData.name.split(' ')[1]
-
-  // }
-  // console.log('transferData', transferData)
-
-
-
-  // session.value.forEach((sessionTicket, i) => {
-  //   console.log(sessionTicket);
-  //   // 检查是否有相同的数据：
-  //   const isMatch = (
-  //     transferData.ticketType === sessionTicket.ticketType &&
-  //     transferData.fastFoward === sessionTicket.fastFoward &&
-  //     transferData.ticketData === sessionTicket.ticketData
-  //   );
-  //   if (isMatch) {
-  //     console.log('需要去掉', sessionTicket)
-  //     session.value.splice(i, 1)
-  //     sessionStorage.setItem("bookingData", JSON.stringify(session.value));
-  //   }
-  // });
-  // // 將session 轉為 資料庫 格式：
-  // const postToDBData = getTransTickSessionToDB(session.value);
-  // console.log(session.value);
-  // console.log(postToDBData);
-
+  deleteCartItem(ticketID);
 };
 
-
-
-const editFromCart = (index) => {
-  console.log(displayTicketData.value[index]);
-};
 
 // 彈窗東東：
+const dialogFormVisible = ref(false);
+const formLabelWidth = '140px';
 
-const dialogFormVisible = ref(false)
-const formLabelWidth = '140px'
-
-const form = reactive({
-  name: '',
-  region: '',
-  date1: '',
-  date2: '',
-  delivery: false,
-  type: [],
-  resource: '',
-  desc: '',
-})
-
-const props = defineProps({
-  ticketDateType: {
-    type: String,
-    default: '無資料',
-  },
-  editFromCart: {
-    type: Function,
-    required: true
-  }
+let form = reactive({
+  name: ''
 });
 
-console.log(props.editFromCart)
+
+const editFromCart = index => {
+  dialogFormVisible = true;
+  // console.log(displayTicketData.value[index]); // 點選edit出現edit資料
+  form = reactive({
+    count: displayTicketData.value[index].count,
+    name: displayTicketData.value[index].name,
+    price: displayTicketData.value[index].price,
+    ticketID: displayTicketData.value[index].ticketID,
+    type: displayTicketData.value[index].type,
+  });
+
+  form = getEditData;
+
+
+
+
+};
+
+
+
+
+
+
 
 // // 計算商品總額
 // const calculateTotalPrice = () => {
@@ -296,7 +221,6 @@ console.log(props.editFromCart)
 //   const shippingFee = 60; //運費
 //   return totalPrice - discount + shippingFee;
 // };
-
 </script>
 
 <style lang="scss" scoped>
