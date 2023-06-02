@@ -1,8 +1,8 @@
 <template>
   <main>
     <TitleBig1 class="title">{{ header }}</TitleBig1>
-    <el-carousel :interval="4000" type="card" height="500px">
-      <el-carousel-item v-for="item in performance" :key="item.name">
+    <el-carousel :interval="4000" type="card" arrow="always" height="500px" style="z-index: 0; ">
+      <el-carousel-item v-for="item in performance" :key="item.name" style="color: brown;">
         <img :src="imgURL(item.image)" alt="" />
         <h3>{{ item.name }}</h3>
       </el-carousel-item>
@@ -33,7 +33,9 @@ main {
   position: relative;
   margin: 0 auto;
   max-width: 1200px;
-  
+  .el-carousel__mask{
+    opacity: 0;
+  }
   .title {
     margin-bottom: 100px;
   }
@@ -47,12 +49,6 @@ main {
   }
   img{
     margin: 0 150px;
-  }
-  el-carousel{
-    z-index: auto !important;
-  }
-  .el-carousel__arrow--right {
-    background-color: #555555!important;
   }
   .el-carousel__item:nth-child(1) {
     height: 500px;
