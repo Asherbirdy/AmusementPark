@@ -17,8 +17,8 @@
           <td class="price">{{ item.price }}</td>
           <td class="edit">
             <el-icon>
-              <ModalEditCRT id="edit" :editFromCart="editFromCart()" />
-              <!-- < EditPen id =" edit" @click="editFromCart(index)" /> -->
+              <!-- <ModalEditCRT id="edit" :editFromCart="editFromCart()" /> -->
+              <EditPen id=" edit" @click="editFromCart(index)" />
             </el-icon>
           </td>
           <td class="delet">
@@ -42,7 +42,7 @@
         <div class="coupon">
           <h2>使用優惠碼</h2>
           <div class="code">
-            <!-- <input type="text" class="sn" v-model="discountCode" /> -->
+            <input type="text" class="sn" v-model="discountCode" />
 
             <button type="submit" id="Submit">折抵</button>
           </div>
@@ -76,8 +76,32 @@
       </li>
     </ul>
   </main>
-  <!-- 編輯彈窗 -->
-  <ModalEditCRT />
+  <!--  ----- ----- ----- ----- 彈窗 -----  ----- ----- ------->
+  <el-icon>
+    <EditPen id="edit" @click="dialogFormVisible = true" />
+  </el-icon>
+
+  <el-dialog v-model="dialogFormVisible" :title="ticketDateType">
+    <el-form :model="form">
+      <el-form-item label="Promotion name" :label-width="formLabelWidth">
+        <el-input v-model="form.name" autocomplete="off" />
+      </el-form-item>
+      <el-form-item label="Zones" :label-width="formLabelWidth">
+        <el-select v-model="form.region" placeholder="Please select a zone">
+          <el-option label="Zone No.1" value="shanghai" />
+          <el-option label="Zone No.2" value="beijing" />
+        </el-select>
+      </el-form-item>
+    </el-form>
+    <template #footer>
+      <span class="dialog-footer">
+        <el-button @click="dialogFormVisible = false">Cancel</el-button>
+        <el-button type="primary" @click="dialogFormVisible = false">
+          Confirm
+        </el-button>
+      </span>
+    </template>
+  </el-dialog>
 </template>
 
 <script setup>
@@ -202,6 +226,34 @@ const editFromCart = (index) => {
   console.log(displayTicketData.value[index]);
 };
 
+// 彈窗東東：
+
+const dialogFormVisible = ref(false)
+const formLabelWidth = '140px'
+
+const form = reactive({
+  name: '',
+  region: '',
+  date1: '',
+  date2: '',
+  delivery: false,
+  type: [],
+  resource: '',
+  desc: '',
+})
+
+const props = defineProps({
+  ticketDateType: {
+    type: String,
+    default: '無資料',
+  },
+  editFromCart: {
+    type: Function,
+    required: true
+  }
+});
+
+console.log(props.editFromCart)
 
 // // 計算商品總額
 // const calculateTotalPrice = () => {
