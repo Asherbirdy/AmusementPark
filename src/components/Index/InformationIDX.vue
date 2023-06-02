@@ -22,8 +22,10 @@ const rides = ref([
       <el-carousel
         class="leftbox"
         indicator-position="outside"
-        style="width: 700px; height: 600px"
-        z-index="-100"
+        style="width: 700px; height: 600px; z-index: 0;"
+        arrow="never"
+        autoplay="true"
+        :interval="1000"
       >
         <el-carousel-item v-for="item in rides" :key="item" style="width: 800px; height: 600px;">
           <img :src="imgURL(item.image)" alt=""  />

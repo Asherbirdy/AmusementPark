@@ -40,16 +40,13 @@ declare module '@vue/runtime-core' {
     E4: typeof import('./components/-UI Element/svg/monsterComponent/e4.vue')['default']
     E5: typeof import('./components/-UI Element/svg/monsterComponent/e5.vue')['default']
     E6: typeof import('./components/-UI Element/svg/monsterComponent/e6.vue')['default']
-<<<<<<< HEAD
     ElButton: typeof import('element-plus/es')['ElButton']
     ElCarousel: typeof import('element-plus/es')['ElCarousel']
     ElCarouselItem: typeof import('element-plus/es')['ElCarouselItem']
-    ElDatePicker: typeof import('element-plus/es')['ElDatePicker']
     ElDialog: typeof import('element-plus/es')['ElDialog']
-=======
->>>>>>> 55e749a1595d8b00acc15460da345edc5528dce1
     ElIcon: typeof import('element-plus/es')['ElIcon']
     ElInputNumber: typeof import('element-plus/es')['ElInputNumber']
+    ElPagination: typeof import('element-plus/es')['ElPagination']
     ExhibitionNotice: typeof import('./components/Notice/ExhibitionNotice.vue')['default']
     FbCustomerChat: typeof import('./components/-UI Element/QA/FbCustomerChat.vue')['default']
     Footer: typeof import('./components/-Global/Footer.vue')['default']
