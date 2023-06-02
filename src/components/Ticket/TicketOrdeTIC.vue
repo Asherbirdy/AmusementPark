@@ -4,7 +4,11 @@ import dayjs from 'dayjs';
 import { useRouter } from 'vue-router';
 const router = useRouter();
 
-
+import {
+  getSessionBookingData,
+  getTransTickSessionToDB,
+  getTicketTotalPrice
+} from '../../composables';
 
 
 // 資料
@@ -39,22 +43,19 @@ let bookingData = reactive([
   },
 ]);
 
+// 依照Token做判斷
+if (sessionStorage.getItem('token')) {
+  console.log('sessionStorage 中有 token。 ');
+} else {
+  console.log('sessionStorage 中沒有 token ');
+}
+
+
 // 計算所有票的數量
 function countTicket() {
   return bookingData.reduce((acc, cur) => acc + cur.ticketNum, 0);
 }
 
-const clearOut = () => {
-  bookingData.forEach(ticket => {
-    ticket.ticketNum = 0;
-    ticket.fastFoward = false;
-    // 清空sessionStorage
-    sessionStorage?.removeItem('bookingData');
-    sessionStorage?.removeItem('ticketDateData');
-    // 清空日期
-    date.value = '';
-  });
-};
 
 // 將資料加入到local的函式：
 const addBookingDataToLocal = () => {
@@ -106,47 +107,76 @@ const addTicketDateToLocal = () =>
 
 // 票卷時間：
 let ticketDate = ref('');
+
+// 加入購物車
 const addToCart = () => {
-  if (ticketDate !== '' && isValidDateFormat(ticketDate)) {
-    if (countTicket() !== 0) {
-      // 
-      // axios
-      //     .post('/PDO/frontEnd/tickOrder/tickOrderInsert.php', { postToDBData, total })
-      //     .then(res => {
-      //       console.log(res);
-      //     })
-      //     .catch(err => {
-      //       console.log(err);
-      //     });
-      
-      addBookingDataToLocal(bookingData);
-      addTicketDateToLocal(ticketDate);
-      alert('已將票數加入到購物車');
-      console.log(bookingData);
-      console.log(ticketDate);
-    } else {
-      alert('請加入票數');
-    }
+  if (sessionStorage.getItem('token')) {
+    console.log('sessionStorage 中有 token。 ');
+    //先加入到local / 用之前函式 因為沒時間
+    addBookingDataToLocal(bookingData);
+    // 取得local資料
+    const getSessionData = getSessionBookingData();
+    console.log(getSessionData);
+    // 將指定的票轉為資料庫格式
+    const transfToDBform = getTransTickSessionToDB(getSessionData);
+    console.log('要傳給資料庫的票', transfToDBform);
+    const total = getTicketTotalPrice(getSessionData);
+    console.log('給資料庫的總金額', total)
+    // 票數的金額：
+
+    /*
+    友宣 ：  資料庫 資料庫 資料庫 資料庫 資料庫 資料庫 資料庫 資料庫 資料庫 資料庫 資料庫 資料庫
+    */
+
+    axios.post('資料庫 資料庫 資料庫 資料庫 資料庫 資料庫 資料庫 資料庫', { transfToDBform, total })
+      .then((res) => {
+        alert('加入票券成功')
+        sessionStorage.removeItem("bookingData");
+
+      }).catch(err => {
+        alert('加入失敗')
+        sessionStorage.removeItem("bookingData");
+      })
+
+
+
   } else {
-    alert('請輸入日期');
+    console.log('sessionStorage 中沒有 token ');
+    if (ticketDate !== '' && isValidDateFormat(ticketDate)) {
+      if (countTicket() !== 0) {
+        addBookingDataToLocal(bookingData);
+        addTicketDateToLocal(ticketDate);
+        alert('已將票數加入到購物車');
+        console.log(bookingData);
+        console.log(ticketDate);
+      } else {
+        alert('請加入票數');
+      }
+    } else {
+      alert('請輸入日期');
+    }
   }
 };
 
 // 購買票券
 const buyTicket = () => {
-  if (ticketDate !== '' && isValidDateFormat(ticketDate)) {
-    if (countTicket() !== 0) {
-      addBookingDataToLocal(bookingData);
-      addTicketDateToLocal(ticketDate);
-      router.push('/cart');
-      alert('已將票數加入到購物車');
-    } else {
-      alert('請加入票數');
-    }
-  } else {
-    alert('請輸入日期');
-  }
+  router.push('/cart');
 };
+
+const clearOut = () => {
+  bookingData.forEach(ticket => {
+    ticket.ticketNum = 0;
+    ticket.fastFoward = false;
+    // 清空sessionStorage
+    // sessionStorage?.removeItem('bookingData');
+    // sessionStorage?.removeItem('ticketDateData');
+    // 清空日期
+    date.value = '';
+  });
+};
+
+
+
 
 // 原始時間：
 let date = ref('');
@@ -214,13 +244,13 @@ const disableDate = time => {
   </div>
   <div class="btnbox">
     <btn class="btn" button-color="#D1825B" button-text-color="white" @click="clearOut">
-      <h3>清空</h3>
+      <h3>預設</h3>
     </btn>
     <btn :style="{ width: '150px' }" class="btn" button-color="#D1825B" button-text-color="white" @click="addToCart">
       <h3>加入購物車</h3>
     </btn>
-    <btn class="btn" button-color="#D1825B" button-text-color="white" @click="buyTicket">
-      <h3>立即購買</h3>
+    <btn class="btn" :style="{ width: '150px' }" button-color="#D1825B" button-text-color="white" @click="buyTicket">
+      <h3>前往購物車</h3>
     </btn>
   </div>
 </template>
