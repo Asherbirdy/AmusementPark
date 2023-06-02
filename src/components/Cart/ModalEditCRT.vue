@@ -3,7 +3,7 @@
         <EditPen id="edit" @click="dialogFormVisible = true" />
     </el-icon>
 
-    <el-dialog v-model="dialogFormVisible" title="2023-05-28 兒童票">
+    <el-dialog v-model="dialogFormVisible" :title="ticketDateType">
         <el-form :model="form">
             <el-form-item label="Promotion name" :label-width="formLabelWidth">
                 <el-input v-model="form.name" autocomplete="off" />
@@ -43,6 +43,18 @@ const form = reactive({
     desc: '',
 })
 
+const props = defineProps({
+    ticketDateType: {
+        type: String,
+        default: '無資料',
+    },
+    editFromCart: {
+        type: Function,
+        required: true
+    }
+});
+
+console.log(props.editFromCart)
 
 </script>
 <style scoped>

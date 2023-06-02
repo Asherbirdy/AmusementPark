@@ -10,15 +10,15 @@
           <th class="edit">修改</th>
           <th class="delet">移除</th>
         </tr>
-        <tr v-for="(item, index) in displayTicketData" :key="item.id" class="detail">
+        <tr v-for="(item, index) in  displayTicketData " :key="item.id" class="detail">
           <td class="itemname">{{ item.name }}</td>
           <td class="itemstyle">{{ item.type }}</td>
           <td class="count">{{ item.count }}</td>
           <td class="price">{{ item.price }}</td>
           <td class="edit">
             <el-icon>
-              <ModalEditCRT id="edit" @click="editFromCart(index)" />
-              <!-- <EditPen id="edit" @click="editFromCart(index)" /> -->
+              <ModalEditCRT id="edit" :editFromCart="editFromCart()" />
+              <!-- < EditPen id =" edit" @click="editFromCart(index)" /> -->
             </el-icon>
           </td>
           <td class="delet">
@@ -42,7 +42,7 @@
         <div class="coupon">
           <h2>使用優惠碼</h2>
           <div class="code">
-            <input type="text" class="sn" v-model="discountCode" />
+            <!-- <input type="text" class="sn" v-model="discountCode" /> -->
 
             <button type="submit" id="Submit">折抵</button>
           </div>
