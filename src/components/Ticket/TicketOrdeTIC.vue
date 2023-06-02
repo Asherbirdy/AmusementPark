@@ -43,12 +43,6 @@ let bookingData = reactive([
   },
 ]);
 
-// 依照Token做判斷
-// if (sessionStorage.getItem('token')) {
-//   console.log('sessionStorage 中有 token。 ');
-// } else {
-//   console.log('sessionStorage 中沒有 token ');
-// }
 
 // 計算所有票的數量
 function countTicket() {
@@ -178,53 +172,7 @@ const addToCart = () => {
       console.log(err);
       alert('登入狀態檢查出錯');
     });
-  // if (sessionStorage.getItem('token')) {
-  //   console.log('sessionStorage 中有 token。 ');
-  //   //先加入到local / 用之前函式 因為沒時間
-  //   addBookingDataToLocal(bookingData);
-  //   // 取得local資料
-  //   const getSessionData = getSessionBookingData();
-  //   console.log(getSessionData);
-  //   // 將指定的票轉為資料庫格式
-  //   const transfToDBform = getTransTickSessionToDB(getSessionData);
-  //   console.log('要傳給資料庫的票', transfToDBform);
-  //   const total = getTicketTotalPrice(getSessionData);
-  //   console.log('給資料庫的總金額', total);
-  //   // 票數的金額：
 
-  //   /*
-  //   友宣 ：  資料庫 資料庫 資料庫 資料庫 資料庫 資料庫 資料庫 資料庫 資料庫 資料庫 資料庫 資料庫
-  //   */
-
-  //   axios
-  //     .post('/PDO/frontEnd/tickOrder/tickOrderInsert.php', {
-  //       transfToDBform,
-  //       total,
-  //     })
-  //     .then(res => {
-  //       alert('加入票券成功');
-  //       sessionStorage.removeItem('bookingData');
-  //     })
-  //     .catch(err => {
-  //       alert('加入失敗');
-  //       sessionStorage.removeItem('bookingData');
-  //     });
-  // } else {
-  //   console.log('sessionStorage 中沒有 token ');
-  //   if (ticketDate !== '' && isValidDateFormat(ticketDate)) {
-  //     if (countTicket() !== 0) {
-  //       addBookingDataToLocal(bookingData);
-  //       addTicketDateToLocal(ticketDate);
-  //       alert('已將票數加入到購物車');
-  //       console.log(bookingData);
-  //       console.log(ticketDate);
-  //     } else {
-  //       alert('請加入票數');
-  //     }
-  //   } else {
-  //     alert('請輸入日期');
-  //   }
-  // }
 };
 
 // 購買票券
