@@ -22,16 +22,20 @@
         />
         <label for="phone">
           <p>手機號碼</p>
-          </label>
+        </label>
       </div>
-      <div v-for="(item, index) in passInf" :key="item.id" class="user-input">
+      <div v-for="(item, index) in inputInfos" :key="item.id" class="user-input">
         <label>{{ item.title }}</label>
         <input
           :type="item.type"
           :id="index"
           v-model="item.value"
           :placeholder="item.placeholder"
+          @blur="blurCheck(item.id)"
         />
+        <span v-if="isInputFail && item.id === 'account'"
+          >請輸入正確帳號
+        </span>
       </div>
       <div class="btn">
         <router-link to="/" class="routerlink">
@@ -60,7 +64,7 @@ const account = ref('');
 const name = ref('');
 const selectedMethod = ref('');
 
-const passInf = ref([
+const inputInfos = ref([
   {
     title: '帳號：',
     type: 'text',
@@ -77,13 +81,37 @@ const passInf = ref([
   },
 ]);
 
+//////會員帳密驗證格式
+////email驗證
+const emailRegex =
+  /^([a-zA-Z0-9_\.\-\+])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+const isInputFail = ref(false);
+
+const blurCheck = inputType => {
+  if (inputType !== 'account') return;
+  const inputAccount = inputInfos.value[0].value;
+  if (inputAccount === '') {
+    isInputFail.value = false;
+    return;
+  }
+  const isPhoneNumber =
+    !isNaN(inputAccount) &&
+    inputAccount.length === 10 &&
+    inputAccount.trim().length > 0 &&
+    inputAccount[0] === '0' &&
+    inputAccount[1] === '9';
+
+  const isEmail = emailRegex.test(inputAccount);
+  isInputFail.value = !(isPhoneNumber || isEmail);
+};
+
+
 //////資料送出確認有無此帳密
 const router = useRouter();
 
-
-
 const handleSubmit = () => {
-  if (passInf.value[0].value === '' || passInf.value[1].value === '') {
+  // if (inputInfos.value[0].value === '' || inputInfos.value[1].value === '') {
+    if (isInputFail.value ||inputInfos.value[1].value === '' ) {
     console.log('帳號密碼空值');
     alert('請輸入帳號和姓名');
     return;
@@ -95,8 +123,8 @@ const handleSubmit = () => {
 
   axios
     .post('/PDO/frontEnd/MemberForgetPassword/memberAccountCheck.php', {
-      account: passInf.value[0].value,
-      name: passInf.value[1].value,
+      account: inputInfos.value[0].value,
+      name: inputInfos.value[1].value,
     })
     .then(res => {
       console.log(res.data);
@@ -109,7 +137,7 @@ const handleSubmit = () => {
         alert('此帳號尚未註冊');
       }
     });
-};
+  };
 </script>
 
 <style lang="scss" scoped>
@@ -163,5 +191,13 @@ const handleSubmit = () => {
     text-decoration-line: none;
     margin-right: 40px;
   }
+}
+
+span {
+  display: flex;
+  margin-left: 65px;
+  margin-top: 10px;
+  color: red;
+  font-weight: bold;
 }
 </style>
