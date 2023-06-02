@@ -90,6 +90,7 @@ import axios from 'axios';
 */
 let displayTicketData = ref();
 
+// 從資料庫抓的函式：
 const showOrderFromDB = async () => {
   try {
     const res = await axios.get('/PDO/frontEnd/cart/cartSelect.php');
@@ -112,15 +113,13 @@ const showOrderFromDB = async () => {
 
     displayTicketData.value = displayTicket;
     console.log('轉換使用者顯示資料：', displayTicketData.value);
-
-
   } catch (err) {
     console.log(err);
   }
 };
 
 
-// 從Session顯示資料：
+// 從Session抓資料的函式：
 const showOrderFromSession = async () => {
   try {
     const getSession = getSessionBookingData();
@@ -149,10 +148,7 @@ const removeFromCart = index => {
   console.log(ticketID);
   async function deleteCartItem(ticketID) {
     try {
-      const response = await axios.post(
-        '/PDO/frontEnd/cart/cartDelete.php',
-        ticketID
-      );
+      const response = await axios.post('/PDO/frontEnd/cart/cartDelete.php', ticketID);
       console.log(response.data);
       await showOrderFromDB();
       // 在這裡處理回傳的結果

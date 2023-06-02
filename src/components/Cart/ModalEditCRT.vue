@@ -1,14 +1,16 @@
 <template>
     <el-dialog :title="ticketType" width="30%" center>
-        <span>
+        <span class="tickets">
             <p>票數：{{ ticketAmount }}</p>
+            <el-input-number v-model="num" :min="1" :max="10" @change="handleChange" />
         </span>
         <template #footer>
             <span class="dialog-footer">
                 <el-button type="primary" @click="() => {
                     fixTickets();
                     $emit('close-modal');
-                }">修改</el-button>
+                }
+                    ">修改</el-button>
             </span>
         </template>
     </el-dialog>
@@ -35,6 +37,8 @@ const fixTickets = () => {
     console.log(fixTicketsData);
 };
 
+
+
 // 外部資料導入資訊
 const props = defineProps({
     ticketType: String,
@@ -42,9 +46,20 @@ const props = defineProps({
     ticketAmount: Number,
     fastPassFacility: Number,
 });
+
+const num = ref(ticketAmount.value);
+const handleChange = value => {
+    console.log(value);
+};
 </script>
 <style scoped>
 .dialog-footer button:first-child {
     margin-right: 10px;
+}
+
+.tickets {
+    display: flex;
+    align-items: center;
+    gap: 20px;
 }
 </style>
