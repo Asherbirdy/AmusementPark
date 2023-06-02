@@ -1,7 +1,7 @@
 <template>
     <el-dialog :title="ticketType" width="30%" center>
         <span class="tickets">
-            <p>票數：{{ ticketAmount }}</p>
+            <p>票數：</p>
             <el-input-number v-model="num" :min="1" :max="10" @change="handleChange" />
         </span>
         <template #footer>
@@ -47,7 +47,9 @@ const props = defineProps({
     fastPassFacility: Number,
 });
 
-const num = ref(ticketAmount.value);
+const num = ref(props.ticketAmount);
+
+
 const handleChange = value => {
     console.log(value);
 };
