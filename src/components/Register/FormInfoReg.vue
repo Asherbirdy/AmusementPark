@@ -77,7 +77,7 @@ const handleSubmit = () => {
   console.log(typeof(inputInfos.value));
   if (inputInfos.length !== '') {
     axios
-    .post('/api/PDO/frontEnd/memberSignup/memberSignup.php', {
+    .post('/PDO/frontEnd/memberSignup/memberSignup.php', {
       name: inputInfos.value[0].value,
       gender: inputInfos.value[1].value,
       birthday: inputInfos.value[2].value,
