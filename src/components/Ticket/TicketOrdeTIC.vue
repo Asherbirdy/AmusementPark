@@ -163,17 +163,17 @@ const buyTicket = () => {
   router.push('/cart');
 };
 
-// const clearOut = () => {
-//   bookingData.forEach(ticket => {
-//     ticket.ticketNum = 0;
-//     ticket.fastFoward = false;
-//     // 清空sessionStorage
-//     sessionStorage?.removeItem('bookingData');
-//     sessionStorage?.removeItem('ticketDateData');
-//     // 清空日期
-//     date.value = '';
-//   });
-// };
+const clearOut = () => {
+  bookingData.forEach(ticket => {
+    ticket.ticketNum = 0;
+    ticket.fastFoward = false;
+    // 清空sessionStorage
+    // sessionStorage?.removeItem('bookingData');
+    // sessionStorage?.removeItem('ticketDateData');
+    // 清空日期
+    date.value = '';
+  });
+};
 
 
 
@@ -243,9 +243,9 @@ const disableDate = time => {
     </table>
   </div>
   <div class="btnbox">
-    <!-- <btn class="btn" button-color="#D1825B" button-text-color="white" @click="clearOut">
-      <h3>清空</h3>
-    </btn> -->
+    <btn class="btn" button-color="#D1825B" button-text-color="white" @click="clearOut">
+      <h3>預設</h3>
+    </btn>
     <btn :style="{ width: '150px' }" class="btn" button-color="#D1825B" button-text-color="white" @click="addToCart">
       <h3>加入購物車</h3>
     </btn>
