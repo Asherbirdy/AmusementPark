@@ -76,29 +76,9 @@
       </li>
     </ul>
   </main>
+  <ModalEditCRT v-model="showmodal" :fast-pass-facility="fastPassFacility" :ticket-amount="ticketAmount"
+    :ticket-date="ticketDate" :ticket-type="ticketType" @close-modal="closeModal" />
   <!--  ----- ----- ----- ----- 彈窗 -----  ----- ----- ------->
-
-  <el-dialog v-model="dialogFormVisible" :title="form.name">
-    <el-form :model="form">
-      <el-form-item label="Promotion name" :label-width="formLabelWidth">
-        <el-input v-model="form.name" autocomplete="off" />
-      </el-form-item>
-      <el-form-item label="Zones" :label-width="formLabelWidth">
-        <el-select v-model="form.region" placeholder="Please select a zone">
-          <el-option label="Zone No.1" value="shanghai" />
-          <el-option label="Zone No.2" value="beijing" />
-        </el-select>
-      </el-form-item>
-    </el-form>
-    <template #footer>
-      <span class="dialog-footer">
-        <el-button @click="dialogFormVisible = false">Cancel</el-button>
-        <el-button type="primary" @click="dialogFormVisible = false">
-          Confirm
-        </el-button>
-      </span>
-    </template>
-  </el-dialog>
 </template>
 
 <script setup>
@@ -161,32 +141,31 @@ const removeFromCart = index => {
 };
 
 
-// 彈窗東東：
-const dialogFormVisible = ref(false);
-const formLabelWidth = '140px';
+//--------------- 修改票券：------------------
 
-let form = reactive({
-  name: ''
-});
+
+const showmodal = ref(false);
+const closeModal = () => {
+  showmodal.value = false;
+};
+
+const ticketType = ref(''); //票型
+const ticketDate = ref('');
+let ticketAmount = ref(0);
+const fastPassFacility = ref([]);
 
 
 const editFromCart = index => {
-  dialogFormVisible = true;
-  // console.log(displayTicketData.value[index]); // 點選edit出現edit資料
-  form = reactive({
-    count: displayTicketData.value[index].count,
-    name: displayTicketData.value[index].name,
-    price: displayTicketData.value[index].price,
-    ticketID: displayTicketData.value[index].ticketID,
-    type: displayTicketData.value[index].type,
-  });
-
-  form = getEditData;
 
 
-
-
+  const editData = displayTicketData.value[index];// 點選edit出現edit資料
+  console.log('要修改的資料', editData);
+  showmodal.value = true;
+  ticketType.value = editData.name;
+  ticketAmount.value = editData.count;
 };
+
+
 
 
 

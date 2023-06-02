@@ -1,75 +1,49 @@
 <template>
-    <el-icon>
-        <EditPen id="edit" @click="dialogFormVisible = true" />
-    </el-icon>
-
-    <el-dialog v-model="dialogFormVisible" :title="ticketDateType">
-        <el-form :model="form">
-            <el-form-item label="Promotion name" :label-width="formLabelWidth">
-                <el-input v-model="form.name" autocomplete="off" />
-            </el-form-item>
-            <el-form-item label="Zones" :label-width="formLabelWidth">
-                <el-select v-model="form.region" placeholder="Please select a zone">
-                    <el-option label="Zone No.1" value="shanghai" />
-                    <el-option label="Zone No.2" value="beijing" />
-                </el-select>
-            </el-form-item>
-        </el-form>
+    <el-dialog :title="ticketType" width="30%" center>
+        <span>
+            <p>票數：{{ ticketAmount }}</p>
+        </span>
         <template #footer>
             <span class="dialog-footer">
-                <el-button @click="dialogFormVisible = false">Cancel</el-button>
-                <el-button type="primary" @click="dialogFormVisible = false">
-                    Confirm
-                </el-button>
+                <el-button type="primary" @click="() => {
+                    fixTickets();
+                    $emit('close-modal');
+                }">修改</el-button>
             </span>
         </template>
     </el-dialog>
 </template>
+<script setup>
+import axios from 'axios';
+// 監聽目前退票數量：
+const tickets = ref(0);
 
-<script  setup>
-
-
-const dialogFormVisible = ref(false)
-const formLabelWidth = '140px'
-
-const form = reactive({
-    name: '',
-    region: '',
-    date1: '',
-    date2: '',
-    delivery: false,
-    type: [],
-    resource: '',
-    desc: '',
-})
-
-const props = defineProps({
-    ticketDateType: {
-        type: String,
-        default: '無資料',
-    },
-    editFromCart: {
-        type: Function,
-        required: true
-    }
+// 帳號名稱 / 票型  / 時間  / 快速通關  / 退票數量：
+let fixTicketsData = reactive({
+    ticketType: '',
+    ticketDate: '',
+    fastPassFacility: '',
+    fixTicketsAmount: 0,
 });
 
-console.log(props.editFromCart)
+// 退票按鈕函式
+const fixTickets = () => {
+    fixTicketsData.ticketType = props.ticketType;
+    fixTicketsData.ticketDate = props.ticketDate;
+    fixTicketsData.fastPassFacility = props.fastPassFacility;
+    fixTicketsData.fixTicketsAmount = tickets.value;
+    console.log(fixTicketsData);
+};
 
+// 外部資料導入資訊
+const props = defineProps({
+    ticketType: String,
+    ticketDate: String,
+    ticketAmount: Number,
+    fastPassFacility: Number,
+});
 </script>
 <style scoped>
-.el-button--text {
-    margin-right: 15px;
-}
-
-.el-select {
-    width: 300px;
-}
-
-.el-input {
-    width: 300px;
-}
-
 .dialog-footer button:first-child {
     margin-right: 10px;
 }
