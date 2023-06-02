@@ -40,11 +40,14 @@ declare module '@vue/runtime-core' {
     E4: typeof import('./components/-UI Element/svg/monsterComponent/e4.vue')['default']
     E5: typeof import('./components/-UI Element/svg/monsterComponent/e5.vue')['default']
     E6: typeof import('./components/-UI Element/svg/monsterComponent/e6.vue')['default']
+<<<<<<< HEAD
     ElButton: typeof import('element-plus/es')['ElButton']
     ElCarousel: typeof import('element-plus/es')['ElCarousel']
     ElCarouselItem: typeof import('element-plus/es')['ElCarouselItem']
     ElDatePicker: typeof import('element-plus/es')['ElDatePicker']
     ElDialog: typeof import('element-plus/es')['ElDialog']
+=======
+>>>>>>> 55e749a1595d8b00acc15460da345edc5528dce1
     ElIcon: typeof import('element-plus/es')['ElIcon']
     ElInputNumber: typeof import('element-plus/es')['ElInputNumber']
     ExhibitionNotice: typeof import('./components/Notice/ExhibitionNotice.vue')['default']
@@ -89,6 +92,7 @@ declare module '@vue/runtime-core' {
     ModalCRUD: typeof import('./components/CRUDTest/ModalCRUD.vue')['default']
     ModalD: typeof import('./components/CRUDTest/ModalD.vue')['default']
     ModalDelete: typeof import('./components/Staffaccount/-Modal/ModalDelete.vue')['default']
+    ModalEditCRT: typeof import('./components/Cart/ModalEditCRT.vue')['default']
     ModalInsert: typeof import('./components/Staffaccount/-Modal/ModalInsert.vue')['default']
     ModalL: typeof import('./components/-UI Element/modalframe/ModalL.vue')['default']
     ModalLogin: typeof import('./components/-UI Element/modalframe/ModalLogin.vue')['default']

@@ -68,47 +68,99 @@ const inputInfos = ref([
     value: rePassword,
   },
 ]);
+//////會員註冊驗證格式
+
+const emailRegex =
+  /^([a-zA-Z0-9_\.\-\+])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+
+const isEmailFail = ref(false);
+const isPhoneFail = ref(false);
+const isPwdFail = ref(false);
+const blueCheck = inputType => {
+  const inputPhone = inputInfos.value[3].value;
+  const inputEmail = inputInfos.value[4].value;
+  const inputPwd = inputInfos.value[5].value;
+  const inputREPwd = inputInfos.value[6].value;
+  if (
+    inputPhone !== '' &&
+    inputEmail !== '' &&
+    inputPwd !== '' &&
+    inputREPwd !== ''
+    ){
+    const isEmail = emailRegex.test(inputEmail);
+    if (isEmail === false) {
+      console.log('驗證失敗');
+    } else {
+      console.log('驗證正確');
+    }
+  
+    //電話驗證
+    const isPhoneNumber =
+      !isNaN(inputPhone) &&
+      inputPhone.length === 10 &&
+      inputPhone.trim().length > 0 &&
+      inputPhone[0] === '0' &&
+      inputPhone[1] === '9';
+    if (inputPhone !== isPhoneNumber) {
+      console.log('電話錯誤');
+    } else {
+      alert('電話正確');
+    }
+  
+    //密碼驗證
+    if (inputPwd === inputREPwd) {
+      isPwdFail.value = false;
+      console.log('正確');
+    } else {
+      isPwdFail.value = true;
+      console.log('密碼請再次輸入');
+    }
+  
+    isPhoneFail.value = !isPhoneNumber;
+    isEmailFail.value = !isEmail;
+  }else{
+    console.log('沒東東');
+  }
+};
 
 const router = useRouter();
 
-
 //////資料送出
 const handleSubmit = () => {
-  console.log(typeof(inputInfos.value));
+  console.log(typeof inputInfos.value);
   if (inputInfos.length !== '') {
     axios
-    .post('/api/PDO/frontEnd/memberSignup/memberSignup.php', {
-      name: inputInfos.value[0].value,
-      gender: inputInfos.value[1].value,
-      birthday: inputInfos.value[2].value,
-      phone: inputInfos.value[3].value,
-      email: inputInfos.value[4].value,
-      pwd: inputInfos.value[5].value,
-    })
-    .then(res => {
-      console.log(res.data);
-      if (res.data === '註冊成功') {
-        alert('註冊成功');
-        router.push('/');
-      } else {
-        alert('請重新輸入資料');
-      }
-    })
-    .catch(err => {
-      console.log(err);
-      alert('伺服器問題');
-    });
+      .post('/PDO/frontEnd/memberSignup/memberSignup.php', {
+        name: inputInfos.value[0].value,
+        gender: inputInfos.value[1].value,
+        birthday: inputInfos.value[2].value,
+        phone: inputInfos.value[3].value,
+        email: inputInfos.value[4].value,
+        pwd: inputInfos.value[5].value,
+      })
+      .then(res => {
+        console.log(res.data);
+        if (res.data === '註冊成功') {
+          alert('註冊成功');
+          // router.push('/');
+        } else {
+          alert('請重新輸入資料');
+        }
+      })
+      .catch(err => {
+        console.log(err);
+        alert('伺服器問題');
+      });
   }else{
     alert('請輸入完整資料')
   }
-
 };
 </script>
 
 <template>
   <section class="middle">
     <div class="middle__form">
-    <!-- <form action="middle__form"> -->
+      <!-- <form action="middle__form"> -->
       <div
         class="middle__form--wrapOfLabelInput"
         v-for="(inputInfo, index) in inputInfos"
@@ -126,7 +178,17 @@ const handleSubmit = () => {
           :id="inputInfo.id"
           :placeholder="inputInfo.placeholder"
           v-model="inputInfo.value"
+          @blur="blueCheck(inputInfo.id)"
         />
+        <span v-if="isPhoneFail && inputInfo.id === 'phone'"
+          >請輸入正確電話
+        </span>
+        <span v-if="isEmailFail && inputInfo.id === 'email'"
+          >請輸入正確Email
+        </span>
+        <span v-if="isPwdFail && inputInfo.id === 'rePassword'"
+          >您再次輸入的密碼有誤
+        </span>
         <select
           v-else-if="inputInfo.type === 'select'"
           class="middle__form--select"
@@ -205,5 +267,12 @@ const handleSubmit = () => {
       color: #fff;
     }
   }
+}
+span {
+  display: flex;
+  margin-left: 125px;
+  margin-top: 10px;
+  color: red;
+  font-weight: bold;
 }
 </style>

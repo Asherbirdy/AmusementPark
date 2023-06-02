@@ -10,14 +10,15 @@
           <th class="edit">修改</th>
           <th class="delet">移除</th>
         </tr>
-        <tr v-for="(item, index) in products" :key="item.id" class="detail">
+        <tr v-for="(item, index) in displayTicketData" :key="item.id" class="detail">
           <td class="itemname">{{ item.name }}</td>
           <td class="itemstyle">{{ item.type }}</td>
           <td class="count">{{ item.count }}</td>
           <td class="price">{{ item.price }}</td>
           <td class="edit">
             <el-icon>
-              <EditPen id="edit" />
+              <!-- <ModalEditCRT id="edit" :editFromCart="editFromCart()" /> -->
+              <EditPen id=" edit" @click="editFromCart(index)" />
             </el-icon>
           </td>
           <td class="delet">
@@ -42,6 +43,7 @@
           <h2>使用優惠碼</h2>
           <div class="code">
             <input type="text" class="sn" v-model="discountCode" />
+
             <button type="submit" id="Submit">折抵</button>
           </div>
         </div>
@@ -52,11 +54,11 @@
           <table id="totallist">
             <tr>
               <td>商品總額</td>
-              <td class="money">{{ calculateTotalPrice() }}</td>
+              <!-- <td class="money">{{ calculateTotalPrice() }}</td> -->
             </tr>
             <tr>
               <td>折扣額</td>
-              <td class="money">-{{ calculateTotalCoupon() }}</td>
+              <!-- <td class="money">-{{ calculateTotalCoupon() }}</td> -->
             </tr>
             <tr>
               <td>運費</td>
@@ -64,7 +66,7 @@
             </tr>
             <tr id="totalprice">
               <td>訂單總額</td>
-              <td class="money">{{ calculateOrderTotal() }}</td>
+              <!-- <td class="money">{{ calculateOrderTotal() }}</td> -->
             </tr>
           </table>
           <router-link to="/admin/cartfill">
@@ -74,86 +76,137 @@
       </li>
     </ul>
   </main>
+  <ModalEditCRT v-model="showmodal" :fast-pass-facility="fastPassFacility" :ticket-amount="ticketAmount"
+    :ticket-date="ticketDate" :ticket-type="ticketType" @close-modal="closeModal" />
+  <!--  ----- ----- ----- ----- 彈窗 -----  ----- ----- ------->
 </template>
 
 <script setup>
-import {
-  useTest,
-  getSessionBookingData,
-} from '../../composables';
-// 商品數據(負責顯示)
-const products = ref([]);
-
-// 抓local 票券的資料：
-const ticketDataFromLocal = JSON.parse(sessionStorage.getItem('bookingData'));
+import { useTest, getTicketPrice, getTicketType, getSessionBookingData } from '../../composables';
+import axios from 'axios';
 
 /*
-  從Local抓資料 並轉為 購物車的資料格式
+ 抓資料 並轉為 購物車的資料格式
 */
+let displayTicketData = ref();
 
-const ticketMapData = ticketDataFromLocal.map(item => {
-  const fastforwardPrice = 100;
-  return {
-    name: `${item.ticketData} ${item.ticketType} `,
-    type: item.fastFoward ? '快速通關+100元' : '一般票',
-    count: item.tickets,
-    price: item.fastFoward
-      ? item.ticketPrice + fastforwardPrice
-      : item.ticketPrice,
-  };
+// 從資料庫抓的函式：
+const showOrderFromDB = async () => {
+  try {
+    const res = await axios.get('/PDO/frontEnd/cart/cartSelect.php');
+    console.log('DB抓下來的資料', res.data);
+    const displayTicket = res.data.map(item => {
+      const fastforwardPrice = 100;
+      return {
+        name: `${item.TICK_DATE.split(' ')[0]} ${getTicketType(
+          item.TICK_ID
+        )}`,
+        type: item.FAST_PASS === 0 ? '快速通關+100元' : '一般票',
+        count: item.TICK_NUM,
+        price:
+          item.FAST_PASS === 0
+            ? getTicketPrice(item.TICK_ID) + fastforwardPrice
+            : getTicketPrice(item.TICK_ID),
+        ticketID: item.TICK_ORDER_ID,
+      };
+    });
+
+    displayTicketData.value = displayTicket;
+    console.log('轉換使用者顯示資料：', displayTicketData.value);
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+
+// 從Session抓資料的函式：
+const showOrderFromSession = async () => {
+  try {
+    const getSession = getSessionBookingData();
+    console.log(getSession);
+
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+
+
+
+onMounted(async () => {
+  // 如果是登入狀態
+  if (sessionStorage.getItem('token')) {
+    await showOrderFromDB();
+  } else {
+    await showOrderFromSession();
+  }
 });
 
-// 將票券和商品都推到一個陣列中：
-let sortArr = [];
-sortArr.push(...ticketMapData);
-
-//全部加總
-products.value.push(...sortArr);
-console.log(products.value);
-
 // ---------------------------- Functions --------------------------------//
-
-// 刪除物品功能：
-const removeFromCart = (index) => {
-  console.log(products.value[index]);
-  //  從頁面刪掉：
-  products.value.splice(index, 1);
-  console.log(products.value);
-
-
-
-
-};
-
-
-
-// 計算商品總額
-const calculateTotalPrice = () => {
-  let totalPrice = 0;
-  products.value.forEach(product => {
-    totalPrice += product.price * product.count;
-  });
-  return totalPrice;
-};
-
-const discountCode = ref('');
-const calculateTotalCoupon = () => {
-  if (discountCode.value === 'MONSTAR') {
-    return 50;
+const removeFromCart = index => {
+  const ticketID = displayTicketData.value[index].ticketID;
+  console.log(ticketID);
+  async function deleteCartItem(ticketID) {
+    try {
+      const response = await axios.post('/PDO/frontEnd/cart/cartDelete.php', ticketID);
+      console.log(response.data);
+      await showOrderFromDB();
+      // 在這裡處理回傳的結果
+    } catch (error) {
+      console.error(error);
+      // 在這裡處理錯誤
+    }
   }
-  if (discountCode.value === 'BESTPARK') {
-    return 500;
-  }
-  return 0;
+  deleteCartItem(ticketID);
 };
 
-// 計算訂單總額
-const calculateOrderTotal = () => {
-  const totalPrice = calculateTotalPrice();
-  const discount = calculateTotalCoupon(); //折扣金額
-  const shippingFee = 60; //運費
-  return totalPrice - discount + shippingFee;
+//--------------- 修改票券：------------------
+
+const showmodal = ref(false);
+const closeModal = () => {
+  showmodal.value = false;
 };
+
+const ticketType = ref(''); //票型
+const ticketDate = ref('');
+let ticketAmount = ref(0);
+const fastPassFacility = ref([]);
+
+const editFromCart = index => {
+  const editData = displayTicketData.value[index]; // 點選edit出現edit資料
+  console.log('要修改的資料', editData);
+  showmodal.value = true;
+  ticketType.value = editData.name;
+  ticketAmount.value = editData.count;
+};
+
+// // 計算商品總額
+// const calculateTotalPrice = () => {
+//   let totalPrice = 0;
+//   products.value.forEach(product => {
+//     totalPrice += product.price * product.count;
+//   });
+//   return totalPrice;
+// };
+
+// const discountCode = ref('');
+// const calculateTotalCoupon = () => {
+//   if (discountCode.value === 'MONSTAR') {
+//     return 50;
+//   }
+//   if (discountCode.value === 'BESTPARK') {
+//     return 500;
+//   }
+//   return 0;
+// };
+
+// // 計算訂單總額
+// const calculateOrderTotal = () => {
+//   const totalPrice = calculateTotalPrice();
+//   const discount = calculateTotalCoupon(); //折扣金額
+//   const shippingFee = 60; //運費
+//   return totalPrice - discount + shippingFee;
+// };
 </script>
 
 <style lang="scss" scoped>
