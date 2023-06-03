@@ -22,13 +22,19 @@ const rides = ref([
       <el-carousel
         class="leftbox"
         indicator-position="outside"
-        style="width: 700px; height: 600px; z-index: 0;"
+        indicator="true"
+        style="width: 700px; height: 900px; z-index: 0"
+        loop="true"
         arrow="never"
         autoplay="true"
-        :interval="1000"
+        :interval="3000"
       >
-        <el-carousel-item v-for="item in rides" :key="item" style="width: 800px; height: 600px;">
-          <img :src="imgURL(item.image)" alt=""  />
+        <el-carousel-item
+          v-for="(item, index) in rides"
+          :key="index"
+          style="width: 700px;"
+        >
+          <img :src="imgURL(item.image)" alt="" />
         </el-carousel-item>
       </el-carousel>
       <div class="rightbox">
@@ -63,6 +69,18 @@ const rides = ref([
     </div>
   </main>
 </template>
+<style>
+.leftbox .el-carousel__container {
+  height: 500px;
+  margin-left:20px;
+}
+.el-carousel__button{
+  background-color: #e1530c !important;
+  height: 20px !important;
+  width: 20px !important;
+  border-radius: 50%;
+}
+</style>
 <style lang="scss" scoped>
 //sd
 main {
@@ -107,11 +125,11 @@ main {
     height: 500px;
     box-sizing: border-box;
     display: flex;
-
     gap: 10px;
     margin: 0 auto;
     margin-bottom: 30px;
     margin-top: 120px;
+    
     .rightbox {
       width: 100%;
       height: 100%;
