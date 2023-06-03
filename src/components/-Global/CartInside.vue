@@ -237,8 +237,10 @@ const checkLogin = async () => {
     const res = await axios.post('/PDO/frontEnd/cart/cartCheckout.php');
     // 如果登入成功，執行結帳相關操作
     if(res.data ===true) {
+
       // router.push('../../admin/cartfill');
       orderCheck();
+
     }else {
       console.log('還沒登入');
       router.push('../../login');
