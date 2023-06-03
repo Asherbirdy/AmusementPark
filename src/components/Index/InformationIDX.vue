@@ -1,24 +1,42 @@
-<script setup></script>
+<script setup>
+import getImageUrl from '@/utils/imgPath';
+const imgURL = name => getImageUrl(name);
+const rides = ref([
+  { image: 'facility1.png' },
+  { image: 'facility5.png' },
+  { image: 'facility3.png' },
+]);
+</script>
+
 <template>
   <main>
     <!-- 左邊輪播圖 -->
     <div class="wrapper">
       <div class="bg">
-        <svg-trumpet id="svg-trumpet"/>
-        <svg-wrench id="svg-wrench"/>
-        <svg-news id="svg-news"/>
-        <svg-screwdriver id="svg-screwdriver"/>
+        <svg-trumpet id="svg-trumpet" />
+        <svg-wrench id="svg-wrench" />
+        <svg-news id="svg-news" />
+        <svg-screwdriver id="svg-screwdriver" />
       </div>
 
-
-      <div class="leftbox">
-        <div><img src="@/assets/img/facility1.png" /></div>
-        <div class="dotbox">
-          <span></span>
-          <span></span>
-          <span></span>
-        </div>
-      </div>
+      <el-carousel
+        class="leftbox"
+        indicator-position="outside"
+        indicator="true"
+        style="width: 700px; height: 900px; z-index: 0"
+        loop="true"
+        arrow="never"
+        autoplay="true"
+        :interval="3000"
+      >
+        <el-carousel-item
+          v-for="(item, index) in rides"
+          :key="index"
+          style="width: 700px;"
+        >
+          <img :src="imgURL(item.image)" alt="" />
+        </el-carousel-item>
+      </el-carousel>
       <div class="rightbox">
         <div class="tabs">
           <h3 class="focus">最新消息</h3>
@@ -40,7 +58,7 @@
             <p>2023/02/24</p>
             <p>觀光旅遊安全錦囊-觀光遊樂業安全遊</p>
             <el-icon><ArrowRight /></el-icon>
-          </div>          
+          </div>
           <div class="output">
             <p>2023/01/20</p>
             <p>112年2月餐廳店休公告</p>
@@ -51,22 +69,34 @@
     </div>
   </main>
 </template>
+<style>
+.leftbox .el-carousel__container {
+  height: 500px;
+  margin-left:20px;
+}
+.el-carousel__button{
+  background-color: #e1530c !important;
+  height: 20px !important;
+  width: 20px !important;
+  border-radius: 50%;
+}
+</style>
 <style lang="scss" scoped>
 //sd
 main {
   // background-color: #fffdf8;
-  .bg{
+  .bg {
     // margin-right: 200px;
     position: relative;
     // pointer-events: none;
-    #svg-trumpet{
+    #svg-trumpet {
       height: 50%;
       position: absolute;
       z-index: -3;
       top: -150px;
       left: -340px;
     }
-    #svg-wrench{
+    #svg-wrench {
       height: 50%;
       position: absolute;
       z-index: -3;
@@ -74,14 +104,14 @@ main {
       right: -1400px;
       rotate: 25deg;
     }
-    #svg-news{
+    #svg-news {
       height: 80%;
       position: absolute;
       z-index: -3;
       top: 340px;
       left: -500px;
     }
-    #svg-screwdriver{
+    #svg-screwdriver {
       height: 50%;
       position: absolute;
       z-index: -3;
@@ -95,30 +125,11 @@ main {
     height: 500px;
     box-sizing: border-box;
     display: flex;
-
     gap: 10px;
     margin: 0 auto;
     margin-bottom: 30px;
     margin-top: 120px;
-    .leftbox {
-      img{
-        height: 600px;
-        margin-top: -50px;
-      }
-      .dotbox {
-        display: flex;
-        gap: 10px;
-        justify-content: center;
-        span {
-          width: 10px;
-          height: 10px;
-          background-color: #d1825b;
-          border-radius: 50%;
-          position: relative;
-          margin: 10px 0;
-        }
-      }
-    }
+    
     .rightbox {
       width: 100%;
       height: 100%;
@@ -159,15 +170,15 @@ main {
           border-bottom: 1px solid #d1825b;
           p {
             padding: 20px 0;
-            margin-left: 70PX;
-           
+            margin-left: 70px;
+
             &:nth-child(1) {
               padding: 5px 10px;
               background-color: #d1825b;
               color: white;
               border-radius: 5px;
 
-              margin-left: 50PX;
+              margin-left: 50px;
               margin-right: 0;
             }
           }
