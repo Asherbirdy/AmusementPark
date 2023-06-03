@@ -69,9 +69,9 @@
               <!-- <td class="money">{{ calculateOrderTotal() }}</td> -->
             </tr>
           </table>
-          <router-link to="/admin/cartfill">
-            <button type="submit" id="Submit">結帳</button>
-          </router-link>
+          
+            <button type="submit" id="Submit" @click="checkLogin">結帳</button>
+    
         </div>
       </li>
     </ul>
@@ -84,6 +84,8 @@
 <script setup>
 import { useTest, getTicketPrice, getTicketType, getSessionBookingData } from '../../composables';
 import axios from 'axios';
+
+const router = useRouter();
 
 /*
  抓資料 並轉為 購物車的資料格式
@@ -210,6 +212,28 @@ const editFromCart = index => {
 //   const shippingFee = 60; //運費
 //   return totalPrice - discount + shippingFee;
 // };
+
+
+
+const checkLogin = async () => {
+  try {
+    const res = await axios.post('/PDO/frontEnd/cart/cartCheckout.php');
+    // 如果登入成功，執行結帳相關操作
+    if(res.data ===true) {
+      router.push('../../admin/cartfill');
+    }else {
+      console.log('還沒登入');
+      router.push('../../login');
+    }
+    
+  } catch (error) {
+    console.error(error);
+    // 如果登入失敗，執行相應的處理，例如顯示登入錯誤提示或導向登入頁面
+  
+  }
+};
+
+
 </script>
 
 <style lang="scss" scoped>
