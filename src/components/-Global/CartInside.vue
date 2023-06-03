@@ -133,6 +133,23 @@ const showOrderFromSession = async () => {
   }
 };
 
+const orderCheck = async()=>{
+  try {
+    const res = await axios.get('/PDO/frontEnd/cart/cartSelect.php');
+    console.log(res.data);
+    if (res.data.length !== 0) {
+      console.log("購物車有東西");
+      router.push('../../admin/cartfill');
+    }else {
+      console.log("購物車沒東西");
+      alert("放點東西進購物車吧");
+    }
+  }catch(err){
+    console(err);
+  } 
+}
+
+
 
 
 
@@ -220,7 +237,8 @@ const checkLogin = async () => {
     const res = await axios.post('/PDO/frontEnd/cart/cartCheckout.php');
     // 如果登入成功，執行結帳相關操作
     if(res.data ===true) {
-      router.push('../../admin/cartfill');
+      // router.push('../../admin/cartfill');
+      orderCheck();
     }else {
       console.log('還沒登入');
       router.push('../../login');
