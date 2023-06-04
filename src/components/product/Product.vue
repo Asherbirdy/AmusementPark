@@ -1,5 +1,5 @@
 <template>
-    <div v-for="(product, index) in  productTitle " :key="index">
+    <div v-for="(product, index) in  productTitle " :key="index" :id="product.id">
         <div class="titleS1">
             <title-s1 class="s1" v-if="product.classes === 's1'">
                 <h3>{{ product.name }}</h3>
@@ -8,47 +8,17 @@
                 <h3>{{ product.name }}</h3>
             </title-s2>
         </div>
-        <ul class="frame_yellow">
-            <li v-for="item in clothes" :key="item.id" v-if="product.name === '衣服'">
-                <frame-blue>
+        <ul class="frames">
+            <li v-for="item in product.name1" :key="item.id">
+                <!-- <component :is="product.components"> -->
+                    <frame-blue>
                     <img :src="imgURL(item.url)" alt="">
                     <p class="product_name"> {{ item.name }}</p>
                     <p class="product_price"> NT.{{ item.price }}</p>
                     <Button class="button" @click="open_Modal(item)">加入購物車</Button>
-                </frame-blue>
+                    </frame-blue>
+                <!-- </component> -->
             </li>
-            <li v-for="item in cap" :key="item.id" v-if="product.name === '帽子'">
-                <frame-yellow>
-                    <img :src="imgURL(item.url)" alt="">
-                    <p class="product_name"> {{ item.name }}</p>
-                    <p class="product_price"> NT.{{ item.price }}</p>
-                    <Button class="button" @click="open_Modal(item)">加入購物車</Button>
-                </frame-yellow>
-            </li>
-            <li v-for="item in bag" :key="item.id" v-if="product.name === '帆布袋'">
-                <frame-pink>
-                    <img :src="imgURL(item.url)" alt="">
-                    <p class="product_name"> {{ item.name }}</p>
-                    <p class="product_price"> NT.{{ item.price }}</p>
-                    <Button class="button" @click="open_Modal(item)">加入購物車</Button>
-                </frame-pink>
-            </li>
-            <li v-for="item in phoneCase" :key="item.id" v-if="product.name === '手機殼'">
-                <frame-green>
-                    <img :src="imgURL(item.url)" alt="">
-                    <p class="product_name"> {{ item.name }}</p>
-                    <p class="product_price"> NT.{{ item.price }}</p>
-                    <Button class="button" @click="open_Modal(item)">加入購物車</Button>
-                </frame-green>
-            </li>
-            <!-- <li v-for="item in getProduct(product.name1)" :key="item.id">
-                <frame-blue>
-                    <img :src="imgURL(item.url)" alt="">
-                    <p class="product_name"> {{ item.name }}</p>
-                    <p class="product_price"> NT.{{ item.price }}</p>
-                    <Button class="button" @click="open_Modal(item)">加入購物車</Button>
-                </frame-blue>
-            </li> -->
         </ul>
 
         <cartadd @close-modal="closeModal" v-if="isopen" :item="isopen" :productData="productData" />
@@ -65,15 +35,6 @@ const props = defineProps({
     }
 });
 
-// 跑四個商品框
-const productTitle = reactive([
-    { name: '衣服', name1: 'clothes', classes: 's1' }, { name: '帽子', name1: 'cap', classes: 's2' }, { name: '帆布袋', name1: 'bag', classes: 's1' }, { name: '手機殼', name1: 'phoneCase', classes: 's2' }
-]);
-
-const imgURL = name => getImageUrl(name);
-
-
-
 // 篩選資料函式
 function filterA(keyword) {
     const clothes_blank = [];
@@ -84,21 +45,6 @@ function filterA(keyword) {
     });
     return clothes_blank
 }
-// li迴圈
-// function getProduct(name) {
-//      switch (name) {
-//         case "clothes":
-//             return "clothes"
-//         case "bag":
-//             return "bag";
-//         case "cap":
-//             return "cap";
-//         case "phoneCase":
-//             return "phoneCase";
-//         default:
-//             return "";
-//     }
-// }
 
 
 const clothes = computed(() => {
@@ -115,6 +61,12 @@ const bag = computed(() => {
 const phoneCase = computed(() => {
     return filterA('手機殼')
 })
+// 跑四個商品框
+const productTitle = reactive([
+    { name: '衣服', name1: clothes, classes: 's1', id: "section1", components: 'frame-blue' }, { name: '帽子', name1: cap, classes: 's2', id: "section2", components: 'frame-yellow' }, { name: '帆布袋', name1: bag, classes: 's1', id: "section3", components: 'frame-pink' }, { name: '手機殼', name1: phoneCase, classes: 's2', id: "section4", components: 'frame-green' }
+]);
+
+const imgURL = name => getImageUrl(name);
 
 // 彈窗開關
 let isopen = ref(false);
@@ -135,24 +87,36 @@ const open_Modal = (item) => {
 
 </script>
 <style lang="scss" scoped>
-.s2 {
-    padding-top: 50px;
-}
-
 .titleS1 {
     display: inline-block;
     position: relative;
     padding-top: 20px;
 
-    h3 {
-        margin: 8px 18px 0 0;
-        color: $textcolor7;
-        letter-spacing: 0.3em;
+    .s1 {
+        h3 {
+            margin: 8px -15px 0 0;
+            color: $textcolor7;
+            letter-spacing: 0.3em;
+            position: absolute;
+        }
     }
+
+    .s2 {
+        padding-top: 50px;
+
+        h3 {
+            margin: 8px 18px 0 0;
+            color: $textcolor7;
+            letter-spacing: 0.3em;
+            position: absolute;
+        }
+    }
+
+
 }
 
 
-.frame_yellow {
+.frames {
     display: flex;
     flex-wrap: wrap;
     text-align: center;
@@ -164,18 +128,26 @@ const open_Modal = (item) => {
         flex-basis: 0;
         padding: 20px;
         margin-bottom: 180px;
+
+        .frame {
+            position: relative;
+        }
     }
 }
 
 img {
-    width: 55%;
-    margin: 155px 0 0 75px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -35%);
 }
 
 .product_name {
     font-size: 24px;
-    margin-top: 110px;
+    margin-top: 135%;
     color: $textcolor7;
+    // position: relative;
+    // top: 100%;
 }
 
 .product_price {
