@@ -6,7 +6,7 @@
         </span>
         <template #footer>
             <span class="dialog-footer">
-                <el-button type="primary" @click="() => {
+                <el-button type="primary" :disabled="props.ticketAmount === 0 ? true : false" @click="() => {
                     fixTickets();
                     $emit('close-modal');
                 }
@@ -18,50 +18,25 @@
 <script setup>
 import axios from 'axios';
 
-
 // 外部資料導入資訊
 const props = defineProps({
-    ticketType: String,
-    ticketAmount: Number,
-    ticketPrice:Number,
+    ticketType: String, //時間和票型。
+    ticketAmount: Number, // 票數
+    ticketPrice: Number, // 票的價格
     ticketID: Number,
     orderID: Number,
-    startDate: String
 });
-
-
-
-
-// 帳號名稱 / 票型  / 時間  / 快速通關  / 退票數量：
-let fixTicketsData = reactive({
-    ticketType: '',
-    ticketDate: '',
-    fastPassFacility: '',
-    fixTicketsAmount: 0
-});
-
-
-
-
-
-
-
-
-
 
 let ticketNum = ref(0);
+
 const handleChange = value => {
-    console.log(value);
     ticketNum.value = value;
-    console.log(props)
 };
-
-
-
 
 // 退票按鈕函式
 const fixTickets = () => {
-    console.log(ticketNum.value);
+    console.log(props);
+    console.log('修改票數', ticketNum.value);
 };
 </script>
 <style scoped>
