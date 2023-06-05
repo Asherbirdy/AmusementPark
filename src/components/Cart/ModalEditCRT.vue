@@ -2,11 +2,12 @@
     <el-dialog :title="ticketType" width="30%" center>
         <span class="tickets">
             <p>票數：</p>
-            <el-input-number v-model="props.ticketAmount" :min="1" @change="handleChange" />
+
+            <el-input-number v-model="ticketNum" :min="1" @change="handleChange" />
         </span>
         <template #footer>
             <span class="dialog-footer">
-                <el-button type="primary" :disabled="props.ticketAmount === 0 ? true : false" @click="() => {
+                <el-button type="primary" @click="() => {
                     fixTickets();
                     $emit('close-modal');
                 }
@@ -17,17 +18,45 @@
 </template>
 <script setup>
 import axios from 'axios';
-
+import { nextTick, onMounted } from 'vue';
+import { useTest, getTicketPrice, getTicketType, getSessionBookingData } from '../../composables';
 // 外部資料導入資訊
 const props = defineProps({
-    ticketType: String, //時間和票型。
-    ticketAmount: Number, // 票數
-    ticketPrice: Number, // 票的價格
-    ticketID: Number,
-    orderID: Number,
+    ticketType: {
+        type: String,
+        required: true
+    },
+    ticketAmount: {
+        type: Number,
+        required: true
+    },
+    ticketPrice: {
+        type: Number,
+        required: true
+    },
+    ticketId: {
+        type: Number,
+        required: true
+    },
+    orderId: {
+        type: Number,
+        required: true
+    },
+    fassPass: {
+        type: Number,
+        required: true
+    },
 });
 
-let ticketNum = ref(0);
+console.log(props.ticketAmount)
+
+let ticketNum = ref(props.ticketAmount);
+
+onMounted(() => {
+    ticketNum.value = props.ticketAmount;
+})
+
+
 
 const handleChange = value => {
     ticketNum.value = value;
@@ -35,8 +64,51 @@ const handleChange = value => {
 
 // 退票按鈕函式
 const fixTickets = () => {
-    console.log(props);
-    console.log('修改票數', ticketNum.value);
+    console.log('傳值', props);
+    console.log('修改票數', ticketNum.value, "張");
+    const ticketType = props.ticketType.split(' ')[1];
+    console.log('票型', ticketType);
+
+    const ticketPrice = function (ticketType) {
+        switch (ticketType) {
+            case '全票':
+                return 500;
+                break;
+            case '學生票':
+                return 400;
+                break;
+            case '兒童票':
+                return 250;
+                break;
+            case '優惠票':
+                return 200;
+                break;
+        }
+    };
+
+
+    console.log(ticketPrice(ticketType));
+
+
+
+    const transferToDB = reactive({
+        ORDER_ID: props.orderId,
+        TICK_ORDER_ID: props.ticketId,
+        TICK_NUM: ticketNum.value,
+        TOTAL_PRICE: props.ticketPrice * ticketNum.value,
+    });
+
+    axios.post('PHP', transferToDB).then((res) => {
+
+    })
+
+
+
+
+    console.log(transferToDB);
+    ticketNum.value = 1;
+
+
 };
 </script>
 <style scoped>

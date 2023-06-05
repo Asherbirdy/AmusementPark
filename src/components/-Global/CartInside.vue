@@ -77,7 +77,7 @@
     </ul>
   </main>
   <ModalEditCRT v-model="showmodal" :ticket-amount="ticketAmount" :ticket-type="ticketType" :ticket-price="ticketPrice"
-    @close-modal="closeModal" />
+    :order-id="ticketOrderID" :ticket-id="ticketID" :fass-pass="fastPast" @close-modal="closeModal" />
   <!--  ----- ----- ----- ----- 彈窗 -----  ----- ----- ------->
 </template>
 
@@ -111,8 +111,9 @@ const showOrderFromDB = async () => {
             : getTicketPrice(item.TICK_ID),
         ticketID: item.TICK_ORDER_ID,
         tickPrice: item.TOTAL_PRICE,
-        TICK_ORDER_ID: item.TICK_ORDER_ID,
+        TICK_ORDER_ID: item.ORDER_ID,
         TOTAL_PRICE: item.TOTAL_PRICE,
+
       };
     });
 
@@ -196,7 +197,7 @@ const ticketPrice = ref(0);// 價錢
 let ticketAmount = ref(0); // 數量
 const ticketID = ref(0);
 const ticketOrderID = ref(0);
-
+const fastPast = ref(0);
 
 
 const editFromCart = index => {
@@ -206,7 +207,8 @@ const editFromCart = index => {
   ticketType.value = editData.name;// 如：2023-06-20 全票
   ticketAmount.value = editData.count; // 500張
   ticketID.value = editData.ticketID;
-  ticketOrderID.value = editData.TICK_ORDER_ID
+  ticketOrderID.value = editData.TICK_ORDER_ID;
+  ticketPrice.value = editData.price;
 };
 
 // // 計算商品總額
