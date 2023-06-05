@@ -28,14 +28,9 @@ let fixTicketsData = reactive({
     fixTicketsAmount: 0
 });
 
-// 退票按鈕函式
-const fixTickets = () => {
-    fixTicketsData.ticketType = props.ticketType;
-    fixTicketsData.ticketDate = props.ticketDate;
-    fixTicketsData.fastPassFacility = props.fastPassFacility;
-    fixTicketsData.fixTicketsAmount = props.ticketAmount;
-    console.log(fixTicketsData);
-};
+
+fixTicketsData.fixTicketsAmount = props.ticketAmount;
+
 
 
 
@@ -47,11 +42,20 @@ const props = defineProps({
     fastPassFacility: Number,
 });
 
-const num = ref(props.ticketAmount);
 
 
+let ticketNum = ref(0);
 const handleChange = value => {
     console.log(value);
+    ticketNum.value = value;
+};
+
+
+
+
+// 退票按鈕函式
+const fixTickets = () => {
+    console.log(ticketNum.value);
 };
 </script>
 <style scoped>
