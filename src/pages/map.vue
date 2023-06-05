@@ -22,6 +22,7 @@ onMounted(() => {
 
 //////亂數生成
 let timer = 0;
+
 const randomNumber = ref(0);
 const parkingSpaces = ref(0);
 const currentDate = new Date();
@@ -32,10 +33,23 @@ const currentHour = currentDate.getHours();
 const crowdRandom = () => {
   //////設定於營業時間將人潮歸零
   if (
-    (currentDay === 6 && currentHour >= 9 && currentHour < 20) ||
+    //中午12點前的人潮
+    (currentDay === 6 && currentHour >= 9 && currentHour < 12) ||
+    (currentDay !== 6 && currentHour >= 9 && currentHour < 12)
+  ) {
+    randomNumber.value = Math.floor(Math.random() * 500) + 1200;
+  } else if (
+    //下午15點前的人潮
+    (currentDay === 6 && currentHour >= 9 && currentHour < 15) ||
+    (currentDay !== 6 && currentHour >= 9 && currentHour < 15)
+  ) {
+    randomNumber.value = Math.floor(Math.random() * 500) + 2100;
+  } else if (
+    //閉館前的人潮
+    (currentDay === 6 && currentHour >= 9 && currentHour < 18) ||
     (currentDay !== 6 && currentHour >= 9 && currentHour < 18)
   ) {
-    randomNumber.value = Math.floor(Math.random() * 50) + 2100;
+    randomNumber.value = Math.floor(Math.random() * 50) + 600;
   } else {
     randomNumber.value = 0;
   }
@@ -49,12 +63,23 @@ onMounted(() => {
 const parkingRandom = () => {
   //////設定於營業時間將車位歸零
   if (
-    (currentDay === 6 && currentHour >= 9 && currentHour < 20) ||
+    //中午12點前的車位
+    (currentDay === 6 && currentHour >= 9 && currentHour < 12) ||
+    (currentDay !== 6 && currentHour >= 9 && currentHour < 12)
+  ) {
+    parkingSpaces.value = Math.floor(Math.random() * 10) + 300;
+  } else if (
+    //下午15點前的車位
+    (currentDay === 6 && currentHour >= 9 && currentHour < 15) ||
+    (currentDay !== 6 && currentHour >= 9 && currentHour < 15)
+  ) {
+    parkingSpaces.value = Math.floor(Math.random() * 10) + 20;
+  } else if (
+    //閉館前的車位
+    (currentDay === 6 && currentHour >= 9 && currentHour < 18) ||
     (currentDay !== 6 && currentHour >= 9 && currentHour < 18)
   ) {
-    // 生成100 到 120 之間的亂數
-    parkingSpaces.value = Math.floor(Math.random() * 20) + 100;
-  } else {
+    parkingSpaces.value = Math.floor(Math.random() * 10) + 600;
     //總車位數800
     parkingSpaces.value = 800;
   }
