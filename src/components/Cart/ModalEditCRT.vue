@@ -2,7 +2,7 @@
     <el-dialog :title="ticketType" width="30%" center>
         <span class="tickets">
             <p>票數：</p>
-            <el-input-number v-model="num" :min="1" :max="10" @change="handleChange" />
+            <el-input-number v-model="props.ticketAmount" :min="1" @change="handleChange" />
         </span>
         <template #footer>
             <span class="dialog-footer">
@@ -25,7 +25,7 @@ let fixTicketsData = reactive({
     ticketType: '',
     ticketDate: '',
     fastPassFacility: '',
-    fixTicketsAmount: 0,
+    fixTicketsAmount: 0
 });
 
 // 退票按鈕函式
@@ -33,7 +33,7 @@ const fixTickets = () => {
     fixTicketsData.ticketType = props.ticketType;
     fixTicketsData.ticketDate = props.ticketDate;
     fixTicketsData.fastPassFacility = props.fastPassFacility;
-    fixTicketsData.fixTicketsAmount = tickets.value;
+    fixTicketsData.fixTicketsAmount = props.ticketAmount;
     console.log(fixTicketsData);
 };
 
