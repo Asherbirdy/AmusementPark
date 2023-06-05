@@ -77,7 +77,7 @@
     </ul>
   </main>
   <ModalEditCRT v-model="showmodal" :ticket-amount="ticketAmount" :ticket-type="ticketType" :ticket-price="ticketPrice"
-    :order-id="ticketOrderID" :ticket-id="ticketID" :fass-pass="fastPast" @close-modal="closeModal" />
+    :order-id="ticketOrderID" :ticket-id="ticketID" :fass-pass="fastPast" @close-modal="closeModal" @show-order="showOrderFromDB"/>
   <!--  ----- ----- ----- ----- 彈窗 -----  ----- ----- ------->
 </template>
 
