@@ -69,9 +69,9 @@
               <!-- <td class="money">{{ calculateOrderTotal() }}</td> -->
             </tr>
           </table>
-          <router-link to="/admin/cartfill">
-            <button type="submit" id="Submit">結帳</button>
-          </router-link>
+          
+            <button type="submit" id="Submit" @click="checkLogin">結帳</button>
+    
         </div>
       </li>
     </ul>
@@ -84,6 +84,8 @@
 <script setup>
 import { useTest, getTicketPrice, getTicketType, getSessionBookingData } from '../../composables';
 import axios from 'axios';
+
+const router = useRouter();
 
 /*
  抓資料 並轉為 購物車的資料格式
@@ -108,6 +110,7 @@ const showOrderFromDB = async () => {
             ? getTicketPrice(item.TICK_ID) + fastforwardPrice
             : getTicketPrice(item.TICK_ID),
         ticketID: item.TICK_ORDER_ID,
+        tickPrice:item.TOTAL_PRICE,
       };
     });
 
@@ -130,6 +133,23 @@ const showOrderFromSession = async () => {
   }
 };
 
+const orderCheck = async()=>{
+  try {
+    const res = await axios.get('/PDO/frontEnd/cart/cartSelect.php');
+    console.log(res.data);
+    if (res.data.length !== 0) {
+      console.log("購物車有東西");
+      router.push('../../admin/cartfill');
+    }else {
+      console.log("購物車沒東西");
+      alert("放點東西進購物車吧");
+    }
+  }catch(err){
+    console(err);
+  } 
+}
+
+
 
 
 
@@ -145,10 +165,12 @@ onMounted(async () => {
 // ---------------------------- Functions --------------------------------//
 const removeFromCart = index => {
   const ticketID = displayTicketData.value[index].ticketID;
+  const totalTickPrice = displayTicketData.value[index].tickPrice;
+  console.log(totalTickPrice);
   console.log(ticketID);
   async function deleteCartItem(ticketID) {
     try {
-      const response = await axios.post('/PDO/frontEnd/cart/cartDelete.php', ticketID);
+      const response = await axios.post('/PDO/frontEnd/cart/cartDelete.php', {ticketID,totalTickPrice});
       console.log(response.data);
       await showOrderFromDB();
       // 在這裡處理回傳的結果
@@ -207,6 +229,31 @@ const editFromCart = index => {
 //   const shippingFee = 60; //運費
 //   return totalPrice - discount + shippingFee;
 // };
+
+
+
+const checkLogin = async () => {
+  try {
+    const res = await axios.post('/PDO/frontEnd/cart/cartCheckout.php');
+    // 如果登入成功，執行結帳相關操作
+    if(res.data ===true) {
+
+      // router.push('../../admin/cartfill');
+      orderCheck();
+
+    }else {
+      console.log('還沒登入');
+      router.push('../../login');
+    }
+    
+  } catch (error) {
+    console.error(error);
+    // 如果登入失敗，執行相應的處理，例如顯示登入錯誤提示或導向登入頁面
+  
+  }
+};
+
+
 </script>
 
 <style lang="scss" scoped>
