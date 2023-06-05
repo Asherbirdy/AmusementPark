@@ -17,8 +17,20 @@
 </template>
 <script setup>
 import axios from 'axios';
-// 監聽目前退票數量：
-const tickets = ref(0);
+
+
+// 外部資料導入資訊
+const props = defineProps({
+    ticketType: String,
+    ticketAmount: Number,
+    ticketPrice:Number,
+    ticketID: Number,
+    orderID: Number,
+    startDate: String
+});
+
+
+
 
 // 帳號名稱 / 票型  / 時間  / 快速通關  / 退票數量：
 let fixTicketsData = reactive({
@@ -29,18 +41,11 @@ let fixTicketsData = reactive({
 });
 
 
-fixTicketsData.fixTicketsAmount = props.ticketAmount;
 
 
 
 
-// 外部資料導入資訊
-const props = defineProps({
-    ticketType: String,
-    ticketDate: String,
-    ticketAmount: Number,
-    fastPassFacility: Number,
-});
+
 
 
 
@@ -48,6 +53,7 @@ let ticketNum = ref(0);
 const handleChange = value => {
     console.log(value);
     ticketNum.value = value;
+    console.log(props)
 };
 
 

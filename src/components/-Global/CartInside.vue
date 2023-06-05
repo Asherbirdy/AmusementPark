@@ -69,15 +69,15 @@
               <!-- <td class="money">{{ calculateOrderTotal() }}</td> -->
             </tr>
           </table>
-          
-            <button type="submit" id="Submit" @click="checkLogin">結帳</button>
-    
+
+          <button type="submit" id="Submit" @click="checkLogin">結帳</button>
+
         </div>
       </li>
     </ul>
   </main>
-  <ModalEditCRT v-model="showmodal" :fast-pass-facility="fastPassFacility" :ticket-amount="ticketAmount"
-    :ticket-date="ticketDate" :ticket-type="ticketType" @close-modal="closeModal" />
+  <ModalEditCRT v-model="showmodal" :ticket-amount="ticketAmount"
+    :ticket-type="ticketType" :ticket-price="ticketPrice"  @close-modal="closeModal" />
   <!--  ----- ----- ----- ----- 彈窗 -----  ----- ----- ------->
 </template>
 
@@ -110,7 +110,9 @@ const showOrderFromDB = async () => {
             ? getTicketPrice(item.TICK_ID) + fastforwardPrice
             : getTicketPrice(item.TICK_ID),
         ticketID: item.TICK_ORDER_ID,
-        tickPrice:item.TOTAL_PRICE,
+        tickPrice: item.TOTAL_PRICE,
+        TICK_ORDER_ID: item.TICK_ORDER_ID,
+        TOTAL_PRICE:item.TOTAL_PRICE,
       };
     });
 
@@ -133,20 +135,20 @@ const showOrderFromSession = async () => {
   }
 };
 
-const orderCheck = async()=>{
+const orderCheck = async () => {
   try {
     const res = await axios.get('/PDO/frontEnd/cart/cartSelect.php');
     console.log(res.data);
     if (res.data.length !== 0) {
       console.log("購物車有東西");
       router.push('../../admin/cartfill');
-    }else {
+    } else {
       console.log("購物車沒東西");
       alert("放點東西進購物車吧");
     }
-  }catch(err){
+  } catch (err) {
     console(err);
-  } 
+  }
 }
 
 
@@ -170,7 +172,7 @@ const removeFromCart = index => {
   console.log(ticketID);
   async function deleteCartItem(ticketID) {
     try {
-      const response = await axios.post('/PDO/frontEnd/cart/cartDelete.php', {ticketID,totalTickPrice});
+      const response = await axios.post('/PDO/frontEnd/cart/cartDelete.php', { ticketID, totalTickPrice });
       console.log(response.data);
       await showOrderFromDB();
       // 在這裡處理回傳的結果
@@ -189,17 +191,19 @@ const closeModal = () => {
   showmodal.value = false;
 };
 
-const ticketType = ref(''); //票型
-const ticketDate = ref('');
-let ticketAmount = ref(0);
-const fastPassFacility = ref([]);
+const ticketType = ref(''); //name: "2023-06-20 全票"
+const ticketPrice = ref(0);// 價錢
+let ticketAmount = ref(0); // 數量
+
+
+
 
 const editFromCart = index => {
   const editData = displayTicketData.value[index]; // 點選edit出現edit資料
   console.log('要修改的資料', editData);
   showmodal.value = true;
-  ticketType.value = editData.name;
-  ticketAmount.value = editData.count;
+  ticketType.value = editData.name;// 如：2023-06-20 全票
+  ticketAmount.value = editData.count; // 500[張]
 };
 
 // // 計算商品總額
@@ -236,20 +240,20 @@ const checkLogin = async () => {
   try {
     const res = await axios.post('/PDO/frontEnd/cart/cartCheckout.php');
     // 如果登入成功，執行結帳相關操作
-    if(res.data ===true) {
+    if (res.data === true) {
 
       // router.push('../../admin/cartfill');
       orderCheck();
 
-    }else {
+    } else {
       console.log('還沒登入');
       router.push('../../login');
     }
-    
+
   } catch (error) {
     console.error(error);
     // 如果登入失敗，執行相應的處理，例如顯示登入錯誤提示或導向登入頁面
-  
+
   }
 };
 
