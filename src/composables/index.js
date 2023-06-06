@@ -6,6 +6,7 @@ import { ticketTypeToNum } from './getTicketTypeToNum';
 import { sessionBookingData } from './getSessionBookingData';
 import { transTickSessionToDB } from './transTickSessionToDB';
 import { ticketTotalPrice } from './getTicketTotalPrice';
+import { typeToticketPrice } from './getTicketTypeToMoney';
 /*
 重複使用的工具：
 */
@@ -31,6 +32,9 @@ export const getTicketPrice = ticketPrice;
 
 // 將 全票 / 學生票 / 兒童票 / 優待票 轉換成 1 , 2 , 3 , 4
 export const getTicketTypeFromNum = ticketTypeToNum;
+
+// 將 將 全票 / 學生票 / 兒童票 / 優待票 轉換成 400 200 ...價格
+export const getTypeToticketPrice = typeToticketPrice;
 
 // 轉換 session成 DB格式：
 export const getTransTickSessionToDB = transTickSessionToDB;
