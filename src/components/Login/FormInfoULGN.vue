@@ -84,7 +84,7 @@ axios
       console.log('還沒登入');
     } else {
       console.log('已經登入了');
-      router.push('../../admin/touristproductorder');
+      router.push('../../admin/touristmember');
     }
   })
   //

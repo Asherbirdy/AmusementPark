@@ -141,10 +141,11 @@ const checkLoginStatus = () => {
 };
 
 const loadCartItemsFromLocal = () => {
-  const localData = JSON.parse(localStorage.getItem('cart-items'));
-  cartItems.value = localData || [];
+  const localData = sessionStorage.getItem('bookingData');
+  cartItems.value = localData ? [JSON.parse(localData)] : [];
   updateCartItemCount();
 };
+
 
 const loadCartItemsFromDatabase = () => {
   axios.get('/PDO/frontEnd/cart/cartSelect.php').then(res => {
@@ -174,7 +175,7 @@ const logout = () => {
     isLoggedIn.value = false;
     sessionStorage?.removeItem("token");
 
-    router.push('../../shop');
+    router.push('/');
   });
 };
 
