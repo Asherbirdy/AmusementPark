@@ -233,9 +233,9 @@ const removeFromCart = index => {
     });
 
     sessionStorage.setItem('bookingData', JSON.stringify(filterData));
-
-    console.log(filterData);
-    console.log(session);
+    displayTicketData.value = displayTicketData.value.filter(
+      (_, i) => i !== index
+    );
   }
 };
 
