@@ -77,7 +77,8 @@
     </ul>
   </main>
   <ModalEditCRT v-model="showmodal" :ticket-amount="ticketAmount" :ticket-type="ticketType" :ticket-price="ticketPrice"
-    :order-id="ticketOrderID" :ticket-id="ticketID" :fass-pass="fastPast" @close-modal="closeModal" @show-order="showOrderFromDB"/>
+    :order-id="ticketOrderID" :ticket-id="ticketID" :fass-pass="fastPast" @close-modal="closeModal"
+    @show-order="showOrderFromDB" />
   <!--  ----- ----- ----- ----- 彈窗 -----  ----- ----- ------->
 </template>
 
@@ -119,6 +120,7 @@ const showOrderFromDB = async () => {
 
     displayTicketData.value = displayTicket;
     console.log('轉換使用者顯示資料：', displayTicketData.value);
+
   } catch (err) {
     console.log(err);
   }
@@ -129,8 +131,36 @@ const showOrderFromDB = async () => {
 const showOrderFromSession = async () => {
   try {
     const getSession = getSessionBookingData();
-    console.log(getSession);
-
+    console.log('未登入狀態 顯示session資料', getSession);
+    const displayTicket = getSession.map(item => {
+      const fastforwardPrice = 100;
+      const ticketPrice = function (ticketType) {
+        switch (ticketType) {
+          case '全票':
+            return 500;
+            break;
+          case '學生票':
+            return 400;
+            break;
+          case '兒童票':
+            return 250;
+            break;
+          case '優待票':
+            return 200;
+            break;
+        }
+      };
+      return {
+        name: `${item.ticketData} ${item.ticketType}`,
+        type: item.fastFoward ? '快速通關+100元' : '一般票',
+        count: item.tickets,
+        price:
+          item.fastFoward
+            ? ticketPrice(item.ticketType) + fastforwardPrice
+            : ticketPrice(item.ticketType),
+      };
+    });
+    displayTicketData.value = displayTicket;
   } catch (err) {
     console.log(err);
   }

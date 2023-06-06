@@ -7,16 +7,11 @@
     </span>
     <template #footer>
       <span class="dialog-footer">
-        <el-button
-          type="primary"
-          @click="
-            () => {
-              fixTickets();
-              $emit('close-modal');
-            }
-          "
-          >修改</el-button
-        >
+        <el-button type="primary" @click="() => {
+            fixTickets();
+            $emit('close-modal');
+          }
+          ">修改</el-button>
       </span>
     </template>
   </el-dialog>
@@ -90,7 +85,7 @@ const fixTickets = () => {
       case '兒童票':
         return 250;
         break;
-      case '優惠票':
+      case '優待票':
         return 200;
         break;
     }
@@ -106,7 +101,7 @@ const fixTickets = () => {
   });
 
   // edit函式
-async function editTick() {
+  async function editTick() {
     try {
       const response = await axios.post(
         '/PDO/frontEnd/cart/cartUpdate.php',
