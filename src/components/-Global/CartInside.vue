@@ -180,11 +180,28 @@ const orderCheck = async () => {
 
 onMounted(async () => {
   // 如果是登入狀態
-  if (sessionStorage.getItem('token')) {
-    await showOrderFromDB();
-  } else {
-    await showOrderFromSession();
-  }
+  axios
+  .post('/PDO/frontEnd/memberLogin/memberLoginCheck.php')
+  .then(res => {
+    if (res.data === '') {
+      showOrderFromSession();
+      console.log('還沒登入');
+    } else {
+      showOrderFromDB();
+      console.log('已經登入了');
+
+    }
+  })
+  //
+  .catch(err => {
+    console.log(err);
+    alert('登入狀態檢查出錯');
+  });
+  // if (sessionStorage.getItem('token')) {
+  //   await showOrderFromDB();
+  // } else {
+  //   await showOrderFromSession();
+  // }
 });
 
 // ---------------------------- Functions --------------------------------//
