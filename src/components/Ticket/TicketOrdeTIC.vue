@@ -262,26 +262,26 @@ const disableDate = time => {
     </table>
   </div>
   <div class="btnbox">
-    <btn class="btn" button-color="#D1825B" button-text-color="white" @click="clearOut">
+    <Button class="btn" button-color="#D1825B" button-text-color="white" @click="clearOut">
       <h3>預設</h3>
-    </btn>
+    </Button>
 
     <div v-if="date !== '' && countTicket() !== 0">
-      <btn :style="{ width: '150px' }" class="btn" button-color="#D1825B" button-text-color="white" @click="addToCart"
+      <Button :style="{ width: '150px' }" class="btn" button-color="#D1825B" button-text-color="white" @click="addToCart"
         :disabled="!isDateSelected || countTicket() === 0">
         <h3>加入購物車</h3>
-      </btn>
+      </Button>
     </div>
     <div v-else>
-      <btn :style="{ width: '150px', background: 'gray', color: 'white' }" class="btn" disabled>
+      <Button :style="{ width: '150px', background: 'gray', color: 'white' }" class="Button" disabled>
         <h3>請填時間/票數</h3>
-      </btn>
+      </Button>
     </div>
 
 
-    <btn class="btn" :style="{ width: '150px' }" button-color="#D1825B" button-text-color="white" @click="buyTicket">
+    <Button class="Button" :style="{ width: '150px' }" button-color="#D1825B" button-text-color="white" @click="buyTicket">
       <h3>前往購物車</h3>
-    </btn>
+    </Button>
   </div>
 </template>
 
