@@ -259,8 +259,8 @@ const editFromCart = index => {
   showmodal.value = true;
   ticketType.value = editData.name; // 如：2023-06-20 全票
   ticketAmount.value = editData.count; // 500張
-  ticketID.value = editData.ticketID;
-  ticketOrderID.value = editData.TICK_ORDER_ID;
+  ticketID.value = editData?.ticketID;
+  ticketOrderID.value = editData?.TICK_ORDER_ID;
   ticketPrice.value = editData.price;
 };
 

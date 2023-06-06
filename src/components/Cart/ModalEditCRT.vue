@@ -7,11 +7,16 @@
     </span>
     <template #footer>
       <span class="dialog-footer">
-        <el-button type="primary" @click="() => {
-          fixTickets();
-          $emit('close-modal');
-        }
-          ">修改</el-button>
+        <el-button
+          type="primary"
+          @click="
+            () => {
+              fixTickets();
+              $emit('close-modal');
+            }
+          "
+          >修改</el-button
+        >
       </span>
     </template>
   </el-dialog>
@@ -19,13 +24,7 @@
 <script setup>
 import axios from 'axios';
 import { nextTick, onMounted } from 'vue';
-import {
-  useTest,
-  getTicketPrice,
-  getTicketType,
-  getSessionBookingData,
-  getTypeToticketPrice
-} from '../../composables';
+import { useTest } from '../../composables';
 // 外部資料導入資訊
 const emit = defineEmits(['show-order']);
 
@@ -99,7 +98,6 @@ const fixTickets = () => {
   }
 
   editTick();
-
 
   console.log(transferToDB);
   ticketNum.value = 1;
