@@ -142,7 +142,7 @@ const handleSubmit = async () => {
         });
       } else {
         // Handle the case when dbData is not an array
-        alert('dbData is not an array');
+        console.log('dbData無購物車資料');
       }
 
       /*
