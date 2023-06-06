@@ -1,5 +1,6 @@
 <template lang="">
   <!--購物車步驟-->
+  <!-- 哈囉 -->
   <article>
     <div class="CartStep">
       <div class="monster">
