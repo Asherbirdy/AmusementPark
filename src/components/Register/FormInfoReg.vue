@@ -142,7 +142,7 @@ const handleSubmit = () => {
         console.log(res.data);
         if (res.data === '註冊成功') {
           alert('註冊成功');
-          // router.push('/');
+          router.push('../../login');
         } else {
           alert('請重新輸入資料');
         }

@@ -1,33 +1,9 @@
-<!-- <script setup>
-import axios from 'axios';
-import dayjs from 'dayjs';
-
-const localTemp = ref();
-const getTemp = async () => {
-  const weatherRes = await axios(
-    'https://opendata.cwb.gov.tw/api/v1/rest/datastore/F-D0047-061?Authorization=CWB-D86E32DD-4173-4C38-BF76-04A68E6E5AEF&limit=10&offset=0&format=JSON&locationName=%E5%A3%AB%E6%9E%97%E5%8D%80&elementName=T'
-  );
-  if (weatherRes.status === 200) {
-    const weatherList =
-      weatherRes.data.records.locations[0].location[0].weatherElement[0].time;
-    const matchNowTimeIndex = weatherList.findIndex(
-      item =>
-        dayjs(item.dataTime).diff(dayjs(new Date()), 'hour') < 3 &&
-        dayjs(item.dataTime).diff(dayjs(new Date()), 'hour') > 0
-    );
-    localTemp.value = weatherList[matchNowTimeIndex].elementValue[0].value;
-    console.log(weatherRes);
-  }
-};
-onMounted(() => {
-  getTemp();
-});
-</script> -->
-
 <script setup>
 import axios from 'axios';
-
+import { ref, onMounted, onUnmounted } from 'vue';
 const localTemp = ref();
+
+//////天氣api
 const getTemp = async () => {
   const weatherRes = await axios(
     'https://opendata.cwb.gov.tw/api/v1/rest/datastore/F-D0047-061?Authorization=CWB-D86E32DD-4173-4C38-BF76-04A68E6E5AEF&limit=10&offset=0&format=JSON&locationName=%E5%A3%AB%E6%9E%97%E5%8D%80&elementName=T'
@@ -40,9 +16,77 @@ const getTemp = async () => {
     console.log(weatherRes);
   }
 };
-
 onMounted(() => {
   getTemp();
+});
+
+//////亂數生成
+let timer = 0;
+
+const randomNumber = ref(0);
+const parkingSpaces = ref(0);
+const currentDate = new Date();
+const currentDay = currentDate.getDay();
+const currentHour = currentDate.getHours();
+
+// 人潮亂數
+const crowdRandom = () => {
+  //////設定於營業時間將人潮歸零
+  if (
+    //中午12點前的人潮
+    (currentDay === 6 && currentHour >= 9 && currentHour < 12) ||
+    (currentDay !== 6 && currentHour >= 9 && currentHour < 12)
+  ) {
+    randomNumber.value = Math.floor(Math.random() * 500) + 1200;
+  } else if (
+    //下午15點前的人潮
+    (currentDay === 6 && currentHour >= 9 && currentHour < 15) ||
+    (currentDay !== 6 && currentHour >= 9 && currentHour < 15)
+  ) {
+    randomNumber.value = Math.floor(Math.random() * 500) + 2100;
+  } else if (
+    //閉館前的人潮
+    (currentDay === 6 && currentHour >= 9 && currentHour < 18) ||
+    (currentDay !== 6 && currentHour >= 9 && currentHour < 18)
+  ) {
+    randomNumber.value = Math.floor(Math.random() * 50) + 600;
+  } else {
+    randomNumber.value = 0;
+  }
+};
+onMounted(() => {
+  crowdRandom();
+  timer = setInterval(crowdRandom, 5000); // 每五秒生成一次
+});
+
+//車位亂數
+const parkingRandom = () => {
+  //////設定於營業時間將車位歸零
+  if (
+    //中午12點前的車位
+    (currentDay === 6 && currentHour >= 9 && currentHour < 12) ||
+    (currentDay !== 6 && currentHour >= 9 && currentHour < 12)
+  ) {
+    parkingSpaces.value = Math.floor(Math.random() * 10) + 300;
+  } else if (
+    //下午15點前的車位
+    (currentDay === 6 && currentHour >= 9 && currentHour < 15) ||
+    (currentDay !== 6 && currentHour >= 9 && currentHour < 15)
+  ) {
+    parkingSpaces.value = Math.floor(Math.random() * 10) + 20;
+  } else if (
+    //閉館前的車位
+    (currentDay === 6 && currentHour >= 9 && currentHour < 18) ||
+    (currentDay !== 6 && currentHour >= 9 && currentHour < 18)
+  ) {
+    parkingSpaces.value = Math.floor(Math.random() * 10) + 600;
+    //總車位數800
+    parkingSpaces.value = 800;
+  }
+};
+onMounted(() => {
+  parkingRandom();
+  timer = setInterval(parkingRandom, 5000); // 每五秒生成一次
 });
 </script>
 
@@ -78,7 +122,7 @@ onMounted(() => {
           <div class="crowdCon">
             <h2>目前園區人潮</h2>
             <!--jsrander-->
-            <p>1998</p>
+            <p>{{ randomNumber }}</p>
           </div>
         </li>
         <li id="weather">
@@ -98,7 +142,7 @@ onMounted(() => {
               <img src="../assets/img/Parking.png" alt="" />
               <h2>汽車尚有車位數</h2>
             </div>
-            <p>70</p>
+            <p>{{ parkingSpaces }}</p>
           </div>
         </li>
       </ul>
