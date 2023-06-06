@@ -95,18 +95,16 @@
           <input type="checkbox" name="same_as_member" id="same_as_member" />
           <span> 儲存信用卡資訊 </span>
         </label>
-        <router-link to="/admin/cartsuccess">
-          <button type="submit" id="Submit" @click="handsubmit">
-            提交訂單
-          </button>
-        </router-link>
       </form>
+      <button type="submit" id="Submit" @click= "handSubmit" >送出訂單</button>
+      
     </div>
   </main>
 </template>
 
 <script setup>
 import axios from 'axios';
+const router = useRouter();
 
 //FB帳號 id
 window.fbAsyncInit = function () {
@@ -210,14 +208,15 @@ onMounted(() => {
 });
 
 // 送出訂單
-const handsubmit = () => {
+const handSubmit = () => {
   axios
-    .post('PHP')
+    .post('/PDO/frontEnd/cart/submitOrder.php')
     .then(res => {
-      alert('加入票券成功');
+      alert('訂單已送出');
+      router.push('/admin/cartsuccess');
     })
     .catch(err => {
-      alert('加入失敗');
+      alert('訂單送出失敗');
     });
 };
 </script>
