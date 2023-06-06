@@ -6,7 +6,7 @@
         <monster-cart-Fill-White>1</monster-cart-Fill-White>
         <h3>購物車</h3>
       </div>
-      <hr width="100" style="border: 3px dashed #D1825B" />
+      <hr width="100" style="border: 3px dashed #d1825b" />
       <div class="monster">
         <monsterCartFillBlue>2</monsterCartFillBlue>
         <h3>填寫資料</h3>
@@ -50,7 +50,7 @@
         <label class="checkbox">
           <input type="checkbox" name="same_as_member" id="same_as_member" />
           <span> 儲存為預設地址 </span>
-         </label> 
+        </label>
         <label for="comment">訂單備註：</label>
         <textarea
           id="comment"
@@ -62,7 +62,7 @@
         ></textarea>
       </form>
     </div>
-  <!--付款方式-->
+    <!--付款方式-->
     <div class="pay">
       <h2>付款</h2>
       <form>
@@ -96,15 +96,18 @@
           <span> 儲存信用卡資訊 </span>
         </label>
         <router-link to="/admin/cartsuccess">
-          <button type="submit" id="Submit">提交訂單</button>
+          <button type="submit" id="Submit" @click="handsubmit">
+            提交訂單
+          </button>
         </router-link>
       </form>
     </div>
   </main>
-
 </template>
 
 <script setup>
+import axios from 'axios';
+
 //FB帳號 id
 window.fbAsyncInit = function () {
   FB.init({
@@ -144,10 +147,10 @@ const orderInfo = ref([
 ]);
 
 // let payMethod = '';
-let cardNumber = '';
-let cardName = '';
-let date = '';
-let code = '';
+let cardNumber = '4699 1299 8337 1111';
+let cardName = 'YO XUAN CHEN';
+let date = '0629';
+let code = '633';
 
 const payOption = ref([
   { label: '信用卡(支援國內外Visa,Master)', value: 'credit-card' },
@@ -205,6 +208,18 @@ onMounted(() => {
     fjs.parentNode.insertBefore(js, fjs);
   })(document, 'script', 'facebook-jssdk');
 });
+
+// 送出訂單
+const handsubmit = () => {
+  axios
+    .post('PHP')
+    .then(res => {
+      alert('加入票券成功');
+    })
+    .catch(err => {
+      alert('加入失敗');
+    });
+};
 </script>
 
 <style lang="scss" scoped>
