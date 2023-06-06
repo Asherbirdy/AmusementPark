@@ -185,23 +185,14 @@ onMounted(async () => {
   .then(res => {
     if (res.data === '') {
       showOrderFromSession();
-      console.log('還沒登入');
     } else {
       showOrderFromDB();
-      console.log('已經登入了');
-
     }
   })
-  //
   .catch(err => {
     console.log(err);
     alert('登入狀態檢查出錯');
   });
-  // if (sessionStorage.getItem('token')) {
-  //   await showOrderFromDB();
-  // } else {
-  //   await showOrderFromSession();
-  // }
 });
 
 // ---------------------------- Functions --------------------------------//
