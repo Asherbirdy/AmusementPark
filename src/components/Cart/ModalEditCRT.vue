@@ -8,9 +8,9 @@
     <template #footer>
       <span class="dialog-footer">
         <el-button type="primary" @click="() => {
-            fixTickets();
-            $emit('close-modal');
-          }
+          fixTickets();
+          $emit('close-modal');
+        }
           ">修改</el-button>
       </span>
     </template>
@@ -24,6 +24,7 @@ import {
   getTicketPrice,
   getTicketType,
   getSessionBookingData,
+  getTypeToticketPrice
 } from '../../composables';
 // 外部資料導入資訊
 const emit = defineEmits(['show-order']);
@@ -73,25 +74,6 @@ const fixTickets = () => {
   console.log('修改票數', ticketNum.value, '張');
   const ticketType = props.ticketType.split(' ')[1];
   console.log('票型', ticketType);
-
-  const ticketPrice = function (ticketType) {
-    switch (ticketType) {
-      case '全票':
-        return 500;
-        break;
-      case '學生票':
-        return 400;
-        break;
-      case '兒童票':
-        return 250;
-        break;
-      case '優待票':
-        return 200;
-        break;
-    }
-  };
-
-  console.log(ticketPrice(ticketType));
 
   const transferToDB = reactive({
     ORDER_ID: props.orderId,

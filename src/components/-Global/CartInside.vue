@@ -83,7 +83,7 @@
 </template>
 
 <script setup>
-import { useTest, getTicketPrice, getTicketType, getSessionBookingData } from '../../composables';
+import { useTest, getTicketPrice, getTicketType, getSessionBookingData, getTypeToticketPrice } from '../../composables';
 import axios from 'axios';
 
 const router = useRouter();
@@ -134,30 +134,14 @@ const showOrderFromSession = async () => {
     console.log('未登入狀態 顯示session資料', getSession);
     const displayTicket = getSession.map(item => {
       const fastforwardPrice = 100;
-      const ticketPrice = function (ticketType) {
-        switch (ticketType) {
-          case '全票':
-            return 500;
-            break;
-          case '學生票':
-            return 400;
-            break;
-          case '兒童票':
-            return 250;
-            break;
-          case '優待票':
-            return 200;
-            break;
-        }
-      };
       return {
         name: `${item.ticketData} ${item.ticketType}`,
         type: item.fastFoward ? '快速通關+100元' : '一般票',
         count: item.tickets,
         price:
           item.fastFoward
-            ? ticketPrice(item.ticketType) + fastforwardPrice
-            : ticketPrice(item.ticketType),
+            ? getTypeToticketPrice(item.ticketType) + fastforwardPrice
+            : getTypeToticketPrice(item.ticketType),
       };
     });
     displayTicketData.value = displayTicket;
