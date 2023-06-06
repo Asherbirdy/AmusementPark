@@ -3,11 +3,13 @@ import axios from 'axios';
 import { ref, onMounted, onUnmounted } from 'vue';
 const localTemp = ref();
 
+
 //////天氣api
 const getTemp = async () => {
   const weatherRes = await axios(
     'https://opendata.cwb.gov.tw/api/v1/rest/datastore/F-D0047-061?Authorization=CWB-D86E32DD-4173-4C38-BF76-04A68E6E5AEF&limit=10&offset=0&format=JSON&locationName=%E5%A3%AB%E6%9E%97%E5%8D%80&elementName=T'
   );
+
 
   if (weatherRes.status === 200) {
     const weatherList =
@@ -20,14 +22,17 @@ onMounted(() => {
   getTemp();
 });
 
+
 //////亂數生成
 let timer = 0;
+
 
 const randomNumber = ref(0);
 const parkingSpaces = ref(0);
 const currentDate = new Date();
 const currentDay = currentDate.getDay();
 const currentHour = currentDate.getHours();
+
 
 // 人潮亂數
 const crowdRandom = () => {
@@ -56,8 +61,9 @@ const crowdRandom = () => {
 };
 onMounted(() => {
   crowdRandom();
-  timer = setInterval(crowdRandom, 5000); // 每五秒生成一次
+  timer = setInterval(crowdRandom, 10000); // 每10秒生成一次
 });
+
 
 //車位亂數
 const parkingRandom = () => {
@@ -79,14 +85,15 @@ const parkingRandom = () => {
     (currentDay === 6 && currentHour >= 9 && currentHour < 18) ||
     (currentDay !== 6 && currentHour >= 9 && currentHour < 18)
   ) {
-    parkingSpaces.value = Math.floor(Math.random() * 10) + 600;
-    //總車位數800
+    parkingSpaces.value = Math.floor(Math.random() * 10) + 650;
+  } else {
     parkingSpaces.value = 800;
   }
+    //總車位數800
 };
 onMounted(() => {
   parkingRandom();
-  timer = setInterval(parkingRandom, 5000); // 每五秒生成一次
+  timer = setInterval(parkingRandom, 10000); // 每10秒生成一次
 });
 </script>
 
