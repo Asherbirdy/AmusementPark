@@ -214,6 +214,28 @@ const removeFromCart = index => {
     //---------- 已經登入
     console.log('未登入/刪掉SessionStorage');
     console.log(displayTicketData.value[index]);
+    const ticketData = displayTicketData.value[index];
+    const ticketDeleteData = {
+      fastFoward: ticketData.type === '一般票' ? false : true,
+      ticketType: ticketData.name.split(' ')[1],
+      ticketData: ticketData.name.split(' ')[0],
+    };
+
+    const session = getSessionBookingData();
+    console.log(session);
+
+    const filterData = session.filter(ticket => {
+      return (
+        ticket.ticketType !== ticketDeleteData.ticketType ||
+        ticket.fastFoward !== ticketDeleteData.fastFoward ||
+        ticket.ticketData !== ticketDeleteData.ticketData
+      );
+    });
+
+    sessionStorage.setItem('bookingData', JSON.stringify(filterData));
+
+    console.log(filterData);
+    console.log(session);
   }
 };
 
