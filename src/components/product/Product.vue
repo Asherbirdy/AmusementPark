@@ -10,23 +10,21 @@
         </div>
         <ul class="frames">
             <li v-for="item in product.name1" :key="item.id">
-                <!-- <component :is="product.components"> -->
-                    <frame-blue>
+                <FrameAll :class="product.components">
                     <img :src="imgURL(item.url)" alt="">
                     <p class="product_name"> {{ item.name }}</p>
                     <p class="product_price"> NT.{{ item.price }}</p>
-                    <Button class="button" @click="open_Modal(item)">加入購物車</Button>
-                    </frame-blue>
-                <!-- </component> -->
+                    <Button class="button" @click="open_Modal(item)">加入購物車</Button> 
+                </FrameAll>
             </li>
         </ul>
-
         <cartadd @close-modal="closeModal" v-if="isopen" :item="isopen" :productData="productData" />
     </div>
 </template>
 <script setup>
 import { reactive, ref } from 'vue';
 import getImageUrl from '@/utils/imgPath';
+
 
 const props = defineProps({
     productData: {
@@ -63,7 +61,7 @@ const phoneCase = computed(() => {
 })
 // 跑四個商品框
 const productTitle = reactive([
-    { name: '衣服', name1: clothes, classes: 's1', id: "section1", components: 'frame-blue' }, { name: '帽子', name1: cap, classes: 's2', id: "section2", components: 'frame-yellow' }, { name: '帆布袋', name1: bag, classes: 's1', id: "section3", components: 'frame-pink' }, { name: '手機殼', name1: phoneCase, classes: 's2', id: "section4", components: 'frame-green' }
+    { name: '衣服', name1: clothes, classes: 's1', id: "section1", components: 'frame-blue'}, { name: '帽子', name1: cap, classes: 's2', id: "section2", components: 'frame-yellow' }, { name: '帆布袋', name1: bag, classes: 's1', id: "section3", components: 'frame-pink' }, { name: '手機殼', name1: phoneCase, classes: 's2', id: "section4", components: 'frame-green' }
 ]);
 
 const imgURL = name => getImageUrl(name);
