@@ -121,7 +121,7 @@ const showOrderFromDB = async () => {
       const fastforwardPrice = 100;
       return {
         name: `${item.TICK_DATE.split(' ')[0]} ${getTicketType(item.TICK_ID)}`,
-        type: item.FAST_PASS === 0 ? '快速通關+100元' : '一般票',
+        type: item.FAST_PASS === 0 ? '一般票' : '快速通關+100元',
         count: item.TICK_NUM,
         price:
           item.FAST_PASS === 0
