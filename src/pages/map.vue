@@ -3,6 +3,16 @@ import axios from 'axios';
 import { ref, onMounted, onUnmounted } from 'vue';
 const localTemp = ref();
 
+// 設施狀態api
+axios.get('/PDO/frontEnd/parkStatus/parkStatus.php')
+  .then(res => {
+    console.log(res.data);
+  })
+  .catch(error => {
+    console.log("沒有抓到設施的狀態QQ");
+  });
+
+
 
 //////天氣api
 const getTemp = async () => {

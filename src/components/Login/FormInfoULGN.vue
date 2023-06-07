@@ -240,6 +240,9 @@ const handleSubmit = async () => {
       }
       // 跳到首頁
       router.push('/');
+      setTimeout(() => {
+        window.location.reload();
+      }, 100);
     } else {
       alert('錯誤帳號密碼');
     }
