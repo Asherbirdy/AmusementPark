@@ -66,11 +66,11 @@
             </tr>
             <tr>
               <td>運費</td>
-              <td class="money">60</td>
+              <td class="money">0</td>
             </tr>
             <tr id="totalprice">
               <td>訂單總額</td>
-              <td class="money">{{ total }}</td>
+              <td class="money">{{ total + 0 }}</td>
             </tr>
           </table>
 
