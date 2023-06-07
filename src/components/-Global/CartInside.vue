@@ -58,7 +58,7 @@
           <table id="totallist">
             <tr>
               <td>商品總額</td>
-              <!-- <td class="money">{{ calculateTotalPrice() }}</td> -->
+              <td class="money">{{ total }}</td>
             </tr>
             <tr>
               <td>折扣額</td>
@@ -111,6 +111,7 @@ const router = useRouter();
 */
 let displayTicketData = ref();
 
+let total = ref(0);
 // 從資料庫抓的函式：
 const showOrderFromDB = async () => {
   try {
@@ -185,6 +186,17 @@ onMounted(async () => {
   } else {
     await showOrderFromSession();
   }
+});
+
+// 監聽 displayTicketData 改動 更改 total總金額
+watch(displayTicketData, () => {
+  axios.get('/PDO/frontEnd/cart/cartSelect.php').then(res => {
+    const ticketTotal = res.data.reduce((acc, cur) => {
+      return acc + cur.TOTAL_PRICE;
+    }, 0);
+    console.log(ticketTotal);
+    total.value = ticketTotal;
+  });
 });
 
 // ---------------------------- Functions --------------------------------//
