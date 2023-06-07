@@ -126,20 +126,17 @@ const handleSubmit = async () => {
       if (Array.isArray(dbData)) {
         dbData.forEach(item => {
           // Perform operations on each item in the array
-
-          dbData.forEach((item, i) => {
-            if (item.hasOwnProperty('FAST_PASS')) {
-              ticketArr.value.push(item);
-            } else {
-              productArr.value.push(item);
-            }
-          });
-          console.log(
-            '將原始資料分為兩個不同的陣列(票券/商品)=>',
-            ticketArr.value,
-            productArr.value
-          );
+          if (item.hasOwnProperty('FAST_PASS')) {
+            ticketArr.value.push(item);
+          } else {
+            productArr.value.push(item);
+          }
         });
+        console.log(
+          '將原始資料分為兩個不同的陣列(票券/商品)=>',
+          ticketArr.value,
+          productArr.value
+        );
       } else {
         // Handle the case when dbData is not an array
         console.log('dbData無購物車資料');
@@ -297,7 +294,7 @@ const handleSubmit = async () => {
         class="middle__form--Btn"
         type="submit"
         id="Submit"
-        @click="handleSubmit"
+        @click.prevent="handleSubmit"
       >
         登入
       </Button>
