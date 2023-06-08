@@ -97,8 +97,7 @@
           <span> 儲存信用卡資訊 </span>
         </label>
       </form>
-      <button type="submit" id="Submit" @click= "handSubmit" >送出訂單</button>
-      
+      <button class = "submit" type="submit" id="Submit" @click= "handSubmit" >送出訂單</button>  
     </div>
   </main>
 </template>
@@ -280,6 +279,8 @@ article {
   background-color: #f9f3e4;
   margin: 15px;
   margin-top: 100px;
+  display: flex;
+  flex-direction: column;
   form {
     display: flex;
     flex-direction: column;
