@@ -2,14 +2,7 @@
 import getImageUrl from '@/utils/imgPath';
 const imgURL = name => getImageUrl(name);
 
-// const options = ref([{ size: 'S' }, { size: 'M' }, { size: 'L' }]);
-
-const num = ref(1);
-function handleChange(value) {
-  console.log(value);
-}
-
-const btns = ref([{ action: '加入購物車' }, { action: '立即購買' }]);
+const btns = [{ title: '加入購物車' }, { title: '立即購買' }];
 
 const props = defineProps({
   item: {
@@ -24,39 +17,64 @@ const props = defineProps({
 
 // 解決size問題
 const options = computed(() => {
-  const clothes_blank = [];
   const keyword = props.item.name;
-  props.productData.forEach(product => {
-    if (product.name.includes(keyword)) {
-      clothes_blank.push(product);
-    }
-  });
-  return clothes_blank
+  return props.productData.filter(product => product.name.includes(keyword));
 });
+
+// 抓出商品數量
+const quantity = ref(1);
+
+// 抓出尺寸
+const size = ref('請選擇尺寸');
+
+// 將資料存到localstorage
+const addLocal = () => {
+  // console.log(props.item);
+  // 獲取現有的資料
+  const existingData = localStorage.getItem('productData');
+  let arr = [];
+  if (existingData) {
+    // 解析現有資料為陣列
+    arr = JSON.parse(existingData);
+
+  }
+  // 處理陣列
+  arr.push({
+    productId: props.item.id,
+    productNum: quantity.value,
+    porductName: props.item.name,
+    prouductSize: size.value,
+    productPrice: props.item.price
+  })
+  // 將陣列轉換為 JSON 字串
+  const jsonString = JSON.stringify(arr);
+  // 將 JSON 字串存儲到 localStorage
+  localStorage.setItem('productData', jsonString);
+}
 </script>
 
 <template>
   <modal-l>
     <div class="wrap">
-      <img class="wrap__leftImg" :src="imgURL(item.url)" />
+      <img class="wrap__leftImg" :src="imgURL(props.item.url)" />
       <div class="wrap__rightDiv">
-        <h1 class="wrap__rightDiv--h1">{{ item.name }}</h1>
+        <h1 class="wrap__rightDiv--h1">{{ props.item.name }}</h1>
         <p class="wrap__rightDiv--p">
-          MONSTAR純棉短袖上衣<br />消費滿$1000免運費<br />NT.{{ item.price }}
+          消費滿$1000免運費<br />NT.{{ props.item.price }}
         </p>
         <form class="wrap__rightDiv--from" action="">
           <label class="wrap__rightDiv--formLabel" for="">尺寸</label>
-          <select class="wrap__rightDiv--formSelect">
+          <select class="wrap__rightDiv--formSelect" v-model="size">
             <option disabled>請選擇尺寸</option>
-            <option v-for="(option, index) in options">
+            <option v-for="(option, index) in options" :value="option.size">
               {{ option.size }}
             </option>
           </select>
           <label class="wrap__rightDiv--formLabel">數量</label>
-          <el-input-number v-model="num" :min="1" :max="10" @change="handleChange" class="wrap__rightDiv--formCount" />
+          <el-input-number v-model="quantity" :min="1" :max="10" class="wrap__rightDiv--formCount" />
 
-          <Button class="wrap__rightDiv--formBtn" v-for="(btn, index) in btns">
-            {{ btn.action }}
+          <Button class="wrap__rightDiv--formBtn" v-for="(btn, index) in btns" @click.prevent="addLocal">
+            {{ btn.title }}
           </Button>
         </form>
       </div>

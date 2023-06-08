@@ -14,7 +14,7 @@
                     <img :src="imgURL(item.url)" alt="">
                     <p class="product_name"> {{ item.name }}</p>
                     <p class="product_price"> NT.{{ item.price }}</p>
-                    <Button class="button" @click="open_Modal(item)">加入購物車</Button> 
+                    <Button class="button" @click="open_Modal(item)">加入購物車</Button>
                 </FrameAll>
             </li>
         </ul>
@@ -59,9 +59,10 @@ const bag = computed(() => {
 const phoneCase = computed(() => {
     return filterA('手機殼')
 })
+
 // 跑四個商品框
 const productTitle = reactive([
-    { name: '衣服', name1: clothes, classes: 's1', id: "section1", components: 'frame-blue'}, { name: '帽子', name1: cap, classes: 's2', id: "section2", components: 'frame-yellow' }, { name: '帆布袋', name1: bag, classes: 's1', id: "section3", components: 'frame-pink' }, { name: '手機殼', name1: phoneCase, classes: 's2', id: "section4", components: 'frame-green' }
+    { name: '衣服', name1: clothes, classes: 's1', id: "section1", components: 'frame-blue' }, { name: '帽子', name1: cap, classes: 's2', id: "section2", components: 'frame-yellow' }, { name: '帆布袋', name1: bag, classes: 's1', id: "section3", components: 'frame-pink' }, { name: '手機殼', name1: phoneCase, classes: 's2', id: "section4", components: 'frame-green' }
 ]);
 
 const imgURL = name => getImageUrl(name);
@@ -167,11 +168,15 @@ Button {
 }
 
 @media screen and (max-width: 1280px) {
-    main.s2 {
-        padding-left: 80px;
+    main.s1 {
+        padding-left: 100px;
     }
 
-    .frame_yellow {
+    main.s2 {
+        padding-left: 100px;
+    }
+
+    .frames {
         padding-left: 180px;
     }
 

@@ -31,6 +31,7 @@
             </el-icon>
           </td>
         </tr>
+        <!-- 商品內容 -->
         <tr></tr>
         <tr class="ex">
           <td colspan="4">是否需要加購樂園盟票及快速通關?　</td>
@@ -182,8 +183,10 @@ onMounted(async () => {
   // 如果是登入狀態
   if (sessionStorage.getItem('token')) {
     await showOrderFromDB();
+    // 抓商品資料
   } else {
     await showOrderFromSession();
+    // 抓商品資料
   }
 });
 
@@ -327,6 +330,8 @@ const handleUpdateSession = sessionUnlogin => {
   displayTicketData.value = displayTicket;
   // console.log(displayTicketData);
 };
+
+// 抓商品資料
 </script>
 
 <style lang="scss" scoped>
