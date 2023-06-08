@@ -126,17 +126,17 @@ const cartItemCount = ref(null); // 新增 cartItemCount 變數
 const checkLoginStatus = () => {
   axios.post('/PDO/frontEnd/memberLogin/memberLoginCheck.php').then(res => {
     if (res.data === '') {
-      console.log('還沒登入');
+      console.log('未登入');
       isLoggedIn.value = false;
       loadCartItemsFromLocal();
     } else {
-      console.log('已經登入了');
+      console.log('已登入');
       isLoggedIn.value = true;
       loadCartItemsFromDatabase();
     }
   }).catch(err => {
     console.log(err);
-    alert('登入狀態檢查出錯');
+    alert('登入狀態錯誤');
   });
 };
 
@@ -176,6 +176,7 @@ const logout = () => {
     sessionStorage?.removeItem("token");
 
     router.push('/');
+    window.location.reload(); // 强制刷新页面
   });
 };
 
