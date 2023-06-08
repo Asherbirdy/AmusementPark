@@ -59,7 +59,7 @@
 
           <template v-if="isLoggedIn === false">
             <router-link to="/login" id="login1">
-              <icon-small-login />
+              <icon-small-member />
             </router-link>
           </template>
 
@@ -114,7 +114,7 @@
   <div id="space"></div>
 </template>
 <script setup>
-import { ref, nextTick, watchEffect } from 'vue';
+import { ref, nextTick, watch } from 'vue';
 import axios from 'axios';
 import { useRouter } from 'vue-router';
 
@@ -142,10 +142,10 @@ const checkLoginStatus = () => {
 
 const loadCartItemsFromLocal = () => {
   const localData = sessionStorage.getItem('bookingData');
-  const bookingData = localData ? JSON.parse(localData) : [];
-  cartItems.value = bookingData;
-  cartItemCount.value = bookingData.length;
+  cartItems.value = localData ? [JSON.parse(localData)] : [];
+  updateCartItemCount();
 };
+
 
 const loadCartItemsFromDatabase = () => {
   axios.get('/PDO/frontEnd/cart/cartSelect.php').then(res => {
@@ -179,17 +179,13 @@ const logout = () => {
   });
 };
 
-
-
 checkLoginStatus();
 
-// 使用 watchEffect 觀察 cartItems 的變化，並在每次變化時更新購物車數量
-watchEffect(() => {
+// 監聽 cartItems 的變化，更新購物車數量
+watch(cartItems, () => {
   updateCartItemCount();
 });
 </script>
-
-
 
 <style scoped lang="scss">
 #headerbg {
