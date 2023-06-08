@@ -7,7 +7,7 @@ import {
   getSessionBookingData,
   getTicketTypeFromNum,
   getTransTickSessionToDB,
-  getTicketTotalPrice
+  getTicketTotalPrice,
 } from '../../composables';
 console.log(getTicketType(4));
 
@@ -122,24 +122,31 @@ const handleSubmit = async () => {
 
       const ticketArr = ref([]); //票券資料庫原始陣列
       const productArr = ref([]); //商品資料庫原始陣列
-      dbData.forEach((item, i) => {
-        if (item.hasOwnProperty('FAST_PASS')) {
-          ticketArr.value.push(item);
-        } else {
-          productArr.value.push(item);
-        }
-      });
-      console.log(
-        '將原始資料分為兩個不同的陣列(票券/商品)=>',
-        ticketArr.value,
-        productArr.value
-      );
+      // Check if dbData is an array
+      if (Array.isArray(dbData)) {
+        dbData.forEach(item => {
+          // Perform operations on each item in the array
+          if (item.hasOwnProperty('FAST_PASS')) {
+            ticketArr.value.push(item);
+          } else {
+            productArr.value.push(item);
+          }
+        });
+        console.log(
+          '將原始資料分為兩個不同的陣列(票券/商品)=>',
+          ticketArr.value,
+          productArr.value
+        );
+      } else {
+        // Handle the case when dbData is not an array
+        console.log('dbData無購物車資料');
+      }
 
       /*
        將 ticketArr 資料庫的格式 轉換為 顯示頁面的格式：
       */
 
-      const displayTicketData = ticketArr.value.map(item => {
+      const displayTicketData = ticketArr.value?.map(item => {
         return {
           fastFoward: item.FAST_PASS ? true : false,
           ticketData: item.START_DATE.split(' ')[0],
@@ -195,7 +202,10 @@ const handleSubmit = async () => {
         2.將資料轉成資料庫的形式
         */
 
-        sessionStorage.setItem('bookingData', JSON.stringify(displayTicketData));
+        sessionStorage.setItem(
+          'bookingData',
+          JSON.stringify(displayTicketData)
+        );
 
         const currentLocal = getSessionBookingData();
 
@@ -203,21 +213,22 @@ const handleSubmit = async () => {
         const postToDBData = getTransTickSessionToDB(currentLocal);
         console.log('傳給資料庫的資料', postToDBData);
 
-
         // 算出目前總金額：
         const total = getTicketTotalPrice(displayTicketData);
 
-
-        console.log('總金額', total)
+        console.log('總金額', total);
 
         // 傳給後端
         axios
-          .post('/PDO/frontEnd/memberLogin/orderInsert.php', { postToDBData, total })
+          .post('/PDO/frontEnd/memberLogin/orderInsert.php', {
+            postToDBData,
+            total,
+          })
           .then(res => {
             console.log(res);
             sessionStorage.removeItem('bookingData');
             const login = true;
-            sessionStorage.setItem("token", JSON.stringify(login));
+            sessionStorage.setItem('token', JSON.stringify(login));
           })
           .catch(err => {
             console.log(err);
@@ -225,10 +236,13 @@ const handleSubmit = async () => {
       } else {
         console.log('Session無資料');
         const login = true;
-        sessionStorage.setItem("token", JSON.stringify(login));
+        sessionStorage.setItem('token', JSON.stringify(login));
       }
       // 跳到首頁
       router.push('/');
+      setTimeout(() => {
+        window.location.reload();
+      }, 100);
     } else {
       alert('錯誤帳號密碼');
     }
@@ -243,18 +257,33 @@ const handleSubmit = async () => {
   <section class="middle">
     <!-- 帳號 + 密碼 的 input欄位 -->
     <div class="middle__form">
-      <div class="middle__form--wrapOfLabelInput" v-for="(inputInfo, index) in inputInfos" v-bind:key="inputInfo.id">
+      <div
+        class="middle__form--wrapOfLabelInput"
+        v-for="(inputInfo, index) in inputInfos"
+        v-bind:key="inputInfo.id"
+      >
         <label class="middle__form--label">{{ inputInfo.title }}</label>
-        <input class="middle__form--input" v-bind:type="inputInfo.type" v-bind:id="inputInfo.id"
-          v-bind:placeholder="inputInfo.placeholder" v-model="inputInfo.value" @blur="blurCheck(inputInfo.id)" />
-        <span v-if="isInputFail && inputInfo.id === 'account'">請輸入正確帳號
+        <input
+          class="middle__form--input"
+          v-bind:type="inputInfo.type"
+          v-bind:id="inputInfo.id"
+          v-bind:placeholder="inputInfo.placeholder"
+          v-model="inputInfo.value"
+          @blur="blurCheck(inputInfo.id)"
+        />
+        <span v-if="isInputFail && inputInfo.id === 'account'"
+          >請輸入正確帳號
         </span>
       </div>
 
       <!-- 會員註冊 + 忘記密碼 的 a標籤 -->
       <div class="middle__form--bigWrapOfIconA">
-        <div class="middle__form--wrapOfIconA" v-for="(aLink, index) in aLinks" v-bind:key="aLink.id"
-          v-bind:href="aLink.url">
+        <div
+          class="middle__form--wrapOfIconA"
+          v-for="(aLink, index) in aLinks"
+          v-bind:key="aLink.id"
+          v-bind:href="aLink.url"
+        >
           <el-icon class="middle__form--Icon">
             <component :is="aLink.icon" />
           </el-icon>
@@ -264,7 +293,12 @@ const handleSubmit = async () => {
         </div>
       </div>
 
-      <Button class="middle__form--Btn" type="submit" id="Submit" @click="handleSubmit">
+      <Button
+        class="middle__form--Btn"
+        type="submit"
+        id="Submit"
+        @click.prevent="handleSubmit"
+      >
         登入
       </Button>
     </div>

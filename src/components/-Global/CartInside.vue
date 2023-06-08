@@ -43,14 +43,14 @@
     <!-- 訂單資訊： -->
     <ul class="final">
       <li>
-        <div class="coupon">
+        <!-- <div class="coupon">
           <h2>使用優惠碼</h2>
           <div class="code">
             <input type="text" class="sn" v-model="discountCode" />
-
+    
             <button type="submit" id="Submit">折抵</button>
           </div>
-        </div>
+        </div> -->
       </li>
       <li>
         <div class="total">
@@ -58,19 +58,19 @@
           <table id="totallist">
             <tr>
               <td>商品總額</td>
-              <!-- <td class="money">{{ calculateTotalPrice() }}</td> -->
+              <td class="money">{{ total }}</td>
             </tr>
             <tr>
               <td>折扣額</td>
-              <!-- <td class="money">-{{ calculateTotalCoupon() }}</td> -->
+              <td class="money">-{{ 0 }}</td>
             </tr>
             <tr>
               <td>運費</td>
-              <td class="money">60</td>
+              <td class="money">0</td>
             </tr>
             <tr id="totalprice">
               <td>訂單總額</td>
-              <!-- <td class="money">{{ calculateOrderTotal() }}</td> -->
+              <td class="money">{{ total + 0 }}</td>
             </tr>
           </table>
 
@@ -111,6 +111,7 @@ const router = useRouter();
 */
 let displayTicketData = ref();
 
+let total = ref(0);
 // 從資料庫抓的函式：
 const showOrderFromDB = async () => {
   try {
@@ -120,12 +121,12 @@ const showOrderFromDB = async () => {
       const fastforwardPrice = 100;
       return {
         name: `${item.TICK_DATE.split(' ')[0]} ${getTicketType(item.TICK_ID)}`,
-        type: item.FAST_PASS === 0 ? '快速通關+100元' : '一般票',
+        type: item.FAST_PASS === 0 ? '一般票' : '快速通關+100元',
         count: item.TICK_NUM,
         price:
           item.FAST_PASS === 0
-            ? getTicketPrice(item.TICK_ID) + fastforwardPrice
-            : getTicketPrice(item.TICK_ID),
+            ? getTicketPrice(item.TICK_ID)
+            : getTicketPrice(item.TICK_ID) + fastforwardPrice,
         ticketID: item.TICK_ORDER_ID,
         tickPrice: item.TOTAL_PRICE,
         TICK_ORDER_ID: item.ORDER_ID,
@@ -180,10 +181,47 @@ const orderCheck = async () => {
 
 onMounted(async () => {
   // 如果是登入狀態
-  if (sessionStorage.getItem('token')) {
-    await showOrderFromDB();
-  } else {
-    await showOrderFromSession();
+  axios
+    .post('/PDO/frontEnd/memberLogin/memberLoginCheck.php')
+    .then(res => {
+      if (res.data === '') {
+        showOrderFromSession();
+      } else {
+        showOrderFromDB();
+      }
+    })
+    .catch(err => {
+      console.log(err);
+      alert('登入狀態檢查出錯');
+    });
+});
+
+// 監聽 displayTicketData 改動 更改 total總金額
+watch(displayTicketData, async () => {
+  try {
+    const loginResponse = await axios.post(
+      '/PDO/frontEnd/memberLogin/memberLoginCheck.php'
+    );
+    if (loginResponse.data === '') {
+      // 沒有登入狀態：（抓session裡的：）
+      const getSession = getSessionBookingData();
+      console.log('監聽getSession', getSession);
+      const ticketTotal = getSession.reduce((acc, cur) => {
+        return (
+          acc + (cur.ticketPrice + (cur.fastFoward ? 100 : 0)) * cur.tickets
+        );
+      }, 0);
+      total.value = ticketTotal;
+    } else {
+      // 登入狀態 監聽 並 抓資料庫：
+      const cartResponse = await axios.get('/PDO/frontEnd/cart/cartSelect.php');
+      const ticketTotal = cartResponse.data.reduce((acc, cur) => {
+        return acc + cur.TOTAL_PRICE;
+      }, 0);
+      total.value = ticketTotal;
+    }
+  } catch (err) {
+    console.log('登入狀態檢查出錯', err);
   }
 });
 
@@ -265,34 +303,6 @@ const editFromCart = index => {
   ticketPrice.value = editData.price;
   fastPast.value = editData.type === '一般票' ? false : true;
 };
-
-// // 計算商品總額
-// const calculateTotalPrice = () => {
-//   let totalPrice = 0;
-//   products.value.forEach(product => {
-//     totalPrice += product.price * product.count;
-//   });
-//   return totalPrice;
-// };
-
-// const discountCode = ref('');
-// const calculateTotalCoupon = () => {
-//   if (discountCode.value === 'MONSTAR') {
-//     return 50;
-//   }
-//   if (discountCode.value === 'BESTPARK') {
-//     return 500;
-//   }
-//   return 0;
-// };
-
-// // 計算訂單總額
-// const calculateOrderTotal = () => {
-//   const totalPrice = calculateTotalPrice();
-//   const discount = calculateTotalCoupon(); //折扣金額
-//   const shippingFee = 60; //運費
-//   return totalPrice - discount + shippingFee;
-// };
 
 const checkLogin = async () => {
   try {
