@@ -49,7 +49,14 @@ const getSwitchStyle = row => {
   };
 };
 
-
+// 設施狀態api
+// axios.get('/PDO/frontEnd/parkStatus/parkStatus.php')
+//   .then(res => {
+//     console.log(res.data);
+//   })
+//   .catch(error => {
+//     console.log("沒有抓到設施的狀態QQ");
+//   });
 
 let modalClose = ref(false);
 let modalOpen = ref(false);
@@ -70,18 +77,18 @@ let tableData = ref([]);
 
 // 將資料傳到畫面
 onMounted(() => {
-  axios.get('../public/json/facility_status.json').then(res => {
+  axios.get('/PDO/frontEnd/parkStatus/parkStatus.php').then(res => {
     // API 抓取到的資料：
-    const data = res.data.facilityStatus;
+    const data = res.data;
     // 將資料轉成 element 可以讀的參數，參考 public/json/facility_status.json
     const fitData = data.map(facility => ({
-      name: facility.name,
+      name: facility.RIDES_NAME,
       date:
-        facility.startDate && facility.endDate
-          ? `${facility.startDate} 至 ${facility.endDate}`
+        facility.START_TIME && facility.STOP_TIME
+          ? `${facility.START_TIME} 至 ${facility.STOP_TIME}`
           : '',
-      status: facility.status,
-      reason: facility.reason ?? '無',
+      status: facility.RIDES_STATE_ID,
+      reason: facility.RIDES_INFO ?? '無',
       toggle: facility.toggle,
     }));
     //
