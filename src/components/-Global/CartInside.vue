@@ -125,8 +125,8 @@ const showOrderFromDB = async () => {
         count: item.TICK_NUM,
         price:
           item.FAST_PASS === 0
-            ? getTicketPrice(item.TICK_ID) + fastforwardPrice
-            : getTicketPrice(item.TICK_ID),
+            ? getTicketPrice(item.TICK_ID)
+            : getTicketPrice(item.TICK_ID) + fastforwardPrice,
         ticketID: item.TICK_ORDER_ID,
         tickPrice: item.TOTAL_PRICE,
         TICK_ORDER_ID: item.ORDER_ID,
