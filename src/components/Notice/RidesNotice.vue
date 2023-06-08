@@ -155,8 +155,8 @@ main {
   .close {
     color: #5f2c00;
     border: 5px solid #673e00;
-    height: 57px;
-    width: 57px;
+    height: 50px;
+    width: 50px;
     border-radius: 50%;
     float: right;
     font-weight: bold;
