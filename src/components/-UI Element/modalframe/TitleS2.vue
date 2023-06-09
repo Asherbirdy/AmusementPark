@@ -1,11 +1,9 @@
 
 <template>
     <main>
-        <p>
             <slot>
 
             </slot>
-        </p>
         <title-small2 />
     </main>
 </template>
@@ -22,10 +20,7 @@ main {
     align-items: center;
     position: relative;
     padding: 0;
-
-    p {
-        position: absolute;
-    }
+    
 }
 </style>
     
