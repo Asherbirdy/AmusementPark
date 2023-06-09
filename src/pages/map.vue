@@ -12,8 +12,6 @@ axios.get('/PDO/frontEnd/parkStatus/parkStatus.php')
     console.log("沒有抓到設施的狀態QQ");
   });
 
-
-
 //////天氣api
 const getTemp = async () => {
   const weatherRes = await axios(
@@ -106,6 +104,8 @@ onMounted(() => {
   timer = setInterval(parkingRandom, 10000); // 每10秒生成一次
 });
 </script>
+
+
 
 <template>
   <div class="bg">
