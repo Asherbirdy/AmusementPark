@@ -210,7 +210,7 @@ onMounted(() => {
 // 送出訂單
 const handSubmit = () => {
   axios
-    .post('/PDO/frontEnd/cart/submitOrder.php')
+    .post(`${import.meta.env.VITE_API_URL}/frontEnd/cart/submitOrder.php`)
     .then(res => {
       alert('訂單已送出');
       router.push('/admin/cartsuccess');

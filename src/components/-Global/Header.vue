@@ -124,7 +124,7 @@ const cartItems = ref([]);
 const cartItemCount = ref(null); // 新增 cartItemCount 變數
 
 const checkLoginStatus = () => {
-  axios.post('/PDO/frontEnd/memberLogin/memberLoginCheck.php').then(res => {
+  axios.post(`${import.meta.env.VITE_API_URL}/frontEnd/memberLogin/memberLoginCheck.php`).then(res => {
     if (res.data === '') {
       console.log('未登入');
       isLoggedIn.value = false;
@@ -148,7 +148,7 @@ const loadCartItemsFromLocal = () => {
 
 
 const loadCartItemsFromDatabase = () => {
-  axios.get('/PDO/frontEnd/cart/cartSelect.php').then(res => {
+  axios.get(`${import.meta.env.VITE_API_URL}/frontEnd/cart/cartSelect.php`).then(res => {
     cartItems.value = res.data;
     updateCartItemCount();
   });
@@ -170,7 +170,7 @@ const forceUpdate = () => {
 };
 
 const logout = () => {
-  axios.post('/PDO/frontEnd/memberLogin/memberLogout.php').then(res => {
+  axios.post(`${import.meta.env.VITE_API_URL}/frontEnd/memberLogin/memberLogout.php`).then(res => {
     console.log(res.data);
     isLoggedIn.value = false;
     sessionStorage?.removeItem("token");

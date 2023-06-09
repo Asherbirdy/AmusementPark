@@ -68,7 +68,7 @@ let tableData = ref([]);
 //定義抓資料function
 const getList = async () => {
   try {
-    const res = await axios.get('/PDO/backEnd/staffAccount/staffAccountSelect.php');
+    const res = await axios.get(`${import.meta.env.VITE_API_URL}/backEnd/staffAccount/staffAccountSelect.php`);
     // API 抓取到的資料：
     const data = res.data;
     // console.log(data);

@@ -59,7 +59,7 @@ const emit = defineEmits(['get-list']);
 
 const updateApi = async () => {
   try {
-    const response = await axios.post('/PDO/backEnd/staffAccount/staffAccountUpdate.php', {
+    const response = await axios.post(`${import.meta.env.VITE_API_URL}/backEnd/staffAccount/staffAccountUpdate.php`, {
       changeMemberData,
     });
     console.log(response);

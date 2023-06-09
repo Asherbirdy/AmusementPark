@@ -84,7 +84,7 @@ const fixTickets = () => {
       console.log('票型', ticketType);
       try {
         const response = await axios.post(
-          '/PDO/frontEnd/cart/cartUpdate.php',
+          `${import.meta.env.VITE_API_URL}/frontEnd/cart/cartUpdate.php`,
           transferToDB
         );
         // 在此處處理回傳的 response

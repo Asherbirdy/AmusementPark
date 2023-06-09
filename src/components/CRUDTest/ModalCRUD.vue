@@ -53,7 +53,7 @@ const refundTickets = () => {
   refundTicketsData.refundTicketsAmount = tickets.value;
   // console.log(refundTicketsData);
   axios
-    .post('/PDO/tickOrder/tickOrderUpdate.php', { refundTicketsData })
+    .post(`${import.meta.env.VITE_API_URL}/tickOrder/tickOrderUpdate.php`, { refundTicketsData })
     .then(res => {
       console.log(res);
     })

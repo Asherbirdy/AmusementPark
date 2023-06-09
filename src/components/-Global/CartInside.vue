@@ -116,7 +116,7 @@ let total = ref(0);
 // 從資料庫抓的函式：
 const showOrderFromDB = async () => {
   try {
-    const res = await axios.get('/PDO/frontEnd/cart/cartSelect.php');
+    const res = await axios.get(`${import.meta.env.VITE_API_URL}/frontEnd/cart/cartSelect.php`);
     console.log('DB抓下來的資料', res.data);
     const displayTicket = res.data.map(item => {
       const fastforwardPrice = 100;
@@ -166,7 +166,7 @@ const showOrderFromSession = async () => {
 
 const orderCheck = async () => {
   try {
-    const res = await axios.get('/PDO/frontEnd/cart/cartSelect.php');
+    const res = await axios.get(`${import.meta.env.VITE_API_URL}/frontEnd/cart/cartSelect.php`);
     console.log(res.data);
     if (res.data.length !== 0) {
       console.log('購物車有東西');
@@ -191,7 +191,7 @@ onMounted(async () => {
     // 抓商品資料
 
   axios
-    .post('/PDO/frontEnd/memberLogin/memberLoginCheck.php')
+    .post(`${import.meta.env.VITE_API_URL}/frontEnd/memberLogin/memberLoginCheck.php`)
     .then(res => {
       if (res.data === '') {
         showOrderFromSession();
@@ -209,7 +209,7 @@ onMounted(async () => {
 watch(displayTicketData, async () => {
   try {
     const loginResponse = await axios.post(
-      '/PDO/frontEnd/memberLogin/memberLoginCheck.php'
+      `${import.meta.env.VITE_API_URL}/frontEnd/memberLogin/memberLoginCheck.php`
     );
     if (loginResponse.data === '') {
       // 沒有登入狀態：（抓session裡的：）
@@ -223,7 +223,7 @@ watch(displayTicketData, async () => {
       total.value = ticketTotal;
     } else {
       // 登入狀態 監聽 並 抓資料庫：
-      const cartResponse = await axios.get('/PDO/frontEnd/cart/cartSelect.php');
+      const cartResponse = await axios.get(`${import.meta.env.VITE_API_URL}/frontEnd/cart/cartSelect.php`);
       const ticketTotal = cartResponse.data.reduce((acc, cur) => {
         return acc + cur.TOTAL_PRICE;
       }, 0);
@@ -246,7 +246,7 @@ const removeFromCart = index => {
     console.log(ticketID);
     async function deleteCartItem(ticketID) {
       try {
-        const response = await axios.post('/PDO/frontEnd/cart/cartDelete.php', {
+        const response = await axios.post(`${import.meta.env.VITE_API_URL}/frontEnd/cart/cartDelete.php`, {
           ticketID,
           totalTickPrice,
         });
@@ -316,7 +316,7 @@ const editFromCart = index => {
 
 const checkLogin = async () => {
   try {
-    const res = await axios.post('/PDO/frontEnd/cart/cartCheckout.php');
+    const res = await axios.post(`${import.meta.env.VITE_API_URL}/frontEnd/cart/cartCheckout.php`);
     // 如果登入成功，執行結帳相關操作
     if (res.data === true) {
       // router.push('../../admin/cartfill');

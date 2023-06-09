@@ -5,7 +5,7 @@ let tableData = ref([]);
 
 // 將資料傳到畫面
 onMounted(() => {
-  axios.get('/PDO/touristBackStage/tickOrderSelect.php').then(res => {
+  axios.get(`${import.meta.env.VITE_API_URL}/touristBackStage/tickOrderSelect.php`).then(res => {
     // API 抓取到的資料：
     const data = res.data;
     console.log(data);

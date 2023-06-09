@@ -122,7 +122,7 @@ const handleSubmit = () => {
   }
 
   axios
-    .post('/PDO/frontEnd/MemberForgetPassword/memberAccountCheck.php', {
+    .post(`${import.meta.env.VITE_API_URL}/frontEnd/MemberForgetPassword/memberAccountCheck.php`, {
       account: inputInfos.value[0].value,
       name: inputInfos.value[1].value,
     })

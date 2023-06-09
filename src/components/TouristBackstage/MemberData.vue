@@ -18,7 +18,7 @@ const isInputFail = ref(false);
 onMounted(async () => {
   try {
     const response = await axios.get(
-      '/PDO/frontEnd/memberModify/memberModify.php'
+      `${import.meta.env.VITE_API_URL}/frontEnd/memberModify/memberModify.php`
     );
     const data = response.data;
     // console.log(data);
@@ -63,7 +63,7 @@ const saveData = async () => {
   try {
     // 发送修改后的数据到后端API
     const response = await axios.post(
-      '/PDO/frontEnd/memberModify/updateMember.php',
+      `${import.meta.env.VITE_API_URL}/frontEnd/memberModify/updateMember.php`,
       tableData.value
     );
     console.log('資料已儲存:', response.data);

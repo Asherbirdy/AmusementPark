@@ -9,7 +9,7 @@ let showDeleteModal = ref(false);
 
 // 開啟頁面串資
 onMounted(() => {
-  axios.get('/PDO/tickOrder/tickOrderSelect.php').then(res => {
+  axios.get(`${import.meta.env.VITE_API_URL}/frontEnd/tickOrder/tickOrderSelect.php`).then(res => {
     bookingData.value = res.data;
     // console.log(res.data);
     res.data.forEach(obj => {

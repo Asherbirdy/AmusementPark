@@ -130,7 +130,7 @@ const handleSubmit = () => {
   console.log(typeof inputInfos.value);
   if (inputInfos.length !== '') {
     axios
-      .post('/PDO/frontEnd/memberSignup/memberSignup.php', {
+      .post(`${import.meta.env.VITE_API_URL}/frontEnd/memberSignup/memberSignup.php`, {
         name: inputInfos.value[0].value,
         gender: inputInfos.value[1].value,
         birthday: inputInfos.value[2].value,

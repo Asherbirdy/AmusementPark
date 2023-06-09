@@ -109,7 +109,7 @@ let ticketDate = ref('');
 const addToCart = () => {
   // 用memberLoginCheck.php 判斷是否已經登入
   axios
-    .post('/PDO/frontEnd/memberLogin/memberLoginCheck.php')
+    .post(`${import.meta.env.VITE_API_URL}/frontEnd/memberLogin/memberLoginCheck.php`)
     .then(res => {
       if (res.data === '') {
         console.log('還沒登入');
@@ -147,7 +147,7 @@ const addToCart = () => {
         if (ticketDate !== '' && isValidDateFormat(ticketDate)) {
           if (countTicket() !== 0) {
             axios
-              .post('/PDO/frontEnd/tickOrder/tickOrderInsert.php', {
+              .post(`${import.meta.env.VITE_API_URL}/frontEnd/tickOrder/tickOrderInsert.php`, {
                 transfToDBform,
                 total,
               })

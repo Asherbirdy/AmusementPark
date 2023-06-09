@@ -78,7 +78,7 @@ const blurCheck = inputType => {
 const router = useRouter();
 
 axios
-  .post('/PDO/frontEnd/memberLogin/memberLoginCheck.php')
+  .post(`${import.meta.env.VITE_API_URL}/frontEnd/memberLogin/memberLoginCheck.php`)
   .then(res => {
     if (res.data === '') {
       console.log('還沒登入');
@@ -102,7 +102,7 @@ const handleSubmit = async () => {
   try {
     // Make a POST request to login
     const response = await axios.post(
-      '/PDO/frontEnd/memberLogin/memberLogin.php',
+      `${import.meta.env.VITE_API_URL}/frontEnd/memberLogin/memberLogin.php`,
       {
         account: inputInfos.value[0].value,
         pwd: inputInfos.value[1].value,
@@ -113,7 +113,7 @@ const handleSubmit = async () => {
       alert('登入成功');
       let dbData = ref();
       // 取得ＤＢ資料
-      const cartResponse = await axios.get('/PDO/frontEnd/cart/cartSelect.php');
+      const cartResponse = await axios.get(`${import.meta.env.VITE_API_URL}/frontEnd/cart/cartSelect.php`);
       dbData = cartResponse.data;
       console.log('從資料庫抓到的原始資料=>', dbData);
       /*
@@ -220,7 +220,7 @@ const handleSubmit = async () => {
 
         // 傳給後端
         axios
-          .post('/PDO/frontEnd/memberLogin/orderInsert.php', {
+          .post(`${import.meta.env.VITE_API_URL}/frontEnd/memberLogin/orderInsert.php`, {
             postToDBData,
             total,
           })
