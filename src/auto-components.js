@@ -40,11 +40,9 @@ declare module '@vue/runtime-core' {
     E4: typeof import('./components/-UI Element/svg/monsterComponent/e4.vue')['default']
     E5: typeof import('./components/-UI Element/svg/monsterComponent/e5.vue')['default']
     E6: typeof import('./components/-UI Element/svg/monsterComponent/e6.vue')['default']
-    ElButton: typeof import('element-plus/es')['ElButton']
     ElCarousel: typeof import('element-plus/es')['ElCarousel']
     ElCarouselItem: typeof import('element-plus/es')['ElCarouselItem']
     ElDatePicker: typeof import('element-plus/es')['ElDatePicker']
-    ElDialog: typeof import('element-plus/es')['ElDialog']
     ElIcon: typeof import('element-plus/es')['ElIcon']
     ElInputNumber: typeof import('element-plus/es')['ElInputNumber']
     ElTabPane: typeof import('element-plus/es')['ElTabPane']
@@ -209,5 +207,8 @@ declare module '@vue/runtime-core' {
     TransformNotice: typeof import('./components/Notice/TransformNotice.vue')['default']
     Type: typeof import('./components/product/Type.vue')['default']
     VideoBannerIDX: typeof import('./components/Index/VideoBannerIDX.vue')['default']
+    Wing1: typeof import('./components/-UI Element/svg/monsterComponent/wing1.vue')['default']
+    Wing2: typeof import('./components/-UI Element/svg/monsterComponent/wing2.vue')['default']
+    Wing3: typeof import('./components/-UI Element/svg/monsterComponent/wing3.vue')['default']
   }
 }
