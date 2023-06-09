@@ -203,7 +203,7 @@ header {
   // position: relative;
   font-family: $font-family;
   background-color: #f9f3e4;
-  width: 100%;
+  // width: 100%;
   height: 150px;
   // filter: brightness(100%) drop-shadow(0px 0px 5px #5b5b5b); 
   // position: fixed;
