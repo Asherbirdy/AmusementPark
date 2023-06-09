@@ -27,6 +27,22 @@ const quantity = ref(1);
 // 抓出尺寸
 const size = ref('請選擇尺寸');
 
+
+// 判斷是否登入
+
+onMounted(async () => {
+  // 如果是登入狀態
+  if (sessionStorage.getItem('token')) {
+    await showOrderFromDB();
+    // 抓商品資料
+  } else {
+    await showOrderFromSession();
+    // 抓商品資料
+  }
+});
+
+
+
 // 將資料存到localstorage
 const addLocal = () => {
   // console.log(props.item);
@@ -36,7 +52,6 @@ const addLocal = () => {
   if (existingData) {
     // 解析現有資料為陣列
     arr = JSON.parse(existingData);
-
   }
   // 處理陣列
   arr.push({
