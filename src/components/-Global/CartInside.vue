@@ -203,7 +203,7 @@ onMounted(async () => {
       console.log(err);
       alert('登入狀態檢查出錯');
     });
-});
+}});
 
 // 監聽 displayTicketData 改動 更改 total總金額
 watch(displayTicketData, async () => {
