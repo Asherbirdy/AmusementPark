@@ -207,5 +207,8 @@ declare module '@vue/runtime-core' {
     TransformNotice: typeof import('./components/Notice/TransformNotice.vue')['default']
     Type: typeof import('./components/product/Type.vue')['default']
     VideoBannerIDX: typeof import('./components/Index/VideoBannerIDX.vue')['default']
+    Wing1: typeof import('./components/-UI Element/svg/monsterComponent/wing1.vue')['default']
+    Wing2: typeof import('./components/-UI Element/svg/monsterComponent/wing2.vue')['default']
+    Wing3: typeof import('./components/-UI Element/svg/monsterComponent/wing3.vue')['default']
   }
 }
