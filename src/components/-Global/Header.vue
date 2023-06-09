@@ -42,14 +42,7 @@
           </router-link>
         </li>
 
-        <!-- <li>
-          <router-link to="/admin/touristmember">
-            <icon-membership />
-            <h3>冒險者專區</h3>
-          </router-link>
-        </li> -->
       </ul>
-      <!-- <a id="moblie_menu" @click="handMenuOpen" href="javascript:;"></a> -->
       <div>
         <div class="rsite">
           <template v-if="isLoggedIn === true">
@@ -61,11 +54,12 @@
 
           <router-link to="/cart">
             <icon-small-basket />
+            <span class="cart-quantity" v-if="cartItemCount !== null">{{ cartItemCount }}</span>
           </router-link>
 
           <template v-if="isLoggedIn === false">
             <router-link to="/login" id="login1">
-              <icon-small-login />
+              <icon-small-member />
             </router-link>
           </template>
 
@@ -120,34 +114,55 @@
   <div id="space"></div>
 </template>
 <script setup>
-import { ref, nextTick } from 'vue';
+import { ref, nextTick, watch } from 'vue';
 import axios from 'axios';
 import { useRouter } from 'vue-router';
 
 const router = useRouter();
 const isLoggedIn = ref(false);
+const cartItems = ref([]);
+const cartItemCount = ref(null); // 新增 cartItemCount 變數
 
 const checkLoginStatus = () => {
-  axios
-    .post('/PDO/frontEnd/memberLogin/memberLoginCheck.php')
-    .then(res => {
-      if (res.data === '') {
-        console.log('還沒登入');
-        isLoggedIn.value = false;
-      } else {
-        console.log('已經登入了');
-        isLoggedIn.value = true;
-      }
-      forceUpdate(); // 強制重新渲染
-    })
-    .catch(err => {
-      console.log(err);
-      alert('登入狀態檢查出錯');
-    });
+  axios.post('/PDO/frontEnd/memberLogin/memberLoginCheck.php').then(res => {
+    if (res.data === '') {
+      console.log('未登入');
+      isLoggedIn.value = false;
+      loadCartItemsFromLocal();
+    } else {
+      console.log('已登入');
+      isLoggedIn.value = true;
+      loadCartItemsFromDatabase();
+    }
+  }).catch(err => {
+    console.log(err);
+    alert('登入狀態錯誤');
+  });
+};
+
+const loadCartItemsFromLocal = () => {
+  const localData = sessionStorage.getItem('bookingData');
+  cartItems.value = localData ? [JSON.parse(localData)] : [];
+  updateCartItemCount();
+};
+
+
+const loadCartItemsFromDatabase = () => {
+  axios.get('/PDO/frontEnd/cart/cartSelect.php').then(res => {
+    cartItems.value = res.data;
+    updateCartItemCount();
+  });
+};
+
+const updateCartItemCount = () => {
+  if (cartItems.value.length === 0) {
+    cartItemCount.value = null;
+  } else {
+    cartItemCount.value = cartItems.value.length;
+  }
 };
 
 const forceUpdate = () => {
-  // 透過引用的方式強制觸發組件的重新渲染
   const dummy = ref(null);
   nextTick(() => {
     dummy.value = {};
@@ -160,12 +175,19 @@ const logout = () => {
     isLoggedIn.value = false;
     sessionStorage?.removeItem("token");
 
-    router.push('../../shop');
+    router.push('/');
+    window.location.reload(); // 强制刷新页面
   });
 };
 
-checkLoginStatus(); // 檢查登入狀態
+checkLoginStatus();
+
+// 監聽 cartItems 的變化，更新購物車數量
+watch(cartItems, () => {
+  updateCartItemCount();
+});
 </script>
+
 <style scoped lang="scss">
 #headerbg {
   // display: none;
@@ -253,6 +275,16 @@ header {
       color: #5b5b5b;
     }
 
+    .cart-quantity {
+      position: absolute;
+      top: 15px;
+      right: 80px;
+      background-color: red;
+      color: white;
+      font-size: 12px;
+      padding: 2px 5px;
+      border-radius: 50%;
+    }
     .YYY {
       background: $maincolor2;
       border-radius: 0.5em;

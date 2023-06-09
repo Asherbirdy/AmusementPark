@@ -36,7 +36,7 @@ export function transTickSessionToDB(sessionArr) {
     const addFastPastPrice = ticketData.fastFoward ? 100 : 0;
     return {
       END_DATE: null,
-      FAST_PASS: ticketData.fastFoward ? 0 : 1,
+      FAST_PASS: ticketData.fastFoward ? 1 : 0,
       ORDER_ID: ticketData.ticketOrderID ? ticketData.ticketOrderID : null,
       START_DATE: ticketData.ticketData,
       TICK_DATE: ticketData.ticketData,
