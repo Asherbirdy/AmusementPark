@@ -26,12 +26,7 @@ onMounted(() => {
 <template>
   <main>
     <Bar />
-    <Clothes :productData="productData"/>
-    <Cap :productData="productData"/>
-    <Bag :productData="productData"/>
-    <PhoneCase :productData="productData"/>
-    <!-- <Customization />
-    <MonsterMaker /> -->
+    <Product :productData="productData" />
   </main>
 </template>
 
