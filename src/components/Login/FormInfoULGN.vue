@@ -239,7 +239,7 @@ const handleSubmit = async () => {
         sessionStorage.setItem('token', JSON.stringify(login));
       }
       // 跳到首頁
-      router.push('/');
+      router.push('/home');
       setTimeout(() => {
         window.location.reload();
       }, 100);
