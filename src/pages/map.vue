@@ -248,7 +248,7 @@ main {
         text-align: -webkit-center;
 
         h1 {
-          background-image: url(/AmusementPark/src/assets/img/MonsterCrowd.png);
+          background-image: url(@/assets/img/MonsterCrowd.png);
           background-repeat: no-repeat;
           width: 190px;
           height: 100px;
@@ -278,7 +278,7 @@ main {
       #weather {
         text-align: -webkit-center;
         h1 {
-          background-image: url(/AmusementPark/src/assets/img/MonsterWeather.png);
+          background-image: url(@/assets/img/MonsterWeather.png);
           background-repeat: no-repeat;
           width: 190px;
           height: 100px;
@@ -307,7 +307,7 @@ main {
       #Parking {
         text-align: -webkit-center;
         h1 {
-          background-image: url(/AmusementPark/src/assets/img/MonsterParking.png);
+          background-image: url(@/assets/img/MonsterParking.png);
           background-repeat: no-repeat;
           width: 190px;
           height: 100px;
