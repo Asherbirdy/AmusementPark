@@ -37,8 +37,9 @@ onMounted(async () => {
       };
 
       tableData.value = fitData;
+      //將取得的數據存在fitData
       originalData.value = { ...tableData.value };
-
+      // originalData.value以初始化表單數據
       console.log(tableData.value);
     } else {
       console.log('沒有找到相關數據');
@@ -48,6 +49,7 @@ onMounted(async () => {
   }
 });
 
+//獲取日期的值，並轉成日期正確格式
 const handleDateInput = event => {
   const input = event.target;
   const value = input.value;
@@ -72,6 +74,7 @@ const saveData = async () => {
   }
 };
 
+//修改資料的格式
 const handleSaveData = async () => {
   let isAllFieldsEmpty = true;
   isInputFail.value = false;
@@ -110,7 +113,7 @@ const handleSaveData = async () => {
 
     return true;
   };
-
+  //確保資訊都有輸入並輸入正確
   for (const field of formFields) {
     if (
       field.name !== 'name' &&
