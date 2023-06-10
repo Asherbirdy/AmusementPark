@@ -120,7 +120,8 @@ const handleSaveData = async () => {
       (!tableData.value[field.name] ||
         tableData.value[field.name].trim() === '')
     ) {
-      isAllFieldsEmpty = false;
+      alert('請輸入所有資訊！');
+      return;
     }
 
     if (!validateField(field)) {
