@@ -137,6 +137,41 @@ const handleSubmit = () => {
     email.value !== '' &&
     rePassword.value !== ''
   ) {
+    //input內容判斷
+    const emailRegex =
+    /^([a-zA-Z0-9_\.\-\+])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+    
+    const inputPhone = inputInfos.value[3].value;
+    const inputEmail = inputInfos.value[4].value;
+    const inputPwd = inputInfos.value[5].value;
+    const inputREPwd = inputInfos.value[6].value;
+    const isPwdMatch = inputPwd === inputREPwd;
+    const isEmail = emailRegex.test(inputEmail);
+    
+    //電話驗證
+    const isPhoneNumber =
+      !isNaN(inputPhone) &&
+      inputPhone.length === 10 &&
+      inputPhone.trim().length > 0 &&
+      inputPhone[0] === '0' &&
+      inputPhone[1] === '9';
+
+  if (!isEmail) {
+      console.log('請輸入正確Email');
+      return;
+    }
+
+    if (!isPhoneNumber) {
+      console.log('請輸入正確電話');
+      return;
+    }
+
+    if (!isPwdMatch) {
+      console.log('您再次輸入的密碼有誤');
+      return;
+    }
+
+
     axios
       .post('/PDO/frontEnd/memberSignup/memberSignup.php', {
         name: inputInfos.value[0].value,
