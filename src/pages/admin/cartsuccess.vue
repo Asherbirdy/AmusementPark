@@ -1,5 +1,5 @@
 <template lang="">
-  <div class="Top">
+  <!-- <div class="Top">
     <div class="CartStep">
       <div class="monster">
         <monster-cart-Fill-White>1</monster-cart-Fill-White>
@@ -16,10 +16,10 @@
         <h3>訂購完成</h3>
       </div>
     </div>
-  </div>
+  </div> -->
   <div class="content">
     <monstertCoplete class="complete" />
-    <p>謝謝您!您的訂單已經成立!</p>
+    <p>您的訂單已經成立!</p>
     <ul class="order">
       <li v-for="item in orderItems" :key="item">
         訂單編號 {{ item }}<br>
@@ -61,6 +61,7 @@ main {
     }
   }
 }
+
 .complete {
   margin: 0px auto 80px;
 }
@@ -68,19 +69,21 @@ main {
   text-align: center;
   margin: 100px auto 190px;
   width: 1000px;
-}
-.content p {
-  font-weight: 400;
-  font-size: 40px;
-}
-.order {
-  margin: 100px 0;
-  text-align: left;
-}
-.order li {
-  font-weight: 400;
-  font-size: 36px;
-  line-height: 60px;
-  letter-spacing: 0.2em;
+  p {
+    font-weight: 400;
+    font-size: 40px;
+  }
+  .order {
+    margin: 100px 0;
+    text-align: left;
+    li {
+      margin: 0 auto;
+      width: 55%;
+      font-weight: 400;
+      font-size: 30px;
+      line-height: 50px;
+      letter-spacing: 0.2em;
+    }
+  }
 }
 </style>
