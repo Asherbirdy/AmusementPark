@@ -3,13 +3,13 @@ import axios from 'axios';
 
 //////input 欄位
 
-const name = ''; // 用作v-model雙向數據綁定
-const gender = ''; // 用作v-model雙向數據綁定
-const birthday = ''; // 用作v-model雙向數據綁定
-const phone = ''; // 用作v-model雙向數據綁定
-const pwd = ''; // 用作v-model雙向數據綁定
-const email = ''; // 用作v-model雙向數據綁定
-const rePassword = ''; // 用作v-model雙向數據綁定
+const name = ref(''); // 用作v-model雙向數據綁定
+const gender =  ref(''); // 用作v-model雙向數據綁定
+const birthday =  ref(''); // 用作v-model雙向數據綁定
+const phone =  ref(''); // 用作v-model雙向數據綁定
+const pwd =  ref(''); // 用作v-model雙向數據綁定
+const email =  ref(''); // 用作v-model雙向數據綁定
+const rePassword =  ref(''); // 用作v-model雙向數據綁定
 
 const inputInfos = ref([
   {
@@ -86,14 +86,14 @@ const blueCheck = inputType => {
     inputEmail !== '' &&
     inputPwd !== '' &&
     inputREPwd !== ''
-    ){
+  ) {
     const isEmail = emailRegex.test(inputEmail);
     if (isEmail === false) {
       console.log('驗證失敗');
     } else {
       console.log('驗證正確');
     }
-  
+
     //電話驗證
     const isPhoneNumber =
       !isNaN(inputPhone) &&
@@ -106,7 +106,7 @@ const blueCheck = inputType => {
     } else {
       alert('電話正確');
     }
-  
+
     //密碼驗證
     if (inputPwd === inputREPwd) {
       isPwdFail.value = false;
@@ -115,10 +115,10 @@ const blueCheck = inputType => {
       isPwdFail.value = true;
       console.log('密碼請再次輸入');
     }
-  
+
     isPhoneFail.value = !isPhoneNumber;
     isEmailFail.value = !isEmail;
-  }else{
+  } else {
     console.log('沒東東');
   }
 };
@@ -128,7 +128,50 @@ const router = useRouter();
 //////資料送出
 const handleSubmit = () => {
   console.log(typeof inputInfos.value);
-  if (inputInfos.length !== '') {
+  if (
+    name.value !== '' &&
+    gender.value !== '' &&
+    birthday.value !== '' &&
+    phone.value !== '' &&
+    pwd.value !== '' &&
+    email.value !== '' &&
+    rePassword.value !== ''
+  ) {
+    //input內容判斷
+    const emailRegex =
+    /^([a-zA-Z0-9_\.\-\+])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+    
+    const inputPhone = inputInfos.value[3].value;
+    const inputEmail = inputInfos.value[4].value;
+    const inputPwd = inputInfos.value[5].value;
+    const inputREPwd = inputInfos.value[6].value;
+    const isPwdMatch = inputPwd === inputREPwd;
+    const isEmail = emailRegex.test(inputEmail);
+    
+    //電話驗證
+    const isPhoneNumber =
+      !isNaN(inputPhone) &&
+      inputPhone.length === 10 &&
+      inputPhone.trim().length > 0 &&
+      inputPhone[0] === '0' &&
+      inputPhone[1] === '9';
+
+  if (!isEmail) {
+      console.log('請輸入正確Email');
+      return;
+    }
+
+    if (!isPhoneNumber) {
+      console.log('請輸入正確電話');
+      return;
+    }
+
+    if (!isPwdMatch) {
+      console.log('您再次輸入的密碼有誤');
+      return;
+    }
+
+
     axios
       .post('/PDO/frontEnd/memberSignup/memberSignup.php', {
         name: inputInfos.value[0].value,
@@ -151,8 +194,9 @@ const handleSubmit = () => {
         console.log(err);
         alert('伺服器問題');
       });
-  }else{
-    alert('請輸入完整資料')
+  } else {
+    alert('請輸入完整資料');
+    console.log(name, gender, birthday, phone, pwd, email, rePassword);
   }
 };
 </script>
