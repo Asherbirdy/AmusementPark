@@ -31,6 +31,7 @@
             </el-icon>
           </td>
         </tr>
+        <!-- 商品內容 -->
         <tr></tr>
         <tr class="ex">
           <td colspan="4">是否需要加購樂園盟票及快速通關?　</td>
@@ -337,6 +338,8 @@ const handleUpdateSession = sessionUnlogin => {
   displayTicketData.value = displayTicket;
   // console.log(displayTicketData);
 };
+
+// 抓商品資料
 </script>
 
 <style lang="scss" scoped>

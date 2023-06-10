@@ -1,15 +1,15 @@
 <template>
     <div class="sidebar">
         <ul>
-            <li class="bar" @click="scrollToPosition(0)">所有商品</li>
+            <li class="bar" @click="scrollToSection('section0')">所有商品</li>
             <br>
-            <li class="bar" @click="scrollToPosition(200)">衣服</li>
+            <li class="bar" @click="scrollToSection('section1')">衣服</li>
             <br>
-            <li class="bar" @click="scrollToPosition(1720)">帽子</li>
+            <li class="bar" @click="scrollToSection('section2')">帽子</li>
             <br>
-            <li class="bar" @click="scrollToPosition(3235)">帆布袋</li>
+            <li class="bar" @click="scrollToSection('section3')">帆布袋</li>
             <br>
-            <li class="bar" @click="scrollToPosition(4750)">手機殼</li>
+            <li class="bar" @click="scrollToSection('section4')">手機殼</li>
             <br>
             <!-- <li class="bar">客製化商品</li>
             <br> -->
@@ -29,14 +29,32 @@ document.addEventListener('scroll', function () {
         sidebar.style.top = '';
     }
 });
-const scrollToPosition = (y) => {
-    window.scrollTo({
-        top: y,
-        behavior: 'smooth'
-    });
-}
 
-let bar = { bar: 'bar' };
+// const scrollToSection = (sectionId) => {
+//     if (sectionId === "section0") {
+//         window.scrollTo({
+//             top: 0,
+//             behavior: 'smooth'
+//         });
+//     }
+//     const sectionElement = document.getElementById(sectionId);
+//     if (sectionElement) {
+//         sectionElement.scrollIntoView({ behavior: 'smooth' });
+//     }
+// }
+
+const scrollToSection = (sectionId) => {
+    if (sectionId === "section0") {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    }
+    const sectionElement = document.getElementById(sectionId);
+    if (sectionElement) {
+        sectionElement.scrollIntoView({ behavior: 'smooth' });
+    }
+}
 </script>
 <style lang="scss" scoped>
 .sidebar {
