@@ -4,7 +4,7 @@ import { reactive, ref } from 'vue';
 const productData = reactive([]);
 onMounted(() => {
   axios
-    .get(axios.get(`${import.meta.env.VITE_API_URL}/frontEnd/product/product.php`))
+    .get(`${import.meta.env.VITE_API_URL}/frontEnd/product/product.php`)
     .then((res) => {
       // API 抓取到的資料：
       res.data.forEach((product) => {
