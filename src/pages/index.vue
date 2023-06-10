@@ -9,10 +9,10 @@ const goTop = () => {
     <logo class="logo" />
     <img src="../assets/img/entrance.png" alt="" />
     <div class="entrance">
-      <router-link to="/home">
+      <router-link to="/home" target="_blank">
         <h1 class="front" @click="goTop">前台</h1>
       </router-link>
-      <router-link to="staff/login">
+      <router-link to="staff/login" target="_blank">
         <h1 class="back" @click="goTop">後台</h1>
       </router-link>
     </div>
@@ -49,7 +49,7 @@ footer {
 
     .front {
       text-decoration: none;
-      background-image: url(/AmusementPark/src/assets/img/MonsterCrowd.png);
+      background-image: url(@/assets/img/MonsterCrowd.png);
       width: 147px;
       height: 192px;
     }
@@ -60,7 +60,7 @@ footer {
     }
 
     .back {
-      background-image: url(/AmusementPark/src/assets/img/MonsterParking.png);
+      background-image: url(@/assets/img/MonsterParking.png);
       width: 147px;
       height: 192px;
     }
