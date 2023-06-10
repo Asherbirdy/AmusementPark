@@ -1,7 +1,7 @@
 <template lang="">
   <!--購物車步驟-->
   <!-- 哈囉 -->
-  <article>
+  <!-- <article>
     <div class="CartStep">
       <div class="monster">
         <monster-cart-Fill-White>1</monster-cart-Fill-White>
@@ -18,7 +18,7 @@
         <h3>訂購完成</h3>
       </div>
     </div>
-  </article>
+  </article> -->
   <!--訂購人資料-->
   <main>
     <div class="user">
@@ -308,7 +308,7 @@ article {
     }
   }
   #Submit {
-    width: 170px;
+    width: 450px;
     height: 55px;
     color: #f9f3e4;
     background-color: #d1825b;
@@ -316,6 +316,7 @@ article {
     border-radius: 10px;
 
     margin: 30px auto;
+    margin-top: 10px;
   }
 }
 
