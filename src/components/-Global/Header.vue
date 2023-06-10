@@ -3,7 +3,7 @@
   <header>
     <headerbg id="headerbg" />
     <nav>
-      <router-link to="/" class="logo">
+      <router-link to="/home" class="logo">
         <logo />
       </router-link>
 
@@ -175,7 +175,7 @@ const logout = () => {
     isLoggedIn.value = false;
     sessionStorage?.removeItem("token");
 
-    router.push('/');
+    router.push('/home');
     window.location.reload(); // 强制刷新页面
   });
 };
@@ -285,6 +285,7 @@ header {
       padding: 2px 5px;
       border-radius: 50%;
     }
+
     .YYY {
       background: $maincolor2;
       border-radius: 0.5em;
