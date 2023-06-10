@@ -1,5 +1,11 @@
 <script setup>
 import getImageUrl from '@/utils/imgPath';
+import axios from 'axios';
+import {
+  getSessionBookingData,
+  getTransTickSessionToDB,
+  getTicketTotalPrice,
+} from '../../../composables';
 const imgURL = name => getImageUrl(name);
 
 const btns = [{ title: '加入購物車' }, { title: '立即購買' }];
@@ -19,6 +25,7 @@ const props = defineProps({
 const options = computed(() => {
   const keyword = props.item.name;
   return props.productData.filter(product => product.name.includes(keyword));
+
 });
 
 // 抓出商品數量
@@ -31,21 +38,29 @@ const size = ref('請選擇尺寸');
 // 判斷是否登入
 
 onMounted(async () => {
-  // 如果是登入狀態
-  if (sessionStorage.getItem('token')) {
-    await showOrderFromDB();
-    // 抓商品資料
-  } else {
-    await showOrderFromSession();
-    // 抓商品資料
-  }
+
 });
 
-
+const addCart = () => {
+  axios
+    .post('/PDO/frontEnd/memberLogin/memberLoginCheck.php')
+    .then(res => {
+      //非登入狀態 
+      if (res.data === '') {
+        addLocal()
+        //登入狀態
+      } else {
+        addDB()
+      }
+    })
+    .catch(err => {
+      console.log(err);
+      alert('登入狀態檢查出錯');
+    });
+}
 
 // 將資料存到localstorage
 const addLocal = () => {
-  // console.log(props.item);
   // 獲取現有的資料
   const existingData = localStorage.getItem('productData');
   let arr = [];
@@ -65,7 +80,41 @@ const addLocal = () => {
   const jsonString = JSON.stringify(arr);
   // 將 JSON 字串存儲到 localStorage
   localStorage.setItem('productData', jsonString);
+  alert('加入購物車成功!');
 }
+
+
+// 將資料存到資料庫
+const addDB = () => {
+  // const transfToDBform = JSON.stringify(dataTrans());
+  const transfToDBform = dataTrans();
+  console.log(transfToDBform)
+  axios
+    .post('/PDO/frontEnd/product/productOrderInsert1.php', {
+      transfToDBform: transfToDBform,
+    })
+    .then(res => {
+      alert('加入購物車成功!');
+      console.log(res.data);
+    })
+    .catch(err => {
+      alert('加入失敗');
+    });
+};
+
+
+// 處理送到資料庫的資料
+const dataTrans = () => {
+  let arr = [];
+  const sum = props.item.price * quantity.value;
+  arr.push({
+    productId: props.item.id,
+    productNum: quantity.value,
+    sum,
+  });
+  return arr;
+}
+
 </script>
 
 <template>
@@ -88,7 +137,7 @@ const addLocal = () => {
           <label class="wrap__rightDiv--formLabel">數量</label>
           <el-input-number v-model="quantity" :min="1" :max="10" class="wrap__rightDiv--formCount" />
 
-          <Button class="wrap__rightDiv--formBtn" v-for="(btn, index) in btns" @click.prevent="addLocal">
+          <Button class="wrap__rightDiv--formBtn" v-for="(btn, index) in btns" @click.prevent="addCart">
             {{ btn.title }}
           </Button>
         </form>

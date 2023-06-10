@@ -60,7 +60,7 @@ const phoneCase = computed(() => {
     return filterA('手機殼')
 })
 
-// 跑四個商品框
+// 跑四個商品標題跟框
 const productTitle = reactive([
     { name: '衣服', name1: clothes, classes: 's1', id: "section1", components: 'frame-blue' }, { name: '帽子', name1: cap, classes: 's2', id: "section2", components: 'frame-yellow' }, { name: '帆布袋', name1: bag, classes: 's1', id: "section3", components: 'frame-pink' }, { name: '手機殼', name1: phoneCase, classes: 's2', id: "section4", components: 'frame-green' }
 ]);
