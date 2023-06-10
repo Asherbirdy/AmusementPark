@@ -239,7 +239,7 @@ const handleSubmit = async () => {
         sessionStorage.setItem('token', JSON.stringify(login));
       }
       // 跳到首頁
-      router.push('/');
+      router.push('/home');
       setTimeout(() => {
         window.location.reload();
       }, 100);
@@ -257,33 +257,18 @@ const handleSubmit = async () => {
   <section class="middle">
     <!-- 帳號 + 密碼 的 input欄位 -->
     <div class="middle__form">
-      <div
-        class="middle__form--wrapOfLabelInput"
-        v-for="(inputInfo, index) in inputInfos"
-        v-bind:key="inputInfo.id"
-      >
+      <div class="middle__form--wrapOfLabelInput" v-for="(inputInfo, index) in inputInfos" v-bind:key="inputInfo.id">
         <label class="middle__form--label">{{ inputInfo.title }}</label>
-        <input
-          class="middle__form--input"
-          v-bind:type="inputInfo.type"
-          v-bind:id="inputInfo.id"
-          v-bind:placeholder="inputInfo.placeholder"
-          v-model="inputInfo.value"
-          @blur="blurCheck(inputInfo.id)"
-        />
-        <span v-if="isInputFail && inputInfo.id === 'account'"
-          >請輸入正確帳號
+        <input class="middle__form--input" v-bind:type="inputInfo.type" v-bind:id="inputInfo.id"
+          v-bind:placeholder="inputInfo.placeholder" v-model="inputInfo.value" @blur="blurCheck(inputInfo.id)" />
+        <span v-if="isInputFail && inputInfo.id === 'account'">請輸入正確帳號
         </span>
       </div>
 
       <!-- 會員註冊 + 忘記密碼 的 a標籤 -->
       <div class="middle__form--bigWrapOfIconA">
-        <div
-          class="middle__form--wrapOfIconA"
-          v-for="(aLink, index) in aLinks"
-          v-bind:key="aLink.id"
-          v-bind:href="aLink.url"
-        >
+        <div class="middle__form--wrapOfIconA" v-for="(aLink, index) in aLinks" v-bind:key="aLink.id"
+          v-bind:href="aLink.url">
           <el-icon class="middle__form--Icon">
             <component :is="aLink.icon" />
           </el-icon>
@@ -293,12 +278,7 @@ const handleSubmit = async () => {
         </div>
       </div>
 
-      <Button
-        class="middle__form--Btn"
-        type="submit"
-        id="Submit"
-        @click.prevent="handleSubmit"
-      >
+      <Button class="middle__form--Btn" type="submit" id="Submit" @click.prevent="handleSubmit">
         登入
       </Button>
     </div>
