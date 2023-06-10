@@ -96,7 +96,7 @@
                         <h3>歷史訂單</h3>
                       </li>
                     </router-link>
-                    <router-link class="logout" to="/" @click="logout">
+                    <router-link class="logout" to="/home" @click="logout">
                       <li>
                         <WarningFilled style="width: 20px; height: 20px; margin: 5px" class="member-s-icon" />
                         <h3>登出</h3>
