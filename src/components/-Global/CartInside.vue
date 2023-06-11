@@ -36,7 +36,9 @@
         <tr class="ex">
           <td colspan="4">是否需要加購樂園盟票及快速通關?　</td>
           <td id="plus" colspan="2">
-            <button type="submit" id="Submit">加購</button>
+            <router-link to="/ticket">
+              <button type="submit" id="Submit">加購</button>
+            </router-link>
           </td>
         </tr>
       </table>

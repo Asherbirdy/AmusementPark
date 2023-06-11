@@ -12,8 +12,8 @@ import {
 console.log(getTicketType(4));
 
 ////// 帳號 + 密碼 的 input欄位
-const account = ref('0912345678'); // 用作v-model雙向數據綁定
-const pwd = ref('password'); // 用作v-model雙向數據綁定
+const account = ref('0908527987'); // 用作v-model雙向數據綁定
+const pwd = ref('yo0960797'); // 用作v-model雙向數據綁定
 const inputInfos = ref([
   {
     title: '帳號：',
