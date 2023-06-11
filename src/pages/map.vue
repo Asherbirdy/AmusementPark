@@ -3,15 +3,6 @@ import axios from 'axios';
 import { ref, onMounted, onUnmounted } from 'vue';
 const localTemp = ref();
 
-// 設施狀態api
-axios.get('/PDO/frontEnd/parkStatus/parkStatus.php')
-  .then(res => {
-    console.log(res.data);
-  })
-  .catch(error => {
-    console.log("沒有抓到設施的狀態QQ");
-  });
-
 //////天氣api
 const getTemp = async () => {
   const weatherRes = await axios(
@@ -97,12 +88,77 @@ const parkingRandom = () => {
   } else {
     parkingSpaces.value = 800;
   }
-    //總車位數800
+  //總車位數800
 };
 onMounted(() => {
   parkingRandom();
   timer = setInterval(parkingRandom, 10000); // 每10秒生成一次
 });
+
+///////////////////////////////
+
+const imageSrc = ref('src');
+const magnifierWidth = ref(0);
+const magnifierHeight = ref(0);
+
+onMounted(() => {
+  const magnifier = document.getElementById('magnifier');
+  const imgContainer = document.getElementById('img-container');
+  const img = document.getElementById('map');
+  magnifierWidth.value = magnifier.offsetWidth;
+  magnifierHeight.value = magnifier.offsetHeight;
+  //滑鼠進入時放大鏡出現
+  const handleMouseEnter = () => {
+    magnifier.style.visibility = 'visible';
+  };
+  //滑鼠移出時放大鏡消失
+  const handleMouseLeave = () => {
+    magnifier.style.visibility = 'hidden';
+  };
+    //取得容器位置
+    const containerOffset = imgContainer.getBoundingClientRect();
+    //滑鼠移動時放大鏡跟著移
+    const handleMouseMove = (e) => {
+    // console.log(containerOffset);
+    //計算滑鼠在容器內位置
+    const mouseX = e.pageX - containerOffset.left;
+    const mouseY = e.pageY - containerOffset.top;
+    //讓放大鏡移到滑鼠所在位置，並調整置中
+    const magnifierX = mouseX - magnifierWidth.value / 2;
+    const magnifierY = mouseY - magnifierHeight.value / 2;
+    //計算放大鏡背景圖位置
+    const magBgX = -1 * (magnifierX * 2) - (magnifierWidth.value / 2);
+    const magBgY = -1 * (magnifierY * 2) - (magnifierHeight.value / 2) ;
+    //調整放大倍率
+    const magBgWidth = img.width * 2;
+    const magBgHeight = img.height * 2;
+    // console.log(magBgHeight)
+    // console.log();
+    magnifier.style.left = `${magnifierX}px`;
+    magnifier.style.top = `${magnifierY}px`;
+    magnifier.style.backgroundPosition = `${magBgX}px ${magBgY}px`;
+    magnifier.style.backgroundSize = `${magBgWidth}px ${magBgHeight}px`;
+  };
+
+  imgContainer.addEventListener('mouseenter', handleMouseEnter);
+  imgContainer.addEventListener('mouseleave', handleMouseLeave);
+  imgContainer.addEventListener('mousemove', handleMouseMove);
+
+  // Cleanup event listeners on component unmount
+  onUnmounted(() => {
+    imgContainer.removeEventListener('mouseenter', handleMouseEnter);
+    imgContainer.removeEventListener('mouseleave', handleMouseLeave);
+    imgContainer.removeEventListener('mousemove', handleMouseMove);
+  });
+  return {
+    imageSrc,
+    magnifierWidth,
+    magnifierHeight,
+  };
+
+});
+
+
 </script>
 
 
@@ -117,15 +173,26 @@ onMounted(() => {
   <main>
     <nav class="park">
       <title-big1 id="title1">園區地圖</title-big1>
-      <img id="map" src="../assets/img/MAP.png" alt="" />
+      <div id="img-container">
+        <img id="map" src="../assets/img/MAP.png" alt="" />
+        <div id="magnifier"></div>
+      </div>
       <div style="display: flex">
         <ul>
-          <li><h1>園區服務</h1></li>
-          <li><h2>設施</h2></li>
+          <li>
+            <h1>園區服務</h1>
+          </li>
+          <li>
+            <h2>設施</h2>
+          </li>
           <hr />
-          <li><h2>飲食</h2></li>
+          <li>
+            <h2>飲食</h2>
+          </li>
           <hr />
-          <li><h2>醫療站</h2></li>
+          <li>
+            <h2>醫療站</h2>
+          </li>
           <hr />
         </ul>
       </div>
@@ -178,16 +245,19 @@ main {
     height: 800px;
     margin-top: 80px;
     position: relative;
+
     #title1 {
       position: absolute;
       left: -400px;
     }
+
     #map {
       position: absolute;
-      top: 100px;
+      // top: 100px;
       max-width: 100%;
       filter: drop-shadow(0 0 4px #000);
     }
+
     ul {
       position: absolute;
       width: 288px;
@@ -196,36 +266,43 @@ main {
       background-image: url('../assets/img/Notebook.png');
       margin-bottom: 300px;
       background-repeat: no-repeat;
+
       li {
         margin-left: 20px;
       }
+
       hr {
         margin-left: 20px;
         width: 120px;
         border: 1.5px solid #d1825b;
       }
     }
+
     h1 {
       margin: 40px 0 0 0;
       letter-spacing: 0.5em;
       color: $textcolor4;
       font-size: 28px;
     }
+
     h2 {
       margin-top: 5px;
       color: #2c6396;
       cursor: pointer;
     }
   }
+
   #noteMonster {
     margin-left: 210px;
     margin-top: -200px;
     width: 150px;
   }
+
   .realtime {
     width: $workspace;
     margin-top: 200px;
     margin-bottom: 700px;
+
     ul {
       top: 100px;
       width: 100%;
@@ -233,10 +310,12 @@ main {
       color: #fff;
       position: relative;
       justify-content: space-between;
+
       li {
         flex-direction: column;
         width: 300px;
         height: 200px;
+
         .tag {
           position: absolute;
           z-index: -2;
@@ -244,6 +323,7 @@ main {
           top: -210px;
         }
       }
+
       #crowd {
         text-align: -webkit-center;
 
@@ -256,6 +336,7 @@ main {
           padding-top: 60px;
           letter-spacing: 4px;
         }
+
         .crowdCon {
           background-color: #f5ba5b;
           margin-top: -50px;
@@ -265,18 +346,22 @@ main {
           display: flex;
           flex-direction: column;
           justify-content: space-around;
+
           h2 {
             font-size: 30px;
             height: 70px;
           }
+
           p {
             font-size: 100px;
             // margin-top: 70px;
           }
         }
       }
+
       #weather {
         text-align: -webkit-center;
+
         h1 {
           background-image: url(@/assets/img/MonsterWeather.png);
           background-repeat: no-repeat;
@@ -286,6 +371,7 @@ main {
           padding-top: 60px;
           letter-spacing: 4px;
         }
+
         .weatherCon {
           background-color: #d1825b;
           margin-top: -50px;
@@ -295,17 +381,21 @@ main {
           display: flex;
           flex-direction: column;
           justify-content: space-around;
+
           h2 {
             font-size: 60px;
           }
+
           span {
             font-size: 100px;
             margin-bottom: 51px;
           }
         }
       }
+
       #Parking {
         text-align: -webkit-center;
+
         h1 {
           background-image: url(@/assets/img/MonsterParking.png);
           background-repeat: no-repeat;
@@ -315,6 +405,7 @@ main {
           padding-top: 60px;
           letter-spacing: 4px;
         }
+
         .ParkingCon {
           background-color: #82bbb5;
           margin-top: -50px;
@@ -324,16 +415,19 @@ main {
           display: flex;
           flex-direction: column;
           justify-content: space-around;
+
           .ParkText {
             display: flex;
             align-items: center;
             justify-content: space-evenly;
+
             // padding-top: 40px;
             img {
               width: 70px;
               height: 70px;
             }
           }
+
           p {
             font-size: 100px;
             // margin-top: 70px;
@@ -343,6 +437,7 @@ main {
     }
   }
 }
+
 .bg {
   width: 90vw;
   // height: 90vw;
@@ -361,6 +456,7 @@ main {
     rotate: 25deg;
     opacity: 0.9;
   }
+
   #svg-cloud1 {
     width: 10%;
     position: absolute;
@@ -368,6 +464,7 @@ main {
     top: 1500px;
     left: 650px;
   }
+
   #svg-cloud2 {
     width: 30%;
     position: absolute;
@@ -376,6 +473,7 @@ main {
     left: 100px;
     opacity: 0.9;
   }
+
   #svg-parking {
     width: 50%;
     position: absolute;
@@ -384,5 +482,37 @@ main {
     right: -175px;
     // opacity: 0.2;
   }
+}
+
+// 放大鏡
+#img-container {
+  position: relative;
+  width: 100%;
+  height: 675px;
+  margin: 0 auto;
+  overflow: hidden;
+  // border: 1px solid #000;
+}
+
+#img-container img {
+  display: block;
+  position: absolute;``
+  top: 0;
+  left: 0;
+  object-fit: cover;
+}
+
+#magnifier {
+  position: absolute;
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  border: 1px solid white;
+  box-shadow: 0 0 10px rgba(0, 0, 0, .3);
+  z-index: 5;
+  background-repeat: no-repeat;
+  cursor: none;
+  visibility: hidden;
+  background-image: url("../assets/img/MAP.png");
 }
 </style>
