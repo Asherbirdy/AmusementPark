@@ -70,7 +70,7 @@ let tableData = ref([]);
 
 // 將資料傳到畫面
 onMounted(() => {
-  axios.get('../public/json/facility_status.json').then(res => {
+  axios.get('https://tibamef2e.com/thd101/g4/json/facility_status.json').then(res => {
     // API 抓取到的資料：
     const data = res.data.facilityStatus;
     // 將資料轉成 element 可以讀的參數，參考 public/json/facility_status.json
