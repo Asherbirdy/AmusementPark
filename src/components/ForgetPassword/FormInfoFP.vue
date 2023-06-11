@@ -38,7 +38,7 @@
         </span>
       </div>
       <div class="btn">
-        <router-link to="/" class="routerlink">
+        <router-link to="/home" class="routerlink">
           <Button class="middle__form--Btn" type="submit" id="Submit">
             取消
           </Button>

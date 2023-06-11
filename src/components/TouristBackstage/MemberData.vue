@@ -21,16 +21,14 @@ onMounted(async () => {
       `${import.meta.env.VITE_API_URL}/frontEnd/memberModify/memberModify.php`
     );
     const data = response.data;
-    // console.log(data);
 
     if (data.length > 0) {
-      const MEMBER = data[0]; // 獲取當前登入會員數據
+      const MEMBER = data[0];
 
       const fitData = {
         id: MEMBER.ACCOUNT,
         name: MEMBER.NAME,
         birthDate: MEMBER.BIRTHDAY ? MEMBER.BIRTHDAY.substring(0, 10) : '',
-        // 先一定要有 MEMBER.BIRTHDAY，才判斷
         phoneNum: MEMBER.PHONE,
         emailAdd: MEMBER.EMAIL,
         address: MEMBER.ADDRESS,
@@ -38,7 +36,6 @@ onMounted(async () => {
 
       tableData.value = fitData;
       originalData.value = { ...tableData.value };
-
       console.log(tableData.value);
     } else {
       console.log('沒有找到相關數據');
@@ -53,15 +50,10 @@ const handleDateInput = event => {
   const value = input.value;
   const isValidDate = /^\d{4}\d{2}\d{2}$/.test(value);
 
-  if (isValidDate && value.length === 8) {
-    const formattedDate = value.replace(/(\d{4})(\d{2})(\d{2})/, '$1-$2-$3');
-    input.value = formattedDate;
-  }
 };
 
 const saveData = async () => {
   try {
-    // 发送修改后的数据到后端API
     const response = await axios.post(
       `${import.meta.env.VITE_API_URL}/frontEnd/memberModify/updateMember.php`,
       tableData.value
@@ -73,8 +65,8 @@ const saveData = async () => {
 };
 
 const handleSaveData = async () => {
-  let isAllFieldsEmpty = true;
   isInputFail.value = false;
+  let isValidInput = true; // 新增一個變數來追蹤輸入是否有效
 
   const validateField = field => {
     const value = tableData.value[field.name];
@@ -85,29 +77,26 @@ const handleSaveData = async () => {
 
     if (field.name === 'phoneNum') {
       const phoneRegex = /^[0-9]{10}$/;
-      return !value || phoneRegex.test(value.trim());
+      if (!value || phoneRegex.test(value.trim())) {
+        return true;
+      } else {
+        alert('請輸入正確的電話號碼！');
+        isValidInput = false; // 輸入無效，設定 isValidInput 為 false
+        return false;
+      }
     }
 
     if (field.name === 'emailAdd') {
       const emailRegex =
         /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
-      return !value || emailRegex.test(value.trim());
-    }
-
-    if (field.name === 'birthDate') {
-      const dateRegex = /^(\d{4})(\d{2})(\d{2})$/;
-      const isValidDate = !value || dateRegex.test(value.trim());
-
-      if (isValidDate && value && value.length === 8) {
-        tableData.value[field.name] = value.replace(
-          /(\d{4})(\d{2})(\d{2})/,
-          '$1-$2-$3'
-        );
+      if (!value || emailRegex.test(value.trim())) {
+        return true;
+      } else {
+        alert('請輸入正確的電子郵件！');
+        isValidInput = false; // 輸入無效，設定 isValidInput 為 false
+        return false;
       }
-
-      return isValidDate;
     }
-
     return true;
   };
 
@@ -117,7 +106,8 @@ const handleSaveData = async () => {
       (!tableData.value[field.name] ||
         tableData.value[field.name].trim() === '')
     ) {
-      isAllFieldsEmpty = false;
+      alert('請輸入所有資訊！');
+      return;
     }
 
     if (!validateField(field)) {
@@ -125,19 +115,14 @@ const handleSaveData = async () => {
     }
   }
 
-  if (!isAllFieldsEmpty) {
-    dialogVisible.value = false;
-    await saveData();
-    return;
-  }
-
+  // 檢查是否有任何欄位驗證失敗
   if (isInputFail.value) {
-    dialogVisible.value = false;
-    saveData();
     return;
   }
 
+  // 儲存資料
   dialogVisible.value = false;
+  await saveData();
 };
 
 const handleCancelEdit = () => {
@@ -219,6 +204,7 @@ const handleCancelEdit = () => {
         <input
           v-model="tableData[field.name]"
           placeholder="YYYY/MM/DD"
+          type="date"
           style="
             margin: 20px auto;
             height: 45px;
@@ -227,6 +213,7 @@ const handleCancelEdit = () => {
             color: black;
             border-radius: 5px;
             padding-left: 5px;
+            font-family: '微軟正黑體';
           "
           @input="handleDateInput"
         />
