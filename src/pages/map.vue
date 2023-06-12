@@ -95,7 +95,38 @@ onMounted(() => {
   timer = setInterval(parkingRandom, 10000); // 每10秒生成一次
 });
 
-///////////////////////////////
+//地圖點擊後放大
+const isZoomed = ref(false);
+const isFirstClick = ref(true);
+const displayOption = ref('');
+// const zoomedImages = ref([
+//   'FerrisWheel.png',
+//   'RollerCoaster.png',
+//   'Volcano.jpg',
+// ]);
+function toggleZoom(option) {
+  displayOption.value = option;
+  isZoomed.value = !isZoomed.value;
+
+}
+
+
+// var elementA = document.getElementsByClassName("a");
+// var elementB = document.getElementsByClassName("b");
+// // 添加点击事件监听器并处理函数
+// elementA.addEventListener("click", function() {
+//   // 添加类
+//   elementB.classList.remove("zoomed");
+//   this.classList.add("zoomed");
+// });
+
+// elementB.addEventListener("click", function() {
+//   // 移除所有类
+//   elementA.classList.remove("zoomed");
+//   this.classList.add("zoomed");
+// });
+
+// 地圖放大鏡效果
 
 const imageSrc = ref('src');
 const magnifierWidth = ref(0);
@@ -115,10 +146,10 @@ onMounted(() => {
   const handleMouseLeave = () => {
     magnifier.style.visibility = 'hidden';
   };
-    //取得容器位置
-    const containerOffset = imgContainer.getBoundingClientRect();
-    //滑鼠移動時放大鏡跟著移
-    const handleMouseMove = (e) => {
+  //取得容器位置
+  const containerOffset = imgContainer.getBoundingClientRect();
+  //滑鼠移動時放大鏡跟著移
+  const handleMouseMove = (e) => {
     // console.log(containerOffset);
     //計算滑鼠在容器內位置
     const mouseX = e.pageX - containerOffset.left;
@@ -128,7 +159,7 @@ onMounted(() => {
     const magnifierY = mouseY - magnifierHeight.value / 2;
     //計算放大鏡背景圖位置
     const magBgX = -1 * (magnifierX * 2) - (magnifierWidth.value / 2);
-    const magBgY = -1 * (magnifierY * 2) - (magnifierHeight.value / 2) ;
+    const magBgY = -1 * (magnifierY * 2) - (magnifierHeight.value / 2);
     //調整放大倍率
     const magBgWidth = img.width * 2;
     const magBgHeight = img.height * 2;
@@ -175,6 +206,18 @@ onMounted(() => {
       <title-big1 id="title1">園區地圖</title-big1>
       <div id="img-container">
         <img id="map" src="../assets/img/MAP.png" alt="" />
+        <img class="facility a" src="../assets/img/FerrisWheel.png" alt="" v-show="displayOption === 'a'"
+          @click="toggleZoom('a')" :class="{ 'zoomed': isZoomed }" />
+        <img class="facility a" src="../assets/img/Volcano.png" alt="" v-show="displayOption === 'a'"
+          @click="toggleZoom('a')" :class="{ 'zoomed': isZoomed }" />
+        <img class="facility a" src="../assets/img/RollerCoaster.png" alt="" v-show="displayOption === 'a'"
+          @click="toggleZoom('a')" :class="{ 'zoomed': isZoomed }" />
+        <img class="facility b" src="../assets/img/Theater.png" alt="" v-show="displayOption === 'b'"
+          @click="toggleZoom('b')" :class="{ 'zoomed': isZoomed }" />
+        <img class="facility b" src="../assets/img/Theater2.png" alt="" v-show="displayOption === 'b'"
+          @click="toggleZoom('b')" :class="{ 'zoomed': isZoomed }" />
+        <img class="facility" src="../assets/img/Medical.png" alt="" v-show="displayOption === 'c'"
+          @click="toggleZoom('c')" :class="{ 'zoomed': isZoomed }" />
         <div id="magnifier"></div>
       </div>
       <div style="display: flex">
@@ -183,15 +226,15 @@ onMounted(() => {
             <h1>園區服務</h1>
           </li>
           <li>
-            <h2>設施</h2>
+            <h2 @click="toggleZoom('a')">設施</h2>
           </li>
           <hr />
           <li>
-            <h2>飲食</h2>
+            <h2 @click="toggleZoom('b')">劇場</h2>
           </li>
           <hr />
           <li>
-            <h2>醫療站</h2>
+            <h2 @click="toggleZoom('c')">醫療站</h2>
           </li>
           <hr />
         </ul>
@@ -484,11 +527,27 @@ main {
   }
 }
 
+//地圖
+.facility {
+  position: absolute;
+  z-index: 1;
+  width: 100%;
+  transition: .5s;
+
+}
+
+.zoomed {
+  width: 100%;
+  height: auto;
+  scale: 1.2;
+  transition: .5s;
+}
+
 // 放大鏡
 #img-container {
   position: relative;
   width: 100%;
-  height: 675px;
+  height: 720px;
   margin: 0 auto;
   overflow: hidden;
   // border: 1px solid #000;
@@ -496,7 +555,7 @@ main {
 
 #img-container img {
   display: block;
-  position: absolute;``
+  position: absolute;
   top: 0;
   left: 0;
   object-fit: cover;
