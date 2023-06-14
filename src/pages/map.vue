@@ -189,6 +189,61 @@ onMounted(() => {
 
 });
 
+const pA = ref(false);
+const pB = ref(false);
+const pC = ref(false);
+
+// 點擊設施圖放大
+const scalePhoto = (pClick) => {
+  pA.value = false;
+  pB.value = false;
+  pC.value = false;
+  if (pClick == 'pA') {
+    pA.value = true;
+  } else if (pClick == 'pB') {
+    pB.value = true;
+  } else if (pClick == 'pC') {
+    pC.value = true;
+  }
+}
+// const scalePhoto = (pClick) => {
+//   const picA = document.getElementsByClassName('a');
+//   const picB = document.getElementsByClassName('b');
+//   const picC = document.getElementsByClassName('c');
+
+//   if (pClick === 'pA') {
+//     Array.from(picB).forEach((item) => {
+//       item.classList.remove('zoomed');
+//     });
+//     Array.from(picC).forEach((item) => {
+//       item.classList.remove('zoomed');
+//     });
+//     Array.from(picA).forEach((item) => {
+//       item.classList.toggle('zoomed');
+//     });
+//   } else if (pClick === 'pB') {
+//     Array.from(picA).forEach((item) => {
+//       item.classList.remove('zoomed');
+//     });
+//     Array.from(picC).forEach((item) => {
+//       item.classList.remove('zoomed');
+//     });
+//     Array.from(picB).forEach((item) => {
+//       item.classList.toggle('zoomed');
+//     });
+//   } else if (pClick === 'pC') {
+//     Array.from(picA).forEach((item) => {
+//       item.classList.remove('zoomed');
+//     });
+//     Array.from(picB).forEach((item) => {
+//       item.classList.remove('zoomed');
+//     });
+//     Array.from(picC).forEach((item) => {
+//       item.classList.toggle('zoomed');
+//     });
+//   }
+// };
+
 
 </script>
 
@@ -206,18 +261,12 @@ onMounted(() => {
       <title-big1 id="title1">園區地圖</title-big1>
       <div id="img-container">
         <img id="map" src="../assets/img/MAP.png" alt="" />
-        <img class="facility a" src="../assets/img/FerrisWheel.png" alt="" v-show="displayOption === 'a'"
-          @click="toggleZoom('a')" :class="{ 'zoomed': isZoomed }" />
-        <img class="facility a" src="../assets/img/Volcano.png" alt="" v-show="displayOption === 'a'"
-          @click="toggleZoom('a')" :class="{ 'zoomed': isZoomed }" />
-        <img class="facility a" src="../assets/img/RollerCoaster.png" alt="" v-show="displayOption === 'a'"
-          @click="toggleZoom('a')" :class="{ 'zoomed': isZoomed }" />
-        <img class="facility b" src="../assets/img/Theater.png" alt="" v-show="displayOption === 'b'"
-          @click="toggleZoom('b')" :class="{ 'zoomed': isZoomed }" />
-        <img class="facility b" src="../assets/img/Theater2.png" alt="" v-show="displayOption === 'b'"
-          @click="toggleZoom('b')" :class="{ 'zoomed': isZoomed }" />
-        <img class="facility" src="../assets/img/Medical.png" alt="" v-show="displayOption === 'c'"
-          @click="toggleZoom('c')" :class="{ 'zoomed': isZoomed }" />
+        <img class="facility a" src="../assets/img/FerrisWheel.png" alt="" :class="{ 'zoomed': pA }" />
+        <img class="facility a" src="../assets/img/Volcano.png" alt="" :class="{ 'zoomed': pA }" />
+        <img class="facility a" src="../assets/img/RollerCoaster.png" alt="" :class="{ 'zoomed': pA }" />
+        <img class="facility b" src="../assets/img/Theater.png" alt="" :class="{ 'zoomed': pB }" />
+        <img class="facility b" src="../assets/img/Theater2.png" alt="" :class="{ 'zoomed': pB }" />
+        <img class="facility c" src="../assets/img/Medical.png" alt="" :class="{ 'zoomed': pC }" />
         <div id="magnifier"></div>
       </div>
       <div style="display: flex">
@@ -226,16 +275,17 @@ onMounted(() => {
             <h1>園區服務</h1>
           </li>
           <li>
-            <h2 @click="toggleZoom('a')">設施</h2>
+            <h2 @click="scalePhoto('pA')">設施</h2>
           </li>
           <hr />
           <li>
-            <h2 @click="toggleZoom('b')">劇場</h2>
+            <h2 @click="scalePhoto('pB')">劇場</h2>
           </li>
           <hr />
           <li>
-            <h2 @click="toggleZoom('c')">醫療站</h2>
+            <h2 @click="scalePhoto('pC')">醫療站</h2>
           </li>
+
           <hr />
         </ul>
       </div>
